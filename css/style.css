@@ -1,0 +1,182 @@
+/* ==========================================================================
+   PROJETO INTEGRADOR - AXIS E-COMMERCE
+   ========================================================================== */
+
+/* Variáveis oficiais da paleta Axis */
+:root {
+    /* Cores Principais e Navegação */
+    --azul-petroleo: #004B63;     /* Cabeçalho, ícones e nome principal */[cite: 2]
+    --azul-dark: #00384A;         /* Hover no menu azul */[cite: 2]
+
+    /* Ações e Botões (CTAs) */
+    --laranja: #FF6B00;           /* Botões de compra / ação principal */[cite: 2]
+    --laranja-dark: #D95B00;      /* Hover dos botões laranja */[cite: 2]
+
+    /* Destaques e Status */
+    --amarelo: #FFC107;           /* Cupons e estrelas de avaliação */[cite: 2]
+    --verde: #00C853;             /* Frete grátis e mensagens de sucesso */[cite: 2]
+    --vermelho: #E63946;          /* Promoções e erros de sistema */[cite: 2]
+
+    /* Neutros e Textos */
+    --branco: #FFFFFF;            /* Fundo principal */[cite: 2]
+    --preto: #000000;             /* Texto padrão */[cite: 2]
+    --cinza-suave: #8E8E8E;       /* Subtítulos e slogans */[cite: 2]
+    --cinza-inativo: #CCCCCC;     /* Produtos esgotados/indisponíveis */[cite: 2]
+
+    /* Fontes e Borda */
+    --fonte-principal: 'Segoe UI', Arial, sans-serif;
+    --raio-borda: 6px;
+    --sombra-card: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fonte-principal);
+}
+
+body {
+    background-color: var(--branco);[cite: 2]
+    color: var(--preto);[cite: 2]
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    width: 100%;
+}
+
+/* Cabeçalho (Azul Petróleo) */
+header {
+    background-color: var(--azul-petroleo);[cite: 2]
+    color: var(--branco);[cite: 2]
+    padding: 1rem 2rem;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--branco);[cite: 2]
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--laranja);[cite: 2]
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+nav ul li a {
+    color: var(--branco);[cite: 2]
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.5rem 0.8rem;
+    border-radius: var(--raio-borda);
+    transition: background-color 0.2s;
+}
+
+nav ul li a:hover {
+    background-color: var(--azul-dark);[cite: 2]
+}
+
+/* Subtítulos e Slogans */
+.slogan {
+    color: var(--cinza-suave);[cite: 2]
+    font-size: 1rem;
+}
+
+/* Botão Principal de Ação (Laranja) */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--laranja);[cite: 2]
+    color: var(--branco);[cite: 2]
+    font-weight: bold;
+    border: none;
+    border-radius: var(--raio-borda);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--laranja-dark);[cite: 2]
+}
+
+/* Badges e Status */
+.badge-frete-gratis {
+    background-color: var(--verde);[cite: 2]
+    color: var(--branco);[cite: 2]
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: var(--raio-borda);
+}
+
+.badge-promocao {
+    background-color: var(--vermelho);[cite: 2]
+    color: var(--branco);[cite: 2]
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: var(--raio-borda);
+}
+
+/* Formulários */
+.form-container {
+    max-width: 420px;
+    margin: 2rem auto;
+    background-color: var(--branco);[cite: 2]
+    padding: 2rem;
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-card);
+    border: 1px solid var(--cinza-inativo);[cite: 2]
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--preto);[cite: 2]
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid var(--cinza-inativo);[cite: 2]
+    border-radius: var(--raio-borda);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--azul-petroleo);[cite: 2]
+}
+
+/* Rodapé */
+footer {
+    background-color: var(--azul-petroleo);[cite: 2]
+    color: var(--branco);[cite: 2]
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+}
