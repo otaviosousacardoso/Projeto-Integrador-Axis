@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axis E-Commerce - Home</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">AXIS<span>.</span></a>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="#produtos">Produtos</a></li>
+                <li><a href="#login">Conta</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <p class="slogan">Sua loja completa de tecnologia e inovação.</p>
+
+        <!-- Vitrine de Produtos -->
+        <section id="produtos" class="vitrine">
+            <div class="card-produto">
+                <h2>Notebook Axis Ultra</h2>
+                <p>
+                    <span class="badge-promocao">Oferta</span>
+                    <span class="badge-frete-gratis">Frete Grátis</span>
+                </p>
+                <p class="card-preco">R$ 4.299,00</p>
+                <a href="#" class="btn">Comprar Agora</a>
+            </div>
+
+            <div class="card-produto">
+                <h2>Smartphone Axis Pro</h2>
+                <p>
+                    <span class="badge-frete-gratis">Frete Grátis</span>
+                </p>
+                <p class="card-preco">R$ 2.199,00</p>
+                <a href="#" class="btn">Comprar Agora</a>
+            </div>
+        </section>
+
+        <div class="clear"></div>
+
+        <!-- Formulário de Login -->
+        <section id="login" class="form-container">
+            <h2>Área do Cliente</h2>
+            <p class="slogan">Acesse para acompanhar seus pedidos</p>
+
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" placeholder="Sua senha" required>
+                </div>
+
+                <button type="submit" class="btn btn-full">Entrar</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; Axis E-Commerce - Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
