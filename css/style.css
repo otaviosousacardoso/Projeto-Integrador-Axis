@@ -1,182 +1,154 @@
 /* ==========================================================================
-   PROJETO INTEGRADOR - AXIS E-COMMERCE
+   PROJETO INTEGRADOR - AXIS E-COMMERCE (ALINHADO À APOSTILA)
    ========================================================================== */
 
-/* Variáveis oficiais da paleta Axis */
-:root {
-    /* Cores Principais e Navegação */
-    --azul-petroleo: #004B63;     /* Cabeçalho, ícones e nome principal */[cite: 2]
-    --azul-dark: #00384A;         /* Hover no menu azul */[cite: 2]
-
-    /* Ações e Botões (CTAs) */
-    --laranja: #FF6B00;           /* Botões de compra / ação principal */[cite: 2]
-    --laranja-dark: #D95B00;      /* Hover dos botões laranja */[cite: 2]
-
-    /* Destaques e Status */
-    --amarelo: #FFC107;           /* Cupons e estrelas de avaliação */[cite: 2]
-    --verde: #00C853;             /* Frete grátis e mensagens de sucesso */[cite: 2]
-    --vermelho: #E63946;          /* Promoções e erros de sistema */[cite: 2]
-
-    /* Neutros e Textos */
-    --branco: #FFFFFF;            /* Fundo principal */[cite: 2]
-    --preto: #000000;             /* Texto padrão */[cite: 2]
-    --cinza-suave: #8E8E8E;       /* Subtítulos e slogans */[cite: 2]
-    --cinza-inativo: #CCCCCC;     /* Produtos esgotados/indisponíveis */[cite: 2]
-
-    /* Fontes e Borda */
-    --fonte-principal: 'Segoe UI', Arial, sans-serif;
-    --raio-borda: 6px;
-    --sombra-card: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-
-/* Reset básico */
+/* Reset básico (Seção 25 - Modelo de Caixas) */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: var(--fonte-principal);
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 body {
-    background-color: var(--branco);[cite: 2]
-    color: var(--preto);[cite: 2]
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    background-color: #FFFFFF;
+    color: #000000;
 }
 
 main {
-    flex: 1;
-    max-width: 1200px;
+    width: 1200px;
     margin: 0 auto;
-    padding: 2rem 1rem;
-    width: 100%;
+    padding: 32px 16px;
 }
 
-/* Cabeçalho (Azul Petróleo) */
+/* Cabeçalho e Navegação (Seção 24.1 - Elementos Flutuantes e Seção 32 - Menus) */
 header {
-    background-color: var(--azul-petroleo);[cite: 2]
-    color: var(--branco);[cite: 2]
-    padding: 1rem 2rem;
+    background-color: #004B63;
+    color: #FFFFFF;
+    padding: 16px 32px;
+    overflow: auto; /* Mantém a estrutura com floats */
 }
 
 nav {
-    max-width: 1200px;
+    width: 1200px;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .logo {
-    font-size: 1.8rem;
+    float: left;
+    font-size: 28px;
     font-weight: bold;
-    color: var(--branco);[cite: 2]
+    color: #FFFFFF;
     text-decoration: none;
+    line-height: 40px;
 }
 
 .logo span {
-    color: var(--laranja);[cite: 2]
+    color: #FF6B00;
 }
 
 nav ul {
-    display: flex;
+    float: right;
     list-style: none;
-    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-left: 24px;
 }
 
 nav ul li a {
-    color: var(--branco);[cite: 2]
+    color: #FFFFFF;
     text-decoration: none;
     font-weight: 500;
-    padding: 0.5rem 0.8rem;
-    border-radius: var(--raio-borda);
-    transition: background-color 0.2s;
+    padding: 8px 13px;
+    border-radius: 6px;
+    transition: background-color 0.2s; /* Seção 39 - Transições */
 }
 
 nav ul li a:hover {
-    background-color: var(--azul-dark);[cite: 2]
+    background-color: #00384A; /* Seção 30 - Links em CSS */
 }
 
 /* Subtítulos e Slogans */
 .slogan {
-    color: var(--cinza-suave);[cite: 2]
-    font-size: 1rem;
+    color: #8E8E8E;
+    font-size: 16px;
 }
 
-/* Botão Principal de Ação (Laranja) */
+/* Botões (Seção 35 - Botões em CSS) */
 .btn {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: var(--laranja);[cite: 2]
-    color: var(--branco);[cite: 2]
+    padding: 12px 24px;
+    background-color: #FF6B00;
+    color: #FFFFFF;
     font-weight: bold;
     border: none;
-    border-radius: var(--raio-borda);
+    border-radius: 6px;
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .btn:hover {
-    background-color: var(--laranja-dark);[cite: 2]
+    background-color: #D95B00;
 }
 
 /* Badges e Status */
 .badge-frete-gratis {
-    background-color: var(--verde);[cite: 2]
-    color: var(--branco);[cite: 2]
-    padding: 0.2rem 0.6rem;
-    font-size: 0.8rem;
-    border-radius: var(--raio-borda);
+    background-color: #00C853;
+    color: #FFFFFF;
+    padding: 3px 10px;
+    font-size: 13px;
+    border-radius: 6px;
 }
 
 .badge-promocao {
-    background-color: var(--vermelho);[cite: 2]
-    color: var(--branco);[cite: 2]
-    padding: 0.2rem 0.6rem;
-    font-size: 0.8rem;
-    border-radius: var(--raio-borda);
+    background-color: #E63946;
+    color: #FFFFFF;
+    padding: 3px 10px;
+    font-size: 13px;
+    border-radius: 6px;
 }
 
-/* Formulários */
+/* Formulários (Seção 41.2 - Estilizando Formulários) */
 .form-container {
-    max-width: 420px;
-    margin: 2rem auto;
-    background-color: var(--branco);[cite: 2]
-    padding: 2rem;
-    border-radius: var(--raio-borda);
-    box-shadow: var(--sombra-card);
-    border: 1px solid var(--cinza-inativo);[cite: 2]
+    width: 420px;
+    margin: 32px auto;
+    background-color: #FFFFFF;
+    padding: 32px;
+    border-radius: 6px;
+    border: 1px solid #CCCCCC;
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.3rem;
-    color: var(--preto);[cite: 2]
+    margin-bottom: 5px;
+    color: #000000;
 }
 
 .form-group input {
     width: 100%;
-    padding: 0.7rem;
-    border: 1px solid var(--cinza-inativo);[cite: 2]
-    border-radius: var(--raio-borda);
+    padding: 11px;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
 }
 
 .form-group input:focus {
     outline: none;
-    border-color: var(--azul-petroleo);[cite: 2]
+    border-color: #004B63;
 }
 
-/* Rodapé */
+/* Rodapé (Seção 24.1 - Uso do Clear) */
 footer {
-    background-color: var(--azul-petroleo);[cite: 2]
-    color: var(--branco);[cite: 2]
+    background-color: #004B63;
+    color: #FFFFFF;
     text-align: center;
-    padding: 1.5rem;
-    margin-top: auto;
+    padding: 24px;
+    clear: both;
 }
