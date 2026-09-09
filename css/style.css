@@ -1,150 +1,424 @@
 /* ==========================================================================
-   Configurações Gerais e Reset Básico
+   PROJETO INTEGRADOR - AXIS E-COMMERCE
+   Conforme Padrões da Apostila de Web Design (Prof. Ricardo Boaventura)
    ========================================================================== */
+
+/* Variáveis oficiais da paleta Axis */
+:root {
+    /* Cores Principais e Navegação */
+    --azul-petroleo: #004B63;     /* Cabeçalho, ícones e nome principal */
+    --azul-dark: #00384A;         /* Hover no menu azul */
+
+    /* Ações e Botões (CTAs) */
+    --laranja: #FF6B00;           /* Botões de compra / ação principal */
+    --laranja-dark: #D95B00;      /* Hover dos botões laranja */
+
+    /* Destaques e Status */
+    --amarelo: #FFC107;           /* Cupons e estrelas de avaliação */
+    --verde: #00C853;             /* Frete grátis e mensagens de sucesso */
+    --vermelho: #E63946;          /* Promoções e erros de sistema */
+
+    /* Neutros e Textos */
+    --branco: #FFFFFF;            /* Fundo principal */
+    --preto: #000000;             /* Texto padrão */
+    --cinza-suave: #8E8E8E;       /* Subtítulos e slogans */
+    --cinza-inativo: #CCCCCC;     /* Produtos esgotados/indisponíveis */
+
+    /* Fontes e Borda */
+    --fonte-principal: 'Segoe UI', Arial, sans-serif;
+    --raio-borda: 6px;
+    --sombra-card: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Reset básico (Seção 23.4 / Box Model) */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--fonte-principal);
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #333333;
-    background-color: #f9f9f9;
-    line-height: 1.6;
-}
-
-/* ==========================================================================
-   Cabeçalho
-   ========================================================================== */
-.cabecalho {
-    background-color: #ffffff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.container-header {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 15px 20px;
+    background-color: var(--branco);
+    color: var(--preto);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.logo-img {
-    height: 40px;
-    width: auto;
-}
-
-.navegacao ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.navegacao a {
-    text-decoration: none;
-    color: #333333;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.navegacao a:hover {
-    color: #ff6600;
-}
-
-/* ==========================================================================
-   Banner Principal
-   ========================================================================== */
-.banner-principal {
-    background-color: #f0f4f8;
-    padding: 60px 20px;
-}
-
-.container-banner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-}
-
-.banner-conteudo {
+main {
     flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    width: 100%;
 }
 
-.banner-marca {
+/* Cabeçalho (Seção 21.1) */
+header {
+    background-color: var(--preto);
+    color: var(--branco);
+    padding: 1rem 2rem;
+}
+
+/* Elemento Nav (Seção 21.2) */
+nav {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.logo {
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--branco);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+}
+
+.logo span {
+    color: var(--laranja);
+}
+
+/* Barra de pesquisa central */
+.search-bar {
+    flex: 1;
+    max-width: 500px;
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
+    background-color: var(--branco);
+    border-radius: 999px;
+    padding: 0.6rem 0.5rem 0.6rem 1.2rem;
 }
 
-.icone-banner {
-    width: 50px;
-    height: 50px;
+.search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    color: var(--preto);
+    background: transparent;
 }
 
-.banner-conteudo h1 {
-    font-size: 2.2rem;
-    color: #111111;
+.search-bar input::placeholder {
+    color: var(--cinza-suave);
 }
 
-.banner-conteudo p {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    color: #555555;
+.search-bar button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
 }
 
-.botao-cta {
+.search-bar button svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--laranja);
+}
+
+/* Ícones do cabeçalho */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 1.3rem;
+    flex-shrink: 0;
+}
+
+.nav-icons a {
+    display: flex;
+    color: var(--branco);
+}
+
+/* Estilização de Links em CSS (Seção 30) */
+.nav-icons a:link,
+.nav-icons a:visited {
+    color: var(--branco);
+}
+
+.nav-icons svg {
+    width: 26px;
+    height: 26px;
+    fill: var(--branco);
+}
+
+/* Subtítulos e Slogans */
+.slogan {
+    color: var(--cinza-suave);
+    font-size: 1rem;
+}
+
+/* Botões em CSS (Seção 35) */
+.btn {
     display: inline-block;
-    padding: 12px 28px;
-    background-color: #ff6600;
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 5px;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--laranja);
+    color: var(--branco);
     font-weight: bold;
-    transition: background-color 0.3s;
+    border: none;
+    border-radius: var(--raio-borda);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-.botao-cta:hover {
-    background-color: #e05500;
+/* Estados de Links e Botões (Seção 30 / Hover) */
+.btn:hover,
+.btn:active {
+    background-color: var(--laranja-dark);
 }
 
-.banner-imagem {
+/* ==========================================================================
+   BANNER PRINCIPAL (HERO)
+   ========================================================================== */
+.hero-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.hero {
+    position: relative;
     flex: 1;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    background: linear-gradient(90deg, var(--preto) 0%, var(--azul-dark) 55%, var(--azul-petroleo) 100%);
+    color: var(--branco);
+    border-radius: 12px;
+    padding: 3rem 3rem;
+    overflow: hidden;
+    min-height: 320px;
 }
 
-.mascote-img {
-    max-width: 100%;
+.hero-text h1 {
+    font-size: 2.6rem;
+    line-height: 1.15;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+}
+
+.hero-text h1 .destaque {
+    color: var(--laranja);
+    display: block;
+}
+
+.hero-text p {
+    color: var(--cinza-suave);
+    margin: 1rem 0 1.5rem;
+    font-size: 1.05rem;
+}
+
+.hero-media {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-shrink: 0;
+}
+
+.hero-mascot {
+    width: 220px;
     height: auto;
 }
 
-/* ==========================================================================
-   Rodapé
-   ========================================================================== */
-.rodape {
-    background-color: #222222;
-    color: #ffffff;
-    padding: 30px 20px;
-    text-align: center;
+.hero-logomark {
+    width: 110px;
+    height: auto;
+    display: none;
 }
 
-.container-rodape {
-    max-width: 1200px;
-    margin: 0 auto;
+@media (min-width: 900px) {
+    .hero-logomark {
+        display: block;
+    }
+}
+
+.hero-arrow {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--preto);
+    color: var(--branco);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.hero-arrow:hover,
+.hero-arrow:active {
+    background-color: var(--azul-dark);
+}
+
+.hero-arrow svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--branco);
+}
+
+/* ==========================================================================
+   CATEGORIAS E LISTAS (Seção 31)
+   ========================================================================== */
+.categorias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem 1rem;
+    margin-bottom: 3rem;
+}
+
+.categoria-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 0.7rem;
+    text-decoration: none;
+    width: 110px;
 }
 
-.logo-rodape {
-    height: 35px;
-    width: auto;
+.categoria-icone {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    background-color: var(--azul-petroleo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.categoria-item:hover .categoria-icone,
+.categoria-item:active .categoria-icone {
+    background-color: var(--azul-dark);
+}
+
+.categoria-icone svg {
+    width: 34px;
+    height: 34px;
+    fill: var(--branco);
+    stroke: var(--branco);
+}
+
+.categoria-nome {
+    color: var(--preto);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+/* Badges e Status */
+.badge-frete-gratis {
+    background-color: var(--verde);
+    color: var(--branco);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: var(--raio-borda);
+}
+
+.badge-promocao {
+    background-color: var(--vermelho);
+    color: var(--branco);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: var(--raio-borda);
+}
+
+/* Estilizando Formulários (Seção 20 / 41.2) */
+.form-container {
+    max-width: 420px;
+    margin: 2rem auto;
+    background-color: var(--branco);
+    padding: 2rem;
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-card);
+    border: 1px solid var(--cinza-inativo);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--preto);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid var(--cinza-inativo);
+    border-radius: var(--raio-borda);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--azul-petroleo);
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE E MEDIA QUERIES (Seção 46)
+   ========================================================================== */
+@media (max-width: 900px) {
+    nav {
+        flex-wrap: wrap;
+        row-gap: 0.8rem;
+    }
+
+    .search-bar {
+        order: 3;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+    }
+
+    .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-media {
+        justify-content: center;
+    }
+
+    .hero-mascot {
+        width: 160px;
+    }
+}
+
+@media (max-width: 600px) {
+    .categorias {
+        justify-content: center;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Rodapé (Seção 21.6) */
+footer {
+    background-color: var(--azul-petroleo);
+    color: var(--branco);
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
 }
