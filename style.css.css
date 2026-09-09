@@ -1,0 +1,227 @@
+/* ==========================================================================
+   PROJETO INTEGRADOR 2026/2028 - ESTILOS GLOBAIS
+   ========================================================================== */
+
+/* 1. Variáveis de Cores e Estilos (Paleta do Projeto) */
+:root {
+    --cor-primaria: #ffca28;       /* Amarelo de destaque (Botões e Links) */
+    --cor-primaria-hover: #e0a800; /* Amarelo escuro ao passar o mouse */
+    --cor-fundo: #f8f9fa;          /* Fundo claro da página */
+    --cor-card: #ffffff;           /* Fundo dos cartões e formulários */
+    --cor-texto: #212529;          /* Texto principal (Preto/Grafite escuro) */
+    --cor-texto-suave: #6c757d;    /* Texto secundário e legendas */
+    --cor-escuro: #121212;         /* Preto do cabeçalho e rodapé */
+    --cor-borda: #dee2e6;          /* Borda fina para divisões */
+    
+    --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --raio-borda: 8px;             /* Curvatura padrão de botões e cards */
+    --sombra-card: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* 2. Reset e Configurações Gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fonte-principal);
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+main {
+    flex: 1;
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* 3. Cabeçalho e Navegação (Header) */
+header {
+    background-color: var(--cor-escuro);
+    color: #ffffff;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--cor-primaria);
+    text-decoration: none;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+nav ul li a:hover {
+    color: var(--cor-primaria);
+}
+
+/* 4. Botões Padronizados */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.4rem;
+    background-color: var(--cor-primaria);
+    color: var(--cor-escuro);
+    font-weight: bold;
+    border: none;
+    border-radius: var(--raio-borda);
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:hover {
+    background-color: var(--cor-primaria-hover);
+}
+
+.btn-secundario {
+    background-color: transparent;
+    border: 2px solid var(--cor-primaria);
+    color: var(--cor-escuro);
+}
+
+.btn-secundario:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-escuro);
+}
+
+/* 5. Formulários (Para Login, Cadastro e Recuperar Senha) */
+.form-container {
+    max-width: 450px;
+    margin: 2rem auto;
+    background-color: var(--cor-card);
+    padding: 2.5rem;
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-card);
+    border: 1px solid var(--cor-borda);
+}
+
+.form-container h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--cor-escuro);
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+    color: var(--cor-texto);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--cor-borda);
+    border-radius: var(--raio-borda);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: var(--cor-primaria);
+}
+
+.form-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
+
+.form-links a {
+    color: var(--cor-texto-suave);
+    text-decoration: none;
+}
+
+.form-links a:hover {
+    color: var(--cor-escuro);
+    text-decoration: underline;
+}
+
+/* 6. Cartões e Seções (Página Inicial e Intranet) */
+.hero {
+    text-align: center;
+    padding: 3rem 1rem;
+    background-color: var(--cor-card);
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-card);
+    margin-bottom: 2rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--cor-escuro);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--cor-texto-suave);
+    margin-bottom: 1.5rem;
+}
+
+.grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background-color: var(--cor-card);
+    padding: 1.5rem;
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-card);
+    border: 1px solid var(--cor-borda);
+}
+
+.card h3 {
+    margin-bottom: 0.8rem;
+    color: var(--cor-escuro);
+}
+
+/* 7. Rodapé (Footer) */
+footer {
+    background-color: var(--cor-escuro);
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+    font-size: 0.9rem;
+}
