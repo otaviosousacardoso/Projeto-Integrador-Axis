@@ -1,154 +1,412 @@
 /* ==========================================================================
-   PROJETO INTEGRADOR - AXIS E-COMMERCE (ALINHADO À APOSTILA)
+   PROJETO INTEGRADOR - AXIS E-COMMERCE
    ========================================================================== */
 
-/* Reset básico (Seção 25 - Modelo de Caixas) */
+/* Variáveis oficiais da paleta Axis */
+:root {
+    /* Cores Principais e Navegação */
+    --azul-petroleo: #004B63;     /* Cabeçalho, ícones e nome principal */
+    --azul-dark: #00384A;         /* Hover no menu azul */
+
+    /* Ações e Botões (CTAs) */
+    --laranja: #FF6B00;           /* Botões de compra / ação principal */
+    --laranja-dark: #D95B00;      /* Hover dos botões laranja */
+
+    /* Destaques e Status */
+    --amarelo: #FFC107;           /* Cupons e estrelas de avaliação */
+    --verde: #00C853;             /* Frete grátis e mensagens de sucesso */
+    --vermelho: #E63946;          /* Promoções e erros de sistema */
+
+    /* Neutros e Textos */
+    --branco: #FFFFFF;            /* Fundo principal */
+    --preto: #000000;             /* Texto padrão */
+    --cinza-suave: #8E8E8E;       /* Subtítulos e slogans */
+    --cinza-inativo: #CCCCCC;     /* Produtos esgotados/indisponíveis */
+
+    /* Fontes e Borda */
+    --fonte-principal: 'Segoe UI', Arial, sans-serif;
+    --raio-borda: 6px;
+    --sombra-card: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Reset básico */
 * {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    box-sizing: border-box;
+    font-family: var(--fonte-principal);
 }
 
 body {
-    background-color: #FFFFFF;
-    color: #000000;
+    background-color: var(--branco);
+    color: var(--preto);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
-    width: 1200px;
+    flex: 1;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 32px 16px;
+    padding: 2rem 1rem;
+    width: 100%;
 }
 
-/* Cabeçalho e Navegação (Seção 24.1 - Elementos Flutuantes e Seção 32 - Menus) */
+/* Cabeçalho (Preto, conforme protótipo do Canva) */
 header {
-    background-color: #004B63;
-    color: #FFFFFF;
-    padding: 16px 32px;
-    overflow: auto; /* Mantém a estrutura com floats */
+    background-color: var(--preto);
+    color: var(--branco);
+    padding: 1rem 2rem;
 }
 
 nav {
-    width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .logo {
-    float: left;
-    font-size: 28px;
-    font-weight: bold;
-    color: #FFFFFF;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--branco);
     text-decoration: none;
-    line-height: 40px;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
 }
 
 .logo span {
-    color: #FF6B00;
+    color: var(--laranja);
 }
 
-nav ul {
-    float: right;
-    list-style: none;
-    margin: 0;
-    padding: 0;
+/* Barra de pesquisa central */
+.search-bar {
+    flex: 1;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    background-color: var(--branco);
+    border-radius: 999px;
+    padding: 0.6rem 0.5rem 0.6rem 1.2rem;
 }
 
-nav ul li {
-    display: inline-block;
-    margin-left: 24px;
+.search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 0.95rem;
+    color: var(--preto);
+    background: transparent;
 }
 
-nav ul li a {
-    color: #FFFFFF;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 8px 13px;
-    border-radius: 6px;
-    transition: background-color 0.2s; /* Seção 39 - Transições */
+.search-bar input::placeholder {
+    color: var(--cinza-suave);
 }
 
-nav ul li a:hover {
-    background-color: #00384A; /* Seção 30 - Links em CSS */
+.search-bar button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+}
+
+.search-bar button svg {
+    width: 22px;
+    height: 22px;
+    fill: var(--laranja);
+}
+
+/* Ícones do cabeçalho (conta, carrinho, menu) */
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 1.3rem;
+    flex-shrink: 0;
+}
+
+.nav-icons a {
+    display: flex;
+    color: var(--branco);
+}
+
+.nav-icons svg {
+    width: 26px;
+    height: 26px;
+    fill: var(--branco);
 }
 
 /* Subtítulos e Slogans */
 .slogan {
-    color: #8E8E8E;
-    font-size: 16px;
+    color: var(--cinza-suave);
+    font-size: 1rem;
 }
 
-/* Botões (Seção 35 - Botões em CSS) */
+/* Botão Principal de Ação (Laranja) */
 .btn {
     display: inline-block;
-    padding: 12px 24px;
-    background-color: #FF6B00;
-    color: #FFFFFF;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--laranja);
+    color: var(--branco);
     font-weight: bold;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--raio-borda);
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.2s;
 }
 
 .btn:hover {
-    background-color: #D95B00;
+    background-color: var(--laranja-dark);
+}
+
+/* ==========================================================================
+   BANNER PRINCIPAL (HERO)
+   ========================================================================== */
+.hero-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.hero {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    background: linear-gradient(90deg, #00131A 0%, var(--azul-dark) 60%, var(--azul-petroleo) 100%);
+    color: var(--branco);
+    border-radius: 12px;
+    padding: 3rem 3rem;
+    overflow: hidden;
+    min-height: 320px;
+}
+
+.hero-text h1 {
+    font-size: 2.6rem;
+    line-height: 1.15;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+}
+
+.hero-text h1 .destaque {
+    color: var(--laranja);
+    display: block;
+}
+
+.hero-text p {
+    color: #E5E5E5;
+    margin: 1rem 0 1.5rem;
+    font-size: 1.05rem;
+}
+
+.hero-media {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-shrink: 0;
+}
+
+.hero-mascot {
+    width: 220px;
+    height: auto;
+}
+
+.hero-logomark {
+    width: 110px;
+    height: auto;
+    display: none;
+}
+
+@media (min-width: 900px) {
+    .hero-logomark {
+        display: block;
+    }
+}
+
+.hero-arrow {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--preto);
+    color: var(--branco);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.hero-arrow:hover {
+    background-color: var(--azul-dark);
+}
+
+.hero-arrow svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--branco);
+}
+
+/* ==========================================================================
+   CATEGORIAS
+   ========================================================================== */
+.categorias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem 1rem;
+    margin-bottom: 3rem;
+}
+
+.categoria-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    width: 110px;
+}
+
+.categoria-icone {
+    width: 78px;
+    height: 78px;
+    border-radius: 50%;
+    background-color: var(--azul-petroleo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.categoria-item:hover .categoria-icone {
+    background-color: var(--azul-dark);
+}
+
+.categoria-icone svg {
+    width: 34px;
+    height: 34px;
+    fill: var(--branco);
+    stroke: var(--branco);
+}
+
+.categoria-nome {
+    color: var(--preto);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-align: center;
 }
 
 /* Badges e Status */
 .badge-frete-gratis {
-    background-color: #00C853;
-    color: #FFFFFF;
-    padding: 3px 10px;
-    font-size: 13px;
-    border-radius: 6px;
+    background-color: var(--verde);
+    color: var(--branco);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: var(--raio-borda);
 }
 
 .badge-promocao {
-    background-color: #E63946;
-    color: #FFFFFF;
-    padding: 3px 10px;
-    font-size: 13px;
-    border-radius: 6px;
+    background-color: var(--vermelho);
+    color: var(--branco);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: var(--raio-borda);
 }
 
-/* Formulários (Seção 41.2 - Estilizando Formulários) */
+/* Formulários */
 .form-container {
-    width: 420px;
-    margin: 32px auto;
-    background-color: #FFFFFF;
-    padding: 32px;
-    border-radius: 6px;
-    border: 1px solid #CCCCCC;
+    max-width: 420px;
+    margin: 2rem auto;
+    background-color: var(--branco);
+    padding: 2rem;
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-card);
+    border: 1px solid var(--cinza-inativo);
 }
 
 .form-group {
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
-    color: #000000;
+    margin-bottom: 0.3rem;
+    color: var(--preto);
 }
 
 .form-group input {
     width: 100%;
-    padding: 11px;
-    border: 1px solid #CCCCCC;
-    border-radius: 6px;
+    padding: 0.7rem;
+    border: 1px solid var(--cinza-inativo);
+    border-radius: var(--raio-borda);
 }
 
 .form-group input:focus {
     outline: none;
-    border-color: #004B63;
+    border-color: var(--azul-petroleo);
 }
 
-/* Rodapé (Seção 24.1 - Uso do Clear) */
+/* ==========================================================================
+   RESPONSIVO (RNF01 - celular e tablet)
+   ========================================================================== */
+@media (max-width: 900px) {
+    nav {
+        flex-wrap: wrap;
+        row-gap: 0.8rem;
+    }
+
+    .search-bar {
+        order: 3;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1.5rem;
+    }
+
+    .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-media {
+        justify-content: center;
+    }
+
+    .hero-mascot {
+        width: 160px;
+    }
+}
+
+@media (max-width: 600px) {
+    .categorias {
+        justify-content: center;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Rodapé */
 footer {
-    background-color: #004B63;
-    color: #FFFFFF;
+    background-color: var(--azul-petroleo);
+    color: var(--branco);
     text-align: center;
-    padding: 24px;
-    clear: both;
+    padding: 1.5rem;
+    margin-top: auto;
 }
