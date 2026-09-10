@@ -240,6 +240,7 @@ a:link, a:visited, a:active { color: inherit; }
   width: clamp(155px, 15vw, 230px);
   aspect-ratio: 1;
   transform: translateY(-50%);
+   overflow: visible;
 }
 
 .hero__mark img {
@@ -247,21 +248,11 @@ a:link, a:visited, a:active { color: inherit; }
   top: 26%;
   right: 5%;
   z-index: 2;
-  width: 54%;
-  height: 54%;
+  width: 80%;
+  height: 80%;
   object-fit: contain;
   transform: rotate(-10deg);
 }
-
-.hero__orbit {
-  position: absolute;
-  display: block;
-  border: 3px solid #FF6B00;
-  border-radius: 50%;
-}
-
-.hero__orbit--outer { inset: 2% 0 7% 4%; border-left-color: transparent; transform: rotate(-24deg); }
-.hero__orbit--inner { inset: 9% 7% 13% 11%; border-right-color: transparent; transform: rotate(-24deg); }
 
 /* CATEGORIAS E IMAGENS (Seções 13, 31 e 40) */
 .categories {
