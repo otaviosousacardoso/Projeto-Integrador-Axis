@@ -180,12 +180,14 @@ a:link, a:visited, a:active { color: inherit; }
   background: linear-gradient(105deg, #000000 0%, #000000 18%, #00384A 63%, #004B63 100%);
   border-radius: 27px;
   color: #FFFFFF;
+  display: flex;
+  align-items: center;
 }
 
 .hero__copy {
   position: relative;
   z-index: 1;
-  width: 52%;
+  width: 48%;
   padding: 2.9rem 3.8rem;
 }
 
@@ -226,7 +228,7 @@ a:link, a:visited, a:active { color: inherit; }
 
 .hero__robot {
   position: absolute;
-  right: clamp(225px, 17vw, 310px);
+  right: clamp(200px, 14vw, 280px);
   bottom: -10px;
   z-index: 1;
   width: clamp(275px, 23vw, 365px);
@@ -236,11 +238,11 @@ a:link, a:visited, a:active { color: inherit; }
 .hero__mark {
   position: absolute;
   top: 50%;
-  right: clamp(34px, 5vw, 100px);
-  width: clamp(155px, 15vw, 230px);
+  right: clamp(20px, 3vw, 80px);
+  width: clamp(200px, 20vw, 280px);
   aspect-ratio: 1;
   transform: translateY(-50%);
-   overflow: visible;
+  overflow: visible;
 }
 
 .hero__mark img {
@@ -439,9 +441,9 @@ a:link, a:visited, a:active { color: inherit; }
   .brand img { width: 175px; }
   .header-actions { gap: 0.45rem; }
   .header-icon { width: 46px; height: 46px; }
-  .hero__copy { width: 57%; }
-  .hero__robot { right: 18%; width: 30%; }
-  .hero__mark { right: 2%; width: 17%; }
+  .hero__copy { width: 55%; }
+  .hero__robot { right: 16%; width: 30%; }
+  .hero__mark { right: 1%; width: 18%; }
   .categories { grid-template-columns: repeat(4, minmax(120px, 1fr)); row-gap: 2.2rem; }
   .account-main { padding: 3rem 2rem; }
   .account-grid { gap: 2rem; }
