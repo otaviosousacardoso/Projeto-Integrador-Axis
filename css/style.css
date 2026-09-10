@@ -291,7 +291,7 @@ a:link, a:visited, a:active { color: inherit; }
 .category__icon img {
   width: 55%;
   height: 55%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
