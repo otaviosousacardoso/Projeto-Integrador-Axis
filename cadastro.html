@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Crie sua conta AXIS.">
+  <title>Criar conta | AXIS</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body class="page page--auth">
+  <header class="site-header site-header--compact">
+    <nav class="topbar topbar--compact" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+      <a class="back-home" href="index.html">← Voltar para a loja</a>
+    </nav>
+  </header>
+  <main class="auth-main">
+    <section class="auth-card" aria-labelledby="register-title">
+      <img class="auth-card__brand" src="assets/icons/header/icon-logo.png" alt="AXIS">
+      <h1 id="register-title">Crie sua conta</h1>
+      <form class="auth-form" data-register-form novalidate>
+        <fieldset class="formulario">
+          <legend class="sr-only">Dados para criar a conta</legend>
+          <div class="form-field"><label for="register-name">Nome completo</label><input id="register-name" name="nome" type="text" autocomplete="name" required></div>
+          <div class="form-field"><label for="register-email">E-mail</label><input id="register-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="form-field"><label for="register-password">Crie uma senha</label><input id="register-password" name="senha" type="password" autocomplete="new-password" required minlength="6"></div>
+          <div class="form-field"><label for="register-confirmation">Confirme sua senha</label><input id="register-confirmation" name="confirmar-senha" type="password" autocomplete="new-password" required minlength="6"></div>
+          <p class="form-message" data-register-message role="alert" hidden></p>
+          <button class="button button--offer button--full" type="submit">Criar conta</button>
+        </fieldset>
+      </form>
+      <p class="register-prompt">Já tem conta? <a href="login.html">Entrar</a></p>
+    </section>
+  </main>
+  <footer class="site-footer"><p>© 2026 AXIS. Todos os direitos reservados.</p></footer>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

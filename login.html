@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Acesso à conta AXIS.">
+  <title>Entrar | AXIS</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body class="page page--auth">
+  <header class="site-header site-header--compact">
+    <nav class="topbar topbar--compact" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+      <a class="back-home" href="index.html">← Voltar para a loja</a>
+    </nav>
+  </header>
+  <main class="auth-main">
+    <section class="auth-card" aria-labelledby="login-page-title">
+      <img class="auth-card__brand" src="assets/icons/header/icon-logo.png" alt="AXIS">
+      <h1 id="login-page-title">Entre na sua conta</h1>
+      <form class="auth-form" data-login-form novalidate>
+        <fieldset class="formulario">
+          <legend class="sr-only">Dados de acesso</legend>
+          <div class="form-field"><label for="page-login-email">E-mail</label><input id="page-login-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="form-field"><label for="page-login-password">Senha</label><input id="page-login-password" name="senha" type="password" autocomplete="current-password" required minlength="6"></div>
+          <p class="form-message" data-login-message role="alert" hidden></p>
+          <a class="forgot-password" href="recuperar-senha.html">Esqueceu a senha?</a>
+          <button class="button button--offer button--full" type="submit">Entrar</button>
+        </fieldset>
+      </form>
+      <p class="register-prompt">Não tem conta? <a href="cadastro.html">Registrar-se</a></p>
+    </section>
+  </main>
+  <footer class="site-footer"><p>© 2026 AXIS. Todos os direitos reservados.</p></footer>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

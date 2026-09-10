@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Recupere sua senha AXIS.">
+  <title>Recuperar senha | AXIS</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body class="page page--auth">
+  <header class="site-header site-header--compact">
+    <nav class="topbar topbar--compact" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+      <a class="back-home" href="index.html">← Voltar para a loja</a>
+    </nav>
+  </header>
+  <main class="auth-main">
+    <section class="auth-card" aria-labelledby="recovery-title">
+      <img class="auth-card__brand" src="assets/icons/header/icon-logo.png" alt="AXIS">
+      <h1 id="recovery-title">Recupere sua senha</h1>
+      <p class="auth-card__description">Informe seu e-mail para receber as instruções de redefinição de senha.</p>
+      <form class="auth-form" data-recovery-form novalidate>
+        <fieldset class="formulario">
+          <legend class="sr-only">Solicitar recuperação de senha</legend>
+          <div class="form-field"><label for="recovery-email">E-mail</label><input id="recovery-email" name="email" type="email" autocomplete="email" required></div>
+          <p class="form-message form-message--success" data-recovery-message role="status" hidden></p>
+          <button class="button button--offer button--full" type="submit">Enviar instruções</button>
+        </fieldset>
+      </form>
+      <p class="register-prompt"><a href="login.html">Voltar para entrar</a></p>
+    </section>
+  </main>
+  <footer class="site-footer"><p>© 2026 AXIS. Todos os direitos reservados.</p></footer>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
