@@ -1,132 +1,52 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axis E-Commerce - Home</title>
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html" class="logo">
-    <img src="assets/icons/header/icon-logo.png" alt="Logo AXIS">
-    A<span>X</span>IS
-</a>
 
-<form class="search-bar" action="produtos.html" method="get">
-    <input type="text" name="busca" placeholder="Pesquisar" aria-label="Pesquisar produtos">
-    <button type="submit" aria-label="Buscar">
-        <img src="assets/icons/header/icon-search.png" alt="Buscar">
-    </button>
-</form>
-
-<div class="nav-icons">
-    <a href="login.html" aria-label="Minha conta">
-        <img src="assets/icons/header/icon-user.png" alt="Minha Conta">
-    </a>
-    <a href="carrinho.html" aria-label="Carrinho de compras">
-        <img src="assets/icons/header/icon-cart.png" alt="Carrinho">
-    </a>
-    <a href="#menu" aria-label="Abrir menu">
-        <img src="assets/icons/header/icon-menu.png" alt="Menu">
-    </a>
-</div>
+    <!-- Cabeçalho / Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="imagens/logo.png" alt="Logo">
+            </a>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html" class="active">Início</a>
+            <a href="servicos.html">Serviços</a>
+            <a href="sobre.html">Sobre Nós</a>
+            <a href="contato.html">Contato</a>
         </nav>
+        <div class="auth-buttons">
+            <a href="login.html" class="btn btn-secondary">Entrar</a>
+            <a href="cadastro.html" class="btn btn-primary">Cadastrar</a>
+        </div>
     </header>
 
-    <main>
-        <!-- Banner Principal -->
-        <section class="hero-wrapper" aria-label="Destaques">
-            <button class="hero-arrow" aria-label="Slide anterior">
-                ‹
-            </button>
-
-            <div class="hero">
-                <div class="hero-text">
-                    <h1>Tecnologia que mudará<span class="destaque">o seu mundo</span></h1>
-                    <p>O melhor em hardware e gadgets com entrega relâmpago</p>
-                    <a href="produtos.html" class="btn">Ver Ofertas</a>
-                </div>
-
-                <div class="hero-media">
-                    <!-- Mascote Axis do Canva -->
-                    <img src="assets/images/mascot/robot-banner.png" alt="Mascote Axis" class="hero-mascot">
-                    
-                    <!-- Selo Promocional feito via Código -->
-                    <span class="badge-desconto">20% OFF</span>
-                </div>
+    <!-- Seção Principal (Hero) -->
+    <main class="hero-container">
+        <section class="hero-text">
+            <h1>Sua Solução Ideal para Gerenciamento e Organização</h1>
+            <p>Conectamos você às melhores ferramentas para otimizar sua rotina com facilidade, segurança e alta performance.</p>
+            <div class="hero-actions">
+                <a href="cadastro.html" class="btn btn-primary btn-large">Começar Agora</a>
+                <a href="sobre.html" class="btn btn-outline">Saiba Mais</a>
             </div>
-
-            <button class="hero-arrow" aria-label="Próximo slide">
-                ›
-            </button>
         </section>
-
-        <!-- Categorias (Mantidas idênticas ao seu código original) -->
-        <section class="categorias" aria-label="Categorias de produtos">
-            <a href="produtos.html?categoria=smartphones" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-celulares.png" alt="Smartphones">
-                </span>
-                <span class="categoria-nome">Smartphones</span>
-            </a>
-            
-            <a href="produtos.html?categoria=notebooks" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-notebooks.png" alt="Notebooks">
-                </span>
-                <span class="categoria-nome">Notebooks</span>
-            </a>
-
-            <a href="produtos.html?categoria=televisores" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-televisores.png" alt="Televisores">
-                </span>
-                <span class="categoria-nome">Televisores</span>
-            </a>
-
-            <a href="produtos.html?categoria=audio" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-audio.png" alt="Áudio">
-                </span>
-                <span class="categoria-nome">Áudio Profissional</span>
-            </a>
-
-            <a href="produtos.html?categoria=pcs" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-pcs.png" alt="Pcs">
-                </span>
-                <span class="categoria-nome">Pcs</span>
-            </a>
-
-            <a href="produtos.html?categoria=tablets" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-tablets.png" alt="Tablets">
-                </span>
-                <span class="categoria-nome">Tablets</span>
-            </a>
-
-            <a href="produtos.html?categoria=conectividade" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-conectividade.png" alt="Conectividade">
-                </span>
-                <span class="categoria-nome">Conectividade</span>
-            </a>
-
-            <a href="produtos.html?categoria=acessorios" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-acessorios.png" alt="Acessorios">
-                </span>
-                <span class="categoria-nome">Acessorios</span>
-            </a>
+        
+        <section class="hero-image">
+            <img src="imagens/hero-banner.png" alt="Ilustração de Destaque">
         </section>
     </main>
 
-    <footer>
-        <p>&copy; Axis E-Commerce - Todos os direitos reservados.</p>
+    <!-- Rodapé -->
+    <footer class="footer">
+        <p>&copy; 2026 Seu Projeto. Todos os direitos reservados.</p>
     </footer>
 
-    <script src="js/main.js"></script>
 </body>
 </html>
