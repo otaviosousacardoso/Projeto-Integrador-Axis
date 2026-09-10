@@ -1,133 +1,138 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Axis E-Commerce - Home</title>
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AXIS - tecnologia no centro das suas escolhas.">
+  <title>AXIS | Página inicial</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-    <header>
-        <nav>
-            <a href="index.html" class="logo">
-    <img src="assets/icons/header/icon-logo.png" alt="Logo AXIS">
-    A<span>X</span>IS
-</a>
+<body class="page page--home">
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial">
+        <img src="assets/icons/header/icon-logo.png" alt="AXIS">
+      </a>
 
-<form class="search-bar" action="produtos.html" method="get">
-    <input type="text" name="busca" placeholder="Pesquisar" aria-label="Pesquisar produtos">
-    <button type="submit" aria-label="Buscar">
-        <img src="assets/icons/header/icon-search.png" alt="Buscar">
-    </button>
-</form>
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar" autocomplete="off">
+        <button type="submit" aria-label="Buscar produtos">
+          <img src="assets/icons/header/icon-search.png" alt="">
+        </button>
+      </form>
 
-<div class="nav-icons">
-    <a href="login.html" aria-label="Minha conta">
-        <img src="assets/icons/header/icon-user.png" alt="Minha Conta">
-    </a>
-    <a href="carrinho.html" aria-label="Carrinho de compras">
-        <img src="assets/icons/header/icon-cart.png" alt="Carrinho">
-    </a>
-    <a href="#menu" aria-label="Abrir menu">
-        <img src="assets/icons/header/icon-menu.png" alt="Menu">
-    </a>
-</div>
-        </nav>
-    </header>
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" data-open-login aria-label="Entrar ou criar conta" title="Minha conta">
+          <img src="assets/icons/header/icon-user.png" alt="">
+        </a>
+        <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho">
+          <img src="assets/icons/header/icon-cart.png" alt="">
+        </a>
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu">
+          <img src="assets/icons/header/icon-menu.png" alt="">
+          <span class="sr-only">Abrir menu</span>
+        </button>
+      </div>
+    </nav>
 
-    <main>
-        <!-- Banner Principal -->
-        <section class="hero-wrapper" aria-label="Destaques">
-            <button class="hero-arrow" aria-label="Slide anterior">
-                ‹
-            </button>
+    <div id="site-menu" class="site-menu" hidden>
+      <a href="#categorias">Categorias</a>
+      <a href="produtos.html">Produtos</a>
+      <a href="minha-conta.html">Minha conta</a>
+      <a href="ajuda.html">Ajuda</a>
+    </div>
+  </header>
 
-            <div class="hero">
-                <div class="hero-text">
-                    <h1>Tecnologia que mudará<span class="destaque">o seu mundo</span></h1>
-                    <p>O melhor em hardware e gadgets com entrega relâmpago</p>
-                    <a href="produtos.html" class="btn">Ver Ofertas</a>
-                </div>
+  <main>
+    <section class="hero-carousel" aria-label="Oferta em destaque">
+      <button class="carousel-arrow" type="button" aria-label="Oferta anterior" disabled>
+        <span aria-hidden="true">‹</span>
+      </button>
 
-                <div class="hero-media">
-                    <!-- Mascote Axis do Canva -->
-                    <img src="assets/images/mascot/robot-banner.png" alt="Mascote Axis" class="hero-mascot">
-                    
-                    <!-- Selo Promocional feito via Código -->
-                    <span class="badge-desconto">20% OFF</span>
-                </div>
-            </div>
+      <article class="hero">
+        <div class="hero__copy">
+          <h1>Tecnologia que<br>mudará <span>o seu mundo</span></h1>
+          <p>O melhor em hardware e gadgets com entrega relâmpago</p>
+          <a class="button button--offer" href="produtos.html?ofertas=1">Ver ofertas</a>
+        </div>
 
-            <button class="hero-arrow" aria-label="Próximo slide">
-                ›
-            </button>
-        </section>
+        <img class="hero__robot" src="assets/images/mascot/robot-banner.png" alt="Mascote robô da AXIS">
+        <div class="hero__mark" aria-hidden="true">
+          <span class="hero__orbit hero__orbit--outer"></span>
+          <span class="hero__orbit hero__orbit--inner"></span>
+          <img src="assets/icons/header/icon-search.png" alt="">
+        </div>
+      </article>
 
-        <!-- Categorias (Mantidas idênticas ao seu código original) -->
-        <section class="categorias" aria-label="Categorias de produtos">
-            <a href="produtos.html?categoria=smartphones" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-celulares.png" alt="Smartphones">
-                </span>
-                <span class="categoria-nome">Smartphones</span>
-            </a>
-            
-            <a href="produtos.html?categoria=notebooks" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-notebooks.png" alt="Notebooks">
-                </span>
-                <span class="categoria-nome">Notebooks</span>
-            </a>
+      <button class="carousel-arrow" type="button" aria-label="Próxima oferta" disabled>
+        <span aria-hidden="true">›</span>
+      </button>
+    </section>
 
-            <a href="produtos.html?categoria=televisores" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-televisores.png" alt="Televisores">
-                </span>
-                <span class="categoria-nome">Televisores</span>
-            </a>
+    <section id="categorias" class="categories" aria-label="Categorias de produtos">
+      <a class="category" href="produtos.html?categoria=smartphones">
+        <span class="category__icon"><img src="assets/images/departments/dept-celulares.png" alt=""></span>
+        <span>Smartphones</span>
+      </a>
+      <a class="category" href="produtos.html?categoria=notebooks">
+        <span class="category__icon"><img src="assets/images/departments/dept-notebooks.png" alt=""></span>
+        <span>Notebooks</span>
+      </a>
+      <a class="category" href="produtos.html?categoria=televisores">
+        <span class="category__icon"><img src="assets/images/departments/dept-televisores.png" alt=""></span>
+        <span>Televisores</span>
+      </a>
+      <a class="category" href="produtos.html?categoria=audio">
+        <span class="category__icon"><img src="assets/images/departments/dept-audio.png" alt=""></span>
+        <span>Áudio Profissional</span>
+      </a>
+      <a class="category" href="produtos.html?categoria=pcs">
+        <span class="category__icon"><img src="assets/images/departments/dept-pcs.png" alt=""></span>
+        <span>PCs</span>
+      </a>
+      <a class="category" href="produtos.html?categoria=tablets">
+        <span class="category__icon"><img src="assets/images/departments/dept-tablets.png" alt=""></span>
+        <span>Tablets</span>
+      </a>
+      <a class="category" href="produtos.html?categoria=conectividade">
+        <span class="category__icon"><img src="assets/images/departments/dept-conectividade.png" alt=""></span>
+        <span>Conectividade</span>
+      </a>
+      <a class="category" href="produtos.html?categoria=acessorios">
+        <span class="category__icon"><img src="assets/images/departments/dept-acessorios.png" alt=""></span>
+        <span>Acessórios</span>
+      </a>
+    </section>
+  </main>
 
-            <a href="produtos.html?categoria=audio" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-audio.png" alt="Áudio">
-                </span>
-                <span class="categoria-nome">Áudio Profissional</span>
-            </a>
+  <footer class="site-footer">
+    <p>© 2026 AXIS. Todos os direitos reservados.</p>
+  </footer>
 
-            <a href="produtos.html?categoria=pcs" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-pcs.png" alt="Pcs">
-                </span>
-                <span class="categoria-nome">Pcs</span>
-            </a>
+  <dialog id="login-dialog" class="auth-dialog" aria-labelledby="login-title">
+    <button class="dialog-close" type="button" data-close-login aria-label="Fechar login">×</button>
+    <div class="auth-dialog__brand" aria-hidden="true">
+      <img src="assets/icons/header/icon-logo.png" alt="">
+    </div>
+    <h2 id="login-title">Entre na sua conta</h2>
+    <form class="auth-form" data-login-form novalidate>
+      <div class="form-field">
+        <label for="login-email">E-mail</label>
+        <input id="login-email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <div class="form-field">
+        <label for="login-password">Senha</label>
+        <input id="login-password" name="senha" type="password" autocomplete="current-password" required minlength="6">
+      </div>
+      <p class="form-message" data-login-message role="alert" hidden></p>
+      <a class="forgot-password" href="recuperar-senha.html">Esqueceu a senha?</a>
+      <button class="button button--offer button--full" type="submit">Entrar</button>
+    </form>
+    <p class="register-prompt">Não tem conta? <a href="cadastro.html">Registrar-se</a></p>
+  </dialog>
 
-            <a href="produtos.html?categoria=tablets" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-tablets.png" alt="Tablets">
-                </span>
-                <span class="categoria-nome">Tablets</span>
-            </a>
-
-            <a href="produtos.html?categoria=conectividade" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-conectividade.png" alt="Conectividade">
-                </span>
-                <span class="categoria-nome">Conectividade</span>
-            </a>
-
-            <a href="produtos.html?categoria=acessorios" class="categoria-item">
-                <span class="categoria-icone">
-                    <img src="assets/images/departments/dept-acessorios.png" alt="Acessorios">
-                </span>
-                <span class="categoria-nome">Acessorios</span>
-            </a>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; Axis E-Commerce - Todos os direitos reservados.</p>
-    </footer>
-
-    <script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
 </html>
