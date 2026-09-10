@@ -155,7 +155,7 @@ nav::after {
 .hero-wrapper {
     width: 100%;
     margin-bottom: 3rem;
-    position: relative; /* Adicionado do seu novo snippet */
+    position: relative;
 }
 
 .hero-wrapper::after {
@@ -209,7 +209,7 @@ nav::after {
     float: right;
     width: 40%;
     text-align: right;
-    position: relative; /* Garantindo que o selo se posicione em relação a esta caixa */
+    position: relative;
 }
 
 .hero-mascot {
@@ -219,7 +219,7 @@ nav::after {
     vertical-align: middle;
 }
 
-/* Selo de Desconto Novo (AQUI) */
+/* Estilo do Selo de Desconto do Banner */
 .badge-desconto {
     position: absolute;
     top: 10px;
@@ -273,6 +273,7 @@ nav::after {
     object-fit: contain;
     margin-top: 13px;
 }
+
 /* ==========================================================================
    CATEGORIAS E LISTAS (Seção 31 / 29.1 Display Inline-Block)
    ========================================================================== */
