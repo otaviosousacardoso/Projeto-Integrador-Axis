@@ -1,4 +1,9 @@
-/* Reset Básico */
+/* ==========================================================================
+   PROJETO INTEGRADOR - AXIS E-COMMERCE
+   Conforme Padrões da Apostila de Web Design (Prof. Ricardo Boaventura)
+   ========================================================================== */
+
+/* Reset básico (Seção 23.4 / 25 Modelos de Caixas) */
 * {
     margin: 0;
     padding: 0;
@@ -11,6 +16,7 @@ body {
     color: #000000;
 }
 
+/* Layout Principal usando margens e bloco (Seção 29.1 / 37) */
 main {
     max-width: 1200px;
     margin: 0 auto;
@@ -18,21 +24,24 @@ main {
     width: 100%;
 }
 
-/* Cabeçalho */
+/* Cabeçalho (Seção 21.1) */
 header {
     background-color: #000000;
     color: #FFFFFF;
     padding: 1rem 2rem;
 }
 
-.nav-container {
-    max-width: 1200px;
+/* Elemento Nav (Seção 21.2 e Seção 24.1 Flutuantes) */
+nav {
+    max-width: 1300px;
     margin: 0 auto;
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+}
+
+nav::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .logo {
@@ -41,38 +50,33 @@ header {
     color: #FFFFFF;
     text-decoration: none;
     letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.logo img {
-    height: 32px;
-    width: auto;
+    float: left;
+    margin-top: 4px;
 }
 
 .logo span {
     color: #FF6B00;
 }
 
-/* Barra de Pesquisa */
+/* Barra de pesquisa central */
 .search-bar {
-    flex: 1;
+    float: left;
+    width: 45%;
     max-width: 500px;
+    margin: 0 2%;
     background-color: #FFFFFF;
     border-radius: 999px;
-    padding: 0.4rem 0.8rem 0.4rem 1.2rem;
-    display: flex;
-    align-items: center;
+    padding: 0.6rem 0.5rem 0.6rem 1.2rem;
 }
 
 .search-bar input {
-    width: 100%;
+    width: calc(100% - 40px);
     border: none;
     outline: none;
     font-size: 0.95rem;
     color: #000000;
     background: transparent;
+    float: left;
 }
 
 .search-bar input::placeholder {
@@ -80,31 +84,37 @@ header {
 }
 
 .search-bar button {
+    float: right;
     background: none;
     border: none;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4px;
+    width: 32px;
+    height: 32px;
 }
 
 .search-bar button img {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     object-fit: contain;
 }
 
-/* Ícones de Navegação */
+/* Ícones do cabeçalho */
 .nav-icons {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
+    float: right;
+    margin-top: 8px;
 }
 
 .nav-icons a {
-    display: flex;
-    align-items: center;
+    display: inline-block;
+    color: #FFFFFF;
+    margin-left: 1.3rem;
+    vertical-align: middle;
+}
+
+/* Estilização de Links em CSS (Seção 30) */
+.nav-icons a:link,
+.nav-icons a:visited {
+    color: #FFFFFF;
 }
 
 .nav-icons img {
@@ -113,10 +123,16 @@ header {
     object-fit: contain;
 }
 
-/* Botões */
+/* Subtítulos e Slogans (Seção 28) */
+.slogan {
+    color: #8E8E8E;
+    font-size: 1rem;
+}
+
+/* Botões em CSS (Seção 35) */
 .btn {
     display: inline-block;
-    padding: 0.75rem 1.75rem;
+    padding: 0.75rem 1.5rem;
     background-color: #FF6B00;
     color: #FFFFFF;
     font-weight: bold;
@@ -127,41 +143,55 @@ header {
     transition: background-color 0.2s;
 }
 
+/* Estados de Links e Botões (Seção 30 / Hover) */
 .btn:hover,
 .btn:active {
     background-color: #D95B00;
 }
 
-/* BANNER PRINCIPAL (HERO) */
+/* ==========================================================================
+   BANNER PRINCIPAL (HERO) - (Seção 24.1 / 37 Layouts em CSS)
+   ========================================================================== */
 .hero-wrapper {
     width: 100%;
     margin-bottom: 3rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    position: relative;
+}
+
+.hero-wrapper::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .hero {
-    flex: 1;
+    position: relative;
+    float: left;
+    width: calc(100% - 60px);
     background: linear-gradient(90deg, #000000 0%, #00384A 55%, #004B63 100%);
     color: #FFFFFF;
     border-radius: 12px;
-    padding: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
+    padding: 3rem 3rem;
+    overflow: hidden;
     min-height: 320px;
 }
 
+.hero::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .hero-text {
-    max-width: 50%;
+    float: left;
+    width: 55%;
 }
 
 .hero-text h1 {
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     line-height: 1.15;
     font-weight: 800;
+    margin-bottom: 0.3rem;
 }
 
 .hero-text h1 .destaque {
@@ -170,27 +200,30 @@ header {
 }
 
 .hero-text p {
-    color: #CCCCCC;
+    color: #8E8E8E;
     margin: 1rem 0 1.5rem;
     font-size: 1.05rem;
 }
 
 .hero-media {
+    float: right;
+    width: 40%;
+    text-align: right;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .hero-mascot {
     width: 220px;
     height: auto;
+    display: inline-block;
+    vertical-align: middle;
 }
 
+/* Estilo do Selo de Desconto do Banner */
 .badge-desconto {
     position: absolute;
-    top: -10px;
-    right: -10px;
+    top: 10px;
+    right: 10px;
     background-color: #FF6B00;
     color: #FFFFFF;
     font-size: 0.85rem;
@@ -200,43 +233,68 @@ header {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
+.hero-logomark {
+    width: 110px;
+    height: auto;
+    display: none;
+    vertical-align: middle;
+    margin-left: 2rem;
+}
+
+@media (min-width: 900px) {
+    .hero-logomark {
+        display: inline-block;
+    }
+}
+
 .hero-arrow {
+    float: right;
     width: 44px;
     height: 44px;
+    margin-left: 16px;
+    margin-top: 138px;
     border-radius: 50%;
     background-color: #000000;
     color: #FFFFFF;
     border: none;
-    font-size: 1.5rem;
     cursor: pointer;
     transition: background-color 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    text-align: center;
 }
 
-.hero-arrow:hover {
+.hero-arrow:hover,
+.hero-arrow:active {
     background-color: #00384A;
 }
 
-/* CATEGORIAS */
+.hero-arrow img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    margin-top: 13px;
+}
+
+/* ==========================================================================
+   CATEGORIAS E LISTAS (Seção 31 / 29.1 Display Inline-Block)
+   ========================================================================== */
 .categorias {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 1rem;
+    text-align: space-between;
     margin-bottom: 3rem;
     width: 100%;
 }
 
+.categorias::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .categoria-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: inline-block;
+    vertical-align: top;
     text-decoration: none;
     width: 110px;
+    margin: 0 0.5rem 1.5rem;
     text-align: center;
 }
 
@@ -245,30 +303,141 @@ header {
     height: 78px;
     border-radius: 50%;
     background-color: #004B63;
-    margin-bottom: 0.7rem;
+    margin: 0 auto 0.7rem auto;
     transition: background-color 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    line-height: 78px;
 }
 
-.categoria-item:hover .categoria-icone {
+.categoria-item:hover .categoria-icone,
+.categoria-item:active .categoria-icone {
     background-color: #00384A;
 }
 
 .categoria-icone img {
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     object-fit: contain;
+    vertical-align: middle;
 }
 
 .categoria-nome {
     color: #000000;
     font-weight: 700;
     font-size: 0.95rem;
+    text-align: center;
 }
 
-/* Rodapé */
+/* Badges e Status */
+.badge-frete-gratis {
+    background-color: #00C853;
+    color: #FFFFFF;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.badge-promocao {
+    background-color: #E63946;
+    color: #FFFFFF;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+/* Estilizando Formulários (Seção 20 / 41.2) */
+.form-container {
+    max-width: 420px;
+    margin: 2rem auto;
+    background-color: #FFFFFF;
+    padding: 2rem;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid #CCCCCC;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #000000;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #004B63;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE E MEDIA QUERIES (Seção 46)
+   ========================================================================== */
+@media (max-width: 900px) {
+    .logo, .nav-icons {
+        float: none;
+        display: inline-block;
+    }
+
+    .nav-icons {
+        float: right;
+    }
+
+    .search-bar {
+        float: none;
+        width: 100%;
+        max-width: 100%;
+        margin: 0.8rem 0 0 0;
+        clear: both;
+    }
+
+    .hero {
+        width: 100%;
+        float: none;
+        text-align: center;
+        padding: 2rem 1.5rem;
+    }
+
+    .hero-arrow {
+        display: none;
+    }
+
+    .hero-text, .hero-media {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-mascot {
+        width: 160px;
+    }
+}
+
+@media (max-width: 600px) {
+    .categorias {
+        text-align: center;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Rodapé (Seção 21.6) */
 footer {
     background-color: #004B63;
     color: #FFFFFF;
@@ -276,40 +445,5 @@ footer {
     padding: 1.5rem;
     margin-top: 2rem;
     width: 100%;
-}
-
-/* RESPONSIVIDADE */
-@media (max-width: 900px) {
-    .nav-container {
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-
-    .search-bar {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .hero-wrapper {
-        flex-direction: column;
-    }
-
-    .hero-arrow {
-        display: none;
-    }
-
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding: 2rem 1.5rem;
-    }
-
-    .hero-text {
-        max-width: 100%;
-        margin-bottom: 1.5rem;
-    }
-
-    .categorias {
-        justify-content: center;
-    }
+    clear: both;
 }
