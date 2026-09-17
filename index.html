@@ -47,27 +47,27 @@
   </header>
 
   <main>
-    <section class="hero-carousel" aria-label="Oferta em destaque">
-      <a class="carousel-arrow" href="produtos.html" aria-label="Ver produtos anteriores" title="Ver produtos anteriores">
+    <section class="hero-carousel" data-carousel aria-label="Ofertas em destaque" aria-roledescription="carrossel">
+      <button class="carousel-arrow" type="button" data-carousel-prev aria-label="Oferta anterior" title="Oferta anterior">
         <span aria-hidden="true">‹</span>
-      </a>
+      </button>
 
-      <article class="hero">
+      <article class="hero" data-carousel-slide aria-live="polite">
         <div class="hero__copy">
-          <h1>Tecnologia que<br>mudará <span>o seu mundo</span></h1>
-          <p>O melhor em hardware e gadgets com entrega relâmpago</p>
-          <a class="button button--offer" href="produtos.html?ofertas=1">Ver ofertas</a>
+          <h1 data-carousel-title>Tecnologia que<br>mudará <span>o seu mundo</span></h1>
+          <p data-carousel-description>O melhor em hardware e gadgets com entrega relâmpago</p>
+          <a class="button button--offer" data-carousel-link href="produtos.html?ofertas=1">Ver ofertas</a>
         </div>
 
-        <img class="hero__robot" src="assets/images/mascot/robot-banner.png" alt="Mascote robô da AXIS">
+        <img class="hero__robot" data-carousel-image src="assets/images/mascot/robot-banner.png" alt="Mascote robô da AXIS">
         <div class="hero__mark" aria-hidden="true">
           <img src="assets/icons/header/icon-symbolbanner.png" alt="">
         </div>
       </article>
 
-      <a class="carousel-arrow" href="produtos.html?ofertas=1" aria-label="Ver próximas ofertas" title="Ver próximas ofertas">
+      <button class="carousel-arrow" type="button" data-carousel-next aria-label="Próxima oferta" title="Próxima oferta">
         <span aria-hidden="true">›</span>
-      </a>
+      </button>
     </section>
 
     <section id="categorias" class="categories" aria-label="Categorias de produtos">
