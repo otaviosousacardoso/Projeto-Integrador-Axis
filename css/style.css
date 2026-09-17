@@ -150,6 +150,7 @@ a:link, a:visited, a:active { color: inherit; }
 
 /* BANNER PRINCIPAL - DISPLAY, POSITION E Z-INDEX (Seção 29) */
 .hero-carousel {
+  position: relative;
   display: grid;
   grid-template-columns: 56px minmax(0, 1610px) 56px;
   align-items: center;
@@ -323,7 +324,7 @@ a:link, a:visited, a:active { color: inherit; }
 .site-footer p { margin: 0; }
 
 /* FORMULÁRIOS E MODAL DE ACESSO (Seções 20 e 41.2) */
-.auth-dialog { position: fixed; top: 50%; left: 50%; width: min(720px, calc(100% - 2rem)); max-height: calc(100vh - 2rem); margin: 0; padding: 2rem 3.5rem 2.5rem; overflow-y: auto; transform: translate(-50%, -50%); background: #FFFFFF; border: 0; border-radius: 28px; color: #000000; }
+.auth-dialog { position: fixed; top: 50%; left: 50%; width: min(720px, calc(100% - 2rem)); max-height: calc(100vh - 2rem); margin: 0; padding: 2rem 3.5rem 2.5rem; overflow-y: auto; transform: translate(-50%, -50%); background: #FFFFFF; border: 0; border-radius: 24px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25); }
 .auth-dialog::backdrop { background: rgba(0, 0, 0, 0.48); }
 .auth-dialog h2 { margin: 0 0 1.35rem; font-size: 1.75rem; text-align: center; }
 .formulario { display: grid; gap: 1.2rem; margin: 0; padding: 0; border: 0; }
@@ -397,7 +398,7 @@ a:link, a:visited, a:active { color: inherit; }
   .site-menu ul { display: grid; gap: 0.8rem; }
   .page--home main { padding-top: 3.25rem; }
   .hero-carousel { display: block; }
-  .carousel-arrow { display: none; }
+  .carousel-arrow { width: 44px; height: 44px; }
   .hero { min-height: 560px; }
   .hero__copy { width: 100%; padding: 2.2rem 1.5rem; text-align: center; }
   .hero h1 { font-size: clamp(2rem, 9vw, 3rem); line-height: 1.28; }
