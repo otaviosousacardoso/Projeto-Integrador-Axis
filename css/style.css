@@ -96,7 +96,7 @@ a:link, a:visited, a:active { color: inherit; }
 }
 
 .search-bar button:hover { background: #E0E0E0; }
-.search-bar button img { width: 45px; height: 45px; object-fit: contain; }
+.search-bar button img { width: 60px; height: 60px; object-fit: contain; }
 
 .header-actions {
   display: flex;
