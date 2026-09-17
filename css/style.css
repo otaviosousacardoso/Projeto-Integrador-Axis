@@ -1,8 +1,8 @@
 /* ========================================================================== 
-   AXIS - ESTILOS EXTERNOS
-   Organização baseada nos conteúdos da apostila de Fundamentos de Web Design I.
-   O preto do cabeçalho e do rodapé é mantido por fidelidade ao protótipo Canva.
-   ========================================================================== */
+    AXIS - ESTILOS EXTERNOS
+    Organização baseada nos conteúdos da apostila de Fundamentos de Web Design I.
+    O preto do cabeçalho e do rodapé é mantido por fidelidade ao protótipo Canva.
+    ========================================================================== */
 
 /* RESET BÁSICO E MODELO DE CAIXAS (Seção 25 da apostila) */
 * { box-sizing: border-box; }
@@ -244,32 +244,31 @@ a:link, a:visited, a:active { color: inherit; }
 
 .hero__robot {
   position: absolute;
-  right: clamp(200px, 14vw, 280px);
-  bottom: -10px;
-  z-index: 1;
-  width: clamp(275px, 23vw, 365px);
+  right: clamp(140px, 19vw, 360px);
+  bottom: -20px;
+  z-index: 2;
+  width: clamp(320px, 26vw, 440px);
   height: auto;
 }
 
 .hero__mark {
   position: absolute;
-  top: 50%;
-  right: clamp(20px, 3vw, 80px);
-  width: clamp(200px, 20vw, 280px);
+  top: clamp(18px, 3vw, 28px);
+  right: clamp(18px, 2.3vw, 35px);
+  z-index: 3;
+  width: clamp(170px, 18vw, 290px);
   aspect-ratio: 1;
-  transform: translateY(-50%);
+  transform: none;
   overflow: visible;
 }
 
 .hero__mark img {
   position: absolute;
-  top: 26%;
-  right: 5%;
-  z-index: 2;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transform: rotate(-10deg);
+  transform: none;
 }
 
 /* CATEGORIAS E IMAGENS (Seções 13, 31 e 40) */
@@ -324,7 +323,7 @@ a:link, a:visited, a:active { color: inherit; }
 .site-footer p { margin: 0; }
 
 /* FORMULÁRIOS E MODAL DE ACESSO (Seções 20 e 41.2) */
-.auth-dialog { position: fixed; top: 50%; left: 50%; width: min(720px, calc(100% - 2rem)); max-height: calc(100vh - 2rem); margin: 0; padding: 2rem 3.5rem 2.5rem; overflow-y: auto; transform: translate(-50%, -50%); background: #FFFFFF; border: 0; border-radius: 24px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25); }
+.auth-dialog { position: fixed; top: 50%; left: 50%; width: min(720px, calc(100% - 2rem)); max-height: calc(100vh - 2rem); margin: 0; padding: 2rem 3.5rem 2.5rem; overflow-y: auto; transform: translate(-50%, -50%); background: #FFFFFF; border: 0; border-radius: 28px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); }
 .auth-dialog::backdrop { background: rgba(0, 0, 0, 0.48); }
 .auth-dialog h2 { margin: 0 0 1.35rem; font-size: 1.75rem; text-align: center; }
 .formulario { display: grid; gap: 1.2rem; margin: 0; padding: 0; border: 0; }
@@ -378,8 +377,8 @@ a:link, a:visited, a:active { color: inherit; }
   .header-actions { gap: 0.45rem; }
   .header-icon { width: 46px; height: 46px; }
   .hero__copy { width: 55%; }
-  .hero__robot { right: 16%; width: 30%; }
-  .hero__mark { right: 1%; width: 18%; }
+  .hero__robot { right: 14%; width: 31%; }
+  .hero__mark { right: 2.5%; width: 20%; }
   .categories { grid-template-columns: repeat(4, minmax(120px, 1fr)); row-gap: 2.2rem; }
   .account-main { padding: 3rem 2rem; }
   .account-grid { gap: 2rem; }
@@ -403,8 +402,8 @@ a:link, a:visited, a:active { color: inherit; }
   .hero__copy { width: 100%; padding: 2.2rem 1.5rem; text-align: center; }
   .hero h1 { font-size: clamp(2rem, 9vw, 3rem); line-height: 1.28; }
   .hero__copy p { max-width: 430px; margin-right: auto; margin-left: auto; }
-  .hero__robot { right: 50%; bottom: -6px; width: 270px; transform: translateX(-50%); }
-  .hero__mark { right: 8%; bottom: 3%; top: auto; width: 125px; transform: none; }
+  .hero__robot { right: 50%; bottom: -12px; width: 270px; transform: translateX(50%); }
+  .hero__mark { top: 1.2rem; right: 1.1rem; width: 120px; }
   .categories { grid-template-columns: repeat(2, minmax(120px, 1fr)); margin-top: 3.75rem; }
   .auth-dialog { padding: 1.75rem 1.25rem 2rem; border-radius: 22px; }
   .auth-dialog__brand { height: 72px; }
