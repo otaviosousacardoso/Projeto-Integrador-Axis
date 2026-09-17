@@ -23,6 +23,7 @@ body {
 
 button, input { font: inherit; }
 button { cursor: pointer; }
+
 /* LINKS EM CSS (Seção 30 da apostila) */
 a:link, a:visited, a:active { color: inherit; }
 
@@ -148,7 +149,7 @@ a:link, a:visited, a:active { color: inherit; }
   padding: clamp(4rem, 5vw, 6rem) clamp(1.1rem, 3.4vw, 4rem) clamp(4rem, 5vw, 5.5rem);
 }
 
-/* BANNER PRINCIPAL - DISPLAY, POSITION E Z-INDEX (Seção 29) */
+/* BANNER PRINCIPAL E NAVEGAÇÃO DO CARROSSEL (Seção 29) */
 .hero-carousel {
   display: grid;
   grid-template-columns: 56px minmax(0, 1610px) 56px;
@@ -161,17 +162,24 @@ a:link, a:visited, a:active { color: inherit; }
   display: grid;
   width: 56px;
   height: 56px;
-  padding: 0 0 0.3rem;
+  padding: 0;
   place-items: center;
   background: #000000;
   border: 0;
   border-radius: 50%;
   color: #FFFFFF;
-  font-size: 4rem;
-  line-height: 0.55;
+  font-size: 2rem;
+  line-height: 1;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-.carousel-arrow:disabled { cursor: default; }
+.carousel-arrow:hover:not(:disabled) {
+  background: #FF6B00;
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.carousel-arrow:disabled { cursor: default; opacity: 0.5; }
 
 .hero {
   position: relative;
@@ -226,34 +234,36 @@ a:link, a:visited, a:active { color: inherit; }
 .button--offer:hover, .button--offer:focus-visible { background: #D95B00; }
 .button--full { width: 100%; }
 
+/* AJUSTES DO ROBÔ E SÍMBOLO PARA O PROTÓTIPO CANVA */
 .hero__robot {
   position: absolute;
-  right: clamp(200px, 14vw, 280px);
-  bottom: -10px;
-  z-index: 1;
-  width: clamp(275px, 23vw, 365px);
+  right: clamp(140px, 12vw, 220px);
+  bottom: -20px;
+  z-index: 2;
+  width: clamp(340px, 28vw, 440px);
   height: auto;
+  pointer-events: none;
 }
 
 .hero__mark {
   position: absolute;
-  top: 50%;
-  right: clamp(20px, 3vw, 80px);
-  width: clamp(200px, 20vw, 280px);
+  top: 15%;
+  right: clamp(20px, 2vw, 50px);
+  width: clamp(220px, 20vw, 300px);
   aspect-ratio: 1;
-  transform: translateY(-50%);
   overflow: visible;
+  pointer-events: none;
 }
 
 .hero__mark img {
-  position: absolute;
-  top: 26%;
-  right: 5%;
-  z-index: 2;
+  position: relative;
+  top: 0;
+  right: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  transform: rotate(-10deg);
+  transform: rotate(0deg);
 }
 
 /* CATEGORIAS E IMAGENS (Seções 13, 31 e 40) */
@@ -286,34 +296,26 @@ a:link, a:visited, a:active { color: inherit; }
   background: #004B63;
   border: 3px solid #004B63;
   border-radius: 50%;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .category__icon img {
   display: block;
-  width: 58%;
-  height: 58%;
+  width: 55%;
+  height: 55%;
   max-width: 100%;
   max-height: 100%;
   margin: 0 auto;
   object-fit: contain;
   object-position: center;
+  transform: none !important;
 }
 
-.category__icon img[src*="dept-pcs"] {
-  width: 68%;
-  height: 68%;
-  transform: translateX(7%) scale(1.55);
-  transform-origin: center center;
+.category:hover .category__icon, 
+.category:focus-visible .category__icon { 
+  background: #00384A; 
+  border-color: #FF6B00; 
 }
-
-.category__icon img[src*="dept-acessorios"] {
-  width: 68%;
-  height: 68%;
-  transform: translateX(-4%) scale(1.55);
-  transform-origin: center center;
-}
-
-.category:hover .category__icon, .category:focus-visible .category__icon { background: #00384A; border-color: #FF6B00; }
 
 /* RODAPÉ (Seção 21.6) */
 .site-footer {
@@ -473,14 +475,15 @@ a:link, a:visited, a:active { color: inherit; }
 
 :focus-visible { outline: 3px solid #FF6B00; outline-offset: 4px; }
 
+/* MEDIA QUERIES (RESPONSIVIDADE) */
 @media (max-width: 1100px) {
   .topbar { grid-template-columns: auto minmax(260px, 1fr) auto; gap: 1rem; padding: 1.5rem 2rem; }
   .brand img { width: 175px; }
   .header-actions { gap: 0.45rem; }
   .header-icon { width: 46px; height: 46px; }
   .hero__copy { width: 55%; }
-  .hero__robot { right: 16%; width: 30%; }
-  .hero__mark { right: 1%; width: 18%; }
+  .hero__robot { right: 10%; width: 35%; }
+  .hero__mark { right: 1%; width: 22%; }
   .categories { grid-template-columns: repeat(4, minmax(120px, 1fr)); row-gap: 2.2rem; }
   .account-main { padding: 3rem 2rem; }
   .account-grid { gap: 2rem; }
@@ -504,8 +507,8 @@ a:link, a:visited, a:active { color: inherit; }
   .hero__copy { width: 100%; padding: 2.2rem 1.5rem; text-align: center; }
   .hero h1 { font-size: clamp(2rem, 9vw, 3rem); line-height: 1.28; }
   .hero__copy p { max-width: 430px; margin-right: auto; margin-left: auto; }
-  .hero__robot { right: 50%; bottom: -6px; width: 270px; transform: translateX(-50%); }
-  .hero__mark { right: 8%; bottom: 3%; top: auto; width: 125px; transform: none; }
+  .hero__robot { right: 50%; bottom: -6px; width: 270px; transform: translateX(50%); }
+  .hero__mark { right: 8%; bottom: 3%; top: auto; width: 125px; }
   .categories { grid-template-columns: repeat(2, minmax(120px, 1fr)); margin-top: 3.75rem; }
   .auth-dialog { padding: 1.75rem 1.25rem 2rem; border-radius: 22px; }
   .auth-dialog__brand { height: 72px; }
