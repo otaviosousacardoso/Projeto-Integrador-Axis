@@ -161,14 +161,31 @@ a:link, a:visited, a:active { color: inherit; }
   display: grid;
   width: 56px;
   height: 56px;
-  padding: 0 0 0.3rem;
+  padding: 0;
   place-items: center;
   background: #000000;
   border: 0;
   border-radius: 50%;
   color: #FFFFFF;
-  font-size: 4rem;
-  line-height: 0.55;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.carousel-arrow:hover,
+.carousel-arrow:focus-visible {
+  background: #00384A;
+  transform: scale(1.06);
+}
+
+.carousel-arrow:active { transform: scale(0.96); }
+
+.carousel-arrow svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.6;
 }
 
 .carousel-arrow:disabled { cursor: default; }
