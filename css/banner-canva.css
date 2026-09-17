@@ -1,0 +1,53 @@
+/* Ajustes do banner conforme o layout de referência do Canva. */
+
+.hero__robot {
+  /* O robô ocupa praticamente toda a altura do banner e ultrapassa levemente a base. */
+  right: clamp(120px, 14vw, 245px);
+  bottom: -22px;
+  width: clamp(320px, 27vw, 455px);
+  max-width: none;
+}
+
+.hero__mark {
+  /* O símbolo fica no canto superior direito, como no protótipo. */
+  top: clamp(18px, 7%, 42px);
+  right: clamp(18px, 3%, 54px);
+  width: clamp(150px, 18vw, 285px);
+  transform: none;
+}
+
+.hero__mark img {
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+}
+
+@media (max-width: 1100px) {
+  .hero__robot {
+    right: 13%;
+    width: 31%;
+  }
+
+  .hero__mark {
+    top: 6%;
+    right: 2.5%;
+    width: 20%;
+  }
+}
+
+@media (max-width: 720px) {
+  .hero__robot {
+    right: 50%;
+    bottom: -12px;
+    width: 285px;
+    transform: translateX(50%);
+  }
+
+  .hero__mark {
+    top: 1.5rem;
+    right: 1.25rem;
+    width: 112px;
+  }
+}
