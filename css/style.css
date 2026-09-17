@@ -250,7 +250,7 @@ a:link, a:visited, a:active { color: inherit; }
   top: 8px;
   right: 8px;
   z-index: 3;
-  width: clamp(190px, 16vw, 260px);
+  width: clamp(120px, 10vw, 170px);
   aspect-ratio: 1;
   overflow: visible;
   pointer-events: none;
