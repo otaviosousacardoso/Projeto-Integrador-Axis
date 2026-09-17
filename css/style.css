@@ -294,7 +294,9 @@ a:link, a:visited, a:active { color: inherit; }
   height: 58%;
   max-width: 100%;
   max-height: 100%;
+  margin: 0 auto;
   object-fit: contain;
+  object-position: center;
 }
 
 .category__icon img[src*="dept-pcs"],
@@ -302,7 +304,7 @@ a:link, a:visited, a:active { color: inherit; }
   width: 68%;
   height: 68%;
   transform: scale(1.55);
-  transform-origin: center;
+  transform-origin: center center;
 }
 
 .category:hover .category__icon, .category:focus-visible .category__icon { background: #00384A; border-color: #FF6B00; }
