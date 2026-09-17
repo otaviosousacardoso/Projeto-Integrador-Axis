@@ -161,16 +161,31 @@ a:link, a:visited, a:active { color: inherit; }
   display: grid;
   width: 56px;
   height: 56px;
-  padding: 0 0 0.3rem;
+  padding: 0;
   place-items: center;
   background: #000000;
   border: 0;
   border-radius: 50%;
   color: #FFFFFF;
-  font-size: 4rem;
-  line-height: 0.55;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+.carousel-arrow svg {
+  display: block;
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.5;
+}
+
+.carousel-arrow:hover:not(:disabled), .carousel-arrow:focus-visible {
+  background: #00384A;
+}
+
+.carousel-arrow:hover:not(:disabled) { transform: scale(1.06); }
 .carousel-arrow:disabled { cursor: default; }
 
 .hero {
@@ -299,178 +314,61 @@ a:link, a:visited, a:active { color: inherit; }
   object-position: center;
 }
 
-.category__icon img[src*="dept-pcs"] {
-  width: 68%;
-  height: 68%;
-  transform: translateX(7%) scale(1.55);
-  transform-origin: center center;
-}
-
-.category__icon img[src*="dept-acessorios"] {
-  width: 68%;
-  height: 68%;
-  transform: translateX(-4%) scale(1.55);
-  transform-origin: center center;
-}
-
+.category__icon img[src*="dept-pcs"] { width: 68%; height: 68%; transform: translateX(7%) scale(1.55); transform-origin: center center; }
+.category__icon img[src*="dept-acessorios"] { width: 68%; height: 68%; transform: translateX(-4%) scale(1.55); transform-origin: center center; }
 .category:hover .category__icon, .category:focus-visible .category__icon { background: #00384A; border-color: #FF6B00; }
 
 /* RODAPÉ (Seção 21.6) */
-.site-footer {
-  margin-top: auto;
-  padding: 1.45rem 1.5rem;
-  background: #000000;
-  color: #FFFFFF;
-  font-size: 0.9rem;
-  text-align: center;
-}
-
+.site-footer { margin-top: auto; padding: 1.45rem 1.5rem; background: #000000; color: #FFFFFF; font-size: 0.9rem; text-align: center; }
 .site-footer p { margin: 0; }
 
 /* FORMULÁRIOS E MODAL DE ACESSO (Seções 20 e 41.2) */
-.auth-dialog {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: min(720px, calc(100% - 2rem));
-  max-height: calc(100vh - 2rem);
-  margin: 0;
-  padding: 2rem 3.5rem 2.5rem;
-  overflow-y: auto;
-  transform: translate(-50%, -50%);
-  background: #FFFFFF;
-  border: 0;
-  border-radius: 28px;
-  color: #000000;
-}
-
+.auth-dialog { position: fixed; top: 50%; left: 50%; width: min(720px, calc(100% - 2rem)); max-height: calc(100vh - 2rem); margin: 0; padding: 2rem 3.5rem 2.5rem; overflow-y: auto; transform: translate(-50%, -50%); background: #FFFFFF; border: 0; border-radius: 28px; color: #000000; }
 .auth-dialog::backdrop { background: rgba(0, 0, 0, 0.48); }
 .auth-dialog h2 { margin: 0 0 1.35rem; font-size: 1.75rem; text-align: center; }
-
-.formulario {
-  display: grid;
-  gap: 1.2rem;
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.dialog-close {
-  position: absolute;
-  top: 0.9rem;
-  right: 1.25rem;
-  width: 42px;
-  height: 42px;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  border-radius: 50%;
-  color: #000000;
-  font-size: 2.1rem;
-  line-height: 1;
-}
-
+.formulario { display: grid; gap: 1.2rem; margin: 0; padding: 0; border: 0; }
+.dialog-close { position: absolute; top: 0.9rem; right: 1.25rem; width: 42px; height: 42px; padding: 0; background: transparent; border: 0; border-radius: 50%; color: #000000; font-size: 2.1rem; line-height: 1; }
 .dialog-close:hover, .dialog-close:focus-visible { background: #E0E0E0; }
-
 .auth-dialog__brand { display: grid; height: 105px; margin-bottom: 0.75rem; place-items: center; }
 .auth-dialog__brand img { width: 135px; height: auto; }
-
 .auth-form { display: grid; gap: 1.2rem; }
-
 .form-field { display: grid; gap: 0.45rem; }
 .form-field label { font-size: 1.1rem; font-weight: 800; }
-
-.form-field input {
-  width: 100%;
-  min-height: 58px;
-  padding: 0.65rem 0.9rem;
-  background: #CCCCCC;
-  border: 1px solid #000000;
-  border-radius: 12px;
-  color: #000000;
-  font-size: 1.05rem;
-}
-
+.form-field input { width: 100%; min-height: 58px; padding: 0.65rem 0.9rem; background: #CCCCCC; border: 1px solid #000000; border-radius: 12px; color: #000000; font-size: 1.05rem; }
 .form-field input:focus { outline: 3px solid #FF6B00; outline-offset: 2px; }
-
-.forgot-password {
-  justify-self: end;
-  color: #004B63;
-  text-decoration: none;
-}
-
+.forgot-password { justify-self: end; color: #004B63; text-decoration: none; }
 .forgot-password:hover, .forgot-password:focus-visible, .register-prompt a:hover, .register-prompt a:focus-visible { color: #FF6B00; text-decoration: underline; }
-
 .register-prompt { margin: 1.55rem 0 0; font-size: 1.2rem; text-align: center; }
 .register-prompt a { color: #FF6B00; text-decoration: none; }
-
 .form-message { margin: 0; color: #D95B00; font-weight: 700; }
 .form-message--success { color: #2D6A4F; }
-
 .topbar--compact { grid-template-columns: 1fr auto; min-height: 100px; }
 .site-header--compact .brand img { width: 150px; }
 .back-home { color: #FFFFFF; font-weight: 700; text-decoration: none; }
 .back-home:hover, .back-home:focus-visible { color: #FF6B00; }
-
 .page--auth { background: #E0E0E0; }
 .auth-main { display: grid; min-height: 620px; padding: 3.5rem 1.25rem; place-items: center; }
-
-.auth-card {
-  width: min(100%, 560px);
-  padding: 2.5rem;
-  background: #FFFFFF;
-  border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-}
-
+.auth-card { width: min(100%, 560px); padding: 2.5rem; background: #FFFFFF; border-radius: 24px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18); }
 .auth-card__brand { display: block; width: 140px; height: auto; margin: 0 auto 1.35rem; }
 .auth-card h1 { margin: 0 0 0.75rem; color: #FF6B00; font-size: 2rem; text-align: center; }
 .auth-card__description { margin: 0 0 1.5rem; color: #1A1A1B; line-height: 1.45; text-align: center; }
-
 .page--account { background: #FFFFFF; }
 .account-main { width: min(100%, 1800px); margin: 0 auto; padding: 4rem; }
 .account-main > h1 { margin: 0 0 1.25rem; color: #FF6B00; font-size: 2.35rem; }
-
 .account-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 3rem; }
-
-.account-profile, .account-actions a {
-  border: 4px solid #8E8E8E;
-  border-radius: 20px;
-}
-
-.account-profile {
-  display: grid;
-  grid-template-columns: 210px 1fr;
-  gap: 1.5rem;
-  align-items: center;
-  padding: 1.6rem;
-}
-
+.account-profile, .account-actions a { border: 4px solid #8E8E8E; border-radius: 20px; }
+.account-profile { display: grid; grid-template-columns: 210px 1fr; gap: 1.5rem; align-items: center; padding: 1.6rem; }
 .account-profile h2 { margin: 0 0 0.65rem; font-size: 2rem; }
 .account-profile p { margin: 0; font-size: 1.1rem; line-height: 1.45; }
 .account-profile .button { grid-column: 1 / -1; justify-self: center; min-width: 260px; min-height: 56px; }
-
 .account-avatar { width: 200px; aspect-ratio: 1; overflow: hidden; background: #00384A; border: 4px solid #000000; border-radius: 50%; }
 .account-avatar img { width: 100%; height: 100%; object-fit: contain; }
-
 .account-actions { display: grid; gap: 2rem; }
 .account-actions a { display: flex; min-height: 105px; padding: 1.2rem 1.6rem; align-items: center; gap: 1.2rem; font-size: 1.75rem; font-weight: 800; text-decoration: none; }
 .account-actions a:hover, .account-actions a:focus-visible { border-color: #FF6B00; color: #FF6B00; }
 .account-actions span { color: #FF6B00; }
-
-.user-info {
-  margin: 0.75rem 0;
-  padding: 0.75rem;
-  background: #F0F0F0;
-  border-radius: 12px;
-  border-left: 4px solid #FF6B00;
-}
-
-.user-info p {
-  margin: 0.5rem 0;
-  font-size: 1rem;
-}
-
+.user-info { margin: 0.75rem 0; padding: 0.75rem; background: #F0F0F0; border-radius: 12px; border-left: 4px solid #FF6B00; }
+.user-info p { margin: 0.5rem 0; font-size: 1rem; }
 :focus-visible { outline: 3px solid #FF6B00; outline-offset: 4px; }
 
 @media (max-width: 1100px) {
