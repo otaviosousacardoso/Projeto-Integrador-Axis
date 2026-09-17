@@ -161,31 +161,14 @@ a:link, a:visited, a:active { color: inherit; }
   display: grid;
   width: 56px;
   height: 56px;
-  padding: 0;
+  padding: 0 0 0.3rem;
   place-items: center;
   background: #000000;
   border: 0;
   border-radius: 50%;
   color: #FFFFFF;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.carousel-arrow:hover,
-.carousel-arrow:focus-visible {
-  background: #00384A;
-  transform: scale(1.06);
-}
-
-.carousel-arrow:active { transform: scale(0.96); }
-
-.carousel-arrow svg {
-  width: 30px;
-  height: 30px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 2.6;
+  font-size: 4rem;
+  line-height: 0.55;
 }
 
 .carousel-arrow:disabled { cursor: default; }
@@ -307,18 +290,20 @@ a:link, a:visited, a:active { color: inherit; }
 
 .category__icon img {
   display: block;
-  width: 55%;
-  height: 55%;
+  width: 58%;
+  height: 58%;
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
 }
 
 .category__icon img[src*="dept-pcs"],
 .category__icon img[src*="dept-acessorios"] {
-  width: 120%;
-  height: 120%;
-  transform: scale(1.25);
+  width: 68%;
+  height: 68%;
+  transform: scale(1.55);
   transform-origin: center;
-} /*edição aqui 60% p/ 120%*/
+}
 
 .category:hover .category__icon, .category:focus-visible .category__icon { background: #00384A; border-color: #FF6B00; }
 
