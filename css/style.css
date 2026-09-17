@@ -278,11 +278,12 @@ a:link, a:visited, a:active { color: inherit; }
 }
 
 .category__icon {
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: clamp(76px, 7.2vw, 106px);
   aspect-ratio: 1;
   padding: 0;
-  place-items: center;
   background: #004B63;
   border: 3px solid #004B63;
   border-radius: 50%;
@@ -294,22 +295,21 @@ a:link, a:visited, a:active { color: inherit; }
   height: 58%;
   max-width: 100%;
   max-height: 100%;
-  margin: 0 auto;
   object-fit: contain;
   object-position: center;
 }
 
 .category__icon img[src*="dept-pcs"] {
-  width: 68%;
-  height: 68%;
-  transform: translateX(7%) scale(1.55);
+  width: 66%;
+  height: 66%;
+  transform: translateX(6%) scale(1.7);
   transform-origin: center center;
 }
 
 .category__icon img[src*="dept-acessorios"] {
-  width: 68%;
-  height: 68%;
-  transform: translateX(-4%) scale(1.55);
+  width: 66%;
+  height: 66%;
+  transform: translateX(-6%) scale(1.7);
   transform-origin: center center;
 }
 
