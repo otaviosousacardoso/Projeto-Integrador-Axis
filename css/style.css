@@ -289,10 +289,18 @@ a:link, a:visited, a:active { color: inherit; }
 }
 
 .category__icon img {
+  display: block;
   width: 55%;
   height: 55%;
   object-fit: contain;
-  display: block;
+}
+
+.category__icon img[src*="dept-pcs"],
+.category__icon img[src*="dept-acessorios"] {
+  width: 60%;
+  height: 60%;
+  transform: scale(1.25);
+  transform-origin: center;
 }
 
 .category:hover .category__icon, .category:focus-visible .category__icon { background: #00384A; border-color: #FF6B00; }
