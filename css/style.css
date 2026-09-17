@@ -299,11 +299,17 @@ a:link, a:visited, a:active { color: inherit; }
   object-position: center;
 }
 
-.category__icon img[src*="dept-pcs"],
+.category__icon img[src*="dept-pcs"] {
+  width: 68%;
+  height: 68%;
+  transform: translateX(7%) scale(1.55);
+  transform-origin: center center;
+}
+
 .category__icon img[src*="dept-acessorios"] {
   width: 68%;
   height: 68%;
-  transform: scale(1.55);
+  transform: translateX(-4%) scale(1.55);
   transform-origin: center center;
 }
 
