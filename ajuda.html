@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Axis | Ajuda</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="ajuda-complemento.css">
+</head>
+<body>
+  <div class="page page--help">
+    <header class="site-header">
+      <div class="topbar">
+        <a class="brand" href="index.html" aria-label="Página inicial da Axis">
+          <img src="./icon_logo_axis.png" alt="Axis">
+        </a>
+
+        <form class="search-bar" role="search">
+          <input
+            type="search"
+            name="busca"
+            placeholder="Pesquisar"
+            aria-label="Pesquisar produtos"
+          >
+          <button type="submit" aria-label="Pesquisar">
+            <img src="./seta_pesquisa.png" alt="">
+          </button>
+        </form>
+
+        <div class="header-actions" aria-label="Atalhos">
+          <a class="header-icon" href="#conta" aria-label="Minha conta">
+            <img src="./icon-user.png" alt="">
+          </a>
+
+          <a class="header-icon" href="#carrinho" aria-label="Carrinho">
+            <img src="./icon-cart.png" alt="">
+          </a>
+
+          <button
+            class="header-icon menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-menu"
+            title="Abrir menu"
+          >
+            <img src="./icon-menu.png" alt="">
+            <span class="sr-only">Abrir menu</span>
+          </button>
+        </div>
+      </div>
+
+      <nav class="site-menu" id="site-menu" aria-label="Navegação principal" hidden>
+        <ul>
+          <li><a href="#categorias">Categorias</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#conta">Minha conta</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="help-main">
+      <section class="help-content" aria-labelledby="help-title">
+        <div class="help-illustration">
+          <h1 id="help-title">Como podemos te ajudar?</h1>
+          <img
+            src="./assistente_ajuda.axis.png"
+            alt="Assistente virtual Axis segurando uma prancheta"
+          >
+        </div>
+
+        <section class="faq-card" aria-labelledby="faq-title">
+          <h2 id="faq-title">Perguntas frequentes</h2>
+
+          <dl>
+            <dt>Qual o tempo de garantia?</dt>
+            <dd>Oferecemos 8 meses de garantia total em todos os eletrônicos.</dd>
+
+            <dt>Entregam para todo o Brasil?</dt>
+            <dd>Sim, via transportadoras com seguro total da carga.</dd>
+          </dl>
+
+          <button
+            class="button button--offer button--full"
+            type="button"
+            id="contact-button"
+          >
+            Falar com atendente
+          </button>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  
+</body>
+</html>
