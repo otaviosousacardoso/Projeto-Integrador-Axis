@@ -476,6 +476,90 @@ a:link, a:visited, a:active { color: inherit; }
 
 :focus-visible { outline: 3px solid #FF6B00; outline-offset: 4px; }
 
+.page--help {
+  min-height: 100vh;
+}
+
+.help-main {
+  width: min(100%, 1680px);
+  margin: 0 auto;
+  padding: clamp(3rem, 7vw, 8rem) clamp(1.25rem, 7vw, 9rem);
+}
+
+.help-content {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.85fr) minmax(450px, 1.15fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 8rem);
+}
+
+.help-illustration {
+  text-align: center;
+}
+
+.help-illustration h1 {
+  margin: 0 0 1rem;
+  color: #FF6B00;
+  font-size: clamp(1.6rem, 2.2vw, 2.25rem);
+}
+
+.help-illustration img {
+  display: block;
+  width: min(100%, 420px);
+  height: auto;
+  margin: 0 auto;
+}
+
+.faq-card {
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: #000;
+  border-radius: 14px;
+  color: #FFF;
+}
+
+.faq-card h2,
+.faq-card dt {
+  color: #FF6B00;
+}
+
+.faq-card h2 {
+  margin: 0 0 1.35rem;
+  font-size: 1.75rem;
+}
+
+.faq-card dl {
+  margin: 0;
+}
+
+.faq-card dt {
+  margin-top: 1rem;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.faq-card dt:first-child {
+  margin-top: 0;
+}
+
+.faq-card dd {
+  margin: 0.35rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+
+.faq-card .button {
+  margin-top: 2rem;
+}
+
+
+  .help-content {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-card {
+    order: -1;
+  }
+}
 /* MEDIA QUERIES (RESPONSIVIDADE) */
 @media (max-width: 1100px) {
   .topbar { grid-template-columns: auto minmax(260px, 1fr) auto; gap: 1rem; padding: 1.5rem 2rem; }
@@ -530,3 +614,7 @@ a:link, a:visited, a:active { color: inherit; }
   .site-header--compact .brand img { width: 130px; }
   .back-home { font-size: 0.76rem; }
 }
+@media (max-width: 720px) {
+  .help-main {
+    padding: 3rem 1.25rem;
+  }
