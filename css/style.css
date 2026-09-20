@@ -476,7 +476,7 @@ a:link, a:visited, a:active { color: inherit; }
 
 :focus-visible { outline: 3px solid #FF6B00; outline-offset: 4px; }
 
-/* PÁGINA DE AJUDA */
+/* PÁGINA DE AJUDA (seçao 17) */
 .page--help {
   min-height: 100vh;
 }
