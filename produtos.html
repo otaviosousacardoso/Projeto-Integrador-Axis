@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AXIS | Produtos</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="page page--products">
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial">
+        <img src="assets/icons/header/icon-logo.png" alt="AXIS">
+      </a>
+
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar">
+        <button type="submit" aria-label="Buscar produtos">
+          <img src="assets/icons/header/icon-search.png" alt="">
+        </button>
+      </form>
+
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" aria-label="Minha conta">
+          <img src="assets/icons/header/icon-user.png" alt="">
+        </a>
+
+        <a class="header-icon" href="carrinho.html" aria-label="Carrinho">
+          <img src="assets/icons/header/icon-cart.png" alt="">
+        </a>
+
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu">
+          <img src="assets/icons/header/icon-menu.png" alt="">
+          <span class="sr-only">Abrir menu</span>
+        </button>
+      </div>
+    </nav>
+
+    <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
+      <ul>
+        <li><a href="index.html#categorias">Categorias</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="products-main">
+    <aside class="filters" aria-label="Filtros de produtos">
+      <div class="filter-title">
+        <h2>Frete Grátis</h2>
+        <input type="checkbox" aria-label="Filtrar por frete grátis">
+      </div>
+
+      <section class="filter-group">
+        <h3>Marcas</h3>
+
+        <label><input type="checkbox"> Logitech</label>
+        <label><input type="checkbox"> HP</label>
+        <label><input type="checkbox"> Lenovo</label>
+        <label><input type="checkbox"> Apple</label>
+        <label><input type="checkbox"> Samsung</label>
+        <label><input type="checkbox"> Xiaomi</label>
+        <label><input type="checkbox"> Philips</label>
+        <label><input type="checkbox"> Dell</label>
+      </section>
+
+      <section class="filter-group">
+        <h3>Categorias</h3>
+
+        <label><input type="checkbox"> Notebooks</label>
+        <label><input type="checkbox"> Celular</label>
+        <label><input type="checkbox"> Smartwatches</label>
+        <label><input type="checkbox"> Acessórios</label>
+        <label><input type="checkbox"> TVs</label>
+        <label><input type="checkbox"> Tablets</label>
+        <label><input type="checkbox"> Hardwares</label>
+        <label><input type="checkbox"> Eletrodomésticos</label>
+      </section>
+    </aside>
+
+    <section class="product-grid" aria-label="Lista de produtos">
+      <article class="product-card">
+        <div class="product-card__top">
+          <span>★ <small>5.0</small></span>
+          <button type="button" aria-label="Adicionar notebook ao carrinho">🛒</button>
+        </div>
+        <img src="assets/images/products/product-pc.png" alt="Notebook Lenovo Ideapad">
+        <h2>Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6</h2>
+        <strong>R$ 3.599,90</strong>
+        <p>No PIX ou 10x de R$380,90</p>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card__top">
+          <span>★ <small>5.0</small></span>
+          <button type="button" aria-label="Adicionar celular ao carrinho">🛒</button>
+        </div>
+        <img src="assets/images/products/product-phone.png" alt="Smartphone Motorola Moto G35">
+        <h2>Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7"</h2>
+        <strong>R$ 1.299,90</strong>
+        <p>No PIX ou 10x de R$145,90</p>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card__top">
+          <span>★ <small>5.0</small></span>
+          <button type="button" aria-label="Adicionar fone ao carrinho">🛒</button>
+        </div>
+        <img src="assets/images/products/product-headphone.png" alt="Fone de ouvido JBL Tune">
+        <h2>Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul</h2>
+        <strong>R$ 249,90</strong>
+        <p>No PIX ou 10x de R$145,90</p>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card__top">
+          <span>★ <small>5.0</small></span>
+          <button type="button" aria-label="Adicionar mouse ao carrinho">🛒</button>
+        </div>
+        <img src="assets/images/products/product-mouse.png" alt="Mouse sem fio Logitech">
+        <h2>Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul</h2>
+        <strong>R$ 59,90</strong>
+        <p>No PIX ou 2x de R$32,90</p>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card__top">
+          <span>★ <small>5.0</small></span>
+          <button type="button" aria-label="Adicionar televisão ao carrinho">🛒</button>
+        </div>
+        <img src="assets/images/products/product-tv.png" alt="Samsung Smart TV">
+        <h2>Samsung Smart TV 50" Crystal UHD 4K</h2>
+        <strong>R$ 2.799,90</strong>
+        <p>No PIX ou 10x de R$279,90</p>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card__top">
+          <span>★ <small>5.0</small></span>
+          <button type="button" aria-label="Adicionar tablet ao carrinho">🛒</button>
+        </div>
+        <img src="assets/images/products/product-tablet.png" alt="Tablet Samsung Galaxy Tab">
+        <h2>Tablet Samsung Galaxy Tab A9 Enterprise Edition</h2>
+        <strong>R$ 1.199,90</strong>
+        <p>No PIX ou 10x de R$119,90</p>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card__top">
+          <span>★ <small>5.0</small></span>
+          <button type="button" aria-label="Adicionar smartwatch ao carrinho">🛒</button>
+        </div>
+        <img src="assets/images/products/product-clock.png" alt="Smartwatch Redmi Watch">
+        <h2>Smartwatch Redmi Watch 5 Active, Tela 2", Lacre</h2>
+        <strong>R$ 299,90</strong>
+        <p>No PIX ou 6x de R$49,90</p>
+      </article>
+
+      <article class="product-card">
+        <div class="product-card__top">
+          <span>★ <small>5.0</small></span>
+          <button type="button" aria-label="Adicionar processador ao carrinho">🛒</button>
+        </div>
+        <img src="assets/images/products/product-intel.png" alt="Processador Intel Core Ultra">
+        <h2>Processador Intel Core Ultra 5 Desktop</h2>
+        <strong>R$ 1.899,90</strong>
+        <p>No PIX ou 10x de R$189,90</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 AXIS. Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
