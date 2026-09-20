@@ -476,6 +476,7 @@ a:link, a:visited, a:active { color: inherit; }
 
 :focus-visible { outline: 3px solid #FF6B00; outline-offset: 4px; }
 
+/* PÁGINA DE AJUDA */
 .page--help {
   min-height: 100vh;
 }
@@ -512,9 +513,9 @@ a:link, a:visited, a:active { color: inherit; }
 
 .faq-card {
   padding: clamp(1.5rem, 3vw, 2.5rem);
-  background: #000;
+  background: #000000;
   border-radius: 14px;
-  color: #FFF;
+  color: #FFFFFF;
 }
 
 .faq-card h2,
@@ -551,6 +552,10 @@ a:link, a:visited, a:active { color: inherit; }
   margin-top: 2rem;
 }
 
+@media (max-width: 720px) {
+  .help-main {
+    padding: 3rem 1.25rem;
+  }
 
   .help-content {
     grid-template-columns: 1fr;
@@ -614,7 +619,3 @@ a:link, a:visited, a:active { color: inherit; }
   .site-header--compact .brand img { width: 130px; }
   .back-home { font-size: 0.76rem; }
 }
-@media (max-width: 720px) {
-  .help-main {
-    padding: 3rem 1.25rem;
-  }
