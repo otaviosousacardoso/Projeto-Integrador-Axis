@@ -7,140 +7,87 @@
   <title>AXIS | Página inicial</title>
   <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <style>
+    /* Ajustes exclusivos do carrossel da página inicial. Header, rodapé e departamentos permanecem intactos. */
+    .hero-carousel { position: relative; display: block; }
+    .hero-carousel .hero { opacity: 1; transition: opacity .25s ease, transform .25s ease; }
+    .hero-carousel.is-changing .hero { opacity: .2; transform: translateX(10px); }
+    .carousel-dots { display: flex; justify-content: center; gap: .65rem; margin-top: 1.2rem; }
+    .carousel-dot { width: 11px; height: 11px; padding: 0; background: #B8C3C7; border: 0; border-radius: 50%; transition: transform .2s ease, background .2s ease; }
+    .carousel-dot:hover, .carousel-dot:focus-visible { background: #FF6B00; transform: scale(1.2); }
+    .carousel-dot[aria-selected="true"] { width: 30px; border-radius: 999px; background: #FF6B00; }
+    .carousel-progress { height: 3px; margin-top: .8rem; overflow: hidden; background: #E5E5E5; border-radius: 99px; }
+    .carousel-progress span { display: block; width: 0; height: 100%; background: #FF6B00; }
+    .carousel-progress.is-running span { animation: carousel-progress 5s linear; }
+    @keyframes carousel-progress { from { width: 0; } to { width: 100%; } }
+    .hero__eyebrow { margin: 0 0 .7rem; color: #FFB36E; font-size: .9rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .hero__badge { position: absolute; right: 2rem; bottom: 1.5rem; z-index: 3; padding: .55rem .8rem; background: #FF6B00; border-radius: 9px; color: #FFF; font-size: .85rem; font-weight: 800; text-transform: uppercase; }
+    @media (max-width: 720px) { .carousel-dots { margin-top: 1rem; } .hero__badge { right: 1rem; bottom: 1rem; font-size: .7rem; } }
+    @media (prefers-reduced-motion: reduce) { .hero-carousel .hero, .carousel-dot { transition: none; } .carousel-progress.is-running span { animation: none; width: 100%; } }
+  </style>
 </head>
 <body class="page page--home">
   <header class="site-header">
     <nav class="topbar" aria-label="Navegação principal">
-      <a class="brand" href="index.html" aria-label="AXIS - Página inicial">
-        <img src="assets/icons/header/icon-logo.png" alt="AXIS">
-      </a>
-
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
       <form class="search-bar" action="produtos.html" method="get" role="search">
         <label class="sr-only" for="busca">Pesquisar produtos</label>
         <input id="busca" name="busca" type="search" placeholder="Pesquisar" autocomplete="off">
-        <button type="submit" aria-label="Buscar produtos">
-          <img src="assets/icons/header/icon-search.png" alt="">
-        </button>
+        <button type="submit" aria-label="Buscar produtos"><img src="assets/icons/header/icon-search.png" alt=""></button>
       </form>
-
       <div class="header-actions" aria-label="Ações rápidas">
-        <a class="header-icon" href="login.html" data-open-login aria-label="Entrar ou criar conta" title="Minha conta">
-          <img src="assets/icons/header/icon-user.png" alt="">
-        </a>
-        <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho">
-          <img src="assets/icons/header/icon-cart.png" alt="">
-        </a>
-        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu">
-          <img src="assets/icons/header/icon-menu.png" alt="">
-          <span class="sr-only">Abrir menu</span>
-        </button>
+        <a class="header-icon" href="login.html" data-open-login aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
+        <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho"><img src="assets/icons/header/icon-cart.png" alt=""></a>
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu"><img src="assets/icons/header/icon-menu.png" alt=""><span class="sr-only">Abrir menu</span></button>
       </div>
     </nav>
-
     <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
-      <ul>
-        <li><a href="#categorias">Categorias</a></li>
-        <li><a href="produtos.html">Produtos</a></li>
-        <li><a href="minha-conta.html">Minha conta</a></li>
-        <li><a href="ajuda.html">Ajuda</a></li>
-      </ul>
+      <ul><li><a href="#categorias">Categorias</a></li><li><a href="produtos.html">Produtos</a></li><li><a href="minha-conta.html">Minha conta</a></li><li><a href="ajuda.html">Ajuda</a></li></ul>
     </nav>
   </header>
 
   <main>
-    <section class="hero-carousel" data-carousel aria-label="Ofertas em destaque" aria-roledescription="carrossel">
-      <button class="carousel-arrow" type="button" data-carousel-prev aria-label="Oferta anterior" title="Oferta anterior">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-      </button>
-
+    <section class="hero-carousel" data-carousel aria-label="Ofertas em destaque" aria-roledescription="carrossel" tabindex="0">
       <article class="hero" data-carousel-slide aria-live="polite">
         <div class="hero__copy">
+          <p class="hero__eyebrow" data-carousel-eyebrow>Bem-vindo à AXIS</p>
           <h1 data-carousel-title>Tecnologia que<br>mudará <span>o seu mundo</span></h1>
           <p data-carousel-description>O melhor em hardware e gadgets com entrega relâmpago</p>
           <a class="button button--offer" data-carousel-link href="produtos.html?ofertas=1">Ver ofertas</a>
         </div>
-
         <img class="hero__robot" data-carousel-image src="assets/images/mascot/robot-banner.png" alt="Mascote robô da AXIS">
-        <div class="hero__mark" aria-hidden="true">
-          <img src="assets/icons/header/icon-symbolbanner.png" alt="">
-        </div>
+        <div class="hero__mark" aria-hidden="true"><img src="assets/icons/header/icon-symbolbanner.png" alt=""></div>
+        <span class="hero__badge" data-carousel-badge>Ofertas especiais</span>
       </article>
-
-      <button class="carousel-arrow" type="button" data-carousel-next aria-label="Próxima oferta" title="Próxima oferta">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </button>
+      <div class="carousel-dots" data-carousel-dots role="tablist" aria-label="Selecionar oferta"></div>
+      <div class="carousel-progress" aria-hidden="true"><span data-carousel-progress></span></div>
     </section>
 
     <section id="categorias" class="categories" aria-label="Categorias de produtos">
       <h2 class="sr-only">Categorias de produtos</h2>
-      <a class="category" href="produtos.html?categoria=smartphones">
-        <span class="category__icon"><img src="assets/images/departments/dept-celulares.png" alt=""></span>
-        <span>Smartphones</span>
-      </a>
-      <a class="category" href="produtos.html?categoria=notebooks">
-        <span class="category__icon"><img src="assets/images/departments/dept-notebooks.png" alt=""></span>
-        <span>Notebooks</span>
-      </a>
-      <a class="category" href="produtos.html?categoria=televisores">
-        <span class="category__icon"><img src="assets/images/departments/dept-televisores.png" alt=""></span>
-        <span>Televisores</span>
-      </a>
-      <a class="category" href="produtos.html?categoria=audio">
-        <span class="category__icon"><img src="assets/images/departments/dept-audio.png" alt=""></span>
-        <span>Áudio Profissional</span>
-      </a>
-      <a class="category" href="produtos.html?categoria=pcs">
-        <span class="category__icon"><img src="assets/images/departments/dept-pcs.png" alt=""></span>
-        <span>PCs</span>
-      </a>
-      <a class="category" href="produtos.html?categoria=tablets">
-        <span class="category__icon"><img src="assets/images/departments/dept-tablets.png" alt=""></span>
-        <span>Tablets</span>
-      </a>
-      <a class="category" href="produtos.html?categoria=conectividade">
-        <span class="category__icon"><img src="assets/images/departments/dept-conectividade.png" alt=""></span>
-        <span>Conectividade</span>
-      </a>
-      <a class="category" href="produtos.html?categoria=acessorios">
-        <span class="category__icon"><img src="assets/images/departments/dept-acessorios.png" alt=""></span>
-        <span>Acessórios</span>
-      </a>
+      <a class="category" href="produtos.html?categoria=smartphones"><span class="category__icon"><img src="assets/images/departments/dept-celulares.png" alt=""></span><span>Smartphones</span></a>
+      <a class="category" href="produtos.html?categoria=notebooks"><span class="category__icon"><img src="assets/images/departments/dept-notebooks.png" alt=""></span><span>Notebooks</span></a>
+      <a class="category" href="produtos.html?categoria=televisores"><span class="category__icon"><img src="assets/images/departments/dept-televisores.png" alt=""></span><span>Televisores</span></a>
+      <a class="category" href="produtos.html?categoria=audio"><span class="category__icon"><img src="assets/images/departments/dept-audio.png" alt=""></span><span>Áudio Profissional</span></a>
+      <a class="category" href="produtos.html?categoria=pcs"><span class="category__icon"><img src="assets/images/departments/dept-pcs.png" alt=""></span><span>PCs</span></a>
+      <a class="category" href="produtos.html?categoria=tablets"><span class="category__icon"><img src="assets/images/departments/dept-tablets.png" alt=""></span><span>Tablets</span></a>
+      <a class="category" href="produtos.html?categoria=conectividade"><span class="category__icon"><img src="assets/images/departments/dept-conectividade.png" alt=""></span><span>Conectividade</span></a>
+      <a class="category" href="produtos.html?categoria=acessorios"><span class="category__icon"><img src="assets/images/departments/dept-acessorios.png" alt=""></span><span>Acessórios</span></a>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <p>© 2026 AXIS. Todos os direitos reservados.</p>
-  </footer>
-
+  <footer class="site-footer"><p>© 2026 AXIS. Todos os direitos reservados.</p></footer>
   <dialog id="login-dialog" class="auth-dialog" aria-labelledby="login-title">
     <button class="dialog-close" type="button" data-close-login aria-label="Fechar login">×</button>
-    <div class="auth-dialog__brand" aria-hidden="true">
-      <img src="assets/icons/header/icon-logo.png" alt="">
-    </div>
+    <div class="auth-dialog__brand" aria-hidden="true"><img src="assets/icons/header/icon-logo.png" alt=""></div>
     <h2 id="login-title">Entre na sua conta</h2>
-    <form class="auth-form" data-login-form novalidate>
-      <fieldset class="formulario">
-        <legend class="sr-only">Dados de acesso</legend>
-        <div class="form-field">
-          <label for="login-email">E-mail</label>
-          <input id="login-email" name="email" type="email" autocomplete="email" required>
-        </div>
-        <div class="form-field">
-          <label for="login-password">Senha</label>
-          <input id="login-password" name="senha" type="password" autocomplete="current-password" required minlength="6">
-        </div>
-        <p class="form-message" data-login-message role="alert" hidden></p>
-        <a class="forgot-password" href="recuperar-senha.html">Esqueceu a senha?</a>
-        <button class="button button--offer button--full" type="submit">Entrar</button>
-      </fieldset>
-    </form>
+    <form class="auth-form" data-login-form novalidate><fieldset class="formulario"><legend class="sr-only">Dados de acesso</legend>
+      <div class="form-field"><label for="login-email">E-mail</label><input id="login-email" name="email" type="email" autocomplete="email" required></div>
+      <div class="form-field"><label for="login-password">Senha</label><input id="login-password" name="senha" type="password" autocomplete="current-password" required minlength="6"></div>
+      <p class="form-message" data-login-message role="alert" hidden></p><a class="forgot-password" href="recuperar-senha.html">Esqueceu a senha?</a><button class="button button--offer button--full" type="submit">Entrar</button>
+    </fieldset></form>
     <p class="register-prompt">Não tem conta? <a href="cadastro.html">Registrar-se</a></p>
   </dialog>
-
   <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
