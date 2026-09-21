@@ -14,7 +14,9 @@ if (loginDialog && loginTrigger) {
 
 if (loginDialog && closeLoginButton) {
   closeLoginButton.addEventListener('click', () => loginDialog.close());
-  loginDialog.addEventListener('click', (event) => { if (event.target === loginDialog) loginDialog.close(); });
+  loginDialog.addEventListener('click', (event) => {
+    if (event.target === loginDialog) loginDialog.close();
+  });
 }
 
 if (menuToggle && siteMenu) {
@@ -46,6 +48,44 @@ if (carousel) {
   ];
   let current = 0;
   let timer;
+  let changeTimer;
+
+  // As setas são criadas aqui para manter o HTML do banner simples e garantir
+  // que elas existam mesmo quando o conteúdo do carrossel é renderizado por JS.
+  const previousArrow = document.createElement('button');
+  const nextArrow = document.createElement('button');
+  previousArrow.className = 'carousel-arrow carousel-arrow--previous';
+  nextArrow.className = 'carousel-arrow carousel-arrow--next';
+  previousArrow.type = nextArrow.type = 'button';
+  previousArrow.innerHTML = '&#10094;';
+  nextArrow.innerHTML = '&#10095;';
+  previousArrow.setAttribute('aria-label', 'Oferta anterior');
+  nextArrow.setAttribute('aria-label', 'Próxima oferta');
+  carousel.insertBefore(previousArrow, carousel.firstChild);
+  carousel.insertBefore(nextArrow, slide.nextSibling);
+
+  // Ajustes da página inicial: alinhamento com o banner e mais conteúdo visível
+  // antes da rolagem. Os breakpoints preservam o layout mobile existente.
+  const homeFixes = document.createElement('style');
+  homeFixes.textContent = `
+    .topbar { width: min(100%, 1920px); padding-left: clamp(1.1rem, 3.4vw, 4rem); padding-right: clamp(1.1rem, 3.4vw, 4rem); }
+    .site-menu { width: min(100%, 1920px); padding-left: clamp(1.1rem, 3.4vw, 4rem); padding-right: clamp(1.1rem, 3.4vw, 4rem); }
+    .page--home main { padding-top: clamp(2rem, 3vw, 3.25rem); padding-bottom: 3.5rem; }
+    .categories { margin-top: clamp(2rem, 2.8vw, 3rem); }
+    .carousel-arrow { position: absolute; top: 50%; z-index: 5; transform: translateY(-50%); }
+    .carousel-arrow:hover:not(:disabled), .carousel-arrow:focus-visible { transform: translateY(-50%) scale(1.05); }
+    .carousel-arrow--previous { left: 1rem; }
+    .carousel-arrow--next { right: 1rem; }
+    @media (max-width: 1100px) { .topbar, .site-menu { padding-left: 2rem; padding-right: 2rem; } }
+    @media (max-width: 720px) {
+      .topbar { padding-left: 1.15rem; padding-right: 1.15rem; }
+      .site-menu { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .page--home main { padding-top: 2.25rem; }
+      .carousel-arrow { display: none; }
+      .categories { margin-top: 2.5rem; }
+    }
+  `;
+  document.head.appendChild(homeFixes);
 
   offers.forEach((offer, index) => {
     const dot = document.createElement('button');
@@ -80,13 +120,20 @@ if (carousel) {
   function goTo(index) {
     current = (index + offers.length) % offers.length;
     carousel.classList.add('is-changing');
-    window.setTimeout(() => { renderOffer(current); carousel.classList.remove('is-changing'); }, reduceMotion ? 0 : 120);
+    window.clearTimeout(changeTimer);
+    changeTimer = window.setTimeout(() => {
+      renderOffer(current);
+      carousel.classList.remove('is-changing');
+    }, reduceMotion ? 0 : 120);
   }
 
   function startAutoPlay() {
     window.clearInterval(timer);
     if (!reduceMotion) timer = window.setInterval(() => goTo(current + 1), 5000);
   }
+
+  previousArrow.addEventListener('click', () => { goTo(current - 1); startAutoPlay(); });
+  nextArrow.addEventListener('click', () => { goTo(current + 1); startAutoPlay(); });
 
   let touchStartX = 0;
   carousel.addEventListener('touchstart', (event) => { touchStartX = event.changedTouches[0].screenX; }, { passive: true });
@@ -142,7 +189,7 @@ if (recoveryForm) {
   recoveryForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const message = recoveryForm.querySelector('[data-recovery-message]');
-    if (!recoveryForm.checkValidity()) { form.reportValidity(); return; }
+    if (!recoveryForm.checkValidity()) { recoveryForm.reportValidity(); return; }
     showMessage(message, 'Se este e-mail estiver cadastrado, você receberá as instruções de recuperação.');
   });
 }
