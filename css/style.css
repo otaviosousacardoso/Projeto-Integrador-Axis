@@ -67,7 +67,7 @@ a:link, a:visited, a:active { color: inherit; }
   padding: 0.25rem 0.7rem 0.25rem 1.75rem;
   background: #FFFFFF;
   border: 0;
-  border-radius: 999px;
+  border-radius: 18px;
 }
 
 .search-bar:focus-within { outline: 3px solid #FF6B00; outline-offset: 4px; }
