@@ -86,9 +86,9 @@ a:link, a:visited, a:active { color: inherit; }
 
 .search-bar button {
   display: grid;
-  width: 44px;
-  height: 44px;
-  padding: 0.15rem;
+  width: 60px;
+  height: 60px;
+  padding: 0.10rem;
   place-items: center;
   background: transparent;
   border: 0;
