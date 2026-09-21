@@ -4,6 +4,25 @@ const closeLoginButton = document.querySelector('[data-close-login]');
 const menuToggle = document.querySelector('.menu-toggle');
 const siteMenu = document.querySelector('#site-menu');
 
+/* Mantém os conteúdos das páginas alinhados ao mesmo eixo do cabeçalho. */
+const layoutFixes = document.createElement('style');
+layoutFixes.textContent = `
+  .topbar, .site-menu { width: min(100%, 1680px); }
+  .topbar, .site-menu { padding-left: 3rem; padding-right: 3rem; }
+  .products-main, .help-main { width: min(100%, 1680px); }
+  .products-main { padding-left: 3rem; padding-right: 3rem; }
+  .help-main { padding-left: 3rem; padding-right: 3rem; }
+  .account-main { width: min(100%, 1680px); padding-left: 3rem; padding-right: 3rem; }
+  @media (max-width: 1100px) {
+    .topbar, .site-menu, .products-main, .help-main, .account-main { padding-left: 2rem; padding-right: 2rem; }
+  }
+  @media (max-width: 720px) {
+    .topbar { padding-left: 1.15rem; padding-right: 1.15rem; }
+    .site-menu, .products-main, .help-main, .account-main { padding-left: 1.25rem; padding-right: 1.25rem; }
+  }
+`;
+document.head.appendChild(layoutFixes);
+
 if (loginDialog && loginTrigger) {
   loginTrigger.addEventListener('click', (event) => {
     event.preventDefault();
@@ -14,9 +33,7 @@ if (loginDialog && loginTrigger) {
 
 if (loginDialog && closeLoginButton) {
   closeLoginButton.addEventListener('click', () => loginDialog.close());
-  loginDialog.addEventListener('click', (event) => {
-    if (event.target === loginDialog) loginDialog.close();
-  });
+  loginDialog.addEventListener('click', (event) => { if (event.target === loginDialog) loginDialog.close(); });
 }
 
 if (menuToggle && siteMenu) {
@@ -50,8 +67,7 @@ if (carousel) {
   let timer;
   let changeTimer;
 
-  // As setas são criadas aqui para manter o HTML do banner simples e garantir
-  // que elas existam mesmo quando o conteúdo do carrossel é renderizado por JS.
+  /* Setas dentro do banner, sem círculos ou fundo sobre o conteúdo. */
   const previousArrow = document.createElement('button');
   const nextArrow = document.createElement('button');
   previousArrow.className = 'carousel-arrow carousel-arrow--previous';
@@ -61,31 +77,39 @@ if (carousel) {
   nextArrow.innerHTML = '&#10095;';
   previousArrow.setAttribute('aria-label', 'Oferta anterior');
   nextArrow.setAttribute('aria-label', 'Próxima oferta');
-  carousel.insertBefore(previousArrow, carousel.firstChild);
-  carousel.insertBefore(nextArrow, slide.nextSibling);
+  slide.append(previousArrow, nextArrow);
 
-  // Ajustes da página inicial: alinhamento com o banner e mais conteúdo visível
-  // antes da rolagem. Os breakpoints preservam o layout mobile existente.
-  const homeFixes = document.createElement('style');
-  homeFixes.textContent = `
-    .topbar { width: min(100%, 1920px); padding-left: clamp(1.1rem, 3.4vw, 4rem); padding-right: clamp(1.1rem, 3.4vw, 4rem); }
-    .site-menu { width: min(100%, 1920px); padding-left: clamp(1.1rem, 3.4vw, 4rem); padding-right: clamp(1.1rem, 3.4vw, 4rem); }
-    .page--home main { padding-top: clamp(2rem, 3vw, 3.25rem); padding-bottom: 3.5rem; }
-    .categories { margin-top: clamp(2rem, 2.8vw, 3rem); }
-    .carousel-arrow { position: absolute; top: 50%; z-index: 5; transform: translateY(-50%); }
-    .carousel-arrow:hover:not(:disabled), .carousel-arrow:focus-visible { transform: translateY(-50%) scale(1.05); }
-    .carousel-arrow--previous { left: 1rem; }
-    .carousel-arrow--next { right: 1rem; }
-    @media (max-width: 1100px) { .topbar, .site-menu { padding-left: 2rem; padding-right: 2rem; } }
-    @media (max-width: 720px) {
-      .topbar { padding-left: 1.15rem; padding-right: 1.15rem; }
-      .site-menu { padding-left: 1.25rem; padding-right: 1.25rem; }
-      .page--home main { padding-top: 2.25rem; }
-      .carousel-arrow { display: none; }
-      .categories { margin-top: 2.5rem; }
+  const carouselFixes = document.createElement('style');
+  carouselFixes.textContent = `
+    .hero .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 5;
+      display: grid;
+      width: 2.5rem;
+      height: 5rem;
+      padding: 0;
+      place-items: center;
+      transform: translateY(-50%);
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      color: #FFFFFF;
+      font-size: 2.6rem;
+      line-height: 1;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, .75);
     }
+    .hero .carousel-arrow:hover:not(:disabled),
+    .hero .carousel-arrow:focus-visible {
+      background: transparent;
+      color: #FF6B00;
+      transform: translateY(-50%) scale(1.12);
+    }
+    .hero .carousel-arrow--previous { left: .7rem; }
+    .hero .carousel-arrow--next { right: .7rem; }
+    @media (max-width: 720px) { .hero .carousel-arrow { display: none; } }
   `;
-  document.head.appendChild(homeFixes);
+  document.head.appendChild(carouselFixes);
 
   offers.forEach((offer, index) => {
     const dot = document.createElement('button');
@@ -121,10 +145,7 @@ if (carousel) {
     current = (index + offers.length) % offers.length;
     carousel.classList.add('is-changing');
     window.clearTimeout(changeTimer);
-    changeTimer = window.setTimeout(() => {
-      renderOffer(current);
-      carousel.classList.remove('is-changing');
-    }, reduceMotion ? 0 : 120);
+    changeTimer = window.setTimeout(() => { renderOffer(current); carousel.classList.remove('is-changing'); }, reduceMotion ? 0 : 120);
   }
 
   function startAutoPlay() {
