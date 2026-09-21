@@ -4,7 +4,7 @@
    O preto do cabeçalho e do rodapé é mantido por fidelidade ao protótipo Canva.
    ========================================================================== */
 
-/* RESET BÁSICO E MODELO DE CAIXAS (Seção 25 da apostila) */
+/* RESET BÁSICO E MODELO DE CAIXAS */
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
@@ -38,7 +38,7 @@ a:link, a:visited, a:active { color: inherit; }
   border: 0;
 }
 
-/* CABEÇALHO E MENU DE NAVEGAÇÃO (Seções 21.1, 21.2 e 32) */
+/* CABEÇALHO E MENU DE NAVEGAÇÃO */
 .site-header {
   position: relative;
   z-index: 3;
@@ -63,7 +63,7 @@ a:link, a:visited, a:active { color: inherit; }
 .search-bar {
   display: flex;
   align-items: center;
-  height: 58px;
+  height: 50px;
   padding: 0.25rem 0.7rem 0.25rem 1.75rem;
   background: #FFFFFF;
   border: 0;
@@ -267,7 +267,7 @@ a:link, a:visited, a:active { color: inherit; }
   object-fit: contain;
 }
 
-/* CATEGORIAS E IMAGENS (Seções 13, 31 e 40) */
+/* CATEGORIAS E IMAGENS */
 .categories {
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
@@ -330,7 +330,7 @@ a:link, a:visited, a:active { color: inherit; }
 
 .site-footer p { margin: 0; }
 
-/* FORMULÁRIOS E MODAL DE ACESSO (Seções 20 e 41.2) */
+/* FORMULÁRIOS E MODAL DE ACESSO */
 .auth-dialog {
   position: fixed;
   top: 50%;
@@ -476,7 +476,7 @@ a:link, a:visited, a:active { color: inherit; }
 
 :focus-visible { outline: 3px solid #FF6B00; outline-offset: 4px; }
 
-/* PÁGINA DE AJUDA (seçao 17) */
+/* PÁGINA DE AJUDA  */
 .page--help {
   min-height: 100vh;
 }
