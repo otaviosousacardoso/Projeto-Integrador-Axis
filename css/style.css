@@ -1,14 +1,36 @@
-/* ========================================================================== 
-   AXIS - ESTILOS EXTERNOS
-   Organização baseada nos conteúdos da apostila de Fundamentos de Web Design I.
+/* ==========================================================================
+   AXIS - CSS ÚNICO DO SITE
+   Todas as páginas usam este arquivo. Os blocos estão na ordem abaixo:
+
+   1. BASE ................ reset, fonte, rodapé "grudado" embaixo (todas as páginas)
+   2. CABEÇALHO ........... barra preta, busca, ícones e menu (quase todas as páginas)
+   3. HOME ................ index.html (banner com carrossel e categorias)
+   4. BOTÕES E RODAPÉ ..... botão laranja padrão e rodapé preto (todas as páginas)
+   5. LOGIN / CADASTRO .... modal da home, login.html, cadastro.html, recuperar-senha.html
+   6. MINHA CONTA ......... minha-conta.html
+   7. AJUDA ............... ajuda.html
+   8. PRODUTOS ............ produtos.html
+   9. CARRINHO ............ carrinho.html
+  10. PAGAMENTO ........... pagamento.html
+  11. PEDIDO CONFIRMADO ... pedido-confirmado.html
+  12. RESPONSIVIDADE ...... ajustes para tablet e celular (media queries)
+
    O preto do cabeçalho e do rodapé é mantido por fidelidade ao protótipo Canva.
+   Organização baseada nos conteúdos da apostila de Fundamentos de Web Design I.
    ========================================================================== */
 
-/* RESET BÁSICO E MODELO DE CAIXAS */
+/* --------------------------------------------------------------------------
+   1. BASE (todas as páginas)
+   -------------------------------------------------------------------------- */
+
+/* Reset: padding e borda passam a contar dentro da largura dos elementos,
+   o que deixa as contas de layout bem mais previsíveis. */
 * { box-sizing: border-box; }
 
+/* Rolagem suave ao clicar em âncoras (ex.: "Categorias" no menu da home) */
 html { scroll-behavior: smooth; }
 
+/* Visual padrão: fundo branco, texto preto e a fonte Segoe UI do site */
 body {
   min-width: 320px;
   min-height: 100vh;
@@ -18,15 +40,19 @@ body {
   font-family: "Segoe UI", Arial, sans-serif;
 }
 
+/* Truque do rodapé no fim da tela: a página vira uma coluna e o <main> cresce
+   para ocupar o espaço livre, empurrando o rodapé para baixo mesmo em páginas curtas. */
 .page { display: flex; flex-direction: column; }
 .page main { flex: 1; }
 
+/* Botões e campos usam a mesma fonte do resto do site (por padrão o navegador usa outra) */
 button, input { font: inherit; }
 button { cursor: pointer; }
 
-/* LINKS EM CSS (Seção 30 da apostila) */
+/* Links herdam a cor do texto em volta, sem o azul/roxo padrão do navegador (Seção 30 da apostila) */
 a:link, a:visited, a:active { color: inherit; }
 
+/* Texto "invisível" que só leitores de tela leem (rótulos de busca, "Abrir menu" etc.) */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -38,7 +64,11 @@ a:link, a:visited, a:active { color: inherit; }
   border: 0;
 }
 
-/* CABEÇALHO E MENU DE NAVEGAÇÃO */
+/* --------------------------------------------------------------------------
+   2. CABEÇALHO E MENU (home, produtos, ajuda, carrinho, pagamento, pedido-confirmado)
+   -------------------------------------------------------------------------- */
+
+/* Faixa preta no topo da página */
 .site-header {
   position: relative;
   z-index: 3;
@@ -46,6 +76,7 @@ a:link, a:visited, a:active { color: inherit; }
   color: #FFFFFF;
 }
 
+/* Linha principal do cabeçalho em 3 colunas: logo | busca | ícones */
 .topbar {
   display: grid;
   grid-template-columns: minmax(210px, 1fr) minmax(320px, 540px) minmax(210px, 1fr);
@@ -57,9 +88,11 @@ a:link, a:visited, a:active { color: inherit; }
   padding: 1.5rem 3rem;
 }
 
+/* Logo da AXIS (leva para a home) */
 .brand { display: inline-flex; justify-self: start; }
 .brand img { display: block; width: min(220px, 100%); height: auto; }
 
+/* Campo de pesquisa branco e arredondado */
 .search-bar {
   display: flex;
   align-items: center;
@@ -70,6 +103,7 @@ a:link, a:visited, a:active { color: inherit; }
   border-radius: 16px;
 }
 
+/* Contorno laranja quando a pessoa clica para digitar */
 .search-bar:focus-within { outline: 3px solid #FF6B00; outline-offset: 4px; }
 
 .search-bar input {
@@ -84,10 +118,12 @@ a:link, a:visited, a:active { color: inherit; }
 
 .search-bar input::placeholder { color: #8E8E8E; }
 
+/* Corta os cantos do botão da lupa para respeitar o arredondamento da barra */
 .search-bar {
   overflow: hidden;
 }
 
+/* Botão da lupa dentro da barra */
 .search-bar button {
   display: grid;
   width: 46px;
@@ -110,6 +146,7 @@ a:link, a:visited, a:active { color: inherit; }
   object-fit: contain;
 }
 
+/* Grupo de ícones à direita: conta, carrinho e menu */
 .header-actions {
   display: flex;
   justify-content: flex-end;
@@ -117,6 +154,7 @@ a:link, a:visited, a:active { color: inherit; }
   gap: 1.2rem;
 }
 
+/* Cada ícone redondo do cabeçalho (fica azul-escuro ao passar o mouse) */
 .header-icon {
   display: grid;
   width: 52px;
@@ -132,6 +170,7 @@ a:link, a:visited, a:active { color: inherit; }
 .header-icon img { width: 100%; height: 100%; object-fit: contain; }
 .menu-toggle img { width: 94%; }
 
+/* Menu que abre ao clicar no ícone de hambúrguer (o js/main.js mostra e esconde) */
 .site-menu {
   width: min(100%, 1680px);
   margin: 0 auto;
@@ -155,13 +194,18 @@ a:link, a:visited, a:active { color: inherit; }
 
 .site-menu a:hover, .site-menu a:focus-visible { color: #FF6B00; }
 
+/* --------------------------------------------------------------------------
+   3. HOME (index.html)
+   -------------------------------------------------------------------------- */
+
+/* Espaçamento geral do conteúdo da página inicial */
 .page--home main {
   width: min(100%, 1920px);
   margin: 0 auto;
   padding: clamp(4rem, 5vw, 6rem) clamp(1.1rem, 3.4vw, 4rem) clamp(4rem, 5vw, 5.5rem);
 }
 
-/* BANNER PRINCIPAL E NAVEGAÇÃO DO CARROSSEL (Seção 29) */
+/* Banner principal e carrossel de ofertas (Seção 29). Os slides são trocados pelo js/main.js */
 .hero-carousel {
   display: grid;
   grid-template-columns: 56px minmax(0, 1610px) 56px;
@@ -170,6 +214,7 @@ a:link, a:visited, a:active { color: inherit; }
   gap: clamp(1rem, 2.4vw, 2.4rem);
 }
 
+/* Setas do carrossel (o js/main.js as reposiciona dentro do banner, sem fundo) */
 .carousel-arrow {
   display: grid;
   width: 56px;
@@ -193,6 +238,7 @@ a:link, a:visited, a:active { color: inherit; }
 
 .carousel-arrow:disabled { cursor: default; opacity: 0.5; }
 
+/* Banner com degradê preto → azul e cantos arredondados */
 .hero {
   position: relative;
   min-height: 432px;
@@ -204,6 +250,7 @@ a:link, a:visited, a:active { color: inherit; }
   align-items: center;
 }
 
+/* Coluna de texto do banner (título, descrição e botão) */
 .hero__copy {
   position: relative;
   z-index: 1;
@@ -211,6 +258,7 @@ a:link, a:visited, a:active { color: inherit; }
   padding: 2.9rem 3.8rem;
 }
 
+/* Título grande em caixa alta; o trecho em <span> fica laranja */
 .hero h1 {
   margin: 0;
   font-size: clamp(2.25rem, 4vw, 3.45rem);
@@ -228,6 +276,12 @@ a:link, a:visited, a:active { color: inherit; }
   line-height: 1.35;
 }
 
+/* --------------------------------------------------------------------------
+   4. BOTÕES E RODAPÉ (todas as páginas)
+   -------------------------------------------------------------------------- */
+
+/* Botão padrão da AXIS. Use .button + .button--offer para o laranja
+   e .button--full para ocupar toda a largura do bloco onde estiver. */
 .button {
   display: inline-flex;
   min-height: 68px;
@@ -243,10 +297,12 @@ a:link, a:visited, a:active { color: inherit; }
 }
 
 .button--offer { background: #FF6B00; color: #FFFFFF; }
+/* Quando o botão é um link (<a>), garante o texto branco: a regra "a:link { color: inherit }" lá do topo venceria a cor acima */
+a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #FFFFFF; }
 .button--offer:hover, .button--offer:focus-visible { background: #D95B00; }
 .button--full { width: 100%; }
 
-/* AJUSTES DO ROBÔ E SÍMBOLO PARA O PROTÓTIPO CANVA */
+/* Robô mascote e símbolo laranja sobre o banner da home (posições copiadas do protótipo Canva) */
 .hero__robot {
   position: absolute;
   right: clamp(210px, 22vw, 320px);
@@ -279,7 +335,7 @@ a:link, a:visited, a:active { color: inherit; }
   object-fit: contain;
 }
 
-/* CATEGORIAS E IMAGENS */
+/* Faixa de categorias (círculos azuis) logo abaixo do banner da home */
 .categories {
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
@@ -288,6 +344,7 @@ a:link, a:visited, a:active { color: inherit; }
   margin: clamp(4.5rem, 5.5vw, 5.8rem) auto 0;
 }
 
+/* Cada categoria: círculo com ícone + nome embaixo */
 .category {
   display: grid;
   gap: 0.85rem;
@@ -324,13 +381,14 @@ a:link, a:visited, a:active { color: inherit; }
   transform: none !important;
 }
 
+/* Destaque laranja ao passar o mouse ou focar com o teclado */
 .category:hover .category__icon, 
 .category:focus-visible .category__icon { 
   background: #00384A; 
   border-color: #FF6B00; 
 }
 
-/* RODAPÉ (Seção 21.6) */
+/* Rodapé (Seção 21.6): faixa preta com o copyright, igual em todas as páginas. O margin-top:auto o empurra para o fim da tela. */
 .site-footer {
   margin-top: auto;
   padding: 1.45rem 1.5rem;
@@ -342,7 +400,12 @@ a:link, a:visited, a:active { color: inherit; }
 
 .site-footer p { margin: 0; }
 
-/* FORMULÁRIOS E MODAL DE ACESSO */
+/* --------------------------------------------------------------------------
+   5. LOGIN, CADASTRO E RECUPERAR SENHA
+   (janelinha de login da home + login.html, cadastro.html, recuperar-senha.html)
+   -------------------------------------------------------------------------- */
+
+/* Janelinha (modal) de login que abre ao clicar no ícone de usuário na home */
 .auth-dialog {
   position: fixed;
   top: 50%;
@@ -362,6 +425,7 @@ a:link, a:visited, a:active { color: inherit; }
 .auth-dialog::backdrop { background: rgba(0, 0, 0, 0.48); }
 .auth-dialog h2 { margin: 0 0 1.35rem; font-size: 1.75rem; text-align: center; }
 
+/* Agrupador (<fieldset>) dos campos de login/cadastro: campos empilhados com espaço entre eles */
 .formulario {
   display: grid;
   gap: 1.2rem;
@@ -370,6 +434,7 @@ a:link, a:visited, a:active { color: inherit; }
   border: 0;
 }
 
+/* Botão "×" que fecha a janelinha de login */
 .dialog-close {
   position: absolute;
   top: 0.9rem;
@@ -387,11 +452,14 @@ a:link, a:visited, a:active { color: inherit; }
 
 .dialog-close:hover, .dialog-close:focus-visible { background: #E0E0E0; }
 
+/* Logo preta no topo da janelinha */
 .auth-dialog__brand { display: grid; height: 105px; margin-bottom: 0.75rem; place-items: center; }
 .auth-dialog__brand img { width: 135px; height: auto; }
 
+/* Formulário em si (campos e botão) */
 .auth-form { display: grid; gap: 1.2rem; }
 
+/* Um campo: rótulo em cima, caixa cinza embaixo */
 .form-field { display: grid; gap: 0.45rem; }
 .form-field label { font-size: 1.1rem; font-weight: 800; }
 
@@ -408,6 +476,7 @@ a:link, a:visited, a:active { color: inherit; }
 
 .form-field input:focus { outline: 3px solid #FF6B00; outline-offset: 2px; }
 
+/* Link "Esqueceu a senha?" */
 .forgot-password {
   justify-self: end;
   color: #004B63;
@@ -416,17 +485,21 @@ a:link, a:visited, a:active { color: inherit; }
 
 .forgot-password:hover, .forgot-password:focus-visible, .register-prompt a:hover, .register-prompt a:focus-visible { color: #FF6B00; text-decoration: underline; }
 
+/* Frase "Não tem conta? Registrar-se" no fim do card */
 .register-prompt { margin: 1.55rem 0 0; font-size: 1.2rem; text-align: center; }
 .register-prompt a { color: #FF6B00; text-decoration: none; }
 
+/* Mensagens de erro (laranja) e de sucesso (verde) dos formulários */
 .form-message { margin: 0; color: #D95B00; font-weight: 700; }
 .form-message--success { color: #2D6A4F; }
 
+/* Cabeçalho reduzido (só logo + link) de login, cadastro, recuperar senha e minha conta */
 .topbar--compact { grid-template-columns: 1fr auto; min-height: 100px; }
 .site-header--compact .brand img { width: 150px; }
 .back-home { color: #FFFFFF; font-weight: 700; text-decoration: none; }
 .back-home:hover, .back-home:focus-visible { color: #FF6B00; }
 
+/* Páginas de acesso: fundo cinza com um card branco no meio */
 .page--auth { background: #E0E0E0; }
 .auth-main { display: grid; min-height: 620px; padding: 3.5rem 1.25rem; place-items: center; }
 
@@ -442,12 +515,18 @@ a:link, a:visited, a:active { color: inherit; }
 .auth-card h1 { margin: 0 0 0.75rem; color: #FF6B00; font-size: 2rem; text-align: center; }
 .auth-card__description { margin: 0 0 1.5rem; color: #1A1A1B; line-height: 1.45; text-align: center; }
 
+/* --------------------------------------------------------------------------
+   6. MINHA CONTA (minha-conta.html)
+   -------------------------------------------------------------------------- */
+
+/* Duas colunas: perfil à esquerda e atalhos (ajuda, cupons, pedidos) à direita */
 .page--account { background: #FFFFFF; }
 .account-main { width: min(100%, 1800px); margin: 0 auto; padding: 4rem; }
 .account-main > h1 { margin: 0 0 1.25rem; color: #FF6B00; font-size: 2.35rem; }
 
 .account-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 3rem; }
 
+/* Caixas com borda cinza (perfil e atalhos) */
 .account-profile, .account-actions a {
   border: 4px solid #8E8E8E;
   border-radius: 20px;
@@ -465,14 +544,17 @@ a:link, a:visited, a:active { color: inherit; }
 .account-profile p { margin: 0; font-size: 1.1rem; line-height: 1.45; }
 .account-profile .button { grid-column: 1 / -1; justify-self: center; min-width: 260px; min-height: 56px; }
 
+/* Foto redonda do usuário (por enquanto, o robô da AXIS) */
 .account-avatar { width: 200px; aspect-ratio: 1; overflow: hidden; background: #00384A; border: 4px solid #000000; border-radius: 50%; }
 .account-avatar img { width: 100%; height: 100%; object-fit: contain; }
 
+/* Lista de atalhos; a borda fica laranja ao passar o mouse */
 .account-actions { display: grid; gap: 2rem; }
 .account-actions a { display: flex; min-height: 105px; padding: 1.2rem 1.6rem; align-items: center; gap: 1.2rem; font-size: 1.75rem; font-weight: 800; text-decoration: none; }
 .account-actions a:hover, .account-actions a:focus-visible { border-color: #FF6B00; color: #FF6B00; }
 .account-actions span { color: #FF6B00; }
 
+/* Caixinha com dados do usuário (reservada para quando houver login real) */
 .user-info {
   margin: 0.75rem 0;
   padding: 0.75rem;
@@ -486,7 +568,12 @@ a:link, a:visited, a:active { color: inherit; }
   font-size: 1rem;
 }
 
+/* Contorno laranja em qualquer elemento focado pelo teclado (acessibilidade) */
 :focus-visible { outline: 3px solid #FF6B00; outline-offset: 4px; }
+
+/* --------------------------------------------------------------------------
+   7. AJUDA (ajuda.html)
+   -------------------------------------------------------------------------- */
 
 /* PÁGINA DE AJUDA
    Fiel ao protótipo Canva: título no canto superior esquerdo, robô grande
@@ -581,11 +668,14 @@ a:link, a:visited, a:active { color: inherit; }
   font-weight: 600;
 }
 
-/* PÁGINA DE PRODUTOS (seçao 11) */
+/* --------------------------------------------------------------------------
+   8. PRODUTOS (produtos.html) (seção 11 da apostila)
+   -------------------------------------------------------------------------- */
 .page--products {
   min-height: 100vh;
 }
 
+/* Página em 2 colunas: filtros à esquerda e vitrine de produtos à direita */
 .products-main {
   display: grid;
   grid-template-columns: 190px 1fr;
@@ -595,6 +685,7 @@ a:link, a:visited, a:active { color: inherit; }
   padding: 2.5rem 3rem 4rem;
 }
 
+/* Coluna de filtros (frete grátis, marcas...) */
 .filters {
   color: #000;
 }
@@ -639,12 +730,14 @@ a:link, a:visited, a:active { color: inherit; }
   vertical-align: middle;
 }
 
+/* Vitrine: 4 cartões por linha no desktop (diminui nas media queries) */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(190px, 1fr));
   gap: 2.5rem;
 }
 
+/* Cartão de produto: borda cinza que vira laranja e sobe um pouquinho ao passar o mouse */
 .product-card {
   display: flex;
   min-height: 270px;
@@ -662,6 +755,7 @@ a:link, a:visited, a:active { color: inherit; }
   transition: 0.2s ease;
 }
 
+/* Linha de cima do cartão: nota (estrela) e botão de carrinho */
 .product-card__top {
   display: flex;
   justify-content: space-between;
@@ -709,12 +803,372 @@ a:link, a:visited, a:active { color: inherit; }
   font-weight: 700;
 }
 
-/* MEDIA QUERIES (RESPONSIVIDADE) */
+/* --------------------------------------------------------------------------
+   9. CARRINHO (carrinho.html)
+   -------------------------------------------------------------------------- */
+
+.cart-main {
+  width: min(100%, 1680px);
+  margin: 0 auto;
+  padding: 3.5rem 3rem 5rem;
+}
+
+.cart-main > h1 {
+  margin: 0 0 2rem;
+  color: #FF6B00;
+  font-size: 2.35rem;
+  font-weight: 800;
+}
+
+/* Duas colunas: lista de produtos (flexível) + resumo da compra (420px fixos) */
+.cart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  align-items: start;
+  gap: 2rem;
+}
+
+.cart-items {
+  display: grid;
+  gap: 1.4rem;
+}
+
+/* Cartão de um produto: [rádio] [foto] [nome] [preço] [lixeira].
+   Ao selecionar, a borda preta vira laranja (o js/main.js atualiza o resumo). */
+.cart-item {
+  display: grid;
+  grid-template-columns: 36px 130px minmax(0, 1fr) 150px 48px;
+  align-items: center;
+  gap: 1rem;
+  min-height: 235px;
+  padding: 2rem 1.5rem;
+  background: #FFFFFF;
+  border: 3px solid #000000;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.cart-item:has(.product-check:checked) {
+  border-color: #FF6B00;
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.15);
+}
+
+/* Bolinha de seleção */
+.cart-item__select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-item__select input {
+  width: 20px;
+  height: 20px;
+  accent-color: #FF6B00;
+  cursor: pointer;
+}
+
+/* Foto do produto (cabe inteira dentro do quadrado, sem distorcer) */
+.cart-item__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 130px;
+}
+
+.cart-item__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Nome e preço */
+.cart-item__info h2 {
+  margin: 0;
+  color: #000000;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.cart-item__price {
+  color: #FF6B00;
+  font-size: 1.4rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* Lixeira que remove o produto */
+.cart-item__remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  font-size: 1.8rem;
+}
+
+/* Caixa azul com o resumo (só aparece depois de escolher um produto) */
+.cart-summary {
+  padding: 2rem;
+  background: #006176;
+  border-radius: 20px;
+  color: #FFFFFF;
+}
+
+.cart-summary[hidden] { display: none; }
+
+.cart-summary h2 {
+  margin: 0 0 1.8rem;
+  font-size: 1.7rem;
+  font-weight: 800;
+}
+
+/* Linhas "Subtotal / Frete / Total": nome à esquerda, valor à direita */
+.summary-line,
+.summary-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.summary-line {
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.summary-line strong,
+.summary-total strong { white-space: nowrap; }
+
+.summary-free { color: #00D084; }
+
+.cart-summary hr {
+  margin: 1.5rem 0;
+  border: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.summary-total {
+  margin-bottom: 2rem;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+/* Botão "Finalizar pedido" (usa o .button padrão, só um pouco mais baixo) */
+.cart-summary .button { min-height: 62px; }
+
+
+/* --------------------------------------------------------------------------
+   10. PAGAMENTO E ENTREGA (pagamento.html)
+   -------------------------------------------------------------------------- */
+
+.payment-main {
+  width: min(100%, 1600px);
+  margin: 0 auto;
+  padding: 25px 3.5%;
+}
+
+.payment-main > h1 {
+  margin: 0 0 20px;
+  color: #FF6B00;
+  font-size: 29px;
+}
+
+/* Duas colunas: formulário (à esquerda) e selo de segurança + botão (à direita) */
+.payment-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Caixa do formulário com borda cinza */
+.payment-form {
+  width: 100%;
+  padding: 30px 25px;
+  border: 3px solid #999999;
+  border-radius: 15px;
+}
+
+.payment-group { margin-bottom: 40px; }
+.payment-group:last-child { margin-bottom: 0; }
+
+.payment-group h2 {
+  margin: 0 0 12px 5px;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+/* Endereço (mais largo) e CEP (mais estreito) lado a lado */
+.payment-address {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+  gap: 20px;
+}
+
+.payment-field {
+  width: 100%;
+  min-width: 0;
+  height: 52px;
+  padding: 0 20px;
+  border: none;
+  border-radius: 7px;
+  background: #CCCCCC;
+  color: #222222;
+  font-size: 17px;
+}
+
+.payment-field:focus { outline: 3px solid #FF6B00; }
+
+/* Opções PIX / Cartão: a escolhida ganha borda laranja e fundo mais claro */
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  min-height: 52px;
+  margin-bottom: 20px;
+  padding: 0 16px;
+  background: #CCCCCC;
+  border: 2px solid transparent;
+  border-radius: 7px;
+  color: #666666;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.payment-option input { accent-color: #FF6B00; }
+
+.payment-option:has(input:checked) {
+  border-color: #FF6B00;
+  background: #EEEEEE;
+}
+
+.payment-option__icon {
+  color: #000000;
+  font-size: 25px;
+}
+
+/* Coluna da direita: escudo, texto, botão e mensagem, todos centralizados */
+.payment-secure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  min-width: 0;
+  text-align: center;
+}
+
+/* Escudo azul desenhado só com CSS (recorte em polígono + "✓" branco) */
+.payment-shield {
+  position: relative;
+  width: 100px;
+  height: 120px;
+  flex-shrink: 0;
+  background: #00566B;
+  clip-path: polygon(50% 0%, 100% 20%, 100% 58%, 85% 80%, 50% 100%, 15% 80%, 0% 58%, 0% 20%);
+}
+
+.payment-shield::after {
+  content: "✓";
+  position: absolute;
+  top: 20px;
+  left: 22px;
+  color: #FFFFFF;
+  font-size: 65px;
+  font-weight: bold;
+}
+
+.payment-secure h2 {
+  margin: 0;
+  max-width: 100%;
+  font-size: 28px;
+}
+
+.payment-submit {
+  max-width: 550px;
+  min-height: 56px;
+}
+
+/* Aviso que aparece ao enviar ("PIX selecionado, confirmando...") */
+.payment-message {
+  width: 100%;
+  max-width: 600px;
+  margin: 0;
+  color: #00566B;
+  font-weight: bold;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+
+/* --------------------------------------------------------------------------
+   11. PEDIDO CONFIRMADO (pedido-confirmado.html)
+   -------------------------------------------------------------------------- */
+
+/* Tudo centralizado: ícone, título, texto e botão */
+.confirmed-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+/* Círculo verde com "✓" */
+.confirmed-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border: 12px solid #2DCC5B;
+  border-radius: 50%;
+  color: #2DCC5B;
+  font-size: 85px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.confirmed-main h1 {
+  margin: 25px 0 20px;
+  color: #00C853;
+  font-size: 34px;
+  font-weight: 400;
+}
+
+.confirmed-main p {
+  margin: 0 0 22px;
+  font-size: 23px;
+}
+
+.confirmed-button {
+  width: 410px;
+  max-width: 100%;
+  min-height: 56px;
+}
+
+
+/* --------------------------------------------------------------------------
+   12. RESPONSIVIDADE (media queries)
+   Regras que só valem em telas menores. Ordem: produtos → ajuda → geral (tablet)
+   → geral (celular) → celular pequeno → carrinho/pagamento/confirmado.
+   -------------------------------------------------------------------------- */
+/* Produtos em tablet: filtros mais estreitos e 3 cartões por linha */
 @media (max-width: 1100px) {
   .products-main {grid-template-columns: 180px 1fr;padding: 2rem;}
   .product-grid {grid-template-columns: repeat(3, minmax(180px, 1fr));gap: 1.5rem;}
 }
 
+/* Produtos no celular: filtros em cima (só o título) e 2 cartões por linha */
 @media (max-width: 720px) {
   .products-main {grid-template-columns: 1fr;padding: 1.5rem 1.15rem 3rem;}
   .filters {padding-bottom: 1rem;border-bottom: 1px solid #CCC;}
@@ -724,6 +1178,7 @@ a:link, a:visited, a:active { color: inherit; }
   .product-card h2 {font-size: 0.8rem;}
 }
 
+/* Ajuda no celular: uma coluna, com o card de perguntas antes do robô */
 @media (max-width: 720px) {
   .help-main {padding-top: 2rem;}
   .help-content {grid-template-columns: 1fr; row-gap: 1.5rem;}
@@ -731,6 +1186,7 @@ a:link, a:visited, a:active { color: inherit; }
   .help-robot {width: min(85%, 380px); margin: 0 auto;}
 }
 
+/* TABLET (até 1100px): cabeçalho mais compacto, banner e categorias menores, minha conta mais enxuta */
 @media (max-width: 1100px) {
   .topbar { grid-template-columns: auto minmax(260px, 1fr) auto; gap: 1rem; padding: 1.5rem 2rem; }
   .brand img { width: 175px; }
@@ -746,6 +1202,7 @@ a:link, a:visited, a:active { color: inherit; }
   .account-avatar { width: 145px; }
 }
 
+/* CELULAR (até 720px): busca desce para uma linha própria, só o menu fica no cabeçalho, tudo em 1 coluna */
 @media (max-width: 720px) {
   .topbar { grid-template-columns: 1fr auto; min-height: 0; padding: 1.15rem; }
   .brand img { width: 135px; }
@@ -779,98 +1236,74 @@ a:link, a:visited, a:active { color: inherit; }
   .account-actions a { min-height: 80px; font-size: 1.25rem; }
 }
 
+/* CELULAR PEQUENO (até 380px): categorias em uma única coluna */
 @media (max-width: 380px) {
   .categories { grid-template-columns: 1fr; }
   .site-header--compact .brand img { width: 130px; }
   .back-home { font-size: 0.76rem; }
 }
-/* ==========================================================================
-   PAINEL DO FUNCIONÁRIO (funcionario.html)
-   ========================================================================== */
 
-   .topbar--staff {
-  grid-template-columns: auto auto 1fr;
-  align-items: center;
-  gap: 1.5rem;
+
+/* Carrinho em telas médias (até 1200px): a lista ocupa a largura toda e o resumo
+   passa a ficar ACIMA dela. Sem isso, a coluna reservada para o resumo espremia o
+   nome dos produtos até sumir. */
+@media (max-width: 1200px) {
+
+  .cart-layout { grid-template-columns: 1fr; }
+  .cart-summary { order: -1; }
 }
 
-.staff-tag {
-  padding: 0.35rem 0.8rem;
-  border: 2px solid #FF6B00;
-  border-radius: 8px;
-  color: #FF6B00;
-  font-size: 0.9rem;
-  font-weight: 700;
-  white-space: nowrap;
+/* Carrinho e pagamento em tablet */
+@media (max-width: 1100px) {
+
+  .cart-item {
+    grid-template-columns: 28px 100px minmax(0, 1fr) 125px 40px;
+    gap: 0.7rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .cart-item__image { height: 100px; }
+  .cart-item__price { font-size: 1.15rem; }
+
+  .payment-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; }
+  .payment-secure h2 { font-size: 24px; }
 }
 
-.staff-menu {
-  display: flex;
-  justify-self: end;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+/* Carrinho e pagamento em telas médias/pequenas: pagamento vira uma coluna só */
+@media (max-width: 850px) {
+
+  .payment-layout { grid-template-columns: 1fr; gap: 35px; }
+  .payment-secure { padding: 20px 0; }
 }
 
-.staff-menu a { color: #FFFFFF; font-weight: 700; text-decoration: none; }
-.staff-menu a:hover, .staff-menu a:focus-visible { color: #FF6B00; }
-.staff-menu a[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; }
-.staff-menu__exit { color: #FF6B00; }
-.staff-menu__exit:hover, .staff-menu__exit:focus-visible { color: #FFFFFF; }
-
-.auth-card--wide { width: min(100%, 900px); }
-
-.formulario--produto { grid-template-columns: 1fr 1fr; gap: 1.2rem 1.5rem; }
-.form-field--full { grid-column: 1 / -1; }
-
-.formulario--produto .form-field input {
-  background: #FFFFFF;
-  border: 1px solid #CCCCCC;
-}
-
-.form-field select,
-.form-field textarea {
-  width: 100%;
-  padding: 0.65rem 0.9rem;
-  background: #FFFFFF;
-  border: 1px solid #CCCCCC;
-  border-radius: 8px;
-  color: #000000;
-  font: inherit;
-}
-
-.form-field select:focus,
-.form-field textarea:focus { outline: 3px solid #FF6B00; outline-offset: 2px; }
-.form-field textarea { resize: vertical; line-height: 1.4; }
-
-.upload-area {
-  display: grid;
-  place-items: center;
-  gap: 0.6rem;
-  min-height: 110px;
-  padding: 1.2rem;
-  background: #F7F9FA;
-  border: 2px dashed #CCCCCC;
-  border-radius: 10px;
-  color: #8E8E8E;
-  text-align: center;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.upload-area:hover, .upload-area.is-dragover { background: #EFF4F6; border-color: #004B63; }
-.upload-area small { color: #8E8E8E; }
-.upload-area__preview { max-width: 100%; max-height: 150px; border-radius: 8px; object-fit: contain; }
-
-.form-actions { display: flex; gap: 1rem; grid-column: 1 / -1; }
-
-.button--secondary { background: #FFFFFF; border: 1px solid #CCCCCC; color: #000000; }
-.button--secondary:hover, .button--secondary:focus-visible { background: #F0F0F0; border-color: #8E8E8E; }
-
+/* Carrinho e pedido confirmado no celular: o cartão de produto vira 3 colunas (rádio, foto, texto) com preço e lixeira reposicionados */
 @media (max-width: 720px) {
-  .topbar--staff { grid-template-columns: 1fr auto; row-gap: 0.8rem; }
-  .staff-menu { grid-column: 1 / -1; justify-self: start; flex-wrap: wrap; gap: 0.6rem 1.2rem; }
-  .formulario--produto { grid-template-columns: 1fr; }
-} 
+
+  .cart-main { padding: 2.5rem 1.15rem 3rem; }
+  .cart-main > h1 { font-size: 1.9rem; }
+
+  .cart-item {
+    grid-template-columns: 28px 90px minmax(0, 1fr);
+    min-height: 180px;
+  }
+
+  .cart-item__image { height: 90px; }
+  .cart-item__price { grid-column: 3; font-size: 1rem; }
+  .cart-item__remove { grid-column: 3; grid-row: 1; justify-self: end; }
+  .cart-item__info h2 { font-size: 0.9rem; }
+
+  .confirmed-main { padding-top: 60px; }
+  .confirmed-main h1 { font-size: 28px; }
+  .confirmed-main p { font-size: 19px; }
+}
+
+/* Pagamento em celular pequeno: campos empilhados e fontes menores */
+@media (max-width: 500px) {
+
+  .payment-main { padding: 20px 15px; }
+  .payment-main > h1 { font-size: 25px; }
+  .payment-address { grid-template-columns: 1fr; gap: 12px; }
+  .payment-form { padding: 25px 15px; }
+  .payment-group h2 { font-size: 20px; }
+  .payment-option { font-size: 15px; }
+}
