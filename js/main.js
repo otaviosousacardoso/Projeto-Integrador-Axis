@@ -11,6 +11,7 @@
    4. Formulários ............................ login, cadastro e recuperar senha
    5. Carrinho ............................... carrinho.html
    6. Pagamento .............................. pagamento.html
+   7. Funcionário ............................ funcionario.html
    ========================================================================== */
 
 /* ---------- 1. ELEMENTOS COMPARTILHADOS ----------
@@ -340,5 +341,43 @@ if (paymentForm) {
     /* Trava o botão para não enviar duas vezes e segue para a confirmação */
     if (paymentSubmit) paymentSubmit.disabled = true;
     window.setTimeout(() => window.location.assign('pedido-confirmado.html'), 1500);
+  });
+}
+/* 7. PAINEL DO FUNCIONÁRIO: upload de imagem com pré-visualização (funcionario.html) */
+const productForm = document.querySelector('[data-product-form]');
+
+if (productForm) {
+  const fileInput = productForm.querySelector('input[type="file"]');
+  const uploadText = productForm.querySelector('[data-upload-text]');
+  const preview = productForm.querySelector('[data-upload-preview]');
+  const uploadMessage = productForm.querySelector('[data-upload-message]');
+
+  function mostrarImagem(file) {
+    const url = URL.createObjectURL(file);
+    preview.src = url;
+    preview.hidden = false;
+    uploadText.hidden = true;
+    uploadMessage.hidden = true;
+  }
+
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    if (file) mostrarImagem(file);
+  });
+
+  productForm.addEventListener('reset', () => {
+    preview.hidden = true;
+    uploadText.hidden = false;
+    uploadMessage.hidden = true;
+  });
+
+  productForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!productForm.checkValidity()) {
+      productForm.reportValidity();
+      return;
+    }
+    showMessage(uploadMessage, 'Produto salvo com sucesso!');
+    uploadMessage.classList.add('form-message--success');
   });
 }
