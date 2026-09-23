@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AXIS | Pedido confirmado</title>
+  <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="page page--confirmed">
+  <!-- CABEÇALHO (igual ao das demais páginas da loja) -->
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial">
+        <img src="assets/icons/header/icon-logo.png" alt="AXIS">
+      </a>
+
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar">
+        <button type="submit" aria-label="Buscar produtos">
+          <img src="assets/icons/header/icon-search.png" alt="">
+        </button>
+      </form>
+
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" aria-label="Minha conta">
+          <img src="assets/icons/header/icon-user.png" alt="">
+        </a>
+
+        <a class="header-icon" href="carrinho.html" aria-label="Carrinho">
+          <img src="assets/icons/header/icon-cart.png" alt="">
+        </a>
+
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu">
+          <img src="assets/icons/header/icon-menu.png" alt="">
+          <span class="sr-only">Abrir menu</span>
+        </button>
+      </div>
+    </nav>
+
+    <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
+      <ul>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="confirmed-main">
+    <div class="confirmed-icon" aria-hidden="true">✓</div>
+
+    <h1>Pedido Confirmado!</h1>
+    <p>Obrigado por escolher a Axis</p>
+
+    <a class="button button--offer confirmed-button" href="detalhes-pedido.html">Ver detalhes do pedido</a>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="site-footer"><p>© 2026 AXIS. Todos os direitos reservados.</p></footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

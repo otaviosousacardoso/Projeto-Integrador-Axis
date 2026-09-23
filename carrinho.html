@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AXIS | Meu carrinho</title>
+  <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="page page--cart">
+  <!-- CABEÇALHO (igual ao das demais páginas da loja) -->
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial">
+        <img src="assets/icons/header/icon-logo.png" alt="AXIS">
+      </a>
+
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar">
+        <button type="submit" aria-label="Buscar produtos">
+          <img src="assets/icons/header/icon-search.png" alt="">
+        </button>
+      </form>
+
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" aria-label="Minha conta">
+          <img src="assets/icons/header/icon-user.png" alt="">
+        </a>
+
+        <a class="header-icon" href="carrinho.html" aria-label="Carrinho">
+          <img src="assets/icons/header/icon-cart.png" alt="">
+        </a>
+
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu">
+          <img src="assets/icons/header/icon-menu.png" alt="">
+          <span class="sr-only">Abrir menu</span>
+        </button>
+      </div>
+    </nav>
+
+    <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
+      <ul>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="cart-main">
+    <h1>Meu Carrinho</h1>
+
+    <div class="cart-layout">
+      <!-- Lista de produtos: clicar no cartão seleciona o item (carrinho, em js/main.js) -->
+      <section class="cart-items" aria-label="Produtos no carrinho">
+
+        <article class="cart-item" data-price="249.90">
+          <div class="cart-item__select">
+            <input type="radio" name="produto-selecionado" class="product-check" id="produto-jbl" aria-label="Selecionar fone JBL">
+          </div>
+          <div class="cart-item__image">
+            <img src="assets/images/products/product-headphone.png" alt="Fone de ouvido JBL Tune 530BT">
+          </div>
+          <div class="cart-item__info">
+            <h2>Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul</h2>
+          </div>
+          <strong class="cart-item__price">R$ 249,90</strong>
+          <button class="cart-item__remove" type="button" aria-label="Remover fone JBL">🗑️</button>
+        </article>
+
+        <article class="cart-item" data-price="3599.90">
+          <div class="cart-item__select">
+            <input type="radio" name="produto-selecionado" class="product-check" id="produto-lenovo" aria-label="Selecionar notebook Lenovo">
+          </div>
+          <div class="cart-item__image">
+            <img src="assets/images/products/product-pc.png" alt="Notebook Lenovo Ideapad 1">
+          </div>
+          <div class="cart-item__info">
+            <h2>Notebook Lenovo Ideapad 1 R3-7320u, 4GB, 256GB SSD, Linux, 15.6"</h2>
+          </div>
+          <strong class="cart-item__price">R$ 3.599,90</strong>
+          <button class="cart-item__remove" type="button" aria-label="Remover notebook Lenovo">🗑️</button>
+        </article>
+
+        <article class="cart-item" data-price="59.90">
+          <div class="cart-item__select">
+            <input type="radio" name="produto-selecionado" class="product-check" id="produto-mouse" aria-label="Selecionar mouse Logitech">
+          </div>
+          <div class="cart-item__image">
+            <img src="assets/images/products/product-mouse.png" alt="Mouse sem fio Logitech M170">
+          </div>
+          <div class="cart-item__info">
+            <h2>Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul</h2>
+          </div>
+          <strong class="cart-item__price">R$ 59,90</strong>
+          <button class="cart-item__remove" type="button" aria-label="Remover mouse Logitech">🗑️</button>
+        </article>
+
+        <article class="cart-item" data-price="299.90">
+          <div class="cart-item__select">
+            <input type="radio" name="produto-selecionado" class="product-check" id="produto-relogio" aria-label="Selecionar smartwatch Redmi">
+          </div>
+          <div class="cart-item__image">
+            <img src="assets/images/products/product-clock.png" alt="Smartwatch Redmi Watch 5 Active">
+          </div>
+          <div class="cart-item__info">
+            <h2>Smartwatch Redmi Watch 5 Active, Tela 2", Lacre</h2>
+          </div>
+          <strong class="cart-item__price">R$ 299,90</strong>
+          <button class="cart-item__remove" type="button" aria-label="Remover smartwatch Redmi">🗑️</button>
+        </article>
+      </section>
+
+      <!-- Resumo da compra: fica escondido até um produto ser selecionado -->
+      <aside class="cart-summary" id="cart-summary" hidden>
+        <h2>Resumo</h2>
+
+        <div class="summary-line">
+          <span>Subtotal</span>
+          <strong id="summary-subtotal">R$ 0,00</strong>
+        </div>
+
+        <div class="summary-line">
+          <span>Frete</span>
+          <strong class="summary-free">Grátis</strong>
+        </div>
+
+        <hr>
+
+        <div class="summary-total">
+          <span>Total</span>
+          <strong id="summary-total">R$ 0,00</strong>
+        </div>
+
+        <a class="button button--offer button--full" href="pagamento.html">Finalizar pedido</a>
+      </aside>
+    </div>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="site-footer"><p>© 2026 AXIS. Todos os direitos reservados.</p></footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
