@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="pt-br">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Painel do funcionário AXIS - cadastro de novos produtos.">
+    <title>Painel do funcionário | AXIS</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body class="page page--auth">
+
+    <header class="site-header site-header--compact">
+        <nav class="topbar topbar--staff" aria-label="Navegação principal">
+        <a class="brand" href="index.html" aria-label="AXIS - Página inicial">
+            <img src="assets/icons/header/icon-logo.png" alt="AXIS">
+        </a>
+        <span class="staff-tag">Painel do funcionário</span>
+        <ul class="staff-menu">
+            <li><a href="funcionario.html" aria-current="page">Produtos</a></li>
+            <li><a href="#">Pedidos</a></li>
+            <li><a href="#">Relatórios</a></li>
+            <li><a class="staff-menu__exit" href="login.html">Sair</a></li>
+        </ul>
+        </nav>
+    </header>
+
+    <main class="auth-main">        
+        <section class="auth-card auth-card--wide">
+        <h1>Cadastrar Novo Produto</h1>
+        <p class="auth-card__description">Preencha as informações para disponibilizar o eletrônico imediatamente no e-commerce.</p>
+
+        <form class="auth-form" data-product-form action="#">
+            <fieldset class="formulario formulario--produto">
+            <legend class="sr-only">Dados do novo produto</legend>
+
+            <div class="form-field form-field--full">
+                <label for="produto-nome">Nome do Eletrônico</label>
+                <input id="produto-nome" name="nome" type="text" placeholder="Ex: Smartphone Motorolla Moto G35 5G 256GB" required>
+            </div>
+
+            <div class="form-field">
+                <label for="produto-marca">Marca</label>
+                <input id="produto-marca" name="marca" type="text" placeholder="Ex: Motorola, Dell, Logitech" required>
+            </div>
+
+            <div class="form-field">
+                <label for="produto-categoria">Categoria</label>
+                <select id="produto-categoria" name="categoria" required>
+                <option value="" disabled selected>Selecione a categoria...</option>
+                <option value="smartphones">Smartphones</option>
+                <option value="notebooks">Notebooks</option>
+                <option value="televisores">Televisores</option>
+                <option value="audio">Áudio Profissional</option>
+                <option value="pcs">PCs</option>
+                <option value="tablets">Tablets</option>
+                <option value="conectividade">Conectividade</option>
+                <option value="acessorios">Acessórios</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="produto-preco">Preço Original (R$)</label>
+                <input id="produto-preco" name="preco" type="text" inputmode="decimal" placeholder="0,00" required>
+            </div>
+
+            <div class="form-field">
+                <label for="produto-preco-pix">Preço à vista no PIX (R$)</label>
+                <input id="produto-preco-pix" name="preco-pix" type="text" inputmode="decimal" placeholder="0,00" required>
+            </div>
+
+            <div class="form-field">
+                <label for="produto-estoque">Quantidade em Estoque</label>
+                <input id="produto-estoque" name="estoque" type="number" min="0" placeholder="Ex.: 50" required>
+            </div>
+
+            <div class="form-field">
+                <label for="produto-sku">Código SKU ou Modelo</label>
+                <input id="produto-sku" name="sku" type="text" placeholder="Ex.: MOTO-G35-CINZA" required>
+            </div>
+
+            <div class="form-field form-field--full">
+                <label for="produto-descricao">Descrição Comercial</label>
+                <textarea id="produto-descricao" name="descricao" rows="3" placeholder="Escreva um texto resumido destacando os pontos fortes do produto para o cliente..."></textarea>
+            </div>
+
+            <div class="form-field form-field--full">
+                <label for="produto-specs">Especificações Técnicas (Uma por linha)</label>
+                <textarea id="produto-specs" name="especificacoes" rows="5" placeholder="Ex:&#10;• Processador: Intel i5 13ª Gen&#10;• Memória RAM: 8GB DDR4&#10;• Armazenamento: 512GB SSD NVMe&#10;• Tela: 15.6&quot; FHD 120Hz"></textarea>
+            </div>
+
+            <div class="form-field form-field--full">
+                <label for="produto-imagem">Imagem do Produto</label>
+                <label class="upload-area" for="produto-imagem" data-upload-area>
+                <span data-upload-text>Clique aqui para fazer upload ou arraste a imagem do produto<br><small>(Formatos suportados: JPG, PNG - Máx: 2MB)</small></span>
+                <img class="upload-area__preview" data-upload-preview alt="" hidden>
+                <input class="sr-only" id="produto-imagem" name="imagem" type="file" accept="image/png, image/jpeg">
+                </label>
+                <p class="form-message" data-upload-message role="alert" hidden></p>
+            </div>
+
+            <div class="form-actions">
+                <button class="button button--secondary" type="reset">Cancelar</button>
+                <button class="button button--offer" type="submit">Salvar e Publicar</button>
+            </div>
+            </fieldset>
+        </form>
+        </section>
+    </main>
+
+    <footer class="site-footer"><p>© 2026 AXIS. Todos os direitos reservados.</p></footer>
+
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
