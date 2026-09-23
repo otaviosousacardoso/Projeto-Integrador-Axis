@@ -1,10 +1,31 @@
+/* ==========================================================================
+   AXIS - JAVASCRIPT ÚNICO DO SITE
+   Todas as páginas carregam este arquivo no fim do <body>. Como nem toda
+   página tem todos os elementos, cada bloco só roda se achar o que precisa
+   (ex.: o carrossel só existe na home, o carrinho só em carrinho.html).
+
+   Ordem do arquivo:
+   1. Elementos usados em várias páginas ..... login (modal), menu do cabeçalho
+   2. Ajustes de layout ...................... alinhamento dos conteúdos ao cabeçalho
+   3. Carrossel de ofertas ................... index.html
+   4. Formulários ............................ login, cadastro e recuperar senha
+   5. Carrinho ............................... carrinho.html
+   6. Pagamento .............................. pagamento.html
+   ========================================================================== */
+
+/* ---------- 1. ELEMENTOS COMPARTILHADOS ----------
+   Podem não existir na página atual (por isso os "if" mais abaixo). */
 const loginDialog = document.querySelector('#login-dialog');
 const loginTrigger = document.querySelector('[data-open-login]');
 const closeLoginButton = document.querySelector('[data-close-login]');
 const menuToggle = document.querySelector('.menu-toggle');
 const siteMenu = document.querySelector('#site-menu');
 
-/* Mantém os conteúdos das páginas alinhados ao mesmo eixo do cabeçalho. */
+/* ---------- 2. AJUSTES DE LAYOUT (todas as páginas) ----------
+   Injeta uma folha de estilo no <head> para manter o conteúdo de produtos, ajuda
+   e minha conta alinhado com a mesma margem lateral do cabeçalho (3rem no desktop,
+   2rem no tablet e 1,25rem no celular). Como é injetado depois do style.css,
+   estas margens laterais têm prioridade sobre as do CSS. */
 const layoutFixes = document.createElement('style');
 layoutFixes.textContent = `
   .topbar, .site-menu { width: min(100%, 1680px); }
@@ -23,6 +44,8 @@ layoutFixes.textContent = `
 `;
 document.head.appendChild(layoutFixes);
 
+/* Home: clicar no ícone de usuário abre a janelinha (modal) de login em vez de mudar de página.
+   Se o JavaScript falhar, o link continua levando para login.html. */
 if (loginDialog && loginTrigger) {
   loginTrigger.addEventListener('click', (event) => {
     event.preventDefault();
@@ -31,11 +54,14 @@ if (loginDialog && loginTrigger) {
   });
 }
 
+/* Fecha a janelinha de login pelo "×" ou clicando na área escura ao redor */
 if (loginDialog && closeLoginButton) {
   closeLoginButton.addEventListener('click', () => loginDialog.close());
   loginDialog.addEventListener('click', (event) => { if (event.target === loginDialog) loginDialog.close(); });
 }
 
+/* Menu do cabeçalho (todas as páginas): o ícone de hambúrguer mostra/esconde o menu
+   e avisa os leitores de tela se ele está aberto (aria-expanded). */
 if (menuToggle && siteMenu) {
   menuToggle.addEventListener('click', () => {
     const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
@@ -44,6 +70,9 @@ if (menuToggle && siteMenu) {
   });
 }
 
+/* ---------- 3. CARROSSEL DE OFERTAS (index.html) ----------
+   Troca sozinho a cada 5s o texto, a imagem e o botão do banner. Também responde
+   a setas, bolinhas, teclado (← →) e arrastar o dedo no celular. */
 const carousel = document.querySelector('[data-carousel]');
 if (carousel) {
   const slide = carousel.querySelector('[data-carousel-slide]');
@@ -56,6 +85,7 @@ if (carousel) {
   const dots = carousel.querySelector('[data-carousel-dots]');
   const progress = carousel.querySelector('[data-carousel-progress]');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* As 5 ofertas do banner: para mudar um texto, imagem ou link, edite aqui */
   const offers = [
     { eyebrow: 'Bem-vindo à AXIS', title: 'Tecnologia que<br>mudará <span>o seu mundo</span>', description: 'O melhor em hardware e gadgets com entrega relâmpago', text: 'Ver ofertas', link: 'produtos.html?ofertas=1', image: 'assets/images/mascot/robot-banner.png', alt: 'Mascote robô da AXIS', badge: 'Ofertas especiais' },
     { eyebrow: 'Oferta da semana', title: 'Seu novo celular<br>com <span>preço incrível</span>', description: 'Desempenho, câmera e conectividade para acompanhar sua rotina', text: 'Ver smartphones', link: 'produtos.html?categoria=smartphones', image: 'assets/images/products/product-phone.png', alt: 'Smartphone em destaque', badge: 'Até 20% OFF' },
@@ -63,11 +93,12 @@ if (carousel) {
     { eyebrow: 'Para maratonar', title: 'Sua diversão<br>em <span>tela grande</span>', description: 'Encontre a TV ideal para filmes, séries, games e muito mais', text: 'Ver televisores', link: 'produtos.html?categoria=televisores', image: 'assets/images/products/product-tv.png', alt: 'Televisão em destaque', badge: 'Oferta relâmpago' },
     { eyebrow: 'Performance AXIS', title: 'Mais potência<br>para <span>suas ideias</span>', description: 'Monte seu setup com máquinas prontas para trabalho e criação', text: 'Conhecer PCs', link: 'produtos.html?categoria=pcs', image: 'assets/images/products/product-pc.png', alt: 'Computador em destaque', badge: 'Monte seu setup' }
   ];
+  /* Controle do carrossel: qual oferta está na tela e os temporizadores */
   let current = 0;
   let timer;
   let changeTimer;
 
-  /* Setas dentro do banner, sem círculos ou fundo sobre o conteúdo. */
+  /* Cria as setas ‹ › por JavaScript e as coloca dentro do banner (sem círculos ou fundo sobre o conteúdo) */
   const previousArrow = document.createElement('button');
   const nextArrow = document.createElement('button');
   previousArrow.className = 'carousel-arrow carousel-arrow--previous';
@@ -79,6 +110,7 @@ if (carousel) {
   nextArrow.setAttribute('aria-label', 'Próxima oferta');
   slide.append(previousArrow, nextArrow);
 
+  /* Estilo das setas: transparentes, sobre o banner, ficam laranja ao passar o mouse */
   const carouselFixes = document.createElement('style');
   carouselFixes.textContent = `
     .hero .carousel-arrow {
@@ -111,6 +143,7 @@ if (carousel) {
   `;
   document.head.appendChild(carouselFixes);
 
+  /* Cria uma bolinha (tab) para cada oferta */
   offers.forEach((offer, index) => {
     const dot = document.createElement('button');
     dot.className = 'carousel-dot';
@@ -121,6 +154,7 @@ if (carousel) {
     dots.appendChild(dot);
   });
 
+  /* Desenha na tela a oferta escolhida: textos, imagem, link, selo e bolinha ativa; reinicia a barrinha de progresso */
   function renderOffer(index) {
     const offer = offers[index];
     eyebrow.textContent = offer.eyebrow;
@@ -141,6 +175,7 @@ if (carousel) {
     if (!reduceMotion) progress.classList.add('is-running');
   }
 
+  /* Vai para uma oferta (dando a volta no fim/início da lista) com um leve efeito de fade */
   function goTo(index) {
     current = (index + offers.length) % offers.length;
     carousel.classList.add('is-changing');
@@ -148,14 +183,17 @@ if (carousel) {
     changeTimer = window.setTimeout(() => { renderOffer(current); carousel.classList.remove('is-changing'); }, reduceMotion ? 0 : 120);
   }
 
+  /* Troca automática a cada 5s (desligada para quem prefere menos animação) */
   function startAutoPlay() {
     window.clearInterval(timer);
     if (!reduceMotion) timer = window.setInterval(() => goTo(current + 1), 5000);
   }
 
+  /* Cliques nas setas */
   previousArrow.addEventListener('click', () => { goTo(current - 1); startAutoPlay(); });
   nextArrow.addEventListener('click', () => { goTo(current + 1); startAutoPlay(); });
 
+  /* Celular: arrastar para o lado troca de oferta. Também pausa o autoplay com mouse/foco e aceita as setas do teclado. */
   let touchStartX = 0;
   carousel.addEventListener('touchstart', (event) => { touchStartX = event.changedTouches[0].screenX; }, { passive: true });
   carousel.addEventListener('touchend', (event) => {
@@ -176,12 +214,18 @@ if (carousel) {
   startAutoPlay();
 }
 
+/* ---------- 4. FORMULÁRIOS (login, cadastro, recuperar senha, pagamento) ----------
+   Ainda não há back-end: as validações usam o próprio navegador e depois
+   o site apenas "finge" o próximo passo. */
+
+/* Mostra uma mensagem (erro/sucesso/aviso) dentro de um <p> que começa escondido */
 function showMessage(element, message) {
   if (!element) return;
   element.textContent = message;
   element.hidden = false;
 }
 
+/* Login (janelinha da home e login.html): valida e vai para minha-conta.html */
 document.querySelectorAll('[data-login-form]').forEach((form) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -192,6 +236,7 @@ document.querySelectorAll('[data-login-form]').forEach((form) => {
   });
 });
 
+/* Cadastro (cadastro.html): confere se as duas senhas são iguais e vai para minha-conta.html */
 const registerForm = document.querySelector('[data-register-form]');
 if (registerForm) {
   registerForm.addEventListener('submit', (event) => {
@@ -205,6 +250,7 @@ if (registerForm) {
   });
 }
 
+/* Recuperar senha (recuperar-senha.html): mostra uma mensagem neutra, sem dizer se o e-mail existe */
 const recoveryForm = document.querySelector('[data-recovery-form]');
 if (recoveryForm) {
   recoveryForm.addEventListener('submit', (event) => {
@@ -215,41 +261,84 @@ if (recoveryForm) {
   });
 }
 
-/* PAINEL DO FUNCIONÁRIO: upload de imagem com pré-visualização (funcionario.html) */
-const productForm = document.querySelector('[data-product-form]');
 
-if (productForm) {
-  const fileInput = productForm.querySelector('input[type="file"]');
-  const uploadText = productForm.querySelector('[data-upload-text]');
-  const preview = productForm.querySelector('[data-upload-preview]');
-  const uploadMessage = productForm.querySelector('[data-upload-message]');
+/* ---------- 5. CARRINHO (carrinho.html) ----------
+   O cliente escolhe UM produto (bolinha) e o resumo à direita mostra subtotal e total.
+   Sem produto escolhido, o resumo fica escondido. */
+const cartItems = document.querySelectorAll('.cart-item');
 
-  function mostrarImagem(file) {
-    const url = URL.createObjectURL(file);
-    preview.src = url;
-    preview.hidden = false;
-    uploadText.hidden = true;
-    uploadMessage.hidden = true;
-  }
+if (cartItems.length) {
+  const cartSummary = document.querySelector('#cart-summary');
+  const summarySubtotal = document.querySelector('#summary-subtotal');
+  const summaryTotal = document.querySelector('#summary-total');
 
-  fileInput.addEventListener('change', () => {
-    const file = fileInput.files[0];
-    if (file) mostrarImagem(file);
-  });
+  /* Transforma 249.9 em "R$ 249,90" */
+  const formatCurrency = (value) => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-  productForm.addEventListener('reset', () => {
-    preview.hidden = true;
-    uploadText.hidden = false;
-    uploadMessage.hidden = true;
-  });
+  /* Mostra/esconde o resumo e atualiza os valores conforme o produto marcado.
+     O preço vem do atributo data-price do cartão no HTML. */
+  function updateCartSummary() {
+    const selected = document.querySelector('.product-check:checked');
 
-  productForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    if (!productForm.checkValidity()) {
-      productForm.reportValidity();
+    if (!selected) {
+      cartSummary.hidden = true;
       return;
     }
-    showMessage(uploadMessage, 'Produto salvo com sucesso!');
-    uploadMessage.classList.add('form-message--success');
+
+    const price = Number(selected.closest('.cart-item').dataset.price);
+    cartSummary.hidden = false;
+    summarySubtotal.textContent = formatCurrency(price);
+    summaryTotal.textContent = formatCurrency(price);
+  }
+
+  cartItems.forEach((item) => {
+    const radio = item.querySelector('.product-check');
+    const removeButton = item.querySelector('.cart-item__remove');
+
+    /* Clicar em qualquer parte do cartão marca o produto (menos em botões, links e no próprio campo) */
+    item.addEventListener('click', (event) => {
+      if (event.target.closest('input, button, a')) return;
+      radio.checked = true;
+      updateCartSummary();
+    });
+
+    radio.addEventListener('change', updateCartSummary);
+
+    /* Lixeira: tira o produto da lista e recalcula o resumo */
+    removeButton.addEventListener('click', () => {
+      item.remove();
+      updateCartSummary();
+    });
+  });
+
+  updateCartSummary();
+}
+
+
+/* ---------- 6. PAGAMENTO (pagamento.html) ----------
+   Confere endereço, CEP e forma de pagamento (validação do navegador), mostra
+   um aviso conforme o método escolhido e leva para pedido-confirmado.html.
+   Ainda é uma simulação: não há cobrança real. */
+const paymentForm = document.querySelector('#form-pagamento');
+
+if (paymentForm) {
+  const paymentMessage = document.querySelector('#mensagem');
+  const paymentSubmit = document.querySelector('button[form="form-pagamento"]');
+
+  const paymentNotices = {
+    pix: 'PIX selecionado. Confirmando o pagamento...',
+    cartao: 'Cartão de crédito selecionado. Processando o pagamento...'
+  };
+
+  paymentForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!paymentForm.checkValidity()) { paymentForm.reportValidity(); return; }
+
+    const method = paymentForm.querySelector('input[name="pagamento"]:checked').value;
+    showMessage(paymentMessage, paymentNotices[method]);
+
+    /* Trava o botão para não enviar duas vezes e segue para a confirmação */
+    if (paymentSubmit) paymentSubmit.disabled = true;
+    window.setTimeout(() => window.location.assign('pedido-confirmado.html'), 1500);
   });
 }
