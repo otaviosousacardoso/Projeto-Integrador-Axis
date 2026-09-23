@@ -488,45 +488,56 @@ a:link, a:visited, a:active { color: inherit; }
 
 :focus-visible { outline: 3px solid #FF6B00; outline-offset: 4px; }
 
-/* PÁGINA DE AJUDA  */
+/* PÁGINA DE AJUDA
+   Fiel ao protótipo Canva: título no canto superior esquerdo, robô grande
+   encostado no rodapé (a imagem já é cortada na cintura) e card de FAQ
+   alinhado ao topo da cabeça do robô. As medidas usam vw/clamp para manter
+   a mesma proporção do protótipo em qualquer largura de tela. */
 .page--help {
   min-height: 100vh;
 }
 
 .help-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* em telas altas o espaço sobra acima do título, não entre título e robô */
   width: min(100%, 1680px);
   margin: 0 auto;
-  padding: clamp(3rem, 7vw, 8rem) clamp(1.25rem, 7vw, 9rem);
+  /* sem padding inferior: o robô precisa encostar no rodapé.
+     (padding lateral é ajustado pelo js/main.js junto com o cabeçalho) */
+  padding: clamp(1.75rem, 3.5vw, 3.5rem) 3rem 0;
+}
+
+.help-title {
+  margin: 0 0 clamp(1.25rem, 2.6vw, 3rem);
+  color: #FF6B00;
+  font-size: clamp(1.75rem, 2.6vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: left;
 }
 
 .help-content {
   display: grid;
-  grid-template-columns: minmax(280px, 0.85fr) minmax(450px, 1.15fr);
-  align-items: center;
-  gap: clamp(2rem, 6vw, 8rem);
+  grid-template-columns: minmax(0, 39fr) minmax(0, 53fr);
+  column-gap: 8%;
+  align-items: start;   /* card alinhado ao topo da cabeça do robô */
 }
 
-.help-illustration {
-  text-align: center;
-}
-
-.help-illustration h1 {
-  margin: 0 0 1rem;
-  color: #FF6B00;
-  font-size: clamp(1.6rem, 2.2vw, 2.25rem);
-}
-
-.help-illustration img {
+.help-robot {
   display: block;
-  width: min(100%, 420px);
+  width: 100%;
   height: auto;
-  margin: 0 auto;
 }
 
 .faq-card {
-  padding: clamp(1.5rem, 3vw, 2.5rem);
+  --faq-radius: 16px;
+  justify-self: end;
+  width: 100%;
+  max-width: 780px;
+  padding: clamp(1.1rem, 1.8vw, 2rem) clamp(1.1rem, 1.8vw, 2rem) clamp(1.25rem, 2vw, 2.25rem);
   background: #000000;
-  border-radius: 14px;
+  border-radius: var(--faq-radius);
   color: #FFFFFF;
 }
 
@@ -536,8 +547,8 @@ a:link, a:visited, a:active { color: inherit; }
 }
 
 .faq-card h2 {
-  margin: 0 0 1.35rem;
-  font-size: 1.75rem;
+  margin: 0 0 clamp(0.9rem, 1.4vw, 1.5rem);
+  font-size: clamp(1.25rem, 1.9vw, 2rem);
 }
 
 .faq-card dl {
@@ -545,9 +556,9 @@ a:link, a:visited, a:active { color: inherit; }
 }
 
 .faq-card dt {
-  margin-top: 1rem;
-  font-size: 1.15rem;
-  font-weight: 800;
+  margin-top: clamp(0.8rem, 1.2vw, 1.3rem);
+  font-size: clamp(1rem, 1.4vw, 1.4rem);
+  font-weight: 700;
 }
 
 .faq-card dt:first-child {
@@ -555,13 +566,19 @@ a:link, a:visited, a:active { color: inherit; }
 }
 
 .faq-card dd {
-  margin: 0.35rem 0 0;
-  font-size: 1.05rem;
-  line-height: 1.45;
+  margin: 0.3rem 0 0;
+  font-size: clamp(0.95rem, 1.3vw, 1.3rem);
+  line-height: 1.4;
 }
 
+/* Botão bem menor que o card: o raio é uma fração do raio do card
+   (~55%). Com o mesmo valor numérico ele pareceria muito mais redondo. */
 .faq-card .button {
-  margin-top: 2rem;
+  min-height: clamp(2.75rem, 3.6vw, 3.6rem);
+  margin-top: clamp(1.25rem, 2vw, 2.25rem);
+  border-radius: calc(var(--faq-radius) * 0.55);
+  font-size: clamp(0.95rem, 1.25vw, 1.25rem);
+  font-weight: 600;
 }
 
 /* PÁGINA DE PRODUTOS (seçao 11) */
@@ -708,9 +725,10 @@ a:link, a:visited, a:active { color: inherit; }
 }
 
 @media (max-width: 720px) {
-   .help-main {padding: 3rem 1.25rem;}
-  .help-content {grid-template-columns: 1fr;}
-  .faq-card {order: -1;}
+  .help-main {padding-top: 2rem;}
+  .help-content {grid-template-columns: 1fr; row-gap: 1.5rem;}
+  .faq-card {order: -1; max-width: none;}
+  .help-robot {width: min(85%, 380px); margin: 0 auto;}
 }
 
 @media (max-width: 1100px) {
