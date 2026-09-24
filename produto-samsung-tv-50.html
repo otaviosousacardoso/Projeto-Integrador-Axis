@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Samsung Smart TV 50&quot; Crystal UHD 4K com processador Crystal 4K e recursos de Smart TV.">
+  <title>AXIS | Samsung Smart TV 50&quot; Crystal UHD 4K</title>
+  <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="page page--pdp">
+  <!-- CABEÇALHO (igual ao das demais páginas da loja) -->
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial">
+        <img src="assets/icons/header/icon-logo.png" alt="AXIS">
+      </a>
+
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar">
+        <button type="submit" aria-label="Buscar produtos">
+          <img src="assets/icons/header/icon-search.png" alt="">
+        </button>
+      </form>
+
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" aria-label="Minha conta">
+          <img src="assets/icons/header/icon-user.png" alt="">
+        </a>
+
+        <a class="header-icon" href="carrinho.html" aria-label="Carrinho">
+          <img src="assets/icons/header/icon-cart.png" alt="">
+        </a>
+
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu">
+          <img src="assets/icons/header/icon-menu.png" alt="">
+          <span class="sr-only">Abrir menu</span>
+        </button>
+      </div>
+    </nav>
+
+    <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
+      <ul>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="pdp-main">
+    <article class="pdp">
+
+      <!-- GALERIA: clicar numa miniatura troca a foto principal (js/main.js, seção 8) -->
+      <section class="pdp-gallery" aria-label="Fotos do produto" data-product-gallery>
+        <div class="pdp-gallery__stage">
+          <img src="assets/images/products2/product-tv2.png" alt="Samsung Smart TV Crystal UHD 4K, vista frontal" data-gallery-main>
+        </div>
+        <ul class="pdp-thumbs">
+          <li>
+            <button class="pdp-thumb is-active" type="button" data-gallery-thumb data-full="assets/images/products2/product-tv2.png" data-alt="Samsung Smart TV Crystal UHD 4K, vista frontal" aria-label="Ver foto 1: Samsung Smart TV Crystal UHD 4K, vista frontal" aria-pressed="true">
+              <img src="assets/images/products2/product-tv2.png" alt="" loading="lazy">
+            </button>
+          </li>
+          <li>
+            <button class="pdp-thumb" type="button" data-gallery-thumb data-full="assets/images/products2/product-tv3.png" data-alt="Samsung Smart TV Crystal UHD 4K, vista em ângulo" aria-label="Ver foto 2: Samsung Smart TV Crystal UHD 4K, vista em ângulo" aria-pressed="false">
+              <img src="assets/images/products2/product-tv3.png" alt="" loading="lazy">
+            </button>
+          </li>
+          <li>
+            <button class="pdp-thumb" type="button" data-gallery-thumb data-full="assets/images/products2/product-tv4.png" data-alt="Samsung Smart TV Crystal UHD, tela com imagem colorida" aria-label="Ver foto 3: Samsung Smart TV Crystal UHD, tela com imagem colorida" aria-pressed="false">
+              <img src="assets/images/products2/product-tv4.png" alt="" loading="lazy">
+            </button>
+          </li>
+          <li>
+            <button class="pdp-thumb" type="button" data-gallery-thumb data-full="assets/images/products2/product-tv5.png" data-alt="Samsung Smart TV Crystal UHD, vista frontal" aria-label="Ver foto 4: Samsung Smart TV Crystal UHD, vista frontal" aria-pressed="false">
+              <img src="assets/images/products2/product-tv5.png" alt="" loading="lazy">
+            </button>
+          </li>
+          <li hidden data-thumb-extra>
+            <button class="pdp-thumb" type="button" data-gallery-thumb data-full="assets/images/products/product-tv.png" data-alt="Samsung Smart TV Crystal UHD 4K, foto de vitrine" aria-label="Ver foto 5: Samsung Smart TV Crystal UHD 4K, foto de vitrine" aria-pressed="false">
+              <img src="assets/images/products/product-tv.png" alt="" loading="lazy">
+            </button>
+          </li>
+          <li data-thumb-more-item>
+            <button class="pdp-thumb-more" type="button" data-gallery-more aria-label="Ver mais fotos do produto">+</button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- NOME E AVALIAÇÃO -->
+      <header class="pdp-head">
+        <p class="pdp-rating" aria-label="Avaliação 5,0 de 5, com 1 avaliação"><span class="pdp-rating__stars" aria-hidden="true">★★★★★</span> <span aria-hidden="true">(1)</span></p>
+        <h1>Samsung Smart TV 50&quot; Crystal UHD 4K</h1>
+      </header>
+
+      <!-- PREÇO, BOTÕES DE COMPRA E FRETE -->
+      <aside class="pdp-buy" aria-label="Compra">
+        <p class="pdp-price">R$ 2.799,90</p>
+        <p class="pdp-installments">No PIX ou 10x de R$279,90</p>
+
+        <a class="pdp-btn pdp-btn--primary" href="pagamento.html">Comprar Agora</a>
+        <a class="pdp-btn pdp-btn--outline" href="carrinho.html">Adicionar ao carrinho</a>
+
+        <form class="pdp-shipping" data-shipping-form novalidate>
+          <label class="pdp-shipping__title" for="cep">Consulte o frete</label>
+          <div class="pdp-shipping__field">
+            <input id="cep" name="cep" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="Inserir CEP">
+            <button type="submit" aria-label="Consultar frete">
+              <img src="assets/icons/header/icon-search.png" alt="">
+            </button>
+          </div>
+          <p class="pdp-shipping__result" data-shipping-result role="status"></p>
+        </form>
+      </aside>
+
+      <!-- DESCRIÇÃO CURTA: "Ver mais" mostra os itens restantes -->
+      <section class="pdp-about" aria-labelledby="sobre-produto">
+        <h2 id="sobre-produto">Sobre o produto</h2>
+        <ul class="pdp-features">
+          <li><strong>Imagem em 4K:</strong> Resolução Ultra HD com muito mais detalhes em filmes, séries e esportes.</li>
+          <li><strong>Processador Crystal 4K:</strong> Cores vivas e imagens otimizadas em tempo real.</li>
+          <li><strong>Smart TV:</strong> Acesse seus aplicativos de streaming favoritos direto da tela.</li>
+          <li data-feature-extra hidden><strong>Tela de 50 polegadas:</strong> Tamanho ideal para a sala: imersivo sem ocupar espaço demais.</li>
+          <li data-feature-extra hidden><strong>Tudo em uma TV:</strong> Assista, jogue e conecte seus dispositivos em um só lugar.</li>
+        </ul>
+        <button class="pdp-more-link" type="button" data-features-toggle aria-expanded="false">Ver mais</button>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="site-footer"><p>© 2026 AXIS. Todos os direitos reservados.</p></footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

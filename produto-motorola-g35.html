@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Smartphone Motorola Moto G35 5G com 256GB de armazenamento, 12GB de RAM com RAM Boost e tela de 6,7 polegadas.">
+  <title>AXIS | Smartphone Motorola Moto G35</title>
+  <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="page page--pdp">
+  <!-- CABEÇALHO (igual ao das demais páginas da loja) -->
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial">
+        <img src="assets/icons/header/icon-logo.png" alt="AXIS">
+      </a>
+
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar">
+        <button type="submit" aria-label="Buscar produtos">
+          <img src="assets/icons/header/icon-search.png" alt="">
+        </button>
+      </form>
+
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" aria-label="Minha conta">
+          <img src="assets/icons/header/icon-user.png" alt="">
+        </a>
+
+        <a class="header-icon" href="carrinho.html" aria-label="Carrinho">
+          <img src="assets/icons/header/icon-cart.png" alt="">
+        </a>
+
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu">
+          <img src="assets/icons/header/icon-menu.png" alt="">
+          <span class="sr-only">Abrir menu</span>
+        </button>
+      </div>
+    </nav>
+
+    <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
+      <ul>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="pdp-main">
+    <article class="pdp">
+
+      <!-- GALERIA: clicar numa miniatura troca a foto principal (js/main.js, seção 8) -->
+      <section class="pdp-gallery" aria-label="Fotos do produto" data-product-gallery>
+        <div class="pdp-gallery__stage">
+          <img src="assets/images/products2/product-phone2.png" alt="Motorola Moto G35 5G, tela frontal" data-gallery-main>
+        </div>
+        <ul class="pdp-thumbs">
+          <li>
+            <button class="pdp-thumb is-active" type="button" data-gallery-thumb data-full="assets/images/products2/product-phone2.png" data-alt="Motorola Moto G35 5G, tela frontal" aria-label="Ver foto 1: Motorola Moto G35 5G, tela frontal" aria-pressed="true">
+              <img src="assets/images/products2/product-phone2.png" alt="" loading="lazy">
+            </button>
+          </li>
+          <li>
+            <button class="pdp-thumb" type="button" data-gallery-thumb data-full="assets/images/products2/product-phone3.png" data-alt="Motorola Moto G35 5G, frente e traseira" aria-label="Ver foto 2: Motorola Moto G35 5G, frente e traseira" aria-pressed="false">
+              <img src="assets/images/products2/product-phone3.png" alt="" loading="lazy">
+            </button>
+          </li>
+          <li>
+            <button class="pdp-thumb" type="button" data-gallery-thumb data-full="assets/images/products2/product-phone4.png" data-alt="Motorola Moto G35 5G com carregador e cabo" aria-label="Ver foto 3: Motorola Moto G35 5G com carregador e cabo" aria-pressed="false">
+              <img src="assets/images/products2/product-phone4.png" alt="" loading="lazy">
+            </button>
+          </li>
+          <li>
+            <button class="pdp-thumb" type="button" data-gallery-thumb data-full="assets/images/products2/product-phone5.png" data-alt="Motorola Moto G35 5G, traseira" aria-label="Ver foto 4: Motorola Moto G35 5G, traseira" aria-pressed="false">
+              <img src="assets/images/products2/product-phone5.png" alt="" loading="lazy">
+            </button>
+          </li>
+          <li hidden data-thumb-extra>
+            <button class="pdp-thumb" type="button" data-gallery-thumb data-full="assets/images/products/product-phone.png" data-alt="Motorola Moto G35 5G, foto de vitrine" aria-label="Ver foto 5: Motorola Moto G35 5G, foto de vitrine" aria-pressed="false">
+              <img src="assets/images/products/product-phone.png" alt="" loading="lazy">
+            </button>
+          </li>
+          <li data-thumb-more-item>
+            <button class="pdp-thumb-more" type="button" data-gallery-more aria-label="Ver mais fotos do produto">+</button>
+          </li>
+        </ul>
+      </section>
+
+      <!-- NOME E AVALIAÇÃO -->
+      <header class="pdp-head">
+        <p class="pdp-rating" aria-label="Avaliação 5,0 de 5, com 1 avaliação"><span class="pdp-rating__stars" aria-hidden="true">★★★★★</span> <span aria-hidden="true">(1)</span></p>
+        <h1>Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7&quot;</h1>
+      </header>
+
+      <!-- PREÇO, BOTÕES DE COMPRA E FRETE -->
+      <aside class="pdp-buy" aria-label="Compra">
+        <p class="pdp-price">R$ 1.299,90</p>
+        <p class="pdp-installments">No PIX ou 10x de R$145,90</p>
+
+        <a class="pdp-btn pdp-btn--primary" href="pagamento.html">Comprar Agora</a>
+        <a class="pdp-btn pdp-btn--outline" href="carrinho.html">Adicionar ao carrinho</a>
+
+        <form class="pdp-shipping" data-shipping-form novalidate>
+          <label class="pdp-shipping__title" for="cep">Consulte o frete</label>
+          <div class="pdp-shipping__field">
+            <input id="cep" name="cep" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="Inserir CEP">
+            <button type="submit" aria-label="Consultar frete">
+              <img src="assets/icons/header/icon-search.png" alt="">
+            </button>
+          </div>
+          <p class="pdp-shipping__result" data-shipping-result role="status"></p>
+        </form>
+      </aside>
+
+      <!-- DESCRIÇÃO CURTA: "Ver mais" mostra os itens restantes -->
+      <section class="pdp-about" aria-labelledby="sobre-produto">
+        <h2 id="sobre-produto">Sobre o produto</h2>
+        <ul class="pdp-features">
+          <li><strong>Conexão 5G:</strong> Navegue, assista e jogue com internet de alta velocidade onde houver cobertura 5G.</li>
+          <li><strong>Multitarefa fluida:</strong> 12GB de RAM com RAM Boost ajudam a manter vários apps abertos ao mesmo tempo.</li>
+          <li><strong>Muito espaço:</strong> 256GB de armazenamento para fotos, vídeos, jogos e aplicativos.</li>
+          <li data-feature-extra hidden><strong>Tela de 6,7 polegadas:</strong> Imagens amplas e nítidas para séries, redes sociais e games.</li>
+          <li data-feature-extra hidden><strong>Visual moderno:</strong> Acabamento elegante na cor verde, pensado para o dia a dia.</li>
+        </ul>
+        <button class="pdp-more-link" type="button" data-features-toggle aria-expanded="false">Ver mais</button>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="site-footer"><p>© 2026 AXIS. Todos os direitos reservados.</p></footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
