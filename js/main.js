@@ -228,13 +228,25 @@ function showMessage(element, message) {
   element.hidden = false;
 }
 
-/* Login (janelinha da home e login.html): valida e vai para minha-conta.html */
+/* Login (janelinha da home e login.html): valida e vai para minha-conta.html,
+   ou para funcionario.html quando o e-mail e a senha forem os do funcionário */
+const STAFF_EMAIL = 'funcionario@gmail.com';
+const STAFF_PASSWORD = '1234567';
+
 document.querySelectorAll('[data-login-form]').forEach((form) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     const message = form.querySelector('[data-login-message]');
     if (!form.checkValidity()) { form.reportValidity(); return; }
     if (message) message.hidden = true;
+
+    const email = form.querySelector('input[type="email"]').value.trim().toLowerCase();
+    const senha = form.querySelector('input[type="password"]').value;
+
+    if (email === STAFF_EMAIL && senha === STAFF_PASSWORD) {
+      window.location.assign('funcionario.html');
+      return;
+    }
     window.location.assign('minha-conta.html');
   });
 });
