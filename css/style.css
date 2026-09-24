@@ -1398,3 +1398,411 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
   .staff-menu { grid-column: 1 / -1; justify-self: start; flex-wrap: wrap; gap: 0.6rem 1.2rem; }
   .formulario--produto { grid-template-columns: 1fr; }
 } 
+
+.pedidos-main {
+    width: min(100%, 1500px);
+    margin: 0 auto;
+    padding: 3.5rem 2rem 5rem;
+}
+
+.pedidos-main > h1 {
+    margin: 0 0 2rem;
+    color: #FF6B00;
+    font-size: 2.5rem;
+}
+
+.pedido {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    background: #FFFFFF;
+    border: 3px solid #8E8E8E;
+    border-radius: 18px;
+}
+
+.pedido-info {
+    min-width: 0;
+}
+
+.status-pedido {
+    margin: 0 0 1rem;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+.status-pedido.chegando {
+    color: #00C853;
+}
+
+.status-pedido.entregue {
+    color: #004B63;
+}
+
+.produto-pedido {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.produto-pedido img {
+    width: 130px;
+    height: 130px;
+    object-fit: contain;
+}
+
+.produto-pedido h2 {
+    margin: 0 0 0.5rem;
+    color: #004B63;
+    font-size: 1.35rem;
+}
+
+.produto-pedido p {
+    margin: 0 0 0.8rem;
+    color: #8E8E8E;
+}
+
+.produto-pedido strong {
+    font-size: 1.2rem;
+}
+
+.pedido-botoes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.7rem;
+}
+
+.pedido-botoes button {
+    width: 100%;
+    min-height: 45px;
+    border: 0;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.editar {
+    background: #FF6B00;
+}
+
+.editar:hover {
+    background: #D95B00;
+}
+
+.avaliar {
+    background: #FFC107;
+    color: #000000 !important;
+}
+
+.avaliar:hover {
+    background: #E5A900;
+}
+
+.cancelar {
+    background: #CCCCCC;
+    color: #777777 !important;
+    border: 2px solid #8E8E8E !important;
+}
+
+.cancelar:hover {
+    background: #BDBDBD;
+}
+
+.comprar-novamente {
+    background: #FF6B00;
+}
+
+.comprar-novamente:hover {
+    background: #D95B00;
+}
+
+.reembolso {
+    background: #004B63;
+}
+
+.pedido-botoes .reembolso:hover {
+    background: #00384A;
+}
+
+
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.janela-avaliacao,
+.janela-cancelamento {
+    position: relative;
+    width: min(900px, 100%);
+    background: #FFFFFF;
+    border-radius: 22px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+}
+
+.avaliacao-conteudo,
+.cancelamento-conteudo {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 2rem;
+    padding: 3rem;
+}
+
+.fechar-modal {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    background: transparent;
+    color: #000000;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.fechar-modal:hover {
+    color: #FF6B00;
+}
+
+.avaliacao-esquerda h2,
+.cancelamento-esquerda h2 {
+    margin: 0 0 1.5rem;
+    color: #004B63;
+    font-size: 1.8rem;
+}
+
+
+
+.estrelas {
+    display: flex;
+    gap: 0.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.estrelas button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #CCCCCC;
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.estrelas button:hover,
+.estrelas button.selecionada {
+    color: #FFC107;
+}
+
+
+
+#comentarioAvaliacao {
+    display: block;
+    width: 100%;
+    min-height: 150px;
+    padding: 1rem;
+    resize: vertical;
+    border: 2px solid #8E8E8E;
+    border-radius: 12px;
+    outline: none;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+#comentarioAvaliacao:focus {
+    border-color: #004B63;
+}
+
+
+
+
+.enviar-avaliacao {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.9rem;
+    border: 0;
+    border-radius: 10px;
+    background: #FF6B00;
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.enviar-avaliacao:hover {
+    background: #D95B00;
+}
+
+
+
+.produto-avaliacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.produto-avaliacao img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.produto-avaliacao h3 {
+    margin: 1rem 0 0.4rem;
+    color: #000000;
+}
+
+.produto-avaliacao p {
+    margin: 0;
+    color: #8E8E8E;
+}
+
+
+
+
+.reembolso {
+    padding: 1.5rem;
+    background: #CCCCCC;
+    border-radius: 15px;
+    color: #000000;
+}
+
+.reembolso h3 {
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+}
+
+.reembolso label {
+    display: block;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.reembolso input {
+    width: 18px;
+    height: 18px;
+    margin-right: 0.5rem;
+    accent-color: #004B63;
+}
+
+.reembolso .confirmar {
+    margin-top: 1.5rem;
+}
+
+
+
+.botoes-cancelamento {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.botao-sim,
+.botao-nao {
+    flex: 1;
+    padding: 0.8rem;
+    border: 0;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.botao-sim {
+    background: #FF6B00;
+    color: #FFFFFF;
+}
+
+.botao-sim:hover {
+    background: #D95B00;
+}
+
+.botao-nao {
+    background: #8E8E8E;
+    color: #FFFFFF;
+}
+
+.botao-nao:hover {
+    background: #666666;
+}
+
+
+
+.produto-cancelamento {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.produto-cancelamento img {
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.produto-cancelamento h3 {
+    margin-top: 1rem;
+    color: #000000;
+}
+
+
+
+@media (max-width: 720px) {
+
+    .pedidos-main {
+        padding: 2rem 1rem 3rem;
+    }
+
+    .pedidos-main > h1 {
+        font-size: 2rem;
+    }
+
+    .pedido {
+        grid-template-columns: 1fr;
+    }
+
+    .pedido-botoes {
+        width: 100%;
+    }
+
+    .produto-pedido {
+        align-items: flex-start;
+    }
+
+    .produto-pedido img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .avaliacao-conteudo,
+    .cancelamento-conteudo {
+        grid-template-columns: 1fr;
+        padding: 2rem 1.5rem;
+    }
+
+    .produto-avaliacao,
+    .produto-cancelamento {
+        order: -1;
+    }
+
+    .produto-avaliacao img,
+    .produto-cancelamento img {
+        width: 130px;
+        height: 130px;
+    }
+}
