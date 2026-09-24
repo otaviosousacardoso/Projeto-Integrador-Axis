@@ -15,6 +15,7 @@
   11. PEDIDO CONFIRMADO ... pedido-confirmado.html
   12. RESPONSIVIDADE ...... ajustes para tablet e celular (media queries)
   13. FUNCIONARIO   ....... funcionario.html
+  14. PÁGINA DE PRODUTO ... produto-*.html (final do arquivo)
 
    O preto do cabeçalho e do rodapé é mantido por fidelidade ao protótipo Canva.
    Organização baseada nos conteúdos da apostila de Fundamentos de Web Design I.
@@ -1805,4 +1806,311 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
         width: 130px;
         height: 130px;
     }
+}
+
+
+/* --------------------------------------------------------------------------
+   14. PÁGINA DE PRODUTO (produto-*.html)
+   Usada pelas 8 páginas de produto, no layout do protótipo Canva (notebook Dell):
+   galeria à esquerda | nome + descrição no meio | preço, botões e frete à direita.
+   O prefixo "pdp" significa "product detail page" (página de detalhe do produto).
+   Cores: laranja #FF6B00 (destaques), azul-petróleo #004B63 (botões), como no restante do site.
+   -------------------------------------------------------------------------- */
+
+.pdp-main {
+  width: min(100%, 1680px);
+  margin: 0 auto;
+  padding: 2.5rem 3rem 5rem;
+}
+
+/* Grade de 3 colunas no desktop. As "areas" permitem reorganizar os blocos no tablet e no celular
+   sem mexer no HTML: galeria | cabeçalho + descrição | compra. */
+.pdp {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) minmax(260px, 340px);
+  grid-template-areas:
+    "gallery head buy"
+    "gallery about buy";
+  grid-template-rows: auto 1fr;
+  align-items: start;
+  column-gap: 3rem;
+  row-gap: 1.25rem;
+}
+
+.pdp-gallery { grid-area: gallery; }
+.pdp-head    { grid-area: head; }
+.pdp-buy     { grid-area: buy; }
+.pdp-about   { grid-area: about; }
+
+/* ----- Galeria: foto principal + miniaturas ----- */
+
+/* Moldura quadrada fixa: a foto fica dentro dela (posição absoluta), então o tamanho da foto
+   nunca estica a moldura e a página não "pula" ao trocar de imagem */
+.pdp-gallery__stage {
+  position: relative;
+  width: 100%;
+  max-height: 560px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+.pdp-gallery__stage img {
+  position: absolute;
+  inset: 1rem;
+  display: block;
+  width: calc(100% - 2rem);
+  height: calc(100% - 2rem);
+  object-fit: contain;
+}
+
+.pdp-thumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Cada miniatura pode encolher (até 88px no máximo) para todas caberem numa fileira só */
+.pdp-thumbs li { flex: 0 1 88px; min-width: 0; }
+.pdp-thumbs li[data-thumb-more-item] { flex: 0 0 auto; }
+
+/* Miniatura: borda cinza; a foto que está em destaque ganha borda laranja */
+.pdp-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  padding: 0.3rem;
+  background: #FFFFFF;
+  border: 2px solid #E0E0E0;
+  border-radius: 10px;
+}
+
+.pdp-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.pdp-thumb:hover { border-color: #FF9A4D; }
+.pdp-thumb.is-active { border-color: #FF6B00; }
+
+/* Botão "+" cinza: mostra as fotos que não cabiam na primeira fileira */
+.pdp-thumb-more {
+  display: grid;
+  width: 48px;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: 10px;
+  color: #B4B4B4;
+  font-size: 3.2rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.pdp-thumb-more:hover, .pdp-thumb-more:focus-visible { color: #FF6B00; }
+
+/* ----- Nome, avaliação e descrição ----- */
+
+/* Estrelas alinhadas à direita, acima do nome (como no protótipo) */
+.pdp-rating {
+  margin: 0 0 0.6rem;
+  color: #FFB800;
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+  text-align: right;
+}
+
+.pdp-rating span:last-child { color: #6A6A6A; font-size: 0.95rem; letter-spacing: 0; }
+
+.pdp-head h1 {
+  margin: 0;
+  color: #1D1D1D;
+  font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.55rem);
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.pdp-about h2 {
+  margin: 0 0 1rem;
+  color: #FF6B00;
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.pdp-features {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.pdp-features li {
+  margin-bottom: 1.15rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* "Ver mais": botão com cara de link laranja sublinhado */
+.pdp-more-link {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: #FF6B00;
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+.pdp-more-link:hover, .pdp-more-link:focus-visible { color: #D95B00; }
+
+/* ----- Compra: preço, botões e consulta de frete ----- */
+
+.pdp-price {
+  margin: 0;
+  color: #FF6B00;
+  font-size: clamp(2rem, 1.6rem + 1vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.pdp-installments {
+  margin: 0.4rem 0 1.5rem;
+  color: #6A6A6A;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* Os dois botões são links (<a>): funcionam mesmo sem JavaScript */
+.pdp-btn {
+  display: flex;
+  width: 100%;
+  min-height: 54px;
+  margin-bottom: 1rem;
+  padding: 0.6rem 1rem;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #004B63;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.pdp-btn--primary { background: #004B63; }
+.pdp-btn--outline { background: #FFFFFF; }
+
+/* Cores repetidas para os estados do link: a regra global "a:link { color: inherit }" venceria só com a classe */
+a.pdp-btn--primary:link, a.pdp-btn--primary:visited, a.pdp-btn--primary:active { color: #FFFFFF; }
+a.pdp-btn--outline:link, a.pdp-btn--outline:visited, a.pdp-btn--outline:active { color: #004B63; }
+
+.pdp-btn--primary:hover, .pdp-btn--primary:focus-visible { background: #00384A; border-color: #00384A; }
+.pdp-btn--outline:hover, .pdp-btn--outline:focus-visible { background: #E6F0F3; }
+
+.pdp-shipping { margin-top: 1.75rem; }
+
+.pdp-shipping__title {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #FF6B00;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+/* Campo de CEP com borda laranja e botão laranja com a lupa (foguete) da AXIS */
+.pdp-shipping__field {
+  display: flex;
+  overflow: hidden;
+  background: #FAFBFC;
+  border: 2px solid #FF6B00;
+  border-radius: 12px;
+}
+
+.pdp-shipping__field:focus-within { outline: 3px solid #FF6B00; outline-offset: 3px; }
+
+.pdp-shipping__field input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.8rem 1rem;
+  background: transparent;
+  border: 0;
+  color: #000000;
+  font-size: 1.15rem;
+}
+
+.pdp-shipping__field input:focus-visible { outline: 0; }
+.pdp-shipping__field input::placeholder { color: #8E8E8E; }
+
+.pdp-shipping__field button {
+  display: grid;
+  width: 58px;
+  padding: 0;
+  place-items: center;
+  background: #FF6B00;
+  border: 0;
+}
+
+.pdp-shipping__field button:hover, .pdp-shipping__field button:focus-visible { background: #D95B00; }
+
+/* O ícone original é laranja; o filtro o deixa branco para aparecer sobre o botão laranja */
+.pdp-shipping__field button img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) invert(1);
+}
+
+/* Resultado da consulta: verde quando dá certo, laranja quando o CEP está incompleto */
+.pdp-shipping__result { margin: 0; font-size: 1.1rem; font-weight: 800; }
+.pdp-shipping__result:not(:empty) { margin-top: 0.75rem; }
+.pdp-shipping__result.is-success { color: #00873D; }
+.pdp-shipping__result.is-error { color: #D95B00; }
+
+/* ----- Ligação a partir de produtos.html (o js/main.js transforma o nome em link) ----- */
+.page--products .product-card.is-linked { cursor: pointer; }
+.page--products .product-card h2 a { text-decoration: none; }
+.page--products .product-card h2 a:hover,
+.page--products .product-card h2 a:focus-visible { color: #FF6B00; text-decoration: underline; }
+
+/* ----- Tablet (até 1100px): galeria à esquerda; nome, compra e descrição empilhados à direita ----- */
+@media (max-width: 1100px) {
+  .pdp-main { padding: 2rem 2rem 4rem; }
+
+  .pdp {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas:
+      "gallery head"
+      "gallery buy"
+      "gallery about";
+    grid-template-rows: auto auto 1fr;
+    column-gap: 2rem;
+  }
+}
+
+/* ----- Celular (até 720px): uma coluna: fotos, nome, compra e depois a descrição ----- */
+@media (max-width: 720px) {
+  .pdp-main { padding: 1.5rem 1.15rem 3rem; }
+
+  .pdp {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "gallery"
+      "head"
+      "buy"
+      "about";
+    grid-template-rows: auto;
+    row-gap: 1.5rem;
+  }
+
+  .pdp-gallery__stage img { inset: 0.5rem; width: calc(100% - 1rem); height: calc(100% - 1rem); }
+  .pdp-thumbs { gap: 0.6rem; }
+  .pdp-thumb { padding: 0.2rem; }
+  .pdp-rating { text-align: left; }
+  .pdp-btn { min-height: 52px; font-size: 1.1rem; }
 }
