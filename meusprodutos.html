@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Pedidos - AXIS</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="page">
+
+<header class="site-header">
+
+    <div class="topbar">
+
+        <a href="index.html" class="brand">
+            <img src="assets/icons/header/icon-logo.png" alt="AXIS">
+        </a>
+
+        <form class="search-bar">
+            <input type="search" placeholder="O que você está procurando?">
+            <button type="submit">
+                <img src="assets/icons/header/icon-search.png" alt="Pesquisar">
+            </button>
+        </form>
+
+        <div class="header-actions">
+
+            <a href="minha-conta.html" class="header-icon">
+                <img src="assets/icons/header/icon-user.png" alt="Minha conta">
+            </a>
+
+            <button class="header-icon menu-toggle">
+                <img src="assets/icons/header/icon-menu.png" alt="Menu">
+            </button>
+
+        </div>
+
+    </div>
+
+    <nav class="site-menu">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="meus-pedidos.html">Meus Pedidos</a></li>
+            <li><a href="ajuda.html">Ajuda</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+
+<main class="pedidos-main">
+
+    <h1>Meus Pedidos</h1>
+
+    <!-- PEDIDO 1 -->
+    <section class="pedido">
+
+        <div class="pedido-info">
+
+            <p class="status-pedido chegando">
+                Chega domingo
+            </p>
+
+            <div class="produto-pedido">
+
+                <img
+                    src="assets/images/products/product-phone.png"
+                    alt="Motorola Moto G35"
+                >
+
+                <div>
+                    <h2>Motorola Moto G35</h2>
+                    <p class="data-pedido">
+                        Pedido realizado em 20 de junho
+                    </p>
+                    <strong>R$ 1.299,90</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="pedido-botoes">
+
+            <button
+                class="editar"
+                type="button"
+            >
+                Editar Pedido
+            </button>
+
+            <button
+                class="avaliar"
+                type="button"
+                onclick="abrirAvaliacao(
+                    'Motorola Moto G35',
+                    'assets/images/products/product-phone.png',
+                    'Previsão de entrega: domingo'
+                )"
+            >
+                Avaliar
+            </button>
+
+            <button
+                class="cancelar"
+                type="button"
+                onclick="abrirCancelamento(
+                    'Motorola Moto G35',
+                    'assets/images/products/product-phone.png'
+                )"
+            >
+                Cancelar Pedido
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PEDIDO 2 -->
+    <section class="pedido">
+
+        <div class="pedido-info">
+
+            <p class="status-pedido entregue">
+                Entregue no dia 24 de junho
+            </p>
+
+            <div class="produto-pedido">
+
+                <img
+                    src="assets/images/products/product-clock.png"
+                    alt="Redmi Watch 5 Active"
+                >
+
+                <div>
+                    <h2>Redmi Watch 5 Active</h2>
+                    <p class="data-pedido">
+                        Pedido realizado em 18 de junho
+                    </p>
+                    <strong>R$ 279,90</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="pedido-botoes">
+
+            <button
+                class="comprar-novamente"
+                type="button"
+            >
+                Comprar novamente
+            </button>
+
+            <button
+                class="avaliar"
+                type="button"
+                onclick="abrirAvaliacao(
+                    'Redmi Watch 5 Active',
+                    'assets/images/products/product-clock.png',
+                    'Entregue no dia 24 de junho'
+                )"
+            >
+                Avaliar
+            </button>
+
+            <button
+                class="reembolso"
+                type="button"
+                onclick="abrirReembolso(
+                    'Redmi Watch 5 Active',
+                    'assets/images/products/product-clock.png'
+                )"
+            >
+                Reembolso
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PEDIDO 3 -->
+    <section class="pedido">
+
+        <div class="pedido-info">
+
+            <p class="status-pedido entregue">
+                Entregue no dia 08 de junho
+            </p>
+
+            <div class="produto-pedido">
+
+                <img
+                    src="assets/images/products/product-mouse.png"
+                    alt="Mouse Logitech M170"
+                >
+
+                <div>
+                    <h2>Mouse Logitech M170</h2>
+                    <p class="data-pedido">
+                        Pedido realizado em 03 de junho
+                    </p>
+                    <strong>R$ 59,90</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="pedido-botoes">
+
+            <button
+                class="comprar-novamente"
+                type="button"
+            >
+                Comprar novamente
+            </button>
+
+            <button
+                class="avaliar"
+                type="button"
+                onclick="abrirAvaliacao(
+                    'Mouse Logitech M170',
+                    'assets/images/products/product-mouse.png',
+                    'Entregue no dia 08 de junho'
+                )"
+            >
+                Avaliar
+            </button>
+
+            <button
+                class="reembolso"
+                type="button"
+                onclick="abrirReembolso(
+                    'Mouse Logitech M170',
+                    'assets/images/products/product-mouse.png'
+                )"
+            >
+                Reembolso
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+<div id="modalAvaliacao" class="modal">
+
+    <div class="janela-avaliacao">
+
+        <button
+            class="fechar-modal"
+            type="button"
+            onclick="fecharAvaliacao()"
+        >
+            ×
+        </button>
+        <div class="avaliacao-conteudo">
+            <div class="avaliacao-esquerda">
+                <h2>Avaliar este produto</h2>
+                <div
+                    id="estrelasAvaliacao"
+                    class="estrelas"
+                >
+                    <button type="button" onclick="selecionarEstrela(1)">★</button>
+                    <button type="button" onclick="selecionarEstrela(2)">★</button>
+                    <button type="button" onclick="selecionarEstrela(3)">★</button>
+                    <button type="button" onclick="selecionarEstrela(4)">★</button>
+                    <button type="button" onclick="selecionarEstrela(5)">★</button>
+                </div>
+                <textarea
+                    id="comentarioAvaliacao"
+                    placeholder="Adicionar comentário..."
+                ></textarea>
+
+                <button
+                    class="enviar-avaliacao"
+                    type="button"
+                    onclick="enviarAvaliacao()"
+                >
+                    Enviar
+                </button>
+            </div>
+            <div class="produto-avaliacao">
+                <img
+                    id="imagemAvaliacao"
+                    src=""
+                    alt=""
+                >
+                <h3 id="nomeAvaliacao"></h3>
+                <p id="dataAvaliacao"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalCancelamento" class="modal">
+
+    <div class="janela-cancelamento">
+
+        <button
+            class="fechar-modal"
+            type="button"
+            onclick="fecharCancelamento()"
+        >
+            ×
+        </button>
+
+        <div class="cancelamento-conteudo">
+
+            <div class="cancelamento-esquerda">
+
+                <h2 id="tituloCancelamento">
+                    Cancelar Pedido
+                </h2>
+
+                <div class="reembolso">
+
+                    <h3>
+                        Escolha a forma do pagamento do reembolso:
+                    </h3>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="formaReembolso"
+                            value="pix"
+                        >
+
+                        <strong>Pix:</strong>
+                        estorno imediato
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="formaReembolso"
+                            value="cartao"
+                        >
+                        <strong>Cartão:</strong>
+                        na sua próxima fatura.
+                    </label>
+                    <h3 class="confirmar">
+                        Confirmar cancelamento?
+                    </h3>
+                    <div class="botoes-cancelamento">
+
+                        <button
+                            class="botao-sim"
+                            type="button"
+                            onclick="confirmarCancelamento()"
+                        >
+                            SIM
+                        </button>
+                        <button
+                            class="botao-nao"
+                            type="button"
+                            onclick="fecharCancelamento()"
+                        >
+                            NÃO
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="produto-cancelamento">
+                <img
+                    id="imagemCancelamento" src=""alt=""
+                >
+                <h3 id="nomeCancelamento"></h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="site-footer">
+    <p>© 2026 AXIS - Todos os direitos reservados.</p>
+</footer>
+
+
+<script src="js/main.js"></script>
+
+</body>
+</html>
