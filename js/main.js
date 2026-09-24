@@ -12,6 +12,8 @@
    5. Carrinho ............................... carrinho.html
    6. Pagamento .............................. pagamento.html
    7. Funcionário ............................ funcionario.html
+   8. Página de produto ...................... produto-*.html (galeria, descrição e frete)
+   9. Lista de produtos → página do produto .. produtos.html
    ========================================================================== */
 
 /* ---------- 1. ELEMENTOS COMPARTILHADOS ----------
@@ -226,28 +228,17 @@ function showMessage(element, message) {
   element.hidden = false;
 }
 
-/* Login (janelinha da home e login.html): valida e vai para minha-conta.html,
-   ou para funcionario.html quando o e-mail e a senha forem os do funcionário */
-const STAFF_EMAIL = 'funcionario@gmail.com';
-const STAFF_PASSWORD = '1234567';
-
+/* Login (janelinha da home e login.html): valida e vai para minha-conta.html */
 document.querySelectorAll('[data-login-form]').forEach((form) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     const message = form.querySelector('[data-login-message]');
     if (!form.checkValidity()) { form.reportValidity(); return; }
     if (message) message.hidden = true;
-
-    const email = form.querySelector('input[type="email"]').value.trim().toLowerCase();
-    const senha = form.querySelector('input[type="password"]').value;
-
-    if (email === STAFF_EMAIL && senha === STAFF_PASSWORD) {
-      window.location.assign('funcionario.html');
-      return;
-    }
     window.location.assign('minha-conta.html');
   });
 });
+
 /* Cadastro (cadastro.html): confere se as duas senhas são iguais e vai para minha-conta.html */
 const registerForm = document.querySelector('[data-register-form]');
 if (registerForm) {
@@ -605,4 +596,116 @@ window.addEventListener("click", function(event) {
         fecharCancelamento();
     }
 
+});
+
+
+/* ---------- 8. PÁGINA DE PRODUTO (produto-*.html) ----------
+   Galeria de fotos, "Ver mais" da descrição e consulta de frete.
+   Os botões "Comprar Agora" e "Adicionar ao carrinho" são links comuns no HTML
+   (pagamento.html e carrinho.html), então funcionam mesmo sem JavaScript. */
+
+/* Galeria: clicar numa miniatura troca a foto principal.
+   O "+" só revela as fotos extras (a foto em destaque continua a mesma). */
+document.querySelectorAll('[data-product-gallery]').forEach((gallery) => {
+  const mainImage = gallery.querySelector('[data-gallery-main]');
+  const thumbs = gallery.querySelectorAll('[data-gallery-thumb]');
+  const moreButton = gallery.querySelector('[data-gallery-more]');
+
+  /* Deixa em destaque a miniatura escolhida e mostra a foto dela em tamanho grande */
+  function selectThumb(thumb) {
+    mainImage.src = thumb.dataset.full;
+    mainImage.alt = thumb.dataset.alt;
+    thumbs.forEach((item) => {
+      const isSelected = item === thumb;
+      item.classList.toggle('is-active', isSelected);
+      item.setAttribute('aria-pressed', String(isSelected));
+    });
+  }
+
+  thumbs.forEach((thumb) => thumb.addEventListener('click', () => selectThumb(thumb)));
+
+  if (moreButton) {
+    moreButton.addEventListener('click', () => {
+      const extras = gallery.querySelectorAll('[data-thumb-extra]');
+      extras.forEach((item) => { item.hidden = false; });
+      moreButton.closest('li').remove();
+      const firstExtra = extras[0]?.querySelector('[data-gallery-thumb]');
+      if (firstExtra) firstExtra.focus();
+    });
+  }
+});
+
+/* "Ver mais" / "Ver menos": mostra ou esconde os itens extras da descrição */
+document.querySelectorAll('[data-features-toggle]').forEach((button) => {
+  const extras = document.querySelectorAll('[data-feature-extra]');
+
+  button.addEventListener('click', () => {
+    const isOpen = button.getAttribute('aria-expanded') === 'true';
+    extras.forEach((item) => { item.hidden = isOpen; });
+    button.setAttribute('aria-expanded', String(!isOpen));
+    button.textContent = isOpen ? 'Ver mais' : 'Ver menos';
+  });
+});
+
+/* Consulta de frete: aceita qualquer CEP com 8 números (o campo formata como 00000-000)
+   e mostra "Frete grátis" em verde. Ainda é uma simulação: não consulta os Correios. */
+document.querySelectorAll('[data-shipping-form]').forEach((form) => {
+  const cepInput = form.querySelector('input');
+  const result = form.querySelector('[data-shipping-result]');
+
+  const onlyDigits = () => cepInput.value.replace(/\D/g, '').slice(0, 8);
+
+  function showResult(text, type) {
+    result.textContent = text;
+    result.classList.toggle('is-success', type === 'success');
+    result.classList.toggle('is-error', type === 'error');
+  }
+
+  /* Ao digitar: deixa só números, coloca o hífen e apaga o resultado anterior */
+  cepInput.addEventListener('input', () => {
+    const digits = onlyDigits();
+    cepInput.value = digits.length > 5 ? `${digits.slice(0, 5)}-${digits.slice(5)}` : digits;
+    showResult('', null);
+  });
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (onlyDigits().length === 8) showResult('Frete grátis', 'success');
+    else showResult('Digite um CEP válido com 8 números.', 'error');
+  });
+});
+
+
+/* ---------- 9. LISTA DE PRODUTOS → PÁGINA DO PRODUTO (produtos.html) ----------
+   Liga cada cartão da vitrine à sua página, sem mexer no HTML de produtos.html:
+   o nome do produto vira um link e o cartão inteiro passa a ser clicável.
+   A chave é o nome do arquivo da foto do cartão. */
+const productPageLinks = {
+  'product-pc.png': 'produto-notebook-lenovo.html',
+  'product-phone.png': 'produto-motorola-g35.html',
+  'product-headphone.png': 'produto-jbl-tune-530bt.html',
+  'product-mouse.png': 'produto-logitech-m170.html',
+  'product-tv.png': 'produto-samsung-tv-50.html',
+  'product-tablet.png': 'produto-galaxy-tab-a9.html',
+  'product-clock.png': 'produto-redmi-watch-5.html',
+  'product-intel.png': 'produto-intel-core-ultra-5.html'
+};
+
+document.querySelectorAll('.page--products .product-card').forEach((card) => {
+  const photo = card.querySelector('img');
+  const title = card.querySelector('h2');
+  const page = photo && productPageLinks[photo.getAttribute('src').split('/').pop()];
+  if (!page || !title) return;
+
+  const link = document.createElement('a');
+  link.href = page;
+  link.textContent = title.textContent;
+  title.replaceChildren(link);
+  card.classList.add('is-linked');
+
+  /* Clicar em qualquer parte do cartão abre a página (exceto no botão do carrinho e no próprio link) */
+  card.addEventListener('click', (event) => {
+    if (event.target.closest('a, button')) return;
+    window.location.assign(page);
+  });
 });
