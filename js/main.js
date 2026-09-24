@@ -381,3 +381,217 @@ if (productForm) {
     uploadMessage.classList.add('form-message--success');
   });
 }
+
+let estrelasSelecionadas = 0;
+let produtoAtual = "";
+
+
+/* =========================================
+   ABRIR AVALIAÇÃO
+   ========================================= */
+
+function abrirAvaliacao(nome, imagem, data) {
+
+    produtoAtual = nome;
+
+    document.getElementById("imagemAvaliacao").src = imagem;
+    document.getElementById("imagemAvaliacao").alt = nome;
+
+    document.getElementById("nomeAvaliacao").textContent = nome;
+    document.getElementById("dataAvaliacao").textContent = data;
+
+    const avaliacaoSalva =
+        JSON.parse(localStorage.getItem("avaliacao_" + nome));
+
+    if (avaliacaoSalva) {
+
+        estrelasSelecionadas = avaliacaoSalva.estrelas;
+
+        document.getElementById("comentarioAvaliacao").value =
+            avaliacaoSalva.comentario;
+
+        atualizarEstrelas();
+
+    } else {
+
+        estrelasSelecionadas = 0;
+
+        document.getElementById("comentarioAvaliacao").value = "";
+
+        document.querySelectorAll("#estrelasAvaliacao button")
+            .forEach(function(estrela) {
+                estrela.classList.remove("selecionada");
+            });
+    }
+
+    document.getElementById("modalAvaliacao").style.display = "flex";
+}
+
+
+/* =========================================
+   SELECIONAR ESTRELA
+   ========================================= */
+
+function selecionarEstrela(numero) {
+
+    estrelasSelecionadas = numero;
+
+    atualizarEstrelas();
+
+}
+
+
+/* =========================================
+   ATUALIZAR ESTRELAS
+   ========================================= */
+
+function atualizarEstrelas() {
+
+    const estrelas =
+        document.querySelectorAll("#estrelasAvaliacao button");
+
+    estrelas.forEach(function(estrela, indice) {
+
+        if (indice < estrelasSelecionadas) {
+            estrela.classList.add("selecionada");
+        } else {
+            estrela.classList.remove("selecionada");
+        }
+
+    });
+}
+
+
+/* =========================================
+   ENVIAR AVALIAÇÃO
+   ========================================= */
+
+function enviarAvaliacao() {
+
+    if (estrelasSelecionadas === 0) {
+
+        alert("Escolha uma quantidade de estrelas.");
+
+        return;
+    }
+
+    const comentario =
+        document.getElementById("comentarioAvaliacao").value;
+
+    const avaliacao = {
+
+        estrelas: estrelasSelecionadas,
+
+        comentario: comentario
+
+    };
+
+    localStorage.setItem(
+        "avaliacao_" + produtoAtual,
+        JSON.stringify(avaliacao)
+    );
+
+    alert("Avaliação salva!");
+
+    fecharAvaliacao();
+
+}
+
+
+/* =========================================
+   FECHAR AVALIAÇÃO
+   ========================================= */
+
+function fecharAvaliacao() {
+
+    document.getElementById("modalAvaliacao").style.display = "none";
+
+}
+
+/* CANCELAMENTO*/
+
+function abrirCancelamento(nome, imagem) {
+
+    document.getElementById("tituloCancelamento").textContent =
+        "Cancelar Pedido";
+
+    document.getElementById("imagemCancelamento").src = imagem;
+
+    document.getElementById("imagemCancelamento").alt = nome;
+
+    document.getElementById("nomeCancelamento").textContent = nome;
+
+    document
+        .querySelectorAll("#modalCancelamento input[name='formaReembolso']")
+        .forEach(function(input) {
+            input.checked = false;
+        });
+
+    document.getElementById("modalCancelamento").style.display = "flex";
+}
+
+
+function abrirReembolso(nome, imagem) {
+
+    document.getElementById("tituloCancelamento").textContent =
+        "Reembolso";
+
+    document.getElementById("imagemCancelamento").src = imagem;
+
+    document.getElementById("imagemCancelamento").alt = nome;
+
+    document.getElementById("nomeCancelamento").textContent = nome;
+
+    document
+        .querySelectorAll("#modalCancelamento input[name='formaReembolso']")
+        .forEach(function(input) {
+            input.checked = false;
+        });
+
+    document.getElementById("modalCancelamento").style.display = "flex";
+}
+
+
+function fecharCancelamento() {
+
+    document.getElementById("modalCancelamento").style.display = "none";
+
+}
+
+
+function confirmarCancelamento() {
+
+    const escolhido = document.querySelector(
+        "#modalCancelamento input[name='formaReembolso']:checked"
+    );
+
+    if (!escolhido) {
+        alert("Escolha a forma do reembolso.");
+        return;
+    }
+
+    alert("Solicitação confirmada!");
+
+    fecharCancelamento();
+
+}
+
+
+
+window.addEventListener("click", function(event) {
+
+    const modalAvaliacao =
+        document.getElementById("modalAvaliacao");
+
+    const modalCancelamento =
+        document.getElementById("modalCancelamento");
+
+    if (event.target === modalAvaliacao) {
+        fecharAvaliacao();
+    }
+
+    if (event.target === modalCancelamento) {
+        fecharCancelamento();
+    }
+
+});
