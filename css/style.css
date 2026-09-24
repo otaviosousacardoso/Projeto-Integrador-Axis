@@ -72,20 +72,14 @@ a:link, a:visited, a:active { color: inherit; }
 
 /* Faixa preta no topo da página */
 .site-header {
-  position: fixed;
+  position: relative ;
   z-index: 3;
   background: #000000;
   color: #FFFFFF;
 }
 
 /* Linha principal do cabeçalho em 3 colunas: logo | busca | ícones */
-.topbar {
-  display: grid;
-  grid-template-columns: minmax(210px, 1fr) minmax(320px, 540px) minmax(210px, 1fr);
-  align-items: center;
-  gap: 2rem;
-  width: min(100%, 1680px);
-  min-height: 150px;
+.topbar {relative
   margin: 0 auto;
   padding: 1.5rem 3rem;
 }
