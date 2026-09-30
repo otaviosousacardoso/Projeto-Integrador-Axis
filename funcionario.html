@@ -1,114 +1,135 @@
 <!doctype html>
 <html lang="pt-br">
-    <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Painel do funcionário AXIS - cadastro de novos produtos.">
-    <title>Painel do funcionário | AXIS</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
-    <body class="page page--auth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Painel do funcionário AXIS - resumo da loja e atalhos.">
+  <title>Dashboard do funcionário | AXIS</title>
+  <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="page page--auth page--staff" data-staff-page="dashboard">
+  <!-- CABEÇALHO DA INTRANET (igual nas páginas do funcionário) -->
+  <header class="site-header site-header--compact">
+    <nav class="topbar topbar--staff" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+      <span class="staff-tag">Painel do funcionário</span>
+      <ul class="staff-menu">
+        <li><a href="funcionario.html" aria-current="page">Dashboard</a></li>
+        <li><a href="funcionario-produtos.html">Produtos</a></li>
+        <li><a href="#" aria-disabled="true" title="Em breve">Pedidos</a></li>
+        <li><a href="#" aria-disabled="true" title="Em breve">Relatórios</a></li>
+        <li><a class="staff-menu__exit" href="login.html" data-staff-logout>Sair</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <header class="site-header site-header--compact">
-        <nav class="topbar topbar--staff" aria-label="Navegação principal">
-        <a class="brand" href="index.html" aria-label="AXIS - Página inicial">
-            <img src="assets/icons/header/icon-logo.png" alt="AXIS">
-        </a>
-        <span class="staff-tag">Painel do funcionário</span>
-        <ul class="staff-menu">
-            <li><a href="funcionario.html" aria-current="page">Produtos</a></li>
-            <li><a href="#">Pedidos</a></li>
-            <li><a href="#">Relatórios</a></li>
-            <li><a class="staff-menu__exit" href="login.html">Sair</a></li>
-        </ul>
-        </nav>
-    </header>
+  <main class="staff-main">
+    <div class="staff-title">
+      <h1>Dashboard</h1>
+      <p>Bem-vindo ao painel da AXIS. Veja o resumo do catálogo e acesse as ferramentas da loja.</p>
+    </div>
 
-    <main class="auth-main">        
-        <section class="auth-card auth-card--wide">
-        <h1>Cadastrar Novo Produto</h1>
-        <p class="auth-card__description">Preencha as informações para disponibilizar o eletrônico imediatamente no e-commerce.</p>
+    <p class="staff-notice" data-staff-notice role="status" hidden></p>
 
-        <form class="auth-form" data-product-form action="#">
-            <fieldset class="formulario formulario--produto">
-            <legend class="sr-only">Dados do novo produto</legend>
+    <!-- Números do catálogo (calculados pelo js/main.js a partir dos produtos cadastrados) -->
+    <section class="staff-stats" aria-label="Resumo do catálogo" data-staff-dashboard>
+      <article class="staff-stat">
+        <h2>Produtos cadastrados</h2>
+        <strong data-stat="total">0</strong>
+      </article>
+      <article class="staff-stat">
+        <h2>Unidades em estoque</h2>
+        <strong data-stat="units">0</strong>
+      </article>
+      <article class="staff-stat staff-stat--alert">
+        <h2>Produtos com estoque baixo</h2>
+        <strong data-stat="low">0</strong>
+      </article>
+      <article class="staff-stat">
+        <h2>Valor em estoque</h2>
+        <strong data-stat="value">R$ 0,00</strong>
+      </article>
+    </section>
 
-            <div class="form-field form-field--full">
-                <label for="produto-nome">Nome do Eletrônico</label>
-                <input id="produto-nome" name="nome" type="text" placeholder="Ex: Smartphone Motorolla Moto G35 5G 256GB" required>
-            </div>
+    <!-- Atalhos para as ferramentas da intranet -->
+    <nav class="staff-shortcuts" aria-label="Atalhos do painel">
+      <a class="staff-shortcut" href="funcionario-produto.html"><span aria-hidden="true">➕</span><strong>Cadastrar produto</strong><small>Publique um novo eletrônico na loja.</small></a>
+      <a class="staff-shortcut" href="funcionario-produtos.html"><span aria-hidden="true">📦</span><strong>Gerenciar produtos</strong><small>Altere dados, preços e estoque ou remova itens.</small></a>
+      <span class="staff-shortcut staff-shortcut--disabled" aria-disabled="true"><span aria-hidden="true">🧾</span><strong>Pedidos</strong><small>Em breve.</small></span>
+      <span class="staff-shortcut staff-shortcut--disabled" aria-disabled="true"><span aria-hidden="true">📊</span><strong>Relatórios</strong><small>Em breve.</small></span>
+    </nav>
 
-            <div class="form-field">
-                <label for="produto-marca">Marca</label>
-                <input id="produto-marca" name="marca" type="text" placeholder="Ex: Motorola, Dell, Logitech" required>
-            </div>
+    <!-- Lista de atenção: produtos esgotados ou com poucas unidades -->
+    <section class="staff-panel" aria-labelledby="low-stock-title">
+      <div class="staff-panel__header">
+        <h2 id="low-stock-title">Atenção ao estoque</h2>
+        <a class="home-section__link" href="funcionario-produtos.html">Ver todos os produtos →</a>
+      </div>
+      <ul class="staff-alerts" data-low-list></ul>
+    </section>
+  </main>
 
-            <div class="form-field">
-                <label for="produto-categoria">Categoria</label>
-                <select id="produto-categoria" name="categoria" required>
-                <option value="" disabled selected>Selecione a categoria...</option>
-                <option value="smartphones">Smartphones</option>
-                <option value="notebooks">Notebooks</option>
-                <option value="televisores">Televisores</option>
-                <option value="audio">Áudio Profissional</option>
-                <option value="pcs">PCs</option>
-                <option value="tablets">Tablets</option>
-                <option value="conectividade">Conectividade</option>
-                <option value="acessorios">Acessórios</option>
-                </select>
-            </div>
-
-            <div class="form-field">
-                <label for="produto-preco">Preço Original (R$)</label>
-                <input id="produto-preco" name="preco" type="text" inputmode="decimal" placeholder="0,00" required>
-            </div>
-
-            <div class="form-field">
-                <label for="produto-preco-pix">Preço à vista no PIX (R$)</label>
-                <input id="produto-preco-pix" name="preco-pix" type="text" inputmode="decimal" placeholder="0,00" required>
-            </div>
-
-            <div class="form-field">
-                <label for="produto-estoque">Quantidade em Estoque</label>
-                <input id="produto-estoque" name="estoque" type="number" min="0" placeholder="Ex.: 50" required>
-            </div>
-
-            <div class="form-field">
-                <label for="produto-sku">Código SKU ou Modelo</label>
-                <input id="produto-sku" name="sku" type="text" placeholder="Ex.: MOTO-G35-CINZA" required>
-            </div>
-
-            <div class="form-field form-field--full">
-                <label for="produto-descricao">Descrição Comercial</label>
-                <textarea id="produto-descricao" name="descricao" rows="3" placeholder="Escreva um texto resumido destacando os pontos fortes do produto para o cliente..."></textarea>
-            </div>
-
-            <div class="form-field form-field--full">
-                <label for="produto-specs">Especificações Técnicas (Uma por linha)</label>
-                <textarea id="produto-specs" name="especificacoes" rows="5" placeholder="Ex:&#10;• Processador: Intel i5 13ª Gen&#10;• Memória RAM: 8GB DDR4&#10;• Armazenamento: 512GB SSD NVMe&#10;• Tela: 15.6&quot; FHD 120Hz"></textarea>
-            </div>
-
-            <div class="form-field form-field--full">
-                <label for="produto-imagem">Imagem do Produto</label>
-                <label class="upload-area" for="produto-imagem" data-upload-area>
-                <span data-upload-text>Clique aqui para fazer upload ou arraste a imagem do produto<br><small>(Formatos suportados: JPG, PNG - Máx: 2MB)</small></span>
-                <img class="upload-area__preview" data-upload-preview alt="" hidden>
-                <input class="sr-only" id="produto-imagem" name="imagem" type="file" accept="image/png, image/jpeg">
-                </label>
-                <p class="form-message" data-upload-message role="alert" hidden></p>
-            </div>
-
-            <div class="form-actions">
-                <button class="button button--secondary" type="reset">Cancelar</button>
-                <button class="button button--offer" type="submit">Salvar e Publicar</button>
-            </div>
-            </fieldset>
-        </form>
+    <!-- RODAPÉ (igual em todas as páginas: mapa do site, redes sociais e contato) -->
+    <footer class="site-footer">
+      <div class="site-footer__main">
+        <section class="footer-about" aria-labelledby="footer-about-title">
+          <h2 id="footer-about-title" class="sr-only">Sobre a AXIS</h2>
+          <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+          <p>Tecnologia no centro das suas escolhas. Hardware, gadgets e eletrônicos com preço justo e entrega relâmpago.</p>
+          <ul class="social-links" aria-label="Redes sociais da AXIS">
+            <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Instagram" title="Instagram">IG</a></li>
+            <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Facebook" title="Facebook">FB</a></li>
+            <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no YouTube" title="YouTube">YT</a></li>
+            <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no X" title="X">X</a></li>
+            <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no WhatsApp" title="WhatsApp">WA</a></li>
+          </ul>
         </section>
-    </main>
+        <nav class="footer-column" aria-labelledby="footer-sitemap-title">
+          <h2 id="footer-sitemap-title">Mapa do site</h2>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="produtos.html">Produtos</a></li>
+            <li><a href="carrinho.html">Carrinho</a></li>
+            <li><a href="meuspedidos.html">Meus pedidos</a></li>
+            <li><a href="minha-conta.html">Minha conta</a></li>
+            <li><a href="login.html">Entrar</a></li>
+            <li><a href="cadastro.html">Criar conta</a></li>
+            <li><a href="ajuda.html">Ajuda</a></li>
+          </ul>
+        </nav>
+        <nav class="footer-column" aria-labelledby="footer-departments-title">
+          <h2 id="footer-departments-title">Departamentos</h2>
+          <ul>
+            <li><a href="produtos.html?categoria=smartphones">Smartphones</a></li>
+            <li><a href="produtos.html?categoria=notebooks">Notebooks</a></li>
+            <li><a href="produtos.html?categoria=televisores">Televisores</a></li>
+            <li><a href="produtos.html?categoria=audio">Áudio Profissional</a></li>
+            <li><a href="produtos.html?categoria=pcs">PCs</a></li>
+            <li><a href="produtos.html?categoria=tablets">Tablets</a></li>
+            <li><a href="produtos.html?categoria=conectividade">Conectividade</a></li>
+            <li><a href="produtos.html?categoria=acessorios">Acessórios</a></li>
+          </ul>
+        </nav>
+        <section class="footer-column" aria-labelledby="footer-contact-title">
+          <h2 id="footer-contact-title">Contato</h2>
+          <address>
+            <ul>
+              <li>Av. das Tecnologias, 1000 – Centro<br>Cidade Exemplo – UF, 00000-000</li>
+              <li><a href="tel:+550000000000">Tel.: (00) 4000-0000</a></li>
+              <li><a href="https://wa.me/">WhatsApp: (00) 90000-0000</a></li>
+              <li><a href="mailto:contato@axis.example">contato@axis.example</a></li>
+              <li>Seg a Sex, 8h às 18h<br>Sáb, 9h às 13h</li>
+            </ul>
+          </address>
+        </section>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 AXIS. Todos os direitos reservados.</p>
+        <a class="back-to-top" href="#">Voltar ao topo ↑</a>
+      </div>
+    </footer>
 
-    <footer class="site-footer"><p>© 2026 AXIS. Todos os direitos reservados.</p></footer>
-
-    <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
