@@ -7,11 +7,12 @@
    Ordem do arquivo:
    1. Elementos usados em várias páginas ..... login (modal), menu do cabeçalho
    2. Ajustes de layout ...................... alinhamento dos conteúdos ao cabeçalho
-   3. Carrossel de ofertas ................... index.html
+   3. Carrossel de ofertas ................... index.html (banner e carrosséis de produtos)
    4. Formulários ............................ login, cadastro e recuperar senha
    5. Carrinho ............................... carrinho.html
    6. Pagamento .............................. pagamento.html
-   7. Funcionário ............................ funcionario.html
+   7. Funcionário ............................ funcionario.html (dashboard), funcionario-produtos.html (gestão)
+                                               e funcionario-produto.html (cadastro e edição)
    8. Página de produto ...................... produto-*.html (galeria, descrição e frete)
    9. Lista de produtos → página do produto .. produtos.html
    ========================================================================== */
@@ -217,6 +218,41 @@ if (carousel) {
   startAutoPlay();
 }
 
+/* ---------- 3.1 CARROSSÉIS DE PRODUTOS (index.html) ----------
+   "Produtos em Destaque", "Principais Escolhas" e "Itens em Oferta". A faixa rola de lado
+   (também com o dedo ou o mouse) e as setas ‹ › avançam uma "página" de cartões.
+   Cada seção tem o seu próprio controle, então as três funcionam de forma independente. */
+document.querySelectorAll('[data-product-carousel]').forEach((box) => {
+  const track = box.querySelector('[data-product-track]');
+  const previousButton = box.querySelector('[data-product-previous]');
+  const nextButton = box.querySelector('[data-product-next]');
+  const prefersStill = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Desliga a seta quando a faixa chega no começo ou no fim */
+  const updateArrows = () => {
+    previousButton.disabled = track.scrollLeft <= 1;
+    nextButton.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 1;
+  };
+
+  /* Avança (1) ou volta (-1) a largura visível da faixa */
+  const scrollPage = (direction) => {
+    track.scrollBy({ left: direction * track.clientWidth, behavior: prefersStill ? 'auto' : 'smooth' });
+  };
+
+  previousButton.addEventListener('click', () => scrollPage(-1));
+  nextButton.addEventListener('click', () => scrollPage(1));
+  track.addEventListener('scroll', updateArrows, { passive: true });
+  window.addEventListener('resize', updateArrows);
+
+  /* Teclado: com o foco dentro do carrossel, as setas ← → trocam de página */
+  box.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') scrollPage(-1);
+    if (event.key === 'ArrowRight') scrollPage(1);
+  });
+
+  updateArrows();
+});
+
 /* ---------- 4. FORMULÁRIOS (login, cadastro, recuperar senha, pagamento) ----------
    Ainda não há back-end: as validações usam o próprio navegador e depois
    o site apenas "finge" o próximo passo. */
@@ -229,9 +265,11 @@ function showMessage(element, message) {
 }
 
 /* Login (janelinha da home e login.html): valida e vai para minha-conta.html,
-   ou para funcionario.html quando o e-mail e a senha forem os do funcionário */
-const STAFF_EMAIL = 'funcionario@gmail.com';
+   ou para funcionario.html (dashboard) quando o e-mail e a senha forem os do funcionário.
+   Esse é o único e-mail de funcionário do sistema. A chave abaixo guarda "quem entrou" até fechar a aba. */
+const STAFF_EMAIL = 'funcionario@axis.com';
 const STAFF_PASSWORD = '1234567';
+const STAFF_SESSION_KEY = 'axis-funcionario';
 
 document.querySelectorAll('[data-login-form]').forEach((form) => {
   form.addEventListener('submit', (event) => {
@@ -244,6 +282,7 @@ document.querySelectorAll('[data-login-form]').forEach((form) => {
     const senha = form.querySelector('input[type="password"]').value;
 
     if (email === STAFF_EMAIL && senha === STAFF_PASSWORD) {
+      sessionStorage.setItem(STAFF_SESSION_KEY, 'ok');
       window.location.assign('funcionario.html');
       return;
     }
@@ -357,42 +396,352 @@ if (paymentForm) {
     window.setTimeout(() => window.location.assign('pedido-confirmado.html'), 1500);
   });
 }
-/* 7. PAINEL DO FUNCIONÁRIO: upload de imagem com pré-visualização (funcionario.html) */
+/* ---------- 7. INTRANET DO FUNCIONÁRIO (funcionario*.html) ----------
+   Ainda não há back-end: os produtos ficam guardados no navegador (localStorage).
+   Na primeira visita o painel começa com os 8 produtos da loja; depois disso,
+   tudo que o funcionário cadastra, altera ou remove fica salvo aqui.
+   Cada página do painel traz data-staff-page no <body> e só roda o bloco dela. */
+const PRODUCTS_KEY = 'axis-produtos';
+const STAFF_NOTICE_KEY = 'axis-staff-aviso';
+const LOW_STOCK_LIMIT = 5;
+const staffPage = document.body.dataset.staffPage;
+
+/* Nomes das categorias (os mesmos dos departamentos da home) */
+const categoryNames = {
+  smartphones: 'Smartphones', notebooks: 'Notebooks', televisores: 'Televisores', audio: 'Áudio Profissional',
+  pcs: 'PCs', tablets: 'Tablets', conectividade: 'Conectividade', acessorios: 'Acessórios'
+};
+
+/* Produtos iniciais do painel (os mesmos de produtos.html). Para mudar a lista de partida, edite aqui */
+const SEED_PRODUCTS = [
+  { id: 1, nome: 'Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6', marca: 'Lenovo', categoria: 'notebooks', preco: 3599.90, precoPix: 3419.91, estoque: 18, sku: 'LENO-IDEAPAD1-R3', imagem: 'assets/images/products/product-pc.png', descricao: '', especificacoes: '' },
+  { id: 2, nome: 'Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7"', marca: 'Motorola', categoria: 'smartphones', preco: 1299.90, precoPix: 1234.91, estoque: 42, sku: 'MOTO-G35-256', imagem: 'assets/images/products/product-phone.png', descricao: '', especificacoes: '' },
+  { id: 3, nome: 'Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul', marca: 'JBL', categoria: 'audio', preco: 249.90, precoPix: 237.41, estoque: 67, sku: 'JBL-T530BT-AZUL', imagem: 'assets/images/products/product-headphone.png', descricao: '', especificacoes: '' },
+  { id: 4, nome: 'Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul', marca: 'Logitech', categoria: 'acessorios', preco: 59.90, precoPix: 56.91, estoque: 150, sku: 'LOGI-M170-AZUL', imagem: 'assets/images/products/product-mouse.png', descricao: '', especificacoes: '' },
+  { id: 5, nome: 'Samsung Smart TV 50" Crystal UHD 4K', marca: 'Samsung', categoria: 'televisores', preco: 2799.90, precoPix: 2659.91, estoque: 9, sku: 'SAMS-TV50-CUHD', imagem: 'assets/images/products/product-tv.png', descricao: '', especificacoes: '' },
+  { id: 6, nome: 'Tablet Samsung Galaxy Tab A9 Enterprise Edition', marca: 'Samsung', categoria: 'tablets', preco: 1199.90, precoPix: 1139.91, estoque: 4, sku: 'SAMS-TABA9-ENT', imagem: 'assets/images/products/product-tablet.png', descricao: '', especificacoes: '' },
+  { id: 7, nome: 'Smartwatch Redmi Watch 5 Active, Tela 2", Lacre', marca: 'Xiaomi', categoria: 'acessorios', preco: 299.90, precoPix: 284.91, estoque: 35, sku: 'REDMI-W5-ACTIVE', imagem: 'assets/images/products/product-clock.png', descricao: '', especificacoes: '' },
+  { id: 8, nome: 'Processador Intel Core Ultra 5 Desktop', marca: 'Intel', categoria: 'pcs', preco: 1899.90, precoPix: 1804.91, estoque: 0, sku: 'INTEL-CU5-DESK', imagem: 'assets/images/products/product-intel.png', descricao: '', especificacoes: '' }
+];
+
+/* Foto usada quando o produto foi cadastrado sem imagem */
+const NO_PHOTO = 'assets/images/mascot/robot-help-recortado.png';
+
+/* Lê a lista salva (ou a lista inicial, se ainda não houver nada salvo) */
+function loadProducts() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(PRODUCTS_KEY));
+    if (Array.isArray(saved)) return saved;
+  } catch (error) { /* armazenamento indisponível: usa a lista inicial */ }
+  return SEED_PRODUCTS.map((product) => ({ ...product }));
+}
+
+/* Guarda a lista; devolve false se o navegador não deixou salvar (ex.: espaço cheio) */
+function saveProducts(list) {
+  try {
+    localStorage.setItem(PRODUCTS_KEY, JSON.stringify(list));
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+/* Transforma 249.9 em "R$ 249,90" */
+function formatPrice(value) {
+  return Number(value).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+/* Transforma "3.599,90" ou "3599.90" em número (devolve NaN se não for um valor válido) */
+function parsePrice(text) {
+  const clean = String(text).trim().replace(/[^\d.,]/g, '');
+  return Number(clean.includes(',') ? clean.replace(/\./g, '').replace(',', '.') : clean);
+}
+
+/* Evita que um nome com < ou " quebre o HTML montado abaixo */
+function escapeHtml(text) {
+  return String(text).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+}
+
+/* Situação do estoque: esgotado, baixo (até 5 unidades) ou em estoque */
+function stockStatus(amount) {
+  if (amount <= 0) return { type: 'out', text: 'Esgotado' };
+  if (amount <= LOW_STOCK_LIMIT) return { type: 'low', text: 'Estoque baixo' };
+  return { type: 'ok', text: 'Em estoque' };
+}
+
+/* Aviso que atravessa uma mudança de página (ex.: salvar no formulário e mostrar a mensagem na lista) */
+function queueNotice(message, isError) {
+  sessionStorage.setItem(STAFF_NOTICE_KEY, JSON.stringify({ message, isError: Boolean(isError) }));
+}
+
+/* Mostra o aviso guardado (se houver) no <p data-staff-notice> da página */
+function showQueuedNotice() {
+  const notice = document.querySelector('[data-staff-notice]');
+  const queued = sessionStorage.getItem(STAFF_NOTICE_KEY);
+  if (!notice || !queued) return;
+  sessionStorage.removeItem(STAFF_NOTICE_KEY);
+  const { message, isError } = JSON.parse(queued);
+  showStaffNotice(notice, message, isError);
+}
+
+function showStaffNotice(notice, message, isError) {
+  notice.textContent = message;
+  notice.classList.toggle('staff-notice--error', Boolean(isError));
+  notice.hidden = false;
+}
+
+/* 7.1 Acesso: sem ter entrado como funcionário, o painel volta para o login.
+   "Sair" apaga esse acesso. */
+if (staffPage && sessionStorage.getItem(STAFF_SESSION_KEY) !== 'ok') {
+  window.location.replace('login.html');
+}
+
+document.querySelectorAll('[data-staff-logout]').forEach((link) => {
+  link.addEventListener('click', () => sessionStorage.removeItem(STAFF_SESSION_KEY));
+});
+
+/* "Em breve": links do menu que ainda não têm página não fazem nada */
+document.querySelectorAll('.staff-menu a[aria-disabled="true"]').forEach((link) => {
+  link.addEventListener('click', (event) => event.preventDefault());
+});
+
+showQueuedNotice();
+
+/* 7.2 Dashboard (funcionario.html): números do catálogo e lista de estoque baixo */
+const dashboard = document.querySelector('[data-staff-dashboard]');
+
+if (dashboard) {
+  const products = loadProducts();
+  const units = products.reduce((sum, product) => sum + product.estoque, 0);
+  const lowStock = products.filter((product) => product.estoque <= LOW_STOCK_LIMIT).sort((a, b) => a.estoque - b.estoque);
+  const stockValue = products.reduce((sum, product) => sum + product.estoque * product.precoPix, 0);
+
+  dashboard.querySelector('[data-stat="total"]').textContent = products.length;
+  dashboard.querySelector('[data-stat="units"]').textContent = units.toLocaleString('pt-BR');
+  dashboard.querySelector('[data-stat="low"]').textContent = lowStock.length;
+  dashboard.querySelector('[data-stat="value"]').textContent = formatPrice(stockValue);
+
+  const lowList = document.querySelector('[data-low-list]');
+  lowList.innerHTML = lowStock.length
+    ? lowStock.map((product) => {
+        const status = stockStatus(product.estoque);
+        return `<li><span>${escapeHtml(product.nome)} — ${product.estoque} un.</span><span class="staff-badge staff-badge--${status.type}">${status.text}</span><a href="funcionario-produto.html?id=${product.id}">Repor estoque</a></li>`;
+      }).join('')
+    : '<li>Nenhum produto com estoque baixo. Tudo certo por aqui!</li>';
+}
+
+/* 7.3 Gestão de produtos (funcionario-produtos.html): tabela com busca, filtro, alterar e remover */
+const productList = document.querySelector('[data-staff-list]');
+
+if (productList) {
+  const rows = productList.querySelector('[data-product-rows]');
+  const searchInput = productList.querySelector('[data-product-search]');
+  const categoryFilter = productList.querySelector('[data-product-filter]');
+  const countText = productList.querySelector('[data-product-count]');
+  const emptyText = productList.querySelector('[data-product-empty]');
+  const removeDialog = document.querySelector('#remove-dialog');
+  const removeName = removeDialog.querySelector('[data-remove-name]');
+  const listNotice = document.querySelector('[data-staff-notice]');
+  let products = loadProducts();
+  let productToRemove = null;
+
+  /* Desenha a tabela só com os produtos que combinam com a busca e a categoria escolhidas */
+  function renderProducts() {
+    const term = searchInput.value.trim().toLowerCase();
+    const category = categoryFilter.value;
+    const visible = products.filter((product) => {
+      const text = `${product.nome} ${product.marca} ${product.sku}`.toLowerCase();
+      return text.includes(term) && (!category || product.categoria === category);
+    });
+
+    rows.innerHTML = visible.map((product) => {
+      const status = stockStatus(product.estoque);
+      const oldPrice = product.preco > product.precoPix ? `<s class="staff-table__old">${formatPrice(product.preco)}</s>` : '';
+      return `<tr>
+        <td data-label="Foto"><img src="${escapeHtml(product.imagem || NO_PHOTO)}" alt=""></td>
+        <td data-label="Produto"><div><span class="staff-table__name">${escapeHtml(product.nome)}</span><span class="staff-table__sku">${escapeHtml(product.marca)} · ${escapeHtml(product.sku)}</span></div></td>
+        <td data-label="Categoria">${categoryNames[product.categoria] || '—'}</td>
+        <td data-label="Preço"><div>${oldPrice}<strong>${formatPrice(product.precoPix)}</strong></div></td>
+        <td data-label="Estoque"><span class="staff-badge staff-badge--${status.type}">${status.text}</span> ${product.estoque} un.</td>
+        <td data-label="Ações"><div class="staff-actions">
+          <a class="staff-action staff-action--edit" href="funcionario-produto.html?id=${product.id}">Alterar</a>
+          <button class="staff-action staff-action--remove" type="button" data-remove-id="${product.id}">Remover</button>
+        </div></td>
+      </tr>`;
+    }).join('');
+
+    countText.textContent = `${visible.length} de ${products.length} produtos`;
+    emptyText.hidden = visible.length > 0;
+  }
+
+  searchInput.addEventListener('input', renderProducts);
+  categoryFilter.addEventListener('change', renderProducts);
+
+  /* Remover: o botão da linha só abre a janelinha; quem apaga de verdade é o "Sim, remover" */
+  rows.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-remove-id]');
+    if (!button) return;
+    productToRemove = products.find((product) => product.id === Number(button.dataset.removeId));
+    if (!productToRemove) return;
+    removeName.textContent = productToRemove.nome;
+    removeDialog.showModal();
+  });
+
+  removeDialog.querySelectorAll('[data-remove-cancel]').forEach((button) => {
+    button.addEventListener('click', () => removeDialog.close());
+  });
+  removeDialog.addEventListener('click', (event) => { if (event.target === removeDialog) removeDialog.close(); });
+
+  removeDialog.querySelector('[data-remove-confirm]').addEventListener('click', () => {
+    const remaining = products.filter((product) => product.id !== productToRemove.id);
+    removeDialog.close();
+    if (saveProducts(remaining)) {
+      products = remaining;
+      showStaffNotice(listNotice, 'Produto removido com sucesso!', false);
+    } else {
+      showStaffNotice(listNotice, 'Não foi possível remover o produto. Tente novamente.', true);
+    }
+    renderProducts();
+  });
+
+  renderProducts();
+}
+
+/* 7.4 Formulário (funcionario-produto.html): cadastra um produto novo ou, com ?id=, altera um existente.
+   Inclui a pré-visualização da imagem (clicar ou arrastar). */
 const productForm = document.querySelector('[data-product-form]');
 
 if (productForm) {
   const fileInput = productForm.querySelector('input[type="file"]');
+  const uploadArea = productForm.querySelector('[data-upload-area]');
   const uploadText = productForm.querySelector('[data-upload-text]');
   const preview = productForm.querySelector('[data-upload-preview]');
   const uploadMessage = productForm.querySelector('[data-upload-message]');
+  const formMessage = productForm.querySelector('[data-form-message]');
+  const fields = productForm.elements;
+  const products = loadProducts();
+  const editId = Number(new URLSearchParams(window.location.search).get('id')) || null;
+  const editing = editId ? products.find((product) => product.id === editId) : null;
+  let currentImage = '';
 
-  function mostrarImagem(file) {
-    const url = URL.createObjectURL(file);
+  function mostrarImagem(url) {
     preview.src = url;
     preview.hidden = false;
     uploadText.hidden = true;
     uploadMessage.hidden = true;
   }
 
-  fileInput.addEventListener('change', () => {
-    const file = fileInput.files[0];
-    if (file) mostrarImagem(file);
+  /* Modo edição: troca os textos da página e preenche os campos com os dados do produto */
+  if (editId && !editing) {
+    queueNotice('Produto não encontrado.', true);
+    window.location.replace('funcionario-produtos.html');
+  }
+
+  if (editing) {
+    document.title = 'Alterar produto | AXIS';
+    document.querySelector('[data-form-title]').textContent = 'Alterar Produto';
+    document.querySelector('[data-form-description]').textContent = 'Atualize as informações do eletrônico. As mudanças valem assim que você salvar.';
+    productForm.querySelector('[data-form-submit]').textContent = 'Salvar Alterações';
+    fields.nome.value = editing.nome;
+    fields.marca.value = editing.marca;
+    fields.categoria.value = editing.categoria;
+    fields.preco.value = editing.preco.toFixed(2).replace('.', ',');
+    fields['preco-pix'].value = editing.precoPix.toFixed(2).replace('.', ',');
+    fields.estoque.value = editing.estoque;
+    fields.sku.value = editing.sku;
+    fields.descricao.value = editing.descricao;
+    fields.especificacoes.value = editing.especificacoes;
+    currentImage = editing.imagem;
+    if (currentImage) mostrarImagem(currentImage);
+  }
+
+  /* Reduz a foto para no máximo 480px antes de guardar (o localStorage tem pouco espaço) */
+  function shrinkImage(file, done) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const image = new Image();
+      image.onload = () => {
+        const scale = Math.min(1, 480 / Math.max(image.width, image.height));
+        const canvas = document.createElement('canvas');
+        canvas.width = Math.round(image.width * scale);
+        canvas.height = Math.round(image.height * scale);
+        canvas.getContext('2d').drawImage(image, 0, 0, canvas.width, canvas.height);
+        done(file.type === 'image/png' ? canvas.toDataURL('image/png') : canvas.toDataURL('image/jpeg', 0.85));
+      };
+      image.src = reader.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  /* Confere formato (JPG/PNG) e tamanho (até 2MB) como diz o texto do campo */
+  function receiveImage(file) {
+    uploadMessage.classList.remove('form-message--success');
+    if (!file) return;
+    if (!['image/png', 'image/jpeg'].includes(file.type)) {
+      showMessage(uploadMessage, 'Use uma imagem JPG ou PNG.');
+      return;
+    }
+    if (file.size > 2 * 1024 * 1024) {
+      showMessage(uploadMessage, 'A imagem deve ter no máximo 2MB.');
+      return;
+    }
+    shrinkImage(file, (url) => { currentImage = url; mostrarImagem(url); });
+  }
+
+  fileInput.addEventListener('change', () => receiveImage(fileInput.files[0]));
+
+  /* Arrastar e soltar a imagem sobre a área pontilhada */
+  ['dragenter', 'dragover'].forEach((type) => uploadArea.addEventListener(type, (event) => {
+    event.preventDefault();
+    uploadArea.classList.add('is-dragover');
+  }));
+  ['dragleave', 'drop'].forEach((type) => uploadArea.addEventListener(type, () => uploadArea.classList.remove('is-dragover')));
+  uploadArea.addEventListener('drop', (event) => {
+    event.preventDefault();
+    receiveImage(event.dataTransfer.files[0]);
   });
 
-  productForm.addEventListener('reset', () => {
-    preview.hidden = true;
-    uploadText.hidden = false;
-    uploadMessage.hidden = true;
-  });
-
+  /* Salvar: valida, grava e volta para a lista com o aviso de sucesso */
   productForm.addEventListener('submit', (event) => {
     event.preventDefault();
+    formMessage.hidden = true;
     if (!productForm.checkValidity()) {
       productForm.reportValidity();
       return;
     }
-    showMessage(uploadMessage, 'Produto salvo com sucesso!');
-    uploadMessage.classList.add('form-message--success');
+
+    const preco = parsePrice(fields.preco.value);
+    const precoPix = parsePrice(fields['preco-pix'].value);
+    if (!(preco > 0) || !(precoPix > 0)) {
+      showMessage(formMessage, 'Digite preços válidos, como 1.299,90.');
+      return;
+    }
+    if (precoPix > preco) {
+      showMessage(formMessage, 'O preço no PIX não pode ser maior que o preço original.');
+      return;
+    }
+
+    const product = {
+      id: editing ? editing.id : products.reduce((max, item) => Math.max(max, item.id), 0) + 1,
+      nome: fields.nome.value.trim(),
+      marca: fields.marca.value.trim(),
+      categoria: fields.categoria.value,
+      preco,
+      precoPix,
+      estoque: Number(fields.estoque.value),
+      sku: fields.sku.value.trim(),
+      descricao: fields.descricao.value.trim(),
+      especificacoes: fields.especificacoes.value.trim(),
+      imagem: currentImage
+    };
+
+    const updated = editing ? products.map((item) => (item.id === product.id ? product : item)) : [...products, product];
+    if (!saveProducts(updated)) {
+      showMessage(formMessage, 'Não foi possível salvar. Tente uma imagem menor.');
+      return;
+    }
+    queueNotice(editing ? 'Produto alterado com sucesso!' : 'Produto cadastrado com sucesso!', false);
+    window.location.assign('funcionario-produtos.html');
   });
 }
 
@@ -689,8 +1038,8 @@ document.querySelectorAll('[data-shipping-form]').forEach((form) => {
 
 
 /* ---------- 9. LISTA DE PRODUTOS → PÁGINA DO PRODUTO (produtos.html) ----------
-   Liga cada cartão da vitrine à sua página, sem mexer no HTML de produtos.html:
-   o nome do produto vira um link e o cartão inteiro passa a ser clicável.
+   Liga cada cartão da vitrine à sua página: o nome do produto vira um link e o cartão
+   inteiro passa a ser clicável. Vale para produtos.html e para os carrosséis da home.
    A chave é o nome do arquivo da foto do cartão. */
 const productPageLinks = {
   'product-pc.png': 'produto-notebook-lenovo.html',
@@ -703,19 +1052,22 @@ const productPageLinks = {
   'product-intel.png': 'produto-intel-core-ultra-5.html'
 };
 
-document.querySelectorAll('.page--products .product-card').forEach((card) => {
+document.querySelectorAll('.page--products .product-card, .page--home .product-card').forEach((card) => {
   const photo = card.querySelector('img');
-  const title = card.querySelector('h2');
+  const title = card.querySelector('h2, h3');
   const page = photo && productPageLinks[photo.getAttribute('src').split('/').pop()];
   if (!page || !title) return;
 
-  const link = document.createElement('a');
-  link.href = page;
-  link.textContent = title.textContent;
-  title.replaceChildren(link);
+  /* Nos carrosséis da home o link já vem no HTML; em produtos.html ele é criado aqui */
+  if (!title.querySelector('a')) {
+    const link = document.createElement('a');
+    link.href = page;
+    link.textContent = title.textContent;
+    title.replaceChildren(link);
+  }
   card.classList.add('is-linked');
 
-  /* Clicar em qualquer parte do cartão abre a página (exceto no botão do carrinho e no próprio link) */
+  /* Clicar em qualquer parte do cartão abre a página (exceto no link do carrinho e no próprio link do nome) */
   card.addEventListener('click', (event) => {
     if (event.target.closest('a, button')) return;
     window.location.assign(page);
