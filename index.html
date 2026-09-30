@@ -27,6 +27,7 @@
   </style>
 </head>
 <body class="page page--home">
+  <!-- CABEÇALHO (fixo no topo e igual em todas as páginas da loja) -->
   <header class="site-header">
     <nav class="topbar" aria-label="Navegação principal">
       <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
@@ -42,7 +43,14 @@
       </div>
     </nav>
     <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
-      <ul><li><a href="#categorias">Categorias</a></li><li><a href="produtos.html">Produtos</a></li><li><a href="minha-conta.html">Minha conta</a></li><li><a href="ajuda.html">Ajuda</a></li></ul>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#categorias">Categorias</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="meuspedidos.html">Meus pedidos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+      </ul>
     </nav>
   </header>
 
@@ -74,9 +82,448 @@
       <a class="category" href="produtos.html?categoria=conectividade"><span class="category__icon"><img src="assets/images/departments/dept-conectividade.png" alt=""></span><span>Conectividade</span></a>
       <a class="category" href="produtos.html?categoria=acessorios"><span class="category__icon"><img src="assets/images/departments/dept-acessorios.png" alt=""></span><span>Acessórios</span></a>
     </section>
+
+    <section id="destaques" class="home-section" aria-labelledby="destaques-title">
+      <div class="home-section__header">
+        <h2 id="destaques-title" class="home-section__title">Produtos em Destaque</h2>
+        <a class="home-section__link" href="produtos.html">Ver todos os produtos →</a>
+      </div>
+      <div class="product-carousel" data-product-carousel role="group" aria-roledescription="carrossel" aria-label="Produtos em destaque">
+        <button class="carousel-arrow carousel-arrow--previous" type="button" data-product-previous aria-label="Produtos anteriores">&#10094;</button>
+        <div class="product-carousel__track" data-product-track>
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--primary">Destaque</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar notebook ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-pc.png" alt="Notebook Lenovo Ideapad" loading="lazy">
+            <h3><a href="produto-notebook-lenovo.html">Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6</a></h3>
+            <strong>R$ 3.599,90</strong>
+            <p>No PIX ou 10x de R$380,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--primary">Destaque</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar celular ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-phone.png" alt="Smartphone Motorola Moto G35" loading="lazy">
+            <h3><a href="produto-motorola-g35.html">Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7&quot;</a></h3>
+            <strong>R$ 1.299,90</strong>
+            <p>No PIX ou 10x de R$145,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--primary">Destaque</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar fone ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-headphone.png" alt="Fone de ouvido JBL Tune" loading="lazy">
+            <h3><a href="produto-jbl-tune-530bt.html">Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul</a></h3>
+            <strong>R$ 249,90</strong>
+            <p>No PIX ou 10x de R$145,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--primary">Destaque</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar mouse ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-mouse.png" alt="Mouse sem fio Logitech" loading="lazy">
+            <h3><a href="produto-logitech-m170.html">Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul</a></h3>
+            <strong>R$ 59,90</strong>
+            <p>No PIX ou 2x de R$32,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--primary">Destaque</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar televisão ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-tv.png" alt="Samsung Smart TV" loading="lazy">
+            <h3><a href="produto-samsung-tv-50.html">Samsung Smart TV 50&quot; Crystal UHD 4K</a></h3>
+            <strong>R$ 2.799,90</strong>
+            <p>No PIX ou 10x de R$279,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--primary">Destaque</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar tablet ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-tablet.png" alt="Tablet Samsung Galaxy Tab" loading="lazy">
+            <h3><a href="produto-galaxy-tab-a9.html">Tablet Samsung Galaxy Tab A9 Enterprise Edition</a></h3>
+            <strong>R$ 1.199,90</strong>
+            <p>No PIX ou 10x de R$119,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--primary">Destaque</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar smartwatch ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-clock.png" alt="Smartwatch Redmi Watch" loading="lazy">
+            <h3><a href="produto-redmi-watch-5.html">Smartwatch Redmi Watch 5 Active, Tela 2&quot;, Lacre</a></h3>
+            <strong>R$ 299,90</strong>
+            <p>No PIX ou 6x de R$49,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--primary">Destaque</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar processador ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-intel.png" alt="Processador Intel Core Ultra" loading="lazy">
+            <h3><a href="produto-intel-core-ultra-5.html">Processador Intel Core Ultra 5 Desktop</a></h3>
+            <strong>R$ 1.899,90</strong>
+            <p>No PIX ou 10x de R$189,90</p>
+          </article>
+        </div>
+        <button class="carousel-arrow carousel-arrow--next" type="button" data-product-next aria-label="Próximos produtos">&#10095;</button>
+      </div>
+    </section>
+
+    <section id="principais-escolhas" class="home-section" aria-labelledby="principais-escolhas-title">
+      <div class="home-section__header">
+        <h2 id="principais-escolhas-title" class="home-section__title">Principais Escolhas</h2>
+        <a class="home-section__link" href="produtos.html">Ver mais escolhas →</a>
+      </div>
+      <div class="product-carousel" data-product-carousel role="group" aria-roledescription="carrossel" aria-label="Principais escolhas dos clientes">
+        <button class="carousel-arrow carousel-arrow--previous" type="button" data-product-previous aria-label="Produtos anteriores">&#10094;</button>
+        <div class="product-carousel__track" data-product-track>
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--success">Mais vendido</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar celular ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-phone.png" alt="Smartphone Motorola Moto G35" loading="lazy">
+            <h3><a href="produto-motorola-g35.html">Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7&quot;</a></h3>
+            <strong>R$ 1.299,90</strong>
+            <p>No PIX ou 10x de R$145,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--success">Mais vendido</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar televisão ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-tv.png" alt="Samsung Smart TV" loading="lazy">
+            <h3><a href="produto-samsung-tv-50.html">Samsung Smart TV 50&quot; Crystal UHD 4K</a></h3>
+            <strong>R$ 2.799,90</strong>
+            <p>No PIX ou 10x de R$279,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--success">Mais vendido</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar notebook ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-pc.png" alt="Notebook Lenovo Ideapad" loading="lazy">
+            <h3><a href="produto-notebook-lenovo.html">Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6</a></h3>
+            <strong>R$ 3.599,90</strong>
+            <p>No PIX ou 10x de R$380,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--success">Mais vendido</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar fone ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-headphone.png" alt="Fone de ouvido JBL Tune" loading="lazy">
+            <h3><a href="produto-jbl-tune-530bt.html">Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul</a></h3>
+            <strong>R$ 249,90</strong>
+            <p>No PIX ou 10x de R$145,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--success">Mais vendido</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar smartwatch ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-clock.png" alt="Smartwatch Redmi Watch" loading="lazy">
+            <h3><a href="produto-redmi-watch-5.html">Smartwatch Redmi Watch 5 Active, Tela 2&quot;, Lacre</a></h3>
+            <strong>R$ 299,90</strong>
+            <p>No PIX ou 6x de R$49,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--success">Mais vendido</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar processador ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-intel.png" alt="Processador Intel Core Ultra" loading="lazy">
+            <h3><a href="produto-intel-core-ultra-5.html">Processador Intel Core Ultra 5 Desktop</a></h3>
+            <strong>R$ 1.899,90</strong>
+            <p>No PIX ou 10x de R$189,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--success">Mais vendido</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar tablet ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-tablet.png" alt="Tablet Samsung Galaxy Tab" loading="lazy">
+            <h3><a href="produto-galaxy-tab-a9.html">Tablet Samsung Galaxy Tab A9 Enterprise Edition</a></h3>
+            <strong>R$ 1.199,90</strong>
+            <p>No PIX ou 10x de R$119,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--success">Mais vendido</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar mouse ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-mouse.png" alt="Mouse sem fio Logitech" loading="lazy">
+            <h3><a href="produto-logitech-m170.html">Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul</a></h3>
+            <strong>R$ 59,90</strong>
+            <p>No PIX ou 2x de R$32,90</p>
+          </article>
+        </div>
+        <button class="carousel-arrow carousel-arrow--next" type="button" data-product-next aria-label="Próximos produtos">&#10095;</button>
+      </div>
+    </section>
+
+    <section id="ofertas" class="home-section" aria-labelledby="ofertas-title">
+      <div class="home-section__header">
+        <h2 id="ofertas-title" class="home-section__title">Itens em Oferta</h2>
+        <a class="home-section__link" href="produtos.html?ofertas=1">Ver todas as ofertas →</a>
+      </div>
+      <div class="product-carousel" data-product-carousel role="group" aria-roledescription="carrossel" aria-label="Itens em oferta">
+        <button class="carousel-arrow carousel-arrow--previous" type="button" data-product-previous aria-label="Produtos anteriores">&#10094;</button>
+        <div class="product-carousel__track" data-product-track>
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--danger">-14%</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar fone ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-headphone.png" alt="Fone de ouvido JBL Tune" loading="lazy">
+            <h3><a href="produto-jbl-tune-530bt.html">Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul</a></h3>
+            <s class="product-card__old-price">De R$ 289,90</s>
+            <strong>R$ 249,90</strong>
+            <p>No PIX ou 10x de R$145,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--danger">-14%</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar mouse ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-mouse.png" alt="Mouse sem fio Logitech" loading="lazy">
+            <h3><a href="produto-logitech-m170.html">Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul</a></h3>
+            <s class="product-card__old-price">De R$ 69,90</s>
+            <strong>R$ 59,90</strong>
+            <p>No PIX ou 2x de R$32,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--danger">-14%</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar smartwatch ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-clock.png" alt="Smartwatch Redmi Watch" loading="lazy">
+            <h3><a href="produto-redmi-watch-5.html">Smartwatch Redmi Watch 5 Active, Tela 2&quot;, Lacre</a></h3>
+            <s class="product-card__old-price">De R$ 349,90</s>
+            <strong>R$ 299,90</strong>
+            <p>No PIX ou 6x de R$49,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--danger">-15%</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar tablet ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-tablet.png" alt="Tablet Samsung Galaxy Tab" loading="lazy">
+            <h3><a href="produto-galaxy-tab-a9.html">Tablet Samsung Galaxy Tab A9 Enterprise Edition</a></h3>
+            <s class="product-card__old-price">De R$ 1.409,90</s>
+            <strong>R$ 1.199,90</strong>
+            <p>No PIX ou 10x de R$119,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--danger">-15%</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar celular ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-phone.png" alt="Smartphone Motorola Moto G35" loading="lazy">
+            <h3><a href="produto-motorola-g35.html">Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7&quot;</a></h3>
+            <s class="product-card__old-price">De R$ 1.529,90</s>
+            <strong>R$ 1.299,90</strong>
+            <p>No PIX ou 10x de R$145,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--danger">-15%</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar televisão ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-tv.png" alt="Samsung Smart TV" loading="lazy">
+            <h3><a href="produto-samsung-tv-50.html">Samsung Smart TV 50&quot; Crystal UHD 4K</a></h3>
+            <s class="product-card__old-price">De R$ 3.289,90</s>
+            <strong>R$ 2.799,90</strong>
+            <p>No PIX ou 10x de R$279,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--danger">-15%</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar processador ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-intel.png" alt="Processador Intel Core Ultra" loading="lazy">
+            <h3><a href="produto-intel-core-ultra-5.html">Processador Intel Core Ultra 5 Desktop</a></h3>
+            <s class="product-card__old-price">De R$ 2.239,90</s>
+            <strong>R$ 1.899,90</strong>
+            <p>No PIX ou 10x de R$189,90</p>
+          </article>
+
+          <article class="product-card">
+            <span class="product-card__badge product-card__badge--danger">-15%</span>
+            <div class="product-card__top">
+              <span>★ <small>5.0</small></span>
+              <a class="product-card__cart" href="carrinho.html" aria-label="Adicionar notebook ao carrinho" title="Carrinho">🛒</a>
+            </div>
+            <img src="assets/images/products/product-pc.png" alt="Notebook Lenovo Ideapad" loading="lazy">
+            <h3><a href="produto-notebook-lenovo.html">Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6</a></h3>
+            <s class="product-card__old-price">De R$ 4.239,90</s>
+            <strong>R$ 3.599,90</strong>
+            <p>No PIX ou 10x de R$380,90</p>
+          </article>
+        </div>
+        <button class="carousel-arrow carousel-arrow--next" type="button" data-product-next aria-label="Próximos produtos">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="institutional" aria-label="Institucional AXIS">
+      <article class="institutional__banner">
+        <img class="institutional__mark" src="assets/icons/header/icon-symbolbanner.png" alt="" aria-hidden="true">
+        <p class="institutional__eyebrow">Quem somos</p>
+        <h2>Nossa <span>História</span></h2>
+        <p>Texto temporário: aqui entra um resumo de como a AXIS nasceu, dos primeiros produtos até a loja que você vê hoje.</p>
+        <a class="button button--offer" href="#sobre-historia">Saiba mais</a>
+      </article>
+      <article class="institutional__banner">
+        <img class="institutional__mark" src="assets/icons/header/icon-symbolbanner.png" alt="" aria-hidden="true">
+        <p class="institutional__eyebrow">Para onde vamos</p>
+        <h2>Nosso <span>Objetivo</span></h2>
+        <p>Texto temporário: aqui entra a missão da marca, o que a AXIS quer entregar a cada cliente e como pretende crescer.</p>
+        <a class="button button--offer" href="#sobre-objetivo">Saiba mais</a>
+      </article>
+      <article class="institutional__banner">
+        <img class="institutional__mark" src="assets/icons/header/icon-symbolbanner.png" alt="" aria-hidden="true">
+        <p class="institutional__eyebrow">Identidade</p>
+        <h2>Nosso <span>Nome</span></h2>
+        <p>Texto temporário: aqui entra o significado da palavra AXIS e a ideia por trás do símbolo e do mascote da marca.</p>
+        <a class="button button--offer" href="#sobre-nome">Saiba mais</a>
+      </article>
+    </section>
+
+    <section id="sobre" class="company-profile" aria-labelledby="sobre-title">
+      <div class="company-profile__intro">
+        <img src="assets/images/mascot/robot-help-recortado.png" alt="Mascote robô da AXIS" loading="lazy">
+        <div>
+          <p class="institutional__eyebrow">Perfil da empresa</p>
+          <h2 id="sobre-title">Conheça a <span>AXIS</span></h2>
+          <p>A AXIS é uma loja de tecnologia feita para quem quer escolher bem: produtos de marcas confiáveis, informações claras, pagamento simples e entrega relâmpago.</p>
+        </div>
+      </div>
+      <div class="company-profile__grid">
+        <article id="sobre-historia" class="company-profile__item">
+          <h3>Como a marca surgiu</h3>
+          <p>A AXIS nasceu da percepção de que comprar tecnologia costuma ser mais complicado do que deveria: fichas técnicas confusas, preços sem referência e pouca orientação. Em 2026, um grupo de entusiastas de hardware decidiu criar uma loja online que explica cada produto com clareza. O que começou como uma pequena vitrine de notebooks, celulares e acessórios hoje reúne oito departamentos.</p>
+        </article>
+        <article id="sobre-nome" class="company-profile__item">
+          <h3>A origem do nome</h3>
+          <p>“Axis” vem do latim e significa “eixo”: o ponto em torno do qual tudo gira. É assim que enxergamos o cliente, no centro de cada escolha. O símbolo laranja, o robô mascote e o slogan “tecnologia no centro das suas escolhas” nascem dessa mesma ideia.</p>
+        </article>
+        <article id="sobre-objetivo" class="company-profile__item">
+          <h3>Nosso objetivo</h3>
+          <p>Tornar a tecnologia acessível, compreensível e confiável. Isso significa curadoria de produtos, preços transparentes, pagamento por PIX ou parcelado, entrega rápida e suporte de verdade na página de <a href="ajuda.html">Ajuda</a>, para que cada compra seja uma boa escolha.</p>
+        </article>
+      </div>
+    </section>
   </main>
 
-  <footer class="site-footer"><p>© 2026 AXIS. Todos os direitos reservados.</p></footer>
+  <!-- RODAPÉ (igual em todas as páginas: mapa do site, redes sociais e contato) -->
+  <footer class="site-footer">
+    <div class="site-footer__main">
+      <section class="footer-about" aria-labelledby="footer-about-title">
+        <h2 id="footer-about-title" class="sr-only">Sobre a AXIS</h2>
+        <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+        <p>Tecnologia no centro das suas escolhas. Hardware, gadgets e eletrônicos com preço justo e entrega relâmpago.</p>
+        <ul class="social-links" aria-label="Redes sociais da AXIS">
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Instagram" title="Instagram">IG</a></li>
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Facebook" title="Facebook">FB</a></li>
+          <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no YouTube" title="YouTube">YT</a></li>
+          <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no X" title="X">X</a></li>
+          <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no WhatsApp" title="WhatsApp">WA</a></li>
+        </ul>
+      </section>
+      <nav class="footer-column" aria-labelledby="footer-sitemap-title">
+        <h2 id="footer-sitemap-title">Mapa do site</h2>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="carrinho.html">Carrinho</a></li>
+          <li><a href="meuspedidos.html">Meus pedidos</a></li>
+          <li><a href="minha-conta.html">Minha conta</a></li>
+          <li><a href="login.html">Entrar</a></li>
+          <li><a href="cadastro.html">Criar conta</a></li>
+          <li><a href="ajuda.html">Ajuda</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-column" aria-labelledby="footer-departments-title">
+        <h2 id="footer-departments-title">Departamentos</h2>
+        <ul>
+          <li><a href="produtos.html?categoria=smartphones">Smartphones</a></li>
+          <li><a href="produtos.html?categoria=notebooks">Notebooks</a></li>
+          <li><a href="produtos.html?categoria=televisores">Televisores</a></li>
+          <li><a href="produtos.html?categoria=audio">Áudio Profissional</a></li>
+          <li><a href="produtos.html?categoria=pcs">PCs</a></li>
+          <li><a href="produtos.html?categoria=tablets">Tablets</a></li>
+          <li><a href="produtos.html?categoria=conectividade">Conectividade</a></li>
+          <li><a href="produtos.html?categoria=acessorios">Acessórios</a></li>
+        </ul>
+      </nav>
+      <section class="footer-column" aria-labelledby="footer-contact-title">
+        <h2 id="footer-contact-title">Contato</h2>
+        <address>
+          <ul>
+            <li>Av. das Tecnologias, 1000 – Centro<br>Cidade Exemplo – UF, 00000-000</li>
+            <li><a href="tel:+550000000000">Tel.: (00) 4000-0000</a></li>
+            <li><a href="https://wa.me/">WhatsApp: (00) 90000-0000</a></li>
+            <li><a href="mailto:contato@axis.example">contato@axis.example</a></li>
+            <li>Seg a Sex, 8h às 18h<br>Sáb, 9h às 13h</li>
+          </ul>
+        </address>
+      </section>
+    </div>
+    <div class="site-footer__bottom">
+      <p>© 2026 AXIS. Todos os direitos reservados.</p>
+      <a class="back-to-top" href="#">Voltar ao topo ↑</a>
+    </div>
+  </footer>
   <dialog id="login-dialog" class="auth-dialog" aria-labelledby="login-title">
     <button class="dialog-close" type="button" data-close-login aria-label="Fechar login">×</button>
     <div class="auth-dialog__brand" aria-hidden="true"><img src="assets/icons/header/icon-logo-preta.png" alt=""></div>
