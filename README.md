@@ -21,3 +21,11 @@
 `Ícone de usuário` abre o modal de login do Canva. Sem JavaScript, ele leva para `login.html`. De login, o usuário pode abrir recuperação de senha ou cadastro. Após validação no navegador, login e cadastro levam para `minha-conta.html`.
 
 Esta é uma implementação front-end: conectar autenticação real, envio de e-mail e dados de pedidos exige um back-end seguro. Os caminhos `produtos.html`, `carrinho.html`, `ajuda.html` e `meus-pedidos.html` foram preservados para as próximas páginas do projeto.
+
+## Intranet do funcionário
+
+- Acesso de teste: `funcionario@axis.com` / `1234567` (login.html ou janelinha da home). É o único e-mail de funcionário do sistema.
+- `funcionario.html`: dashboard (números do catálogo, atalhos e produtos com estoque baixo).
+- `funcionario-produtos.html`: gestão de produtos (busca, filtro por categoria, **Alterar** e **Remover** com confirmação).
+- `funcionario-produto.html`: cadastro de produto novo e, com `?id=`, alteração de um produto existente.
+- Sem back-end, os produtos ficam no `localStorage` do navegador (chave `axis-produtos`) e o acesso do funcionário no `sessionStorage`. Sem ter entrado como funcionário, as páginas do painel voltam para o login.
