@@ -9,6 +9,7 @@
    3. Cadastro: conferir se as duas senhas são iguais
    4. Carrinho: remover um item da lista
    5. Página de produto: trocar a foto principal
+   6. Login: funcionário e administrador (usuários fixos)
    ========================================================================== */
 
 /* ---------- 1. MENU DO CABEÇALHO ----------
@@ -96,4 +97,28 @@ if (galeria) {
       this.setAttribute('aria-pressed', 'true');
     });
   }
+}
+
+/* ---------- 6. LOGIN (usuários fixos, só demonstração) ----------
+   funcionario@axis.com / 1234567 -> dashboard.html
+   admin@axis.com       / 1234567 -> admin.html
+   Qualquer outro e-mail segue para minha-conta.html (cliente). */
+var formLogin = document.querySelector('#form-login');
+
+if (formLogin) {
+  formLogin.addEventListener('submit', function (evento) {
+    var email = document.querySelector('#page-login-email').value.trim().toLowerCase();
+    var senha = document.querySelector('#page-login-password').value;
+    var erro = document.querySelector('#login-erro');
+
+    if (email === 'funcionario@axis.com' || email === 'admin@axis.com') {
+      evento.preventDefault();
+
+      if (senha === '1234567') {
+        window.location.href = (email === 'admin@axis.com') ? 'admin.html' : 'dashboard.html';
+      } else {
+        erro.hidden = false;
+      }
+    }
+  });
 }
