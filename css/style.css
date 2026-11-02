@@ -2,23 +2,27 @@
    AXIS - CSS ÚNICO DO SITE
    Todas as páginas usam este arquivo. Os blocos estão na ordem abaixo:
 
-   1. BASE ................ reset, fonte, rodapé "grudado" embaixo (todas as páginas)
-   2. CABEÇALHO ........... barra preta fixa, busca, ícones e menu (todas as páginas)
-   3. HOME ................ index.html (banner, categorias, carrosséis de produtos, banners e perfil)
-   4. BOTÕES E RODAPÉ ..... botão laranja padrão e rodapé preto com mapa do site, redes e contato (todas as páginas)
-   5. LOGIN / CADASTRO .... modal da home, login.html, cadastro.html, recuperar-senha.html
+   1. BASE ................ reset (box-sizing: border-box), fonte, rodapé "grudado" embaixo
+   2. CABEÇALHO ........... barra preta FIXA (sticky), igual em todas as páginas
+   3. HOME ................ index.html (banner, categorias, produtos em destaque, banners)
+   4. BOTÕES E RODAPÉ ..... botão laranja padrão e rodapé preto (todas as páginas)
+   5. LOGIN / CADASTRO .... login.html, cadastro.html, recuperar-senha.html
    6. MINHA CONTA ......... minha-conta.html
    7. AJUDA ............... ajuda.html
    8. PRODUTOS ............ produtos.html
    9. CARRINHO ............ carrinho.html
   10. PAGAMENTO ........... pagamento.html
   11. PEDIDO CONFIRMADO ... pedido-confirmado.html
-  12. RESPONSIVIDADE ...... ajustes para tablet e celular (media queries)
-  13. FUNCIONARIO   ....... funcionario.html (dashboard), funcionario-produtos.html (gestão) e funcionario-produto.html (cadastro/edição)
-  14. PÁGINA DE PRODUTO ... produto-*.html (final do arquivo)
+  12. RESPONSIVIDADE ...... ajustes de tablet e celular (media queries)
+  13. MEUS PEDIDOS ........ meuspedidos.html
+  14. PÁGINA DE PRODUTO ... produto-*.html
+  15. GRID DE 12 COLUNAS .. .row e .col-1 ... .col-12 (+ .col-t-* tablet e .col-m-* celular)
+  16. PÁGINAS NOVAS ....... sobre.html, faq.html, contato.html
+  17. DASHBOARD ........... dashboard.html (painel do funcionário, tabela estática)
 
    O preto do cabeçalho e do rodapé é mantido por fidelidade ao protótipo Canva.
-   Organização baseada nos conteúdos da apostila de Fundamentos de Web Design I.
+   Organização baseada nos conteúdos da apostila de Fundamentos de Web Design I
+   (seção 21 - layouts, seção 37 - layouts em CSS e seções 45/46 - responsividade).
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -88,9 +92,9 @@ a:link, a:visited, a:active { color: inherit; }
   align-items: center;
   gap: 2rem;
   width: min(100%, 1680px);
-  min-height: 100px;
+  height: 100px;
   margin: 0 auto;
-  padding: 1rem 3rem;
+  padding: 0 3rem;
 }
 
 /* Logo da AXIS (leva para a home) */
@@ -185,8 +189,9 @@ a:link, a:visited, a:active { color: inherit; }
 
 .site-menu ul {
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 1.6rem;
+  gap: 0.6rem 1.6rem;
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -211,38 +216,8 @@ a:link, a:visited, a:active { color: inherit; }
   padding: clamp(4rem, 5vw, 6rem) clamp(1.1rem, 3.4vw, 4rem) clamp(4rem, 5vw, 5.5rem);
 }
 
-/* Banner principal e carrossel de ofertas (Seção 29). Os slides são trocados pelo js/main.js */
-.hero-carousel {
-  display: grid;
-  grid-template-columns: 56px minmax(0, 1610px) 56px;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(1rem, 2.4vw, 2.4rem);
-}
+/* Banner principal da home (estático, sem carrossel) */
 
-/* Setas do carrossel (o js/main.js as reposiciona dentro do banner, sem fundo) */
-.carousel-arrow {
-  display: grid;
-  width: 56px;
-  height: 56px;
-  padding: 0;
-  place-items: center;
-  background: #000000;
-  border: 0;
-  border-radius: 50%;
-  color: #FFFFFF;
-  font-size: 2rem;
-  line-height: 1;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.carousel-arrow:hover:not(:disabled) {
-  background: #FF6B00;
-  cursor: pointer;
-  transform: scale(1.05);
-}
-
-.carousel-arrow:disabled { cursor: default; opacity: 0.5; }
 
 /* Banner com degradê preto → azul e cantos arredondados */
 .hero {
@@ -342,13 +317,7 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 }
 
 /* Faixa de categorias (círculos azuis) logo abaixo do banner da home */
-.categories {
-  display: grid;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
-  gap: clamp(0.75rem, 2.1vw, 2.4rem);
-  width: min(100%, 1790px);
-  margin: clamp(4.5rem, 5.5vw, 5.8rem) auto 0;
-}
+
 
 /* Cada categoria: círculo com ícone + nome embaixo */
 .category {
@@ -423,46 +392,6 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 .home-section__link:link, .home-section__link:visited { color: #FF6B00; font-weight: 700; text-decoration: none; }
 .home-section__link:hover, .home-section__link:focus-visible { color: #D95B00; text-decoration: underline; }
 
-/* Carrossel de produtos: faixa que rola de lado e "encaixa" nos cartões (o js/main.js liga as setas).
-   --per-view = quantos cartões aparecem por vez (4 no desktop, 3 no tablet, 2 no celular). */
-.product-carousel {
-  --per-view: 4;
-  --gap: 1.5rem;
-  position: relative;
-}
-
-.product-carousel__track {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% - (var(--per-view) - 1) * var(--gap)) / var(--per-view));
-  gap: var(--gap);
-  margin: -0.25rem -0.25rem -1rem;
-  padding: 1.25rem 0.25rem 1rem;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scroll-padding-inline: 0.25rem;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-}
-
-.product-carousel__track::-webkit-scrollbar { display: none; }
-.product-carousel .product-card { position: relative; min-height: 320px; scroll-snap-align: start; }
-
-/* Setas redondas (mesma .carousel-arrow do banner), sobrepostas às bordas da faixa */
-.product-carousel .carousel-arrow {
-  position: absolute;
-  top: 50%;
-  z-index: 2;
-  width: 48px;
-  height: 48px;
-  font-size: 1.4rem;
-  transform: translateY(-50%);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-}
-
-.product-carousel .carousel-arrow:hover:not(:disabled) { transform: translateY(-50%) scale(1.05); }
-.product-carousel .carousel-arrow--previous { left: -1.5rem; }
-.product-carousel .carousel-arrow--next { right: -1.5rem; }
 
 /* Etiqueta sobre a borda de cima do cartão (Destaque, Mais vendido ou % de desconto) */
 .product-card__badge {
@@ -486,13 +415,7 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 .product-card__old-price + strong { margin-top: 0; color: #E63946; }
 
 /* Banners institucionais: 3 colunas, mesmo degradê preto → azul do banner principal */
-.institutional {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.5rem;
-  width: min(100%, 1610px);
-  margin: clamp(4rem, 5vw, 5.5rem) auto 0;
-}
+
 
 .institutional__banner {
   position: relative;
@@ -540,21 +463,7 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 
 .company-profile h2 { margin: 0; color: #1A1A1B; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; }
 .company-profile h2 span { color: #FF6B00; }
-.company-profile__intro .institutional__eyebrow { color: #D95B00; }
-.company-profile__intro p:not(.institutional__eyebrow) { max-width: 760px; margin: 0.6rem 0 0; color: #1A1A1B; font-size: 1.1rem; line-height: 1.5; }
 
-.company-profile__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
-
-.company-profile__item {
-  padding: 1.8rem;
-  background: #F8F8F8;
-  border: 3px solid #E0E0E0;
-  border-radius: 22px;
-}
-
-.company-profile__item h3 { margin: 0 0 0.8rem; color: #004B63; font-size: 1.3rem; }
-.company-profile__item p { margin: 0; color: #1A1A1B; line-height: 1.6; }
-.company-profile__item a { color: #D95B00; font-weight: 700; }
 
 /* Rodapé (Seção 21.6): faixa preta com mapa do site, redes sociais, contato e copyright, igual em todas as páginas.
    O margin-top:auto o empurra para o fim da tela. */
@@ -618,28 +527,9 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 
 /* --------------------------------------------------------------------------
    5. LOGIN, CADASTRO E RECUPERAR SENHA
-   (janelinha de login da home + login.html, cadastro.html, recuperar-senha.html)
+   (login.html, cadastro.html, recuperar-senha.html)
    -------------------------------------------------------------------------- */
 
-/* Janelinha (modal) de login que abre ao clicar no ícone de usuário na home */
-.auth-dialog {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: min(720px, calc(100% - 2rem));
-  max-height: calc(100vh - 2rem);
-  margin: 0;
-  padding: 2rem 3.5rem 2.5rem;
-  overflow-y: auto;
-  transform: translate(-50%, -50%);
-  background: #FFFFFF;
-  border: 0;
-  border-radius: 28px;
-  color: #000000;
-}
-
-.auth-dialog::backdrop { background: rgba(0, 0, 0, 0.48); }
-.auth-dialog h2 { margin: 0 0 1.35rem; font-size: 1.75rem; text-align: center; }
 
 /* Agrupador (<fieldset>) dos campos de login/cadastro: campos empilhados com espaço entre eles */
 .formulario {
@@ -650,27 +540,6 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
   border: 0;
 }
 
-/* Botão "×" que fecha a janelinha de login */
-.dialog-close {
-  position: absolute;
-  top: 0.9rem;
-  right: 1.25rem;
-  width: 42px;
-  height: 42px;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  border-radius: 50%;
-  color: #000000;
-  font-size: 2.1rem;
-  line-height: 1;
-}
-
-.dialog-close:hover, .dialog-close:focus-visible { background: #E0E0E0; }
-
-/* Logo preta no topo da janelinha */
-.auth-dialog__brand { display: grid; height: 105px; margin-bottom: 0.75rem; place-items: center; }
-.auth-dialog__brand img { width: 135px; height: auto; }
 
 /* Formulário em si (campos e botão) */
 .auth-form { display: grid; gap: 1.2rem; }
@@ -706,15 +575,11 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 .register-prompt a { color: #FF6B00; text-decoration: none; }
 
 /* Mensagens de erro (laranja) e de sucesso (verde) dos formulários */
-.form-message { margin: 0; color: #D95B00; font-weight: 700; }
-.form-message--success { color: #2D6A4F; }
+
 
 /* Cabeçalho reduzido (só logo + link) de login, cadastro, recuperar senha e minha conta.
    Tem a mesma altura (100px) e o mesmo logo (150px) do cabeçalho padrão da loja. */
-.topbar--compact { grid-template-columns: 1fr auto; min-height: 100px; }
-.site-header--compact .brand img { width: 150px; }
-.back-home { color: #FFFFFF; font-weight: 700; text-decoration: none; }
-.back-home:hover, .back-home:focus-visible { color: #FF6B00; }
+
 
 /* Páginas de acesso: fundo cinza com um card branco no meio */
 .page--auth { background: #E0E0E0; }
@@ -808,7 +673,7 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
   width: min(100%, 1680px);
   margin: 0 auto;
   /* sem padding inferior: o robô precisa encostar no rodapé.
-     (padding lateral é ajustado pelo js/main.js junto com o cabeçalho) */
+     (o padding lateral acompanha o cabeçalho: ver o fim do arquivo) */
   padding: clamp(1.75rem, 3.5vw, 3.5rem) 3rem 0;
 }
 
@@ -893,14 +758,7 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 }
 
 /* Página em 2 colunas: filtros à esquerda e vitrine de produtos à direita */
-.products-main {
-  display: grid;
-  grid-template-columns: 190px 1fr;
-  gap: 2rem;
-  width: min(100%, 1680px);
-  margin: 0 auto;
-  padding: 2.5rem 3rem 4rem;
-}
+
 
 /* Coluna de filtros (frete grátis, marcas...) */
 .filters {
@@ -948,11 +806,7 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 }
 
 /* Vitrine: 4 cartões por linha no desktop (diminui nas media queries) */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(190px, 1fr));
-  gap: 2.5rem;
-}
+
 
 /* Cartão de produto: borda cinza que vira laranja e sobe um pouquinho ao passar o mouse */
 .product-card {
@@ -1061,10 +915,10 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 }
 
 /* Cartão de um produto: [rádio] [foto] [nome] [preço] [lixeira].
-   Ao selecionar, a borda preta vira laranja (o js/main.js atualiza o resumo). */
+   Ao selecionar, a borda preta vira laranja. */
 .cart-item {
   display: grid;
-  grid-template-columns: 36px 130px minmax(0, 1fr) 150px 48px;
+  grid-template-columns: 130px minmax(0, 1fr) 150px 48px;
   align-items: center;
   gap: 1rem;
   min-height: 235px;
@@ -1072,28 +926,12 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
   background: #FFFFFF;
   border: 3px solid #000000;
   border-radius: 20px;
-  cursor: pointer;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.cart-item:has(.product-check:checked) {
-  border-color: #FF6B00;
-  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.15);
-}
 
 /* Bolinha de seleção */
-.cart-item__select {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.cart-item__select input {
-  width: 20px;
-  height: 20px;
-  accent-color: #FF6B00;
-  cursor: pointer;
-}
 
 /* Foto do produto (cabe inteira dentro do quadrado, sem distorcer) */
 .cart-item__image {
@@ -1326,15 +1164,6 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 }
 
 /* Aviso que aparece ao enviar ("PIX selecionado, confirmando...") */
-.payment-message {
-  width: 100%;
-  max-width: 600px;
-  margin: 0;
-  color: #00566B;
-  font-weight: bold;
-  line-height: 1.4;
-  overflow-wrap: anywhere;
-}
 
 
 /* --------------------------------------------------------------------------
@@ -1390,17 +1219,14 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
    → geral (celular) → celular pequeno → carrinho/pagamento/confirmado.
    -------------------------------------------------------------------------- */
 /* Produtos em tablet: filtros mais estreitos e 3 cartões por linha */
-@media (max-width: 1100px) {
-  .products-main {grid-template-columns: 180px 1fr;padding: 2rem;}
-  .product-grid {grid-template-columns: repeat(3, minmax(180px, 1fr));gap: 1.5rem;}
-}
+
 
 /* Produtos no celular: filtros em cima (só o título) e 2 cartões por linha */
 @media (max-width: 720px) {
-  .products-main {grid-template-columns: 1fr;padding: 1.5rem 1.15rem 3rem;}
+  
   .filters {padding-bottom: 1rem;border-bottom: 1px solid #CCC;}
   .filter-group {display: none;}
-  .product-grid {grid-template-columns: repeat(2, minmax(140px, 1fr));gap: 1rem;}
+  
   .product-card {min-height: 250px;padding: 0.7rem;border-radius: 16px;}
   .product-card h2 {font-size: 0.8rem;}
 }
@@ -1421,11 +1247,11 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
   .hero__copy { width: 55%; }
   .hero__robot { right: 18%; width: 35%; }
   .hero__mark { top: 8px; right: 8px; width: 22%; }
-  .categories { grid-template-columns: repeat(4, minmax(120px, 1fr)); row-gap: 2.2rem; }
-  .product-carousel { --per-view: 3; }
-  .product-carousel .carousel-arrow--previous { left: 0.25rem; }
-  .product-carousel .carousel-arrow--next { right: 0.25rem; }
-  .institutional, .company-profile__grid { grid-template-columns: 1fr; }
+  
+  
+  
+  
+  
   .institutional__banner { min-height: 0; }
   .site-footer__main { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 3rem 2rem 2rem; }
   .account-main { padding: 3rem 2rem; }
@@ -1436,7 +1262,7 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 
 /* CELULAR (até 720px): busca desce para uma linha própria, só o menu fica no cabeçalho, tudo em 1 coluna */
 @media (max-width: 720px) {
-  .topbar { grid-template-columns: 1fr auto; gap: 0.6rem 1rem; min-height: 0; padding: 0.75rem 1.15rem; }
+  .topbar { grid-template-columns: 1fr auto; gap: 0.6rem 1rem; height: auto; padding: 0.75rem 1.15rem; }
   .brand img { width: 120px; }
   .search-bar { grid-row: 2; grid-column: 1 / -1; height: 44px; padding-left: 1.1rem; }
   .search-bar input { font-size: 1rem; }
@@ -1445,26 +1271,26 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
   .site-menu { padding: 0 1.25rem 1.25rem; }
   .site-menu ul { display: grid; gap: 0.8rem; }
   .page--home main { padding-top: 2.25rem; }
-  .hero-carousel { display: block; }
-  .carousel-arrow { display: none; }
+  
+  
   .hero { min-height: 560px; }
   .hero__copy { width: 100%; padding: 2.2rem 1.5rem; text-align: center; }
   .hero h1 { font-size: clamp(2rem, 9vw, 3rem); line-height: 1.28; }
   .hero__copy p { max-width: 430px; margin-right: auto; margin-left: auto; }
   .hero__robot { right: 50%; bottom: -6px; width: 270px; transform: translateX(50%); }
   .hero__mark { top: 10px; right: 10px; bottom: auto; width: 120px; }
-  .categories { grid-template-columns: repeat(2, minmax(120px, 1fr)); margin-top: 3.75rem; }
-  .product-carousel { --per-view: 2; --gap: 1rem; }
-  .product-carousel .carousel-arrow { display: none; }
-  .product-carousel .product-card { min-height: 290px; }
+  
+  
+  
+  
   .home-section__header { align-items: flex-start; flex-direction: column; gap: 0.6rem; }
   .company-profile__intro { flex-direction: column; text-align: center; }
   .site-footer__main { grid-template-columns: 1fr; gap: 2rem; padding: 2.5rem 1.25rem 1.75rem; }
-  .auth-dialog { padding: 1.75rem 1.25rem 2rem; border-radius: 22px; }
-  .auth-dialog__brand { height: 72px; }
-  .auth-dialog h2 { font-size: 1.45rem; }
-  .topbar--compact { grid-template-columns: 1fr auto; }
-  .back-home { font-size: 0.88rem; }
+  
+  
+  
+  
+  
   .auth-main { min-height: 560px; padding: 2rem 1rem; }
   .auth-card { padding: 1.75rem 1.25rem; }
   .account-main { padding: 2.25rem 1.25rem; }
@@ -1474,13 +1300,7 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
   .account-actions a { min-height: 80px; font-size: 1.25rem; }
 }
 
-/* CELULAR PEQUENO (até 380px): categorias em uma única coluna e carrossel com 1 cartão */
-@media (max-width: 380px) {
-  .categories { grid-template-columns: 1fr; }
-  .product-carousel { --per-view: 1; }
-  .site-header--compact .brand img { width: 130px; }
-  .back-home { font-size: 0.76rem; }
-}
+/* CELULAR PEQUENO (até 380px) */
 
 
 /* Carrinho em telas médias (até 1200px): a lista ocupa a largura toda e o resumo
@@ -1496,7 +1316,7 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 @media (max-width: 1100px) {
 
   .cart-item {
-    grid-template-columns: 28px 100px minmax(0, 1fr) 125px 40px;
+    grid-template-columns: 100px minmax(0, 1fr) 125px 40px;
     gap: 0.7rem;
     padding: 1.5rem 1rem;
   }
@@ -1522,13 +1342,13 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
   .cart-main > h1 { font-size: 1.9rem; }
 
   .cart-item {
-    grid-template-columns: 28px 90px minmax(0, 1fr);
+    grid-template-columns: 90px minmax(0, 1fr);
     min-height: 180px;
   }
 
   .cart-item__image { height: 90px; }
-  .cart-item__price { grid-column: 3; font-size: 1rem; }
-  .cart-item__remove { grid-column: 3; grid-row: 1; justify-self: end; }
+  .cart-item__price { grid-column: 2; font-size: 1rem; }
+  .cart-item__remove { grid-column: 2; grid-row: 1; justify-self: end; }
   .cart-item__info h2 { font-size: 0.9rem; }
 
   .confirmed-main { padding-top: 60px; }
@@ -1550,36 +1370,8 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
     13. PAINEL DO FUNCIONÁRIO (funcionario.html, funcionario-produtos.html e funcionario-produto.html)
    ========================================================================== */
 
-   .topbar--staff {
-  grid-template-columns: auto auto 1fr;
-  align-items: center;
-  gap: 1.5rem;
-}
+   
 
-.staff-tag {
-  padding: 0.35rem 0.8rem;
-  border: 2px solid #FF6B00;
-  border-radius: 8px;
-  color: #FF6B00;
-  font-size: 0.9rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.staff-menu {
-  display: flex;
-  justify-self: end;
-  gap: 2rem;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-}
-
-.staff-menu a { color: #FFFFFF; font-weight: 700; text-decoration: none; }
-.staff-menu a:hover, .staff-menu a:focus-visible { color: #FF6B00; }
-.staff-menu a[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; }
-.staff-menu a.staff-menu__exit { color: #FF6B00; }
-.staff-menu a.staff-menu__exit:hover, .staff-menu a.staff-menu__exit:focus-visible { color: #FFFFFF; }
 
 .auth-card--wide { width: min(100%, 900px); }
 
@@ -1633,178 +1425,54 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 .button--secondary:hover, .button--secondary:focus-visible { background: #F0F0F0; border-color: #8E8E8E; }
 
 @media (max-width: 720px) {
-  .topbar--staff { grid-template-columns: 1fr auto; row-gap: 0.8rem; }
-  .staff-menu { grid-column: 1 / -1; justify-self: start; flex-wrap: wrap; gap: 0.6rem 1.2rem; }
+  
+  
   .formulario--produto { grid-template-columns: 1fr; }
 } 
 
 /* Links "Em breve" do menu do painel: aparecem apagados e não levam a lugar nenhum */
-.staff-menu a[aria-disabled="true"] { cursor: default; opacity: 0.55; }
-.staff-menu a[aria-disabled="true"]:hover { color: #FFFFFF; }
 
-/* Botão menor (toolbar e janelinha de confirmação) e botão vermelho de remover */
+
 .button--small { min-height: 48px; padding: 0.5rem 1.4rem; font-size: 0.95rem; }
 .button--danger { background: #E63946; color: #FFFFFF; }
 .button--danger:hover, .button--danger:focus-visible { background: #C42F3B; }
 a.button--secondary:link, a.button--secondary:visited { color: #000000; }
 
 /* Área de conteúdo das telas do painel (dashboard e gestão de produtos) */
-.staff-main { width: min(100%, 1280px); margin: 0 auto; padding: 3rem 2rem 4rem; }
-.staff-title { margin-bottom: 1.75rem; }
-.staff-title--row { display: flex; justify-content: space-between; align-items: flex-end; gap: 1.5rem; }
-.staff-title h1 { margin: 0 0 0.4rem; color: #D95B00; font-size: clamp(1.8rem, 3vw, 2.5rem); }
-.staff-title p { margin: 0; color: #1A1A1B; line-height: 1.45; }
+
 
 /* Aviso de sucesso (verde) ou erro (vermelho) no topo da tela, ex.: "Produto removido com sucesso!" */
-.staff-notice {
-  margin: 0 0 1.5rem;
-  padding: 0.9rem 1.2rem;
-  background: #FFFFFF;
-  border-left: 6px solid #2D6A4F;
-  border-radius: 10px;
-  color: #2D6A4F;
-  font-weight: 800;
-}
 
-.staff-notice--error { border-left-color: #E63946; color: #E63946; }
 
 /* Cartões de números do dashboard: 4 por linha */
-.staff-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
 
-.staff-stat {
-  padding: 1.5rem;
-  background: #FFFFFF;
-  border: 3px solid #CCCCCC;
-  border-radius: 22px;
-}
-
-.staff-stat h2 { margin: 0 0 0.6rem; color: #1A1A1B; font-size: 1rem; }
-.staff-stat strong { color: #004B63; font-size: clamp(1.6rem, 2.6vw, 2.3rem); }
-.staff-stat--alert strong { color: #E63946; }
 
 /* Atalhos do dashboard: card clicável que ganha borda laranja ao passar o mouse (igual aos cartões de produto) */
-.staff-shortcuts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
 
-.staff-shortcut {
-  display: grid;
-  gap: 0.3rem;
-  align-content: start;
-  padding: 1.5rem;
-  background: #004B63;
-  border: 3px solid #004B63;
-  border-radius: 22px;
-  color: #FFFFFF;
-  text-decoration: none;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.staff-shortcut span { font-size: 2rem; }
-.staff-shortcut strong { font-size: 1.15rem; }
-.staff-shortcut small { color: #E0E0E0; font-size: 0.9rem; line-height: 1.4; }
-a.staff-shortcut:link, a.staff-shortcut:visited { color: #FFFFFF; }
-a.staff-shortcut:hover, a.staff-shortcut:focus-visible { background: #00384A; border-color: #FF6B00; }
-.staff-shortcut--disabled { background: #FFFFFF; border-color: #CCCCCC; color: #1A1A1B; opacity: 0.75; }
-.staff-shortcut--disabled small { color: #1A1A1B; }
 
 /* Caixa branca que agrupa uma lista ou tabela */
-.staff-panel { padding: 1.75rem; background: #FFFFFF; border-radius: 22px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); }
-.staff-panel__header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1rem; }
-.staff-panel__header h2 { margin: 0; padding-left: 1rem; border-left: 6px solid #FF6B00; font-size: 1.4rem; }
+
 
 /* Lista "Atenção ao estoque" do dashboard */
-.staff-alerts { display: grid; gap: 0.6rem; margin: 0; padding: 0; list-style-type: none; }
 
-.staff-alerts li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.6rem 1rem;
-  padding: 0.8rem 1rem;
-  background: #F8F8F8;
-  border: 1px solid #E0E0E0;
-  border-radius: 12px;
-}
-
-.staff-alerts a { color: #D95B00; font-weight: 800; }
 
 /* Busca + filtro + contador acima da tabela */
-.staff-toolbar { display: grid; grid-template-columns: minmax(200px, 2fr) minmax(180px, 1fr) auto; align-items: end; gap: 1rem; margin-bottom: 1.25rem; }
-.staff-toolbar .form-field input, .staff-toolbar .form-field select { min-height: 48px; background: #FFFFFF; border: 1px solid #CCCCCC; border-radius: 12px; font-size: 1rem; }
-.staff-toolbar .form-field label { font-size: 0.95rem; }
-.staff-toolbar__count { margin: 0 0 0.8rem; color: #1A1A1B; font-weight: 700; white-space: nowrap; }
+
 
 /* Tabela de produtos */
-.staff-table-wrap { overflow-x: auto; }
-.staff-table { width: 100%; border-collapse: collapse; }
-.staff-table th { padding: 0.8rem 0.9rem; background: #F8F8F8; border-bottom: 2px solid #E0E0E0; color: #1A1A1B; font-size: 0.9rem; text-align: left; white-space: nowrap; }
-.staff-table td { padding: 0.8rem 0.9rem; border-bottom: 1px solid #E0E0E0; vertical-align: middle; }
-.staff-table tbody tr:hover { background: #F8F8F8; }
-.staff-table td[data-label="Estoque"] { white-space: nowrap; }
-.staff-table img { display: block; width: 64px; height: 64px; object-fit: contain; }
-.staff-table__name { display: block; font-weight: 800; line-height: 1.3; }
-.staff-table__sku { color: #1A1A1B; font-size: 0.85rem; }
-.staff-table__old { display: block; font-size: 0.85rem; text-decoration: line-through; }
+
 
 /* Etiqueta de estoque: verde (ok), amarela (baixo) e vermelha (esgotado) */
-.staff-badge { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 999px; font-size: 0.8rem; font-weight: 800; white-space: nowrap; }
-.staff-badge--ok { background: #2D6A4F; color: #FFFFFF; }
-.staff-badge--low { background: #FFD700; color: #1A1A1B; }
-.staff-badge--out { background: #E63946; color: #FFFFFF; }
+
 
 /* Botões "Alterar" (laranja) e "Remover" (contorno vermelho) de cada linha */
-.staff-actions { display: flex; gap: 0.5rem; }
 
-.staff-action {
-  display: inline-flex;
-  min-height: 40px;
-  padding: 0.4rem 1rem;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #FF6B00;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 800;
-  text-decoration: none;
-}
-
-.staff-action--edit { background: #FF6B00; }
-a.staff-action--edit:link, a.staff-action--edit:visited { color: #FFFFFF; }
-.staff-action--edit:hover, .staff-action--edit:focus-visible { background: #D95B00; border-color: #D95B00; }
-.staff-action--remove { background: #FFFFFF; border-color: #E63946; color: #E63946; }
-.staff-action--remove:hover, .staff-action--remove:focus-visible { background: #E63946; color: #FFFFFF; }
-
-.staff-empty { margin: 1.5rem 0 0; color: #1A1A1B; font-weight: 700; text-align: center; }
-
-/* Janelinha de confirmação de remoção (usa o .auth-dialog, só que menor) */
-.auth-dialog--confirm { width: min(480px, calc(100% - 2rem)); padding: 2rem 2rem 1.75rem; }
-.auth-dialog--confirm h2 { font-size: 1.5rem; }
-.staff-confirm__text { margin: 0 0 1.5rem; line-height: 1.5; text-align: center; }
-.auth-dialog--confirm .form-actions { justify-content: center; }
 
 /* Tablet: números e atalhos em 2 colunas; toolbar em 2 linhas */
-@media (max-width: 1100px) {
-  .staff-stats, .staff-shortcuts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .staff-toolbar { grid-template-columns: 1fr 1fr; }
-  .staff-toolbar__count { grid-column: 1 / -1; margin: 0; }
-  .staff-main { padding: 2.5rem 2rem 3.5rem; }
-}
+
 
 /* Celular: tudo em 1 coluna e cada linha da tabela vira um cartão (o rótulo vem do atributo data-label) */
-@media (max-width: 720px) {
-  .staff-main { padding: 2rem 1.25rem 3rem; }
-  .staff-title--row { align-items: flex-start; flex-direction: column; }
-  .staff-stats, .staff-shortcuts, .staff-toolbar { grid-template-columns: 1fr; }
-  .staff-panel { padding: 1.25rem; }
-  .staff-panel__header { align-items: flex-start; flex-direction: column; }
-  .staff-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
-  .staff-table, .staff-table tbody, .staff-table tr, .staff-table td { display: block; }
-  .staff-table tr { margin-bottom: 1rem; padding: 0.5rem 0.9rem; border: 2px solid #E0E0E0; border-radius: 16px; }
-  .staff-table td { display: flex; justify-content: space-between; align-items: center; gap: 1rem; border-bottom: 1px solid #E0E0E0; text-align: right; }
-  .staff-table td:last-child { border-bottom: 0; }
-  .staff-table td::before { content: attr(data-label); color: #1A1A1B; font-weight: 800; text-align: left; }
-  .staff-actions { flex-wrap: wrap; justify-content: flex-end; }
-}
+
 
 .pedidos-main {
     width: min(100%, 1500px);
@@ -1936,85 +1604,6 @@ a.staff-action--edit:link, a.staff-action--edit:visited { color: #FFFFFF; }
 }
 
 
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
-    background: rgba(0, 0, 0, 0.65);
-}
-
-.janela-avaliacao,
-.janela-cancelamento {
-    position: relative;
-    width: min(900px, 100%);
-    background: #FFFFFF;
-    border-radius: 22px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-}
-
-.avaliacao-conteudo,
-.cancelamento-conteudo {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 2rem;
-    padding: 3rem;
-}
-
-.fechar-modal {
-    position: absolute;
-    top: 12px;
-    right: 15px;
-    z-index: 2;
-    width: 40px;
-    height: 40px;
-    border: 0;
-    background: transparent;
-    color: #000000;
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-.fechar-modal:hover {
-    color: #FF6B00;
-}
-
-.avaliacao-esquerda h2,
-.cancelamento-esquerda h2 {
-    margin: 0 0 1.5rem;
-    color: #004B63;
-    font-size: 1.8rem;
-}
-
-
-
-.estrelas {
-    display: flex;
-    gap: 0.2rem;
-    margin-bottom: 1.5rem;
-}
-
-.estrelas button {
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: #CCCCCC;
-    font-size: 2.5rem;
-    line-height: 1;
-    cursor: pointer;
-}
-
-.estrelas button:hover,
-.estrelas button.selecionada {
-    color: #FFC107;
-}
-
-
-
 #comentarioAvaliacao {
     display: block;
     width: 100%;
@@ -2032,91 +1621,6 @@ a.staff-action--edit:link, a.staff-action--edit:visited { color: #FFFFFF; }
     border-color: #004B63;
 }
 
-
-
-
-.enviar-avaliacao {
-    width: 100%;
-    margin-top: 1rem;
-    padding: 0.9rem;
-    border: 0;
-    border-radius: 10px;
-    background: #FF6B00;
-    color: #FFFFFF;
-    font-size: 1rem;
-    font-weight: 800;
-    cursor: pointer;
-}
-
-.enviar-avaliacao:hover {
-    background: #D95B00;
-}
-
-
-
-.produto-avaliacao {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.produto-avaliacao img {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-}
-
-.produto-avaliacao h3 {
-    margin: 1rem 0 0.4rem;
-    color: #000000;
-}
-
-.produto-avaliacao p {
-    margin: 0;
-    color: #8E8E8E;
-}
-
-
-
-
-.reembolso {
-    padding: 1.5rem;
-    background: #CCCCCC;
-    border-radius: 15px;
-    color: #000000;
-}
-
-.reembolso h3 {
-    margin-top: 0;
-    margin-bottom: 1.2rem;
-}
-
-.reembolso label {
-    display: block;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-}
-
-.reembolso input {
-    width: 18px;
-    height: 18px;
-    margin-right: 0.5rem;
-    accent-color: #004B63;
-}
-
-.reembolso .confirmar {
-    margin-top: 1.5rem;
-}
-
-
-
-.botoes-cancelamento {
-    display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-}
 
 .botao-sim,
 .botao-nao {
@@ -2147,28 +1651,6 @@ a.staff-action--edit:link, a.staff-action--edit:visited { color: #FFFFFF; }
 }
 
 
-
-.produto-cancelamento {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.produto-cancelamento img {
-    width: 200px;
-    height: 200px;
-    object-fit: contain;
-}
-
-.produto-cancelamento h3 {
-    margin-top: 1rem;
-    color: #000000;
-}
-
-
-
 @media (max-width: 720px) {
 
     .pedidos-main {
@@ -2196,22 +1678,11 @@ a.staff-action--edit:link, a.staff-action--edit:visited { color: #FFFFFF; }
         height: 90px;
     }
 
-    .avaliacao-conteudo,
-    .cancelamento-conteudo {
-        grid-template-columns: 1fr;
-        padding: 2rem 1.5rem;
-    }
+    
 
-    .produto-avaliacao,
-    .produto-cancelamento {
-        order: -1;
-    }
+    
 
-    .produto-avaliacao img,
-    .produto-cancelamento img {
-        width: 130px;
-        height: 130px;
-    }
+    
 }
 
 
@@ -2281,7 +1752,7 @@ a.staff-action--edit:link, a.staff-action--edit:visited { color: #FFFFFF; }
 
 /* Cada miniatura pode encolher (até 88px no máximo) para todas caberem numa fileira só */
 .pdp-thumbs li { flex: 0 1 88px; min-width: 0; }
-.pdp-thumbs li[data-thumb-more-item] { flex: 0 0 auto; }
+
 
 /* Miniatura: borda cinza; a foto que está em destaque ganha borda laranja */
 .pdp-thumb {
@@ -2305,22 +1776,7 @@ a.staff-action--edit:link, a.staff-action--edit:visited { color: #FFFFFF; }
 .pdp-thumb.is-active { border-color: #FF6B00; }
 
 /* Botão "+" cinza: mostra as fotos que não cabiam na primeira fileira */
-.pdp-thumb-more {
-  display: grid;
-  width: 48px;
-  aspect-ratio: 1 / 1;
-  padding: 0;
-  place-items: center;
-  background: transparent;
-  border: 0;
-  border-radius: 10px;
-  color: #B4B4B4;
-  font-size: 3.2rem;
-  font-weight: 300;
-  line-height: 1;
-}
 
-.pdp-thumb-more:hover, .pdp-thumb-more:focus-visible { color: #FF6B00; }
 
 /* ----- Nome, avaliação e descrição ----- */
 
@@ -2363,16 +1819,7 @@ a.staff-action--edit:link, a.staff-action--edit:visited { color: #FFFFFF; }
 }
 
 /* "Ver mais": botão com cara de link laranja sublinhado */
-.pdp-more-link {
-  padding: 0;
-  background: transparent;
-  border: 0;
-  color: #FF6B00;
-  font-size: 1rem;
-  text-decoration: underline;
-}
 
-.pdp-more-link:hover, .pdp-more-link:focus-visible { color: #D95B00; }
 
 /* ----- Compra: preço, botões e consulta de frete ----- */
 
@@ -2473,14 +1920,8 @@ a.pdp-btn--outline:link, a.pdp-btn--outline:visited, a.pdp-btn--outline:active {
 }
 
 /* Resultado da consulta: verde quando dá certo, laranja quando o CEP está incompleto */
-.pdp-shipping__result { margin: 0; font-size: 1.1rem; font-weight: 800; }
-.pdp-shipping__result:not(:empty) { margin-top: 0.75rem; }
-.pdp-shipping__result.is-success { color: #00873D; }
-.pdp-shipping__result.is-error { color: #D95B00; }
 
-/* ----- Ligação a partir de produtos.html (o js/main.js transforma o nome em link) ----- */
-.page--products .product-card.is-linked,
-.page--home .product-card.is-linked { cursor: pointer; }
+
 .page--products .product-card h2 a,
 .page--home .product-card h3 a { text-decoration: none; }
 .page--products .product-card h2 a:hover,
@@ -2523,4 +1964,276 @@ a.pdp-btn--outline:link, a.pdp-btn--outline:visited, a.pdp-btn--outline:active {
   .pdp-thumb { padding: 0.2rem; }
   .pdp-rating { text-align: left; }
   .pdp-btn { min-height: 52px; font-size: 1.1rem; }
+}
+
+/* ==========================================================================
+   15. GRID DE 12 COLUNAS (apostila, seção 45.3 Grid-View e seção 46 Media Query)
+   Ideia da apostila: 100% de largura / 12 colunas = 8,3333% por coluna.
+   - box-sizing: border-box vale para todas as caixas (regra "*" no início do arquivo)
+   - .row é a linha; .col-1 ... .col-12 são as colunas (desktop)
+   - .col-t-1 ... .col-t-12 valem no TABLET (até 1100px) e .col-m-1 ... .col-m-12 no CELULAR (até 720px)
+   - Coluna sem .col-t-* ou .col-m-* ocupa a linha toda (100%) nessas telas
+   Exemplo: <div class="col-3 col-t-6 col-m-12"> = 4 por linha no desktop, 2 no tablet, 1 no celular
+   (A apostila usa float; aqui as colunas usam Flexbox, que também deixa os cartões da mesma linha com a mesma altura.)
+   ========================================================================== */
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -0.75rem;
+  margin-left: -0.75rem;
+}
+
+/* Toda coluna começa com 100% de largura e tem 0,75rem de "calha" de cada lado */
+[class*="col-"] {
+  flex: 0 0 100%;
+  max-width: 100%;
+  min-width: 0;
+  padding: 0 0.75rem 1.5rem;
+}
+
+/* Desktop */
+.col-1 { flex-basis: 8.3333%; max-width: 8.3333%; }
+.col-2 { flex-basis: 16.6667%; max-width: 16.6667%; }
+.col-3 { flex-basis: 25%; max-width: 25%; }
+.col-4 { flex-basis: 33.3333%; max-width: 33.3333%; }
+.col-5 { flex-basis: 41.6667%; max-width: 41.6667%; }
+.col-6 { flex-basis: 50%; max-width: 50%; }
+.col-7 { flex-basis: 58.3333%; max-width: 58.3333%; }
+.col-8 { flex-basis: 66.6667%; max-width: 66.6667%; }
+.col-9 { flex-basis: 75%; max-width: 75%; }
+.col-10 { flex-basis: 83.3333%; max-width: 83.3333%; }
+.col-11 { flex-basis: 91.6667%; max-width: 91.6667%; }
+.col-12 { flex-basis: 100%; max-width: 100%; }
+
+/* Tablet (até 1100px) */
+@media (max-width: 1100px) {
+  [class*="col-"] { flex-basis: 100%; max-width: 100%; }
+  .col-t-1 { flex-basis: 8.3333%; max-width: 8.3333%; }
+  .col-t-2 { flex-basis: 16.6667%; max-width: 16.6667%; }
+  .col-t-3 { flex-basis: 25%; max-width: 25%; }
+  .col-t-4 { flex-basis: 33.3333%; max-width: 33.3333%; }
+  .col-t-5 { flex-basis: 41.6667%; max-width: 41.6667%; }
+  .col-t-6 { flex-basis: 50%; max-width: 50%; }
+  .col-t-7 { flex-basis: 58.3333%; max-width: 58.3333%; }
+  .col-t-8 { flex-basis: 66.6667%; max-width: 66.6667%; }
+  .col-t-9 { flex-basis: 75%; max-width: 75%; }
+  .col-t-10 { flex-basis: 83.3333%; max-width: 83.3333%; }
+  .col-t-11 { flex-basis: 91.6667%; max-width: 91.6667%; }
+  .col-t-12 { flex-basis: 100%; max-width: 100%; }
+}
+
+/* Celular (até 720px) */
+@media (max-width: 720px) {
+  [class*="col-"] { flex-basis: 100%; max-width: 100%; }
+  .col-m-1 { flex-basis: 8.3333%; max-width: 8.3333%; }
+  .col-m-2 { flex-basis: 16.6667%; max-width: 16.6667%; }
+  .col-m-3 { flex-basis: 25%; max-width: 25%; }
+  .col-m-4 { flex-basis: 33.3333%; max-width: 33.3333%; }
+  .col-m-5 { flex-basis: 41.6667%; max-width: 41.6667%; }
+  .col-m-6 { flex-basis: 50%; max-width: 50%; }
+  .col-m-7 { flex-basis: 58.3333%; max-width: 58.3333%; }
+  .col-m-8 { flex-basis: 66.6667%; max-width: 66.6667%; }
+  .col-m-9 { flex-basis: 75%; max-width: 75%; }
+  .col-m-10 { flex-basis: 83.3333%; max-width: 83.3333%; }
+  .col-m-11 { flex-basis: 91.6667%; max-width: 91.6667%; }
+  .col-m-12 { flex-basis: 100%; max-width: 100%; }
+}
+
+/* Cartões dentro de uma coluna ocupam a altura toda (colunas da mesma linha ficam iguais) */
+[class*="col-"] > .product-card,
+[class*="col-"] > .info-card,
+[class*="col-"] > .staff-card,
+[class*="col-"] > .institutional__banner { height: 100%; }
+
+/* ==========================================================================
+   Ajustes que antes eram injetados pelo JavaScript: margens laterais iguais às do cabeçalho
+   (3rem no desktop, 2rem no tablet e 1,25rem no celular)
+   ========================================================================== */
+.help-main, .account-main { width: min(100%, 1680px); padding-right: 3rem; padding-left: 3rem; }
+
+@media (max-width: 1100px) {
+  .site-menu, .help-main, .account-main { padding-right: 2rem; padding-left: 2rem; }
+}
+
+@media (max-width: 720px) {
+  .site-menu, .help-main, .account-main { padding-right: 1.25rem; padding-left: 1.25rem; }
+}
+
+/* ==========================================================================
+   HOME, PRODUTOS E CABEÇALHO NA VERSÃO COM GRID (substituem as regras antigas removidas)
+   ========================================================================== */
+
+/* Banner principal (agora estático, sem carrossel) */
+.hero-banner { width: min(100%, 1610px); margin: 0 auto; }
+.hero__eyebrow { margin: 0 0 .7rem; color: #FFB36E; font-size: .9rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.hero__badge { position: absolute; right: 2rem; bottom: 1.5rem; z-index: 3; padding: .55rem .8rem; background: #FF6B00; border-radius: 9px; color: #FFF; font-size: .85rem; font-weight: 800; text-transform: uppercase; }
+
+/* Categorias: 4 por linha (col-3) no desktop e tablet, 2 por linha (col-6) no celular */
+.categories { width: min(100%, 1790px); margin: clamp(4.5rem, 5.5vw, 5.8rem) auto 0; }
+.categories [class*="col-"] { display: flex; justify-content: center; padding-bottom: 1.8rem; }
+
+/* Banners institucionais: 3 colunas (col-4) que empilham no tablet */
+.institutional { width: min(100%, 1610px); margin: clamp(4rem, 5vw, 5.5rem) auto 0; }
+
+/* Página de produtos: filtros (col-2) + vitrine (col-10) */
+.products-main { width: min(100%, 1680px); margin: 0 auto; padding: 2.5rem 3rem 4rem; }
+.products-main .filters { padding-bottom: 1.5rem; }
+
+/* Páginas de acesso: o aviso extra (aside) fica logo abaixo do card */
+.auth-main { align-content: center; row-gap: 1.25rem; }
+.auth-aside { width: min(100%, 560px); padding: 1rem 1.5rem; background: #FFFFFF; border-radius: 16px; text-align: center; }
+.auth-aside p { margin: 0; }
+.auth-aside a { color: #D95B00; font-weight: 700; }
+
+@media (max-width: 1100px) {
+  .products-main { padding: 1.5rem 2rem 3rem; }
+}
+
+@media (max-width: 720px) {
+  .products-main { padding: 1.5rem 1.15rem 3rem; }
+  .hero__badge { right: 1rem; bottom: 1rem; font-size: .7rem; }
+  .hero-banner .hero { min-height: 700px; }
+  .hero-banner .hero__copy { padding-bottom: 260px; }
+}
+
+/* ==========================================================================
+   16. PÁGINAS NOVAS (sobre.html, faq.html, contato.html)
+   ========================================================================== */
+.content-main { width: min(100%, 1680px); margin: 0 auto; padding: 3rem 3rem 4rem; }
+
+.page-title { margin-bottom: 2rem; }
+.page-title h1 { margin: 0; font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.15; }
+.page-title h1 span, .company-profile h2 span { color: #FF6B00; }
+.eyebrow { margin: 0 0 .4rem; color: #D95B00; font-size: .85rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+
+.section-title { margin: 0 0 1rem; padding-left: .75rem; border-left: 6px solid #FF6B00; font-size: 1.5rem; font-weight: 800; }
+
+/* Cartão de texto (cinza claro) e a versão escura (mesmo degradê do banner) */
+.info-card { padding: 1.8rem; background: #F8F8F8; border: 3px solid #E0E0E0; border-radius: 22px; }
+.info-card h2, .info-card h3 { margin: 0 0 .8rem; color: #004B63; }
+.info-card h3 { font-size: 1.3rem; }
+.info-card p { margin: 0 0 .9rem; color: #1A1A1B; line-height: 1.6; }
+.info-card p:last-child { margin-bottom: 0; }
+.info-card a { color: #D95B00; font-weight: 700; }
+
+.info-card--dark { background: linear-gradient(105deg, #000000 0%, #00384A 63%, #004B63 100%); border-color: transparent; }
+.info-card--dark h2, .info-card--dark h3 { color: #FFB36E; }
+.info-card--dark p, .info-card--dark li { color: #FFFFFF; }
+.info-card--dark a { color: #FFFFFF; }
+
+/* Sobre: o perfil da empresa e os valores usam a largura toda do conteúdo */
+.content-main .company-profile, .content-main .values { width: 100%; margin: 0 0 2.5rem; }
+.company-profile__intro .eyebrow { color: #D95B00; }
+.company-profile__intro p:not(.eyebrow) { max-width: 760px; margin: .6rem 0 0; color: #1A1A1B; font-size: 1.1rem; line-height: 1.5; }
+
+/* Caixa de chamada (aside) e segundo tipo de botão */
+.cta-box { padding: 2.2rem 1.5rem; background: linear-gradient(105deg, #000000 0%, #00384A 63%, #004B63 100%); border-radius: 27px; color: #FFFFFF; text-align: center; }
+.cta-box h2 { margin: 0 0 .6rem; color: #FFFFFF; font-size: clamp(1.4rem, 2.4vw, 2rem); }
+.cta-box p { margin: 0 0 1.2rem; color: #E0E0E0; line-height: 1.5; }
+.cta-box p:last-child { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-bottom: 0; }
+.cta-box--side img { display: block; width: min(220px, 70%); margin: 0 auto 1rem; }
+
+.button--outline, a.button--outline:link, a.button--outline:visited { background: #FFFFFF; border: 3px solid #FF6B00; color: #000000; }
+.button--outline:hover, .button--outline:focus-visible, a.button--outline:hover { background: #FF6B00; color: #FFFFFF; }
+
+/* FAQ: <details> e <summary> */
+.faq-group { margin-bottom: 2rem; }
+.faq-group details { margin-bottom: .75rem; background: #F8F8F8; border: 3px solid #E0E0E0; border-radius: 16px; }
+.faq-group details[open] { border-color: #FF6B00; }
+.faq-group summary { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 1.25rem; font-weight: 800; cursor: pointer; list-style: none; }
+.faq-group summary::-webkit-details-marker { display: none; }
+.faq-group summary::after { content: "+"; flex-shrink: 0; color: #FF6B00; font-size: 1.6rem; line-height: 1; }
+.faq-group details[open] summary::after { content: "−"; }
+.faq-group summary:hover { color: #D95B00; }
+.faq-group details p { margin: 0; padding: 0 1.25rem 1.25rem; color: #1A1A1B; line-height: 1.6; }
+.faq-group details a { color: #D95B00; font-weight: 700; }
+
+/* Contato: formulário com validação nativa do HTML5 */
+.contact-form fieldset { margin: 0 0 1.5rem; padding: 1rem .75rem .25rem; border: 2px solid #E0E0E0; border-radius: 16px; }
+.contact-form legend { padding: 0 .5rem; color: #004B63; font-weight: 800; }
+.contact-form .field-label { margin: 0; font-size: 1.1rem; font-weight: 800; }
+.contact-form .form-field input:invalid:not(:placeholder-shown), .contact-form .form-field textarea:invalid:not(:placeholder-shown) { border-color: #C62828; }
+.contact-form .choice-group { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; padding: .7rem 0; }
+.form-field .choice, .form-field .choice-group label { display: flex; align-items: center; gap: .5rem; font-size: 1rem; font-weight: 400; }
+.form-field .choice input, .form-field .choice-group input { width: 20px; min-height: 0; height: 20px; accent-color: #FF6B00; }
+.form-buttons { display: flex; flex-wrap: wrap; gap: 1rem; }
+.form-buttons .button { min-height: 56px; border-radius: 15px; cursor: pointer; }
+
+.plain-list { display: grid; gap: .7rem; margin: 0 0 1.2rem; padding: 0; list-style: none; }
+.info-card--dark address { font-style: normal; }
+
+/* ==========================================================================
+   17. DASHBOARD - PAINEL DO FUNCIONÁRIO (dashboard.html)
+   ========================================================================== */
+.staff-main { width: min(100%, 1680px); margin: 0 auto; padding: 2.5rem 3rem 4rem; }
+.staff-title h1 { margin: 0 0 .4rem; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; }
+.staff-title p { margin: 0 0 1.5rem; color: #555555; }
+
+/* Números do catálogo */
+.staff-card { padding: 1.2rem 1.4rem; background: #FFFFFF; border: 3px solid #E0E0E0; border-radius: 20px; }
+.staff-card h2 { margin: 0 0 .4rem; color: #555555; font-size: 1rem; font-weight: 700; }
+.staff-card__number { margin: 0; color: #004B63; font-size: 2.4rem; font-weight: 800; }
+.staff-card--warn { border-color: #E8B100; }
+.staff-card--warn .staff-card__number { color: #9A6F00; }
+.staff-card--danger { border-color: #C62828; }
+.staff-card--danger .staff-card__number { color: #C62828; }
+
+/* Menu lateral */
+.staff-nav { padding: 1.4rem; border: 3px solid #E0E0E0; border-radius: 20px; }
+.staff-nav h2 { margin: 0 0 .8rem; font-size: 1.2rem; }
+.staff-nav ul { display: grid; gap: .4rem; margin: 0; padding: 0; list-style: none; }
+.staff-nav a { display: block; padding: .6rem .8rem; border-radius: 10px; font-weight: 700; text-decoration: none; }
+.staff-nav a:hover, .staff-nav a:focus-visible, .staff-nav a[aria-current="page"] { background: #00384A; color: #FFFFFF; }
+
+/* Painel e tabela de produtos */
+.staff-panel { padding: 1.2rem; background: #FFFFFF; border: 3px solid #E0E0E0; border-radius: 20px; }
+.staff-panel__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.staff-panel__head h2 { margin: 0; font-size: 1.4rem; }
+.button--small { min-height: 46px; padding: .5rem 1.1rem; font-size: .9rem; }
+
+.staff-table-wrap { overflow-x: auto; }
+.staff-table { width: 100%; min-width: 820px; border-collapse: collapse; }
+.staff-table th { padding: .8rem; background: #000000; color: #FFFFFF; font-size: .9rem; text-align: left; }
+.staff-table td { padding: .7rem .8rem; border-bottom: 1px solid #E0E0E0; vertical-align: middle; }
+.staff-table tbody tr:hover { background: #FFF4EA; }
+.staff-table small { color: #777777; }
+.staff-table td[data-label="Preço"], .staff-table td[data-label="Preço com PIX"] { white-space: nowrap; }
+.staff-table tfoot td { background: #F3F3F3; border-top: 3px solid #000000; font-weight: 800; }
+.staff-thumb { display: block; width: 56px; height: 56px; background: #F8F8F8; border-radius: 10px; object-fit: contain; }
+
+.stock { display: inline-block; padding: .2rem .6rem; border-radius: 999px; font-size: .8rem; font-weight: 800; white-space: nowrap; }
+.stock--ok { background: #DDF3E1; color: #1B6B2F; }
+.stock--low { background: #FFF1C2; color: #7A5900; }
+.stock--out { background: #FBD9D9; color: #9B1C1C; }
+
+/* Botões Editar e Excluir de cada linha */
+.staff-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+.button-edit, .button-delete { min-height: 40px; padding: .4rem .9rem; background: #FFFFFF; border: 2px solid; border-radius: 10px; font-weight: 800; }
+.button-edit { border-color: #FF6B00; color: #D95B00; }
+.button-edit:hover, .button-edit:focus-visible { background: #FF6B00; color: #FFFFFF; }
+.button-delete { border-color: #C62828; color: #C62828; }
+.button-delete:hover, .button-delete:focus-visible { background: #C62828; color: #FFFFFF; }
+
+/* Tablet e celular das páginas novas */
+@media (max-width: 1100px) {
+  .content-main, .staff-main { padding-right: 2rem; padding-left: 2rem; }
+}
+
+@media (max-width: 720px) {
+  .content-main { padding: 2rem 1.15rem 3rem; }
+  .staff-main { padding: 1.5rem 1.15rem 3rem; }
+
+  /* Tabela vira uma lista de cartões: o rótulo de cada célula vem do atributo data-label */
+  .staff-table { min-width: 0; }
+  .staff-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+  .staff-table, .staff-table tbody, .staff-table tfoot, .staff-table tr, .staff-table td { display: block; }
+  .staff-table tbody tr { margin-bottom: 1rem; padding: .5rem .9rem; border: 2px solid #E0E0E0; border-radius: 16px; }
+  .staff-table td { display: flex; justify-content: space-between; align-items: center; gap: 1rem; border-bottom: 1px solid #E0E0E0; text-align: right; }
+  .staff-table tbody td:last-child { border-bottom: 0; }
+  .staff-table td::before { content: attr(data-label); color: #1A1A1B; font-weight: 800; text-align: left; }
+  .staff-table tfoot td { display: block; text-align: left; }
+  .staff-actions { justify-content: flex-end; }
+  .staff-table td[data-label="Produto"] { display: block; text-align: left; }
+  .staff-table td[data-label="Produto"]::before { display: block; margin-bottom: .3rem; }
 }
