@@ -1,40 +1,44 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Meus Pedidos - AXIS</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body class="page">
 
-<!-- CABEÇALHO (fixo no topo e igual em todas as páginas da loja) -->
-<header class="site-header">
-  <nav class="topbar" aria-label="Navegação principal">
-    <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
-    <form class="search-bar" action="produtos.html" method="get" role="search">
-      <label class="sr-only" for="busca">Pesquisar produtos</label>
-      <input id="busca" name="busca" type="search" placeholder="Pesquisar" autocomplete="off">
-      <button type="submit" aria-label="Buscar produtos"><img src="assets/icons/header/icon-search.png" alt=""></button>
-    </form>
-    <div class="header-actions" aria-label="Ações rápidas">
-      <a class="header-icon" href="login.html" data-open-login aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
-      <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho"><img src="assets/icons/header/icon-cart.png" alt=""></a>
-      <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu"><img src="assets/icons/header/icon-menu.png" alt=""><span class="sr-only">Abrir menu</span></button>
-    </div>
-  </nav>
-  <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
-    <ul>
-      <li><a href="index.html">Início</a></li>
-      <li><a href="index.html#categorias">Categorias</a></li>
-      <li><a href="produtos.html">Produtos</a></li>
-      <li><a href="meuspedidos.html">Meus pedidos</a></li>
-      <li><a href="minha-conta.html">Minha conta</a></li>
-      <li><a href="ajuda.html">Ajuda</a></li>
-    </ul>
-  </nav>
-</header>
+  <!-- CABEÇALHO (fixo no topo; mesma marcação e mesma altura em todas as páginas) -->
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar" autocomplete="off">
+        <button type="submit" aria-label="Buscar produtos"><img src="assets/icons/header/icon-search.png" alt=""></button>
+      </form>
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
+        <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho"><img src="assets/icons/header/icon-cart.png" alt=""></a>
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu"><img src="assets/icons/header/icon-menu.png" alt=""><span class="sr-only">Abrir menu</span></button>
+      </div>
+    </nav>
+    <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#categorias">Categorias</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="meuspedidos.html">Meus pedidos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+        <li><a href="dashboard.html">Painel do funcionário</a></li>
+      </ul>
+    </nav>
+  </header>
 
 
 <main class="pedidos-main">
@@ -42,7 +46,7 @@
     <h1>Meus Pedidos</h1>
 
     <!-- PEDIDO 1 -->
-    <section class="pedido">
+    <article class="pedido">
 
         <div class="pedido-info">
 
@@ -74,6 +78,7 @@
             <button
                 class="editar"
                 type="button"
+                data-alert="Aqui abriria a edição do pedido (demonstração)."
             >
                 Editar Pedido
             </button>
@@ -81,11 +86,7 @@
             <button
                 class="avaliar"
                 type="button"
-                onclick="abrirAvaliacao(
-                    'Motorola Moto G35',
-                    'assets/images/products/product-phone.png',
-                    'Previsão de entrega: domingo'
-                )"
+                data-alert="Aqui abriria o formulário de avaliação (demonstração)."
             >
                 Avaliar
             </button>
@@ -93,21 +94,18 @@
             <button
                 class="cancelar"
                 type="button"
-                onclick="abrirCancelamento(
-                    'Motorola Moto G35',
-                    'assets/images/products/product-phone.png'
-                )"
+                data-alert="Pedido cancelado (demonstração)."
             >
                 Cancelar Pedido
             </button>
 
         </div>
 
-    </section>
+    </article>
 
 
     <!-- PEDIDO 2 -->
-    <section class="pedido">
+    <article class="pedido">
 
         <div class="pedido-info">
 
@@ -146,11 +144,7 @@
             <button
                 class="avaliar"
                 type="button"
-                onclick="abrirAvaliacao(
-                    'Redmi Watch 5 Active',
-                    'assets/images/products/product-clock.png',
-                    'Entregue no dia 24 de junho'
-                )"
+                data-alert="Aqui abriria o formulário de avaliação (demonstração)."
             >
                 Avaliar
             </button>
@@ -158,21 +152,18 @@
             <button
                 class="reembolso"
                 type="button"
-                onclick="abrirReembolso(
-                    'Redmi Watch 5 Active',
-                    'assets/images/products/product-clock.png'
-                )"
+                data-alert="Reembolso solicitado (demonstração)."
             >
                 Reembolso
             </button>
 
         </div>
 
-    </section>
+    </article>
 
 
     <!-- PEDIDO 3 -->
-    <section class="pedido">
+    <article class="pedido">
 
         <div class="pedido-info">
 
@@ -211,11 +202,7 @@
             <button
                 class="avaliar"
                 type="button"
-                onclick="abrirAvaliacao(
-                    'Mouse Logitech M170',
-                    'assets/images/products/product-mouse.png',
-                    'Entregue no dia 08 de junho'
-                )"
+                data-alert="Aqui abriria o formulário de avaliação (demonstração)."
             >
                 Avaliar
             </button>
@@ -223,210 +210,82 @@
             <button
                 class="reembolso"
                 type="button"
-                onclick="abrirReembolso(
-                    'Mouse Logitech M170',
-                    'assets/images/products/product-mouse.png'
-                )"
+                data-alert="Reembolso solicitado (demonstração)."
             >
                 Reembolso
             </button>
 
         </div>
 
-    </section>
+    </article>
 
 </main>
 
-<div id="modalAvaliacao" class="modal">
-
-    <div class="janela-avaliacao">
-
-        <button
-            class="fechar-modal"
-            type="button"
-            onclick="fecharAvaliacao()"
-        >
-            ×
-        </button>
-        <div class="avaliacao-conteudo">
-            <div class="avaliacao-esquerda">
-                <h2>Avaliar este produto</h2>
-                <div
-                    id="estrelasAvaliacao"
-                    class="estrelas"
-                >
-                    <button type="button" onclick="selecionarEstrela(1)">★</button>
-                    <button type="button" onclick="selecionarEstrela(2)">★</button>
-                    <button type="button" onclick="selecionarEstrela(3)">★</button>
-                    <button type="button" onclick="selecionarEstrela(4)">★</button>
-                    <button type="button" onclick="selecionarEstrela(5)">★</button>
-                </div>
-                <textarea
-                    id="comentarioAvaliacao"
-                    placeholder="Adicionar comentário..."
-                ></textarea>
-
-                <button
-                    class="enviar-avaliacao"
-                    type="button"
-                    onclick="enviarAvaliacao()"
-                >
-                    Enviar
-                </button>
-            </div>
-            <div class="produto-avaliacao">
-                <img
-                    id="imagemAvaliacao"
-                    src=""
-                    alt=""
-                >
-                <h3 id="nomeAvaliacao"></h3>
-                <p id="dataAvaliacao"></p>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="modalCancelamento" class="modal">
-
-    <div class="janela-cancelamento">
-
-        <button
-            class="fechar-modal"
-            type="button"
-            onclick="fecharCancelamento()"
-        >
-            ×
-        </button>
-
-        <div class="cancelamento-conteudo">
-
-            <div class="cancelamento-esquerda">
-
-                <h2 id="tituloCancelamento">
-                    Cancelar Pedido
-                </h2>
-
-                <div class="reembolso">
-
-                    <h3>
-                        Escolha a forma do pagamento do reembolso:
-                    </h3>
-
-                    <label>
-                        <input
-                            type="checkbox"
-                            name="formaReembolso"
-                            value="pix"
-                        >
-
-                        <strong>Pix:</strong>
-                        estorno imediato
-                    </label>
-
-                    <label>
-                        <input
-                            type="checkbox"
-                            name="formaReembolso"
-                            value="cartao"
-                        >
-                        <strong>Cartão:</strong>
-                        na sua próxima fatura.
-                    </label>
-                    <h3 class="confirmar">
-                        Confirmar cancelamento?
-                    </h3>
-                    <div class="botoes-cancelamento">
-
-                        <button
-                            class="botao-sim"
-                            type="button"
-                            onclick="confirmarCancelamento()"
-                        >
-                            SIM
-                        </button>
-                        <button
-                            class="botao-nao"
-                            type="button"
-                            onclick="fecharCancelamento()"
-                        >
-                            NÃO
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="produto-cancelamento">
-                <img
-                    id="imagemCancelamento" src=""alt=""
-                >
-                <h3 id="nomeCancelamento"></h3>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 <!-- RODAPÉ (igual em todas as páginas: mapa do site, redes sociais e contato) -->
-<footer class="site-footer">
-  <div class="site-footer__main">
-    <section class="footer-about" aria-labelledby="footer-about-title">
-      <h2 id="footer-about-title" class="sr-only">Sobre a AXIS</h2>
-      <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
-      <p>Tecnologia no centro das suas escolhas. Hardware, gadgets e eletrônicos com preço justo e entrega relâmpago.</p>
-      <ul class="social-links" aria-label="Redes sociais da AXIS">
-        <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Instagram" title="Instagram">IG</a></li>
-        <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Facebook" title="Facebook">FB</a></li>
-        <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no YouTube" title="YouTube">YT</a></li>
-        <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no X" title="X">X</a></li>
-        <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no WhatsApp" title="WhatsApp">WA</a></li>
-      </ul>
-    </section>
-    <nav class="footer-column" aria-labelledby="footer-sitemap-title">
-      <h2 id="footer-sitemap-title">Mapa do site</h2>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="produtos.html">Produtos</a></li>
-        <li><a href="carrinho.html">Carrinho</a></li>
-        <li><a href="meuspedidos.html">Meus pedidos</a></li>
-        <li><a href="minha-conta.html">Minha conta</a></li>
-        <li><a href="login.html">Entrar</a></li>
-        <li><a href="cadastro.html">Criar conta</a></li>
-        <li><a href="ajuda.html">Ajuda</a></li>
-      </ul>
-    </nav>
-    <nav class="footer-column" aria-labelledby="footer-departments-title">
-      <h2 id="footer-departments-title">Departamentos</h2>
-      <ul>
-        <li><a href="produtos.html?categoria=smartphones">Smartphones</a></li>
-        <li><a href="produtos.html?categoria=notebooks">Notebooks</a></li>
-        <li><a href="produtos.html?categoria=televisores">Televisores</a></li>
-        <li><a href="produtos.html?categoria=audio">Áudio Profissional</a></li>
-        <li><a href="produtos.html?categoria=pcs">PCs</a></li>
-        <li><a href="produtos.html?categoria=tablets">Tablets</a></li>
-        <li><a href="produtos.html?categoria=conectividade">Conectividade</a></li>
-        <li><a href="produtos.html?categoria=acessorios">Acessórios</a></li>
-      </ul>
-    </nav>
-    <section class="footer-column" aria-labelledby="footer-contact-title">
-      <h2 id="footer-contact-title">Contato</h2>
-      <address>
-        <ul>
-          <li>Av. das Tecnologias, 1000 – Centro<br>Cidade Exemplo – UF, 00000-000</li>
-          <li><a href="tel:+550000000000">Tel.: (00) 4000-0000</a></li>
-          <li><a href="https://wa.me/">WhatsApp: (00) 90000-0000</a></li>
-          <li><a href="mailto:contato@axis.example">contato@axis.example</a></li>
-          <li>Seg a Sex, 8h às 18h<br>Sáb, 9h às 13h</li>
+  <footer class="site-footer">
+    <div class="site-footer__main">
+      <section class="footer-about" aria-labelledby="footer-about-title">
+        <h2 id="footer-about-title" class="sr-only">Sobre a AXIS</h2>
+        <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+        <p>Tecnologia no centro das suas escolhas. Hardware, gadgets e eletrônicos com preço justo e entrega relâmpago.</p>
+        <ul class="social-links" aria-label="Redes sociais da AXIS">
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Instagram" title="Instagram">IG</a></li>
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Facebook" title="Facebook">FB</a></li>
+          <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no YouTube" title="YouTube">YT</a></li>
+          <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no X" title="X">X</a></li>
+          <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no WhatsApp" title="WhatsApp">WA</a></li>
         </ul>
-      </address>
-    </section>
-  </div>
-  <div class="site-footer__bottom">
-    <p>© 2026 AXIS. Todos os direitos reservados.</p>
-    <a class="back-to-top" href="#">Voltar ao topo ↑</a>
-  </div>
-</footer>
+      </section>
+      <nav class="footer-column" aria-labelledby="footer-sitemap-title">
+        <h2 id="footer-sitemap-title">Mapa do site</h2>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="carrinho.html">Carrinho</a></li>
+          <li><a href="meuspedidos.html">Meus pedidos</a></li>
+          <li><a href="minha-conta.html">Minha conta</a></li>
+          <li><a href="login.html">Entrar</a></li>
+          <li><a href="cadastro.html">Criar conta</a></li>
+          <li><a href="ajuda.html">Ajuda</a></li>
+          <li><a href="dashboard.html">Painel do funcionário</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-column" aria-labelledby="footer-departments-title">
+        <h2 id="footer-departments-title">Departamentos</h2>
+        <ul>
+          <li><a href="produtos.html?categoria=smartphones">Smartphones</a></li>
+          <li><a href="produtos.html?categoria=notebooks">Notebooks</a></li>
+          <li><a href="produtos.html?categoria=televisores">Televisores</a></li>
+          <li><a href="produtos.html?categoria=audio">Áudio Profissional</a></li>
+          <li><a href="produtos.html?categoria=pcs">PCs</a></li>
+          <li><a href="produtos.html?categoria=tablets">Tablets</a></li>
+          <li><a href="produtos.html?categoria=conectividade">Conectividade</a></li>
+          <li><a href="produtos.html?categoria=acessorios">Acessórios</a></li>
+        </ul>
+      </nav>
+      <section class="footer-column" aria-labelledby="footer-contact-title">
+        <h2 id="footer-contact-title">Contato</h2>
+        <address>
+          <ul>
+            <li>Av. das Tecnologias, 1000 – Centro<br>Cidade Exemplo – UF, 00000-000</li>
+            <li><a href="tel:+550000000000">Tel.: (00) 4000-0000</a></li>
+            <li><a href="https://wa.me/">WhatsApp: (00) 90000-0000</a></li>
+            <li><a href="mailto:contato@axis.example">contato@axis.example</a></li>
+            <li>Seg a Sex, 8h às 18h<br>Sáb, 9h às 13h</li>
+          </ul>
+        </address>
+      </section>
+    </div>
+    <div class="site-footer__bottom">
+      <p>© 2026 AXIS. Todos os direitos reservados.</p>
+      <a class="back-to-top" href="#">Voltar ao topo ↑</a>
+    </div>
+  </footer>
 
 
-<script src="js/main.js"></script>
-
+  <script src="js/main.js"></script>
 </body>
 </html>
