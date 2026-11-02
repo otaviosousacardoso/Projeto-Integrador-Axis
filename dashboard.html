@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Painel do funcionário AXIS - tabela de gestão de produtos com dados estáticos.">
+  <title>Painel do funcionário | AXIS</title>
+  <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="page page--staff">
+  <!-- CABEÇALHO (fixo no topo; mesma marcação e mesma altura em todas as páginas) -->
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar" autocomplete="off">
+        <button type="submit" aria-label="Buscar produtos"><img src="assets/icons/header/icon-search.png" alt=""></button>
+      </form>
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
+        <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho"><img src="assets/icons/header/icon-cart.png" alt=""></a>
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu"><img src="assets/icons/header/icon-menu.png" alt=""><span class="sr-only">Abrir menu</span></button>
+      </div>
+    </nav>
+    <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#categorias">Categorias</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="meuspedidos.html">Meus pedidos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+        <li><a href="dashboard.html">Painel do funcionário</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="staff-main">
+    <div class="staff-title">
+      <h1>Painel do Funcionário</h1>
+      <p>Gestão de produtos da AXIS. Os dados abaixo são fixos (demonstração) e os botões apenas mostram um aviso.</p>
+    </div>
+
+    <!-- Números do catálogo: 4 colunas no desktop, 2 no tablet, 1 no celular -->
+    <section class="staff-summary" aria-label="Resumo do catálogo">
+      <div class="row">
+        <div class="col-3 col-t-6 col-m-12">
+          <article class="staff-card"><h2>Produtos cadastrados</h2><p class="staff-card__number">8</p></article>
+        </div>
+        <div class="col-3 col-t-6 col-m-12">
+          <article class="staff-card"><h2>Unidades em estoque</h2><p class="staff-card__number">325</p></article>
+        </div>
+        <div class="col-3 col-t-6 col-m-12">
+          <article class="staff-card staff-card--warn"><h2>Estoque baixo</h2><p class="staff-card__number">1</p></article>
+        </div>
+        <div class="col-3 col-t-6 col-m-12">
+          <article class="staff-card staff-card--danger"><h2>Esgotados</h2><p class="staff-card__number">1</p></article>
+        </div>
+      </div>
+    </section>
+
+    <div class="row">
+      <!-- Menu lateral do painel (links simples) -->
+      <aside class="col-3 col-t-12" aria-label="Atalhos do painel">
+        <nav class="staff-nav" aria-label="Menu do painel do funcionário">
+          <h2>Atalhos</h2>
+          <ul>
+            <li><a href="#produtos-gestao" aria-current="page">Gestão de produtos</a></li>
+            <li><a href="produtos.html">Ver a loja</a></li>
+            <li><a href="contato.html">Falar com o suporte</a></li>
+            <li><a href="login.html">Sair</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <!-- Tabela de gestão de produtos (dados estáticos em HTML) -->
+      <section id="produtos-gestao" class="col-9 col-t-12" aria-labelledby="gestao-title">
+        <div class="staff-panel">
+          <div class="staff-panel__head">
+            <h2 id="gestao-title">Gestão de produtos</h2>
+            <button class="button button--offer button--small" type="button" data-alert="Aqui abriria o formulário de novo produto (demonstração).">+ Novo produto</button>
+          </div>
+          <div class="staff-table-wrap">
+            <table class="staff-table">
+              <caption class="sr-only">Produtos cadastrados na AXIS</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Foto</th>
+                  <th scope="col">Produto</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Preço</th>
+                  <th scope="col">Preço com PIX</th>
+                  <th scope="col">Estoque</th>
+                  <th scope="col">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-pc.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6</strong><br><small>SKU: LENO-IDEAPAD1-R3</small></td>
+              <td data-label="Categoria">Notebooks</td>
+              <td data-label="Preço">R$ 3.599,90</td>
+              <td data-label="Preço com PIX">R$ 3.419,91</td>
+              <td data-label="Estoque"><span class="stock stock--ok">18 un.</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6 (demonstração: nada é alterado)." aria-label="Editar Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6 (demonstração: nada é removido)." aria-label="Excluir Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-phone.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7&quot;</strong><br><small>SKU: MOTO-G35-256</small></td>
+              <td data-label="Categoria">Smartphones</td>
+              <td data-label="Preço">R$ 1.299,90</td>
+              <td data-label="Preço com PIX">R$ 1.234,91</td>
+              <td data-label="Estoque"><span class="stock stock--ok">42 un.</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7” (demonstração: nada é alterado)." aria-label="Editar Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7&quot;">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7” (demonstração: nada é removido)." aria-label="Excluir Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7&quot;">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-headphone.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul</strong><br><small>SKU: JBL-T530BT-AZUL</small></td>
+              <td data-label="Categoria">Áudio Profissional</td>
+              <td data-label="Preço">R$ 249,90</td>
+              <td data-label="Preço com PIX">R$ 237,41</td>
+              <td data-label="Estoque"><span class="stock stock--ok">67 un.</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul (demonstração: nada é alterado)." aria-label="Editar Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul (demonstração: nada é removido)." aria-label="Excluir Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-mouse.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul</strong><br><small>SKU: LOGI-M170-AZUL</small></td>
+              <td data-label="Categoria">Acessórios</td>
+              <td data-label="Preço">R$ 59,90</td>
+              <td data-label="Preço com PIX">R$ 56,91</td>
+              <td data-label="Estoque"><span class="stock stock--ok">150 un.</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul (demonstração: nada é alterado)." aria-label="Editar Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul (demonstração: nada é removido)." aria-label="Excluir Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-tv.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Samsung Smart TV 50&quot; Crystal UHD 4K</strong><br><small>SKU: SAMS-TV50-CUHD</small></td>
+              <td data-label="Categoria">Televisores</td>
+              <td data-label="Preço">R$ 2.799,90</td>
+              <td data-label="Preço com PIX">R$ 2.659,91</td>
+              <td data-label="Estoque"><span class="stock stock--ok">9 un.</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Samsung Smart TV 50” Crystal UHD 4K (demonstração: nada é alterado)." aria-label="Editar Samsung Smart TV 50&quot; Crystal UHD 4K">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Samsung Smart TV 50” Crystal UHD 4K (demonstração: nada é removido)." aria-label="Excluir Samsung Smart TV 50&quot; Crystal UHD 4K">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-tablet.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Tablet Samsung Galaxy Tab A9 Enterprise Edition</strong><br><small>SKU: SAMS-TABA9-ENT</small></td>
+              <td data-label="Categoria">Tablets</td>
+              <td data-label="Preço">R$ 1.199,90</td>
+              <td data-label="Preço com PIX">R$ 1.139,91</td>
+              <td data-label="Estoque"><span class="stock stock--low">4 un. (baixo)</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Tablet Samsung Galaxy Tab A9 Enterprise Edition (demonstração: nada é alterado)." aria-label="Editar Tablet Samsung Galaxy Tab A9 Enterprise Edition">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Tablet Samsung Galaxy Tab A9 Enterprise Edition (demonstração: nada é removido)." aria-label="Excluir Tablet Samsung Galaxy Tab A9 Enterprise Edition">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-clock.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Smartwatch Redmi Watch 5 Active, Tela 2&quot;, Lacre</strong><br><small>SKU: REDMI-W5-ACTIVE</small></td>
+              <td data-label="Categoria">Acessórios</td>
+              <td data-label="Preço">R$ 299,90</td>
+              <td data-label="Preço com PIX">R$ 284,91</td>
+              <td data-label="Estoque"><span class="stock stock--ok">35 un.</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Smartwatch Redmi Watch 5 Active, Tela 2”, Lacre (demonstração: nada é alterado)." aria-label="Editar Smartwatch Redmi Watch 5 Active, Tela 2&quot;, Lacre">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Smartwatch Redmi Watch 5 Active, Tela 2”, Lacre (demonstração: nada é removido)." aria-label="Excluir Smartwatch Redmi Watch 5 Active, Tela 2&quot;, Lacre">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-intel.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Processador Intel Core Ultra 5 Desktop</strong><br><small>SKU: INTEL-CU5-DESK</small></td>
+              <td data-label="Categoria">PCs</td>
+              <td data-label="Preço">R$ 1.899,90</td>
+              <td data-label="Preço com PIX">R$ 1.804,91</td>
+              <td data-label="Estoque"><span class="stock stock--out">Esgotado</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Processador Intel Core Ultra 5 Desktop (demonstração: nada é alterado)." aria-label="Editar Processador Intel Core Ultra 5 Desktop">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Processador Intel Core Ultra 5 Desktop (demonstração: nada é removido)." aria-label="Excluir Processador Intel Core Ultra 5 Desktop">Excluir</button>
+                </div>
+              </td>
+            </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="5">Total: 8 produtos</td>
+                  <td colspan="2">325 unidades</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- RODAPÉ (igual em todas as páginas: mapa do site, redes sociais e contato) -->
+  <footer class="site-footer">
+    <div class="site-footer__main">
+      <section class="footer-about" aria-labelledby="footer-about-title">
+        <h2 id="footer-about-title" class="sr-only">Sobre a AXIS</h2>
+        <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+        <p>Tecnologia no centro das suas escolhas. Hardware, gadgets e eletrônicos com preço justo e entrega relâmpago.</p>
+        <ul class="social-links" aria-label="Redes sociais da AXIS">
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Instagram" title="Instagram">IG</a></li>
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Facebook" title="Facebook">FB</a></li>
+          <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no YouTube" title="YouTube">YT</a></li>
+          <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no X" title="X">X</a></li>
+          <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no WhatsApp" title="WhatsApp">WA</a></li>
+        </ul>
+      </section>
+      <nav class="footer-column" aria-labelledby="footer-sitemap-title">
+        <h2 id="footer-sitemap-title">Mapa do site</h2>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="carrinho.html">Carrinho</a></li>
+          <li><a href="meuspedidos.html">Meus pedidos</a></li>
+          <li><a href="minha-conta.html">Minha conta</a></li>
+          <li><a href="login.html">Entrar</a></li>
+          <li><a href="cadastro.html">Criar conta</a></li>
+          <li><a href="ajuda.html">Ajuda</a></li>
+          <li><a href="dashboard.html">Painel do funcionário</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-column" aria-labelledby="footer-departments-title">
+        <h2 id="footer-departments-title">Departamentos</h2>
+        <ul>
+          <li><a href="produtos.html?categoria=smartphones">Smartphones</a></li>
+          <li><a href="produtos.html?categoria=notebooks">Notebooks</a></li>
+          <li><a href="produtos.html?categoria=televisores">Televisores</a></li>
+          <li><a href="produtos.html?categoria=audio">Áudio Profissional</a></li>
+          <li><a href="produtos.html?categoria=pcs">PCs</a></li>
+          <li><a href="produtos.html?categoria=tablets">Tablets</a></li>
+          <li><a href="produtos.html?categoria=conectividade">Conectividade</a></li>
+          <li><a href="produtos.html?categoria=acessorios">Acessórios</a></li>
+        </ul>
+      </nav>
+      <section class="footer-column" aria-labelledby="footer-contact-title">
+        <h2 id="footer-contact-title">Contato</h2>
+        <address>
+          <ul>
+            <li>Av. das Tecnologias, 1000 – Centro<br>Cidade Exemplo – UF, 00000-000</li>
+            <li><a href="tel:+550000000000">Tel.: (00) 4000-0000</a></li>
+            <li><a href="https://wa.me/">WhatsApp: (00) 90000-0000</a></li>
+            <li><a href="mailto:contato@axis.example">contato@axis.example</a></li>
+            <li>Seg a Sex, 8h às 18h<br>Sáb, 9h às 13h</li>
+          </ul>
+        </address>
+      </section>
+    </div>
+    <div class="site-footer__bottom">
+      <p>© 2026 AXIS. Todos os direitos reservados.</p>
+      <a class="back-to-top" href="#">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

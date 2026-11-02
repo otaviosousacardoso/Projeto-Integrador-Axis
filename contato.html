@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Fale com a AXIS: formulário de contato e canais de atendimento.">
+  <title>Contato | AXIS</title>
+  <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="page page--info">
+  <!-- CABEÇALHO (fixo no topo; mesma marcação e mesma altura em todas as páginas) -->
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar" autocomplete="off">
+        <button type="submit" aria-label="Buscar produtos"><img src="assets/icons/header/icon-search.png" alt=""></button>
+      </form>
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
+        <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho"><img src="assets/icons/header/icon-cart.png" alt=""></a>
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu"><img src="assets/icons/header/icon-menu.png" alt=""><span class="sr-only">Abrir menu</span></button>
+      </div>
+    </nav>
+    <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#categorias">Categorias</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="meuspedidos.html">Meus pedidos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+        <li><a href="dashboard.html">Painel do funcionário</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="content-main">
+    <div class="page-title">
+      <p class="eyebrow">Atendimento</p>
+      <h1>Fale com a <span>AXIS</span></h1>
+    </div>
+
+    <div class="row">
+      <section class="col-8 col-t-12" aria-labelledby="form-contato-title">
+        <article class="info-card">
+          <h2 id="form-contato-title">Envie sua mensagem</h2>
+          <p>Os campos marcados com * são obrigatórios. O navegador valida os dados antes do envio.</p>
+
+          <form class="contact-form" data-alert-submit="Mensagem enviada com sucesso! (demonstração: nenhum dado é guardado)." action="#" method="post">
+            <fieldset>
+              <legend>Seus dados</legend>
+              <div class="row">
+                <div class="col-6 col-m-12 form-field">
+                  <label for="contato-nome">Nome completo *</label>
+                  <input id="contato-nome" name="nome" type="text" autocomplete="name" minlength="3" required placeholder="Maria da Silva">
+                </div>
+                <div class="col-6 col-m-12 form-field">
+                  <label for="contato-email">E-mail *</label>
+                  <input id="contato-email" name="email" type="email" autocomplete="email" required placeholder="voce@email.com">
+                </div>
+                <div class="col-6 col-m-12 form-field">
+                  <label for="contato-telefone">Telefone</label>
+                  <input id="contato-telefone" name="telefone" type="tel" autocomplete="tel" pattern="[0-9() +-]{8,20}" title="Use apenas números, espaços, parênteses, + ou -" placeholder="(00) 90000-0000">
+                </div>
+                <div class="col-6 col-m-12 form-field">
+                  <label for="contato-pedido">Número do pedido</label>
+                  <input id="contato-pedido" name="pedido" type="number" min="1" placeholder="Opcional">
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Sua mensagem</legend>
+              <div class="row">
+                <div class="col-6 col-m-12 form-field">
+                  <label for="contato-assunto">Assunto *</label>
+                  <select id="contato-assunto" name="assunto" required>
+                    <option value="">Selecione...</option>
+                    <option value="duvida">Dúvida sobre produto</option>
+                    <option value="pedido">Meu pedido</option>
+                    <option value="pagamento">Pagamento</option>
+                    <option value="garantia">Garantia e troca</option>
+                    <option value="outro">Outro assunto</option>
+                  </select>
+                </div>
+                <div class="col-6 col-m-12 form-field">
+                  <p class="field-label" id="retorno-label">Prefere receber o retorno por *</p>
+                  <div class="choice-group" role="radiogroup" aria-labelledby="retorno-label">
+                    <label><input type="radio" name="retorno" value="email" required> E-mail</label>
+                    <label><input type="radio" name="retorno" value="telefone"> Telefone</label>
+                  </div>
+                </div>
+                <div class="col-12 form-field">
+                  <label for="contato-mensagem">Mensagem *</label>
+                  <textarea id="contato-mensagem" name="mensagem" rows="6" minlength="10" maxlength="500" required placeholder="Conte como podemos ajudar (mínimo de 10 caracteres)."></textarea>
+                </div>
+                <div class="col-12 form-field">
+                  <label class="choice"><input type="checkbox" name="aceite" required> Concordo em ser contatado pela AXIS sobre esta mensagem. *</label>
+                </div>
+              </div>
+            </fieldset>
+
+            <div class="form-buttons">
+              <button class="button button--offer" type="submit">Enviar mensagem</button>
+              <button class="button button--outline" type="reset">Limpar</button>
+            </div>
+          </form>
+        </article>
+      </section>
+
+      <aside class="col-4 col-t-12" aria-label="Outros canais de atendimento">
+        <article class="info-card info-card--dark">
+          <h2>Outros canais</h2>
+          <address>
+            <ul class="plain-list">
+              <li>Av. das Tecnologias, 1000 – Centro<br>Cidade Exemplo – UF, 00000-000</li>
+              <li><a href="tel:+550000000000">Tel.: (00) 4000-0000</a></li>
+              <li><a href="https://wa.me/">WhatsApp: (00) 90000-0000</a></li>
+              <li><a href="mailto:contato@axis.example">contato@axis.example</a></li>
+            </ul>
+          </address>
+          <h3>Horário de atendimento</h3>
+          <p>Seg a Sex, 8h às 18h<br>Sáb, 9h às 13h</p>
+          <p>Antes de escrever, veja se a resposta está no <a href="faq.html">FAQ</a>.</p>
+        </article>
+      </aside>
+    </div>
+  </main>
+
+  <!-- RODAPÉ (igual em todas as páginas: mapa do site, redes sociais e contato) -->
+  <footer class="site-footer">
+    <div class="site-footer__main">
+      <section class="footer-about" aria-labelledby="footer-about-title">
+        <h2 id="footer-about-title" class="sr-only">Sobre a AXIS</h2>
+        <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+        <p>Tecnologia no centro das suas escolhas. Hardware, gadgets e eletrônicos com preço justo e entrega relâmpago.</p>
+        <ul class="social-links" aria-label="Redes sociais da AXIS">
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Instagram" title="Instagram">IG</a></li>
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Facebook" title="Facebook">FB</a></li>
+          <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no YouTube" title="YouTube">YT</a></li>
+          <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no X" title="X">X</a></li>
+          <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no WhatsApp" title="WhatsApp">WA</a></li>
+        </ul>
+      </section>
+      <nav class="footer-column" aria-labelledby="footer-sitemap-title">
+        <h2 id="footer-sitemap-title">Mapa do site</h2>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="carrinho.html">Carrinho</a></li>
+          <li><a href="meuspedidos.html">Meus pedidos</a></li>
+          <li><a href="minha-conta.html">Minha conta</a></li>
+          <li><a href="login.html">Entrar</a></li>
+          <li><a href="cadastro.html">Criar conta</a></li>
+          <li><a href="ajuda.html">Ajuda</a></li>
+          <li><a href="dashboard.html">Painel do funcionário</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-column" aria-labelledby="footer-departments-title">
+        <h2 id="footer-departments-title">Departamentos</h2>
+        <ul>
+          <li><a href="produtos.html?categoria=smartphones">Smartphones</a></li>
+          <li><a href="produtos.html?categoria=notebooks">Notebooks</a></li>
+          <li><a href="produtos.html?categoria=televisores">Televisores</a></li>
+          <li><a href="produtos.html?categoria=audio">Áudio Profissional</a></li>
+          <li><a href="produtos.html?categoria=pcs">PCs</a></li>
+          <li><a href="produtos.html?categoria=tablets">Tablets</a></li>
+          <li><a href="produtos.html?categoria=conectividade">Conectividade</a></li>
+          <li><a href="produtos.html?categoria=acessorios">Acessórios</a></li>
+        </ul>
+      </nav>
+      <section class="footer-column" aria-labelledby="footer-contact-title">
+        <h2 id="footer-contact-title">Contato</h2>
+        <address>
+          <ul>
+            <li>Av. das Tecnologias, 1000 – Centro<br>Cidade Exemplo – UF, 00000-000</li>
+            <li><a href="tel:+550000000000">Tel.: (00) 4000-0000</a></li>
+            <li><a href="https://wa.me/">WhatsApp: (00) 90000-0000</a></li>
+            <li><a href="mailto:contato@axis.example">contato@axis.example</a></li>
+            <li>Seg a Sex, 8h às 18h<br>Sáb, 9h às 13h</li>
+          </ul>
+        </address>
+      </section>
+    </div>
+    <div class="site-footer__bottom">
+      <p>© 2026 AXIS. Todos os direitos reservados.</p>
+      <a class="back-to-top" href="#">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
