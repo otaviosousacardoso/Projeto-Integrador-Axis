@@ -1,15 +1,15 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AXIS | Pagamento e entrega</title>
   <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body class="page page--payment">
-  <!-- CABEÇALHO (fixo no topo e igual em todas as páginas da loja) -->
+  <!-- CABEÇALHO (fixo no topo; mesma marcação e mesma altura em todas as páginas) -->
   <header class="site-header">
     <nav class="topbar" aria-label="Navegação principal">
       <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
@@ -19,7 +19,7 @@
         <button type="submit" aria-label="Buscar produtos"><img src="assets/icons/header/icon-search.png" alt=""></button>
       </form>
       <div class="header-actions" aria-label="Ações rápidas">
-        <a class="header-icon" href="login.html" data-open-login aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
+        <a class="header-icon" href="login.html" aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
         <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho"><img src="assets/icons/header/icon-cart.png" alt=""></a>
         <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu"><img src="assets/icons/header/icon-menu.png" alt=""><span class="sr-only">Abrir menu</span></button>
       </div>
@@ -29,9 +29,13 @@
         <li><a href="index.html">Início</a></li>
         <li><a href="index.html#categorias">Categorias</a></li>
         <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contato.html">Contato</a></li>
         <li><a href="meuspedidos.html">Meus pedidos</a></li>
         <li><a href="minha-conta.html">Minha conta</a></li>
         <li><a href="ajuda.html">Ajuda</a></li>
+        <li><a href="dashboard.html">Painel do funcionário</a></li>
       </ul>
     </nav>
   </header>
@@ -41,7 +45,7 @@
 
     <div class="payment-layout">
       <!-- Formulário: endereço + forma de pagamento -->
-      <form class="payment-form" id="form-pagamento">
+      <form class="payment-form" id="form-pagamento" action="pedido-confirmado.html" method="get">
         <section class="payment-group">
           <h2>Endereço de Entrega</h2>
 
@@ -76,8 +80,6 @@
         <button class="button button--offer button--full payment-submit" type="submit" form="form-pagamento">
           Finalizar pedido
         </button>
-
-        <p class="payment-message" id="mensagem" role="status" hidden></p>
       </section>
     </div>
   </main>
@@ -102,12 +104,16 @@
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contato.html">Contato</a></li>
           <li><a href="carrinho.html">Carrinho</a></li>
           <li><a href="meuspedidos.html">Meus pedidos</a></li>
           <li><a href="minha-conta.html">Minha conta</a></li>
           <li><a href="login.html">Entrar</a></li>
           <li><a href="cadastro.html">Criar conta</a></li>
           <li><a href="ajuda.html">Ajuda</a></li>
+          <li><a href="dashboard.html">Painel do funcionário</a></li>
         </ul>
       </nav>
       <nav class="footer-column" aria-labelledby="footer-departments-title">
