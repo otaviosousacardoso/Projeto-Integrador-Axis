@@ -1,16 +1,16 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Fone de ouvido JBL Tune 530BT on-ear, Bluetooth, na cor azul, com som JBL Pure Bass.">
   <title>AXIS | Fone JBL Tune 530BT</title>
   <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body class="page page--pdp">
-  <!-- CABEÇALHO (fixo no topo e igual em todas as páginas da loja) -->
+  <!-- CABEÇALHO (fixo no topo; mesma marcação e mesma altura em todas as páginas) -->
   <header class="site-header">
     <nav class="topbar" aria-label="Navegação principal">
       <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
@@ -20,7 +20,7 @@
         <button type="submit" aria-label="Buscar produtos"><img src="assets/icons/header/icon-search.png" alt=""></button>
       </form>
       <div class="header-actions" aria-label="Ações rápidas">
-        <a class="header-icon" href="login.html" data-open-login aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
+        <a class="header-icon" href="login.html" aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
         <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho"><img src="assets/icons/header/icon-cart.png" alt=""></a>
         <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu"><img src="assets/icons/header/icon-menu.png" alt=""><span class="sr-only">Abrir menu</span></button>
       </div>
@@ -30,9 +30,13 @@
         <li><a href="index.html">Início</a></li>
         <li><a href="index.html#categorias">Categorias</a></li>
         <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contato.html">Contato</a></li>
         <li><a href="meuspedidos.html">Meus pedidos</a></li>
         <li><a href="minha-conta.html">Minha conta</a></li>
         <li><a href="ajuda.html">Ajuda</a></li>
+        <li><a href="dashboard.html">Painel do funcionário</a></li>
       </ul>
     </nav>
   </header>
@@ -40,7 +44,7 @@
   <main class="pdp-main">
     <article class="pdp">
 
-      <!-- GALERIA: clicar numa miniatura troca a foto principal (js/main.js, seção 8) -->
+      <!-- GALERIA: clicar numa miniatura troca a foto principal (js/main.js) -->
       <section class="pdp-gallery" aria-label="Fotos do produto" data-product-gallery>
         <div class="pdp-gallery__stage">
           <img src="assets/images/products2/product-headphone2.png" alt="Fone JBL Tune 530BT azul, vista lateral" data-gallery-main>
@@ -66,13 +70,10 @@
               <img src="assets/images/products2/product-headphone5.png" alt="" loading="lazy">
             </button>
           </li>
-          <li hidden data-thumb-extra>
+          <li>
             <button class="pdp-thumb" type="button" data-gallery-thumb data-full="assets/images/products/product-headphone.png" data-alt="Fone JBL Tune 530BT azul, foto de vitrine" aria-label="Ver foto 5: Fone JBL Tune 530BT azul, foto de vitrine" aria-pressed="false">
               <img src="assets/images/products/product-headphone.png" alt="" loading="lazy">
             </button>
-          </li>
-          <li data-thumb-more-item>
-            <button class="pdp-thumb-more" type="button" data-gallery-more aria-label="Ver mais fotos do produto">+</button>
           </li>
         </ul>
       </section>
@@ -91,15 +92,14 @@
         <a class="pdp-btn pdp-btn--primary" href="pagamento.html">Comprar Agora</a>
         <a class="pdp-btn pdp-btn--outline" href="carrinho.html">Adicionar ao carrinho</a>
 
-        <form class="pdp-shipping" data-shipping-form novalidate>
+        <form class="pdp-shipping" data-alert-submit="Frete grátis para o CEP informado (simulação).">
           <label class="pdp-shipping__title" for="cep">Consulte o frete</label>
           <div class="pdp-shipping__field">
-            <input id="cep" name="cep" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="Inserir CEP">
+            <input id="cep" name="cep" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="9" placeholder="Inserir CEP" pattern="[0-9]{5}-?[0-9]{3}" title="Digite um CEP com 8 números" required>
             <button type="submit" aria-label="Consultar frete">
               <img src="assets/icons/header/icon-search.png" alt="">
             </button>
           </div>
-          <p class="pdp-shipping__result" data-shipping-result role="status"></p>
         </form>
       </aside>
 
@@ -110,10 +110,9 @@
           <li><strong>Som JBL Pure Bass:</strong> Graves marcantes e áudio equilibrado para músicas, podcasts e vídeos.</li>
           <li><strong>Sem fios:</strong> Conexão Bluetooth para se livrar dos cabos e se mover com liberdade.</li>
           <li><strong>Bateria de longa duração:</strong> Até 40 horas de música com uma única carga, conforme o uso.</li>
-          <li data-feature-extra hidden><strong>Design on-ear leve:</strong> Almofadas macias e estrutura leve para ouvir por horas com conforto.</li>
-          <li data-feature-extra hidden><strong>Chamadas com microfone:</strong> Atenda ligações sem tirar o celular do bolso.</li>
+          <li><strong>Design on-ear leve:</strong> Almofadas macias e estrutura leve para ouvir por horas com conforto.</li>
+          <li><strong>Chamadas com microfone:</strong> Atenda ligações sem tirar o celular do bolso.</li>
         </ul>
-        <button class="pdp-more-link" type="button" data-features-toggle aria-expanded="false">Ver mais</button>
       </section>
 
     </article>
@@ -139,12 +138,16 @@
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contato.html">Contato</a></li>
           <li><a href="carrinho.html">Carrinho</a></li>
           <li><a href="meuspedidos.html">Meus pedidos</a></li>
           <li><a href="minha-conta.html">Minha conta</a></li>
           <li><a href="login.html">Entrar</a></li>
           <li><a href="cadastro.html">Criar conta</a></li>
           <li><a href="ajuda.html">Ajuda</a></li>
+          <li><a href="dashboard.html">Painel do funcionário</a></li>
         </ul>
       </nav>
       <nav class="footer-column" aria-labelledby="footer-departments-title">
