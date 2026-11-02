@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
@@ -7,27 +7,9 @@
   <title>AXIS | Página inicial</title>
   <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
   <link rel="stylesheet" type="text/css" href="css/style.css">
-  <style>
-    /* Ajustes exclusivos do carrossel da página inicial. Header, rodapé e departamentos permanecem intactos. */
-    .hero-carousel { position: relative; display: block; }
-    .hero-carousel .hero { opacity: 1; transition: opacity .25s ease, transform .25s ease; }
-    .hero-carousel.is-changing .hero { opacity: .2; transform: translateX(10px); }
-    .carousel-dots { display: flex; justify-content: center; gap: .65rem; margin-top: 1.2rem; }
-    .carousel-dot { width: 11px; height: 11px; padding: 0; background: #B8C3C7; border: 0; border-radius: 50%; transition: transform .2s ease, background .2s ease; }
-    .carousel-dot:hover, .carousel-dot:focus-visible { background: #FF6B00; transform: scale(1.2); }
-    .carousel-dot[aria-selected="true"] { width: 30px; border-radius: 999px; background: #FF6B00; }
-    .carousel-progress { height: 3px; margin-top: .8rem; overflow: hidden; background: #E5E5E5; border-radius: 99px; }
-    .carousel-progress span { display: block; width: 0; height: 100%; background: #FF6B00; }
-    .carousel-progress.is-running span { animation: carousel-progress 5s linear; }
-    @keyframes carousel-progress { from { width: 0; } to { width: 100%; } }
-    .hero__eyebrow { margin: 0 0 .7rem; color: #FFB36E; font-size: .9rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-    .hero__badge { position: absolute; right: 2rem; bottom: 1.5rem; z-index: 3; padding: .55rem .8rem; background: #FF6B00; border-radius: 9px; color: #FFF; font-size: .85rem; font-weight: 800; text-transform: uppercase; }
-    @media (max-width: 720px) { .carousel-dots { margin-top: 1rem; } .hero__badge { right: 1rem; bottom: 1rem; font-size: .7rem; } }
-    @media (prefers-reduced-motion: reduce) { .hero-carousel .hero, .carousel-dot { transition: none; } .carousel-progress.is-running span { animation: none; width: 100%; } }
-  </style>
 </head>
 <body class="page page--home">
-  <!-- CABEÇALHO (fixo no topo e igual em todas as páginas da loja) -->
+  <!-- CABEÇALHO (fixo no topo; mesma marcação e mesma altura em todas as páginas) -->
   <header class="site-header">
     <nav class="topbar" aria-label="Navegação principal">
       <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
@@ -37,7 +19,7 @@
         <button type="submit" aria-label="Buscar produtos"><img src="assets/icons/header/icon-search.png" alt=""></button>
       </form>
       <div class="header-actions" aria-label="Ações rápidas">
-        <a class="header-icon" href="login.html" data-open-login aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
+        <a class="header-icon" href="login.html" aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
         <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho"><img src="assets/icons/header/icon-cart.png" alt=""></a>
         <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu"><img src="assets/icons/header/icon-menu.png" alt=""><span class="sr-only">Abrir menu</span></button>
       </div>
@@ -47,40 +29,44 @@
         <li><a href="index.html">Início</a></li>
         <li><a href="index.html#categorias">Categorias</a></li>
         <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contato.html">Contato</a></li>
         <li><a href="meuspedidos.html">Meus pedidos</a></li>
         <li><a href="minha-conta.html">Minha conta</a></li>
         <li><a href="ajuda.html">Ajuda</a></li>
+        <li><a href="dashboard.html">Painel do funcionário</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <section class="hero-carousel" data-carousel aria-label="Ofertas em destaque" aria-roledescription="carrossel" tabindex="0">
-      <article class="hero" data-carousel-slide aria-live="polite">
+    <section class="hero-banner" aria-label="Oferta em destaque">
+      <article class="hero">
         <div class="hero__copy">
-          <p class="hero__eyebrow" data-carousel-eyebrow>Bem-vindo à AXIS</p>
-          <h1 data-carousel-title>Tecnologia que<br>mudará <span>o seu mundo</span></h1>
-          <p data-carousel-description>O melhor em hardware e gadgets com entrega relâmpago</p>
-          <a class="button button--offer" data-carousel-link href="produtos.html?ofertas=1">Ver ofertas</a>
+          <p class="hero__eyebrow">Bem-vindo à AXIS</p>
+          <h1>Tecnologia que<br>mudará <span>o seu mundo</span></h1>
+          <p>O melhor em hardware e gadgets com entrega relâmpago</p>
+          <a class="button button--offer" href="produtos.html">Ver ofertas</a>
         </div>
-        <img class="hero__robot" data-carousel-image src="assets/images/mascot/robot-banner.png" alt="Mascote robô da AXIS">
+        <img class="hero__robot" src="assets/images/mascot/robot-banner.png" alt="Mascote robô da AXIS">
         <div class="hero__mark" aria-hidden="true"><img src="assets/icons/header/icon-symbolbanner.png" alt=""></div>
-        <span class="hero__badge" data-carousel-badge>Ofertas especiais</span>
+        <span class="hero__badge">Ofertas especiais</span>
       </article>
-      <div class="carousel-dots" data-carousel-dots role="tablist" aria-label="Selecionar oferta"></div>
-      <div class="carousel-progress" aria-hidden="true"><span data-carousel-progress></span></div>
     </section>
 
     <section id="categorias" class="categories" aria-label="Categorias de produtos">
       <h2 class="sr-only">Categorias de produtos</h2>
-      <a class="category" href="produtos.html?categoria=smartphones"><span class="category__icon"><img src="assets/images/departments/dept-celulares.png" alt=""></span><span>Smartphones</span></a>
-      <a class="category" href="produtos.html?categoria=notebooks"><span class="category__icon"><img src="assets/images/departments/dept-notebooks.png" alt=""></span><span>Notebooks</span></a>
-      <a class="category" href="produtos.html?categoria=televisores"><span class="category__icon"><img src="assets/images/departments/dept-televisores.png" alt=""></span><span>Televisores</span></a>
-      <a class="category" href="produtos.html?categoria=audio"><span class="category__icon"><img src="assets/images/departments/dept-audio.png" alt=""></span><span>Áudio Profissional</span></a>
-      <a class="category" href="produtos.html?categoria=pcs"><span class="category__icon"><img src="assets/images/departments/dept-pcs.png" alt=""></span><span>PCs</span></a>
-      <a class="category" href="produtos.html?categoria=tablets"><span class="category__icon"><img src="assets/images/departments/dept-tablets.png" alt=""></span><span>Tablets</span></a>
-      <a class="category" href="produtos.html?categoria=conectividade"><span class="category__icon"><img src="assets/images/departments/dept-conectividade.png" alt=""></span><span>Conectividade</span></a>
-      <a class="category" href="produtos.html?categoria=acessorios"><span class="category__icon"><img src="assets/images/departments/dept-acessorios.png" alt=""></span><span>Acessórios</span></a>
+      <div class="row">
+      <div class="col-3 col-t-3 col-m-6"><a class="category" href="produtos.html?categoria=smartphones"><span class="category__icon"><img src="assets/images/departments/dept-celulares.png" alt=""></span><span>Smartphones</span></a></div>
+      <div class="col-3 col-t-3 col-m-6"><a class="category" href="produtos.html?categoria=notebooks"><span class="category__icon"><img src="assets/images/departments/dept-notebooks.png" alt=""></span><span>Notebooks</span></a></div>
+      <div class="col-3 col-t-3 col-m-6"><a class="category" href="produtos.html?categoria=televisores"><span class="category__icon"><img src="assets/images/departments/dept-televisores.png" alt=""></span><span>Televisores</span></a></div>
+      <div class="col-3 col-t-3 col-m-6"><a class="category" href="produtos.html?categoria=audio"><span class="category__icon"><img src="assets/images/departments/dept-audio.png" alt=""></span><span>Áudio Profissional</span></a></div>
+      <div class="col-3 col-t-3 col-m-6"><a class="category" href="produtos.html?categoria=pcs"><span class="category__icon"><img src="assets/images/departments/dept-pcs.png" alt=""></span><span>PCs</span></a></div>
+      <div class="col-3 col-t-3 col-m-6"><a class="category" href="produtos.html?categoria=tablets"><span class="category__icon"><img src="assets/images/departments/dept-tablets.png" alt=""></span><span>Tablets</span></a></div>
+      <div class="col-3 col-t-3 col-m-6"><a class="category" href="produtos.html?categoria=conectividade"><span class="category__icon"><img src="assets/images/departments/dept-conectividade.png" alt=""></span><span>Conectividade</span></a></div>
+      <div class="col-3 col-t-3 col-m-6"><a class="category" href="produtos.html?categoria=acessorios"><span class="category__icon"><img src="assets/images/departments/dept-acessorios.png" alt=""></span><span>Acessórios</span></a></div>
+    </div>
     </section>
 
     <section id="destaques" class="home-section" aria-labelledby="destaques-title">
@@ -88,10 +74,9 @@
         <h2 id="destaques-title" class="home-section__title">Produtos em Destaque</h2>
         <a class="home-section__link" href="produtos.html">Ver todos os produtos →</a>
       </div>
-      <div class="product-carousel" data-product-carousel role="group" aria-roledescription="carrossel" aria-label="Produtos em destaque">
-        <button class="carousel-arrow carousel-arrow--previous" type="button" data-product-previous aria-label="Produtos anteriores">&#10094;</button>
-        <div class="product-carousel__track" data-product-track>
-          <article class="product-card">
+      <div class="row">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--primary">Destaque</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -102,8 +87,10 @@
             <strong>R$ 3.599,90</strong>
             <p>No PIX ou 10x de R$380,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--primary">Destaque</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -114,8 +101,10 @@
             <strong>R$ 1.299,90</strong>
             <p>No PIX ou 10x de R$145,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--primary">Destaque</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -126,8 +115,10 @@
             <strong>R$ 249,90</strong>
             <p>No PIX ou 10x de R$145,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--primary">Destaque</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -138,8 +129,10 @@
             <strong>R$ 59,90</strong>
             <p>No PIX ou 2x de R$32,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--primary">Destaque</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -150,8 +143,10 @@
             <strong>R$ 2.799,90</strong>
             <p>No PIX ou 10x de R$279,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--primary">Destaque</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -162,8 +157,10 @@
             <strong>R$ 1.199,90</strong>
             <p>No PIX ou 10x de R$119,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--primary">Destaque</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -174,8 +171,10 @@
             <strong>R$ 299,90</strong>
             <p>No PIX ou 6x de R$49,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--primary">Destaque</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -186,8 +185,7 @@
             <strong>R$ 1.899,90</strong>
             <p>No PIX ou 10x de R$189,90</p>
           </article>
-        </div>
-        <button class="carousel-arrow carousel-arrow--next" type="button" data-product-next aria-label="Próximos produtos">&#10095;</button>
+</div>
       </div>
     </section>
 
@@ -196,10 +194,9 @@
         <h2 id="principais-escolhas-title" class="home-section__title">Principais Escolhas</h2>
         <a class="home-section__link" href="produtos.html">Ver mais escolhas →</a>
       </div>
-      <div class="product-carousel" data-product-carousel role="group" aria-roledescription="carrossel" aria-label="Principais escolhas dos clientes">
-        <button class="carousel-arrow carousel-arrow--previous" type="button" data-product-previous aria-label="Produtos anteriores">&#10094;</button>
-        <div class="product-carousel__track" data-product-track>
-          <article class="product-card">
+      <div class="row">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--success">Mais vendido</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -210,8 +207,10 @@
             <strong>R$ 1.299,90</strong>
             <p>No PIX ou 10x de R$145,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--success">Mais vendido</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -222,8 +221,10 @@
             <strong>R$ 2.799,90</strong>
             <p>No PIX ou 10x de R$279,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--success">Mais vendido</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -234,8 +235,10 @@
             <strong>R$ 3.599,90</strong>
             <p>No PIX ou 10x de R$380,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--success">Mais vendido</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -246,8 +249,10 @@
             <strong>R$ 249,90</strong>
             <p>No PIX ou 10x de R$145,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--success">Mais vendido</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -258,8 +263,10 @@
             <strong>R$ 299,90</strong>
             <p>No PIX ou 6x de R$49,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--success">Mais vendido</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -270,8 +277,10 @@
             <strong>R$ 1.899,90</strong>
             <p>No PIX ou 10x de R$189,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--success">Mais vendido</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -282,8 +291,10 @@
             <strong>R$ 1.199,90</strong>
             <p>No PIX ou 10x de R$119,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--success">Mais vendido</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -294,8 +305,7 @@
             <strong>R$ 59,90</strong>
             <p>No PIX ou 2x de R$32,90</p>
           </article>
-        </div>
-        <button class="carousel-arrow carousel-arrow--next" type="button" data-product-next aria-label="Próximos produtos">&#10095;</button>
+</div>
       </div>
     </section>
 
@@ -304,10 +314,9 @@
         <h2 id="ofertas-title" class="home-section__title">Itens em Oferta</h2>
         <a class="home-section__link" href="produtos.html?ofertas=1">Ver todas as ofertas →</a>
       </div>
-      <div class="product-carousel" data-product-carousel role="group" aria-roledescription="carrossel" aria-label="Itens em oferta">
-        <button class="carousel-arrow carousel-arrow--previous" type="button" data-product-previous aria-label="Produtos anteriores">&#10094;</button>
-        <div class="product-carousel__track" data-product-track>
-          <article class="product-card">
+      <div class="row">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--danger">-14%</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -319,8 +328,10 @@
             <strong>R$ 249,90</strong>
             <p>No PIX ou 10x de R$145,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--danger">-14%</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -332,8 +343,10 @@
             <strong>R$ 59,90</strong>
             <p>No PIX ou 2x de R$32,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--danger">-14%</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -345,8 +358,10 @@
             <strong>R$ 299,90</strong>
             <p>No PIX ou 6x de R$49,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--danger">-15%</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -358,8 +373,10 @@
             <strong>R$ 1.199,90</strong>
             <p>No PIX ou 10x de R$119,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--danger">-15%</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -371,8 +388,10 @@
             <strong>R$ 1.299,90</strong>
             <p>No PIX ou 10x de R$145,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--danger">-15%</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -384,8 +403,10 @@
             <strong>R$ 2.799,90</strong>
             <p>No PIX ou 10x de R$279,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--danger">-15%</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -397,8 +418,10 @@
             <strong>R$ 1.899,90</strong>
             <p>No PIX ou 10x de R$189,90</p>
           </article>
+</div>
 
-          <article class="product-card">
+          <div class="col-3 col-t-6 col-m-6">
+<article class="product-card">
             <span class="product-card__badge product-card__badge--danger">-15%</span>
             <div class="product-card__top">
               <span>★ <small>5.0</small></span>
@@ -410,57 +433,39 @@
             <strong>R$ 3.599,90</strong>
             <p>No PIX ou 10x de R$380,90</p>
           </article>
-        </div>
-        <button class="carousel-arrow carousel-arrow--next" type="button" data-product-next aria-label="Próximos produtos">&#10095;</button>
+</div>
       </div>
     </section>
 
     <section class="institutional" aria-label="Institucional AXIS">
-      <article class="institutional__banner">
+      <div class="row">
+      <div class="col-4 col-t-12">
+<article class="institutional__banner">
         <img class="institutional__mark" src="assets/icons/header/icon-symbolbanner.png" alt="" aria-hidden="true">
         <p class="institutional__eyebrow">Quem somos</p>
         <h2>Nossa <span>História</span></h2>
         <p>Texto temporário: aqui entra um resumo de como a AXIS nasceu, dos primeiros produtos até a loja que você vê hoje.</p>
-        <a class="button button--offer" href="#sobre-historia">Saiba mais</a>
+        <a class="button button--offer" href="sobre.html#sobre-historia">Saiba mais</a>
       </article>
-      <article class="institutional__banner">
+</div>
+      <div class="col-4 col-t-12">
+<article class="institutional__banner">
         <img class="institutional__mark" src="assets/icons/header/icon-symbolbanner.png" alt="" aria-hidden="true">
         <p class="institutional__eyebrow">Para onde vamos</p>
         <h2>Nosso <span>Objetivo</span></h2>
         <p>Texto temporário: aqui entra a missão da marca, o que a AXIS quer entregar a cada cliente e como pretende crescer.</p>
-        <a class="button button--offer" href="#sobre-objetivo">Saiba mais</a>
+        <a class="button button--offer" href="sobre.html#sobre-objetivo">Saiba mais</a>
       </article>
-      <article class="institutional__banner">
+</div>
+      <div class="col-4 col-t-12">
+<article class="institutional__banner">
         <img class="institutional__mark" src="assets/icons/header/icon-symbolbanner.png" alt="" aria-hidden="true">
         <p class="institutional__eyebrow">Identidade</p>
         <h2>Nosso <span>Nome</span></h2>
         <p>Texto temporário: aqui entra o significado da palavra AXIS e a ideia por trás do símbolo e do mascote da marca.</p>
-        <a class="button button--offer" href="#sobre-nome">Saiba mais</a>
+        <a class="button button--offer" href="sobre.html#sobre-nome">Saiba mais</a>
       </article>
-    </section>
-
-    <section id="sobre" class="company-profile" aria-labelledby="sobre-title">
-      <div class="company-profile__intro">
-        <img src="assets/images/mascot/robot-help-recortado.png" alt="Mascote robô da AXIS" loading="lazy">
-        <div>
-          <p class="institutional__eyebrow">Perfil da empresa</p>
-          <h2 id="sobre-title">Conheça a <span>AXIS</span></h2>
-          <p>A AXIS é uma loja de tecnologia feita para quem quer escolher bem: produtos de marcas confiáveis, informações claras, pagamento simples e entrega relâmpago.</p>
-        </div>
-      </div>
-      <div class="company-profile__grid">
-        <article id="sobre-historia" class="company-profile__item">
-          <h3>Como a marca surgiu</h3>
-          <p>A AXIS nasceu da percepção de que comprar tecnologia costuma ser mais complicado do que deveria: fichas técnicas confusas, preços sem referência e pouca orientação. Em 2026, um grupo de entusiastas de hardware decidiu criar uma loja online que explica cada produto com clareza. O que começou como uma pequena vitrine de notebooks, celulares e acessórios hoje reúne oito departamentos.</p>
-        </article>
-        <article id="sobre-nome" class="company-profile__item">
-          <h3>A origem do nome</h3>
-          <p>“Axis” vem do latim e significa “eixo”: o ponto em torno do qual tudo gira. É assim que enxergamos o cliente, no centro de cada escolha. O símbolo laranja, o robô mascote e o slogan “tecnologia no centro das suas escolhas” nascem dessa mesma ideia.</p>
-        </article>
-        <article id="sobre-objetivo" class="company-profile__item">
-          <h3>Nosso objetivo</h3>
-          <p>Tornar a tecnologia acessível, compreensível e confiável. Isso significa curadoria de produtos, preços transparentes, pagamento por PIX ou parcelado, entrega rápida e suporte de verdade na página de <a href="ajuda.html">Ajuda</a>, para que cada compra seja uma boa escolha.</p>
-        </article>
+</div>
       </div>
     </section>
   </main>
@@ -485,12 +490,16 @@
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contato.html">Contato</a></li>
           <li><a href="carrinho.html">Carrinho</a></li>
           <li><a href="meuspedidos.html">Meus pedidos</a></li>
           <li><a href="minha-conta.html">Minha conta</a></li>
           <li><a href="login.html">Entrar</a></li>
           <li><a href="cadastro.html">Criar conta</a></li>
           <li><a href="ajuda.html">Ajuda</a></li>
+          <li><a href="dashboard.html">Painel do funcionário</a></li>
         </ul>
       </nav>
       <nav class="footer-column" aria-labelledby="footer-departments-title">
@@ -524,17 +533,6 @@
       <a class="back-to-top" href="#">Voltar ao topo ↑</a>
     </div>
   </footer>
-  <dialog id="login-dialog" class="auth-dialog" aria-labelledby="login-title">
-    <button class="dialog-close" type="button" data-close-login aria-label="Fechar login">×</button>
-    <div class="auth-dialog__brand" aria-hidden="true"><img src="assets/icons/header/icon-logo-preta.png" alt=""></div>
-    <h2 id="login-title">Entre na sua conta</h2>
-    <form class="auth-form" data-login-form novalidate><fieldset class="formulario"><legend class="sr-only">Dados de acesso</legend>
-      <div class="form-field"><label for="login-email">E-mail</label><input id="login-email" name="email" type="email" autocomplete="email" required></div>
-      <div class="form-field"><label for="login-password">Senha</label><input id="login-password" name="senha" type="password" autocomplete="current-password" required minlength="6"></div>
-      <p class="form-message" data-login-message role="alert" hidden></p><a class="forgot-password" href="recuperar-senha.html">Esqueceu a senha?</a><button class="button button--offer button--full" type="submit">Entrar</button>
-    </fieldset></form>
-    <p class="register-prompt">Não tem conta? <a href="cadastro.html">Registrar-se</a></p>
-  </dialog>
-  <script type="text/javascript" src="js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
