@@ -2237,3 +2237,5 @@ a.pdp-btn--outline:link, a.pdp-btn--outline:visited, a.pdp-btn--outline:active {
   .staff-table td[data-label="Produto"] { display: block; text-align: left; }
   .staff-table td[data-label="Produto"]::before { display: block; margin-bottom: .3rem; }
 }
+
+.login-erro { margin: 0; color: #C62828; font-weight: 700; }
