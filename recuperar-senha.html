@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
@@ -9,27 +9,53 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body class="page page--auth">
-  <header class="site-header site-header--compact">
-    <nav class="topbar topbar--compact" aria-label="Navegação principal">
+  <!-- CABEÇALHO (fixo no topo; mesma marcação e mesma altura em todas as páginas) -->
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
       <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
-      <a class="back-home" href="index.html">← Voltar para a loja</a>
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar" autocomplete="off">
+        <button type="submit" aria-label="Buscar produtos"><img src="assets/icons/header/icon-search.png" alt=""></button>
+      </form>
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
+        <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho"><img src="assets/icons/header/icon-cart.png" alt=""></a>
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu"><img src="assets/icons/header/icon-menu.png" alt=""><span class="sr-only">Abrir menu</span></button>
+      </div>
+    </nav>
+    <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#categorias">Categorias</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="meuspedidos.html">Meus pedidos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+        <li><a href="dashboard.html">Painel do funcionário</a></li>
+      </ul>
     </nav>
   </header>
   <main class="auth-main">
-    <section class="auth-card" aria-labelledby="recovery-title">
+    <article class="auth-card" aria-labelledby="recovery-title">
       <img class="auth-card__brand" src="assets/icons/header/icon-logo-preta.png" alt="AXIS">
       <h1 id="recovery-title">Recupere sua senha</h1>
       <p class="auth-card__description">Informe seu e-mail para receber as instruções de redefinição de senha.</p>
-      <form class="auth-form" data-recovery-form novalidate>
+      <form class="auth-form" data-alert-submit="Se este e-mail estiver cadastrado, você receberá as instruções de recuperação.">
         <fieldset class="formulario">
           <legend class="sr-only">Solicitar recuperação de senha</legend>
           <div class="form-field"><label for="recovery-email">E-mail</label><input id="recovery-email" name="email" type="email" autocomplete="email" required></div>
-          <p class="form-message form-message--success" data-recovery-message role="status" hidden></p>
           <button class="button button--offer button--full" type="submit">Enviar instruções</button>
         </fieldset>
       </form>
       <p class="register-prompt"><a href="login.html">Voltar para entrar</a></p>
-    </section>
+    </article>
+    <aside class="auth-aside" aria-label="Outras opções">
+      <p>Precisa de mais ajuda? <a href="contato.html">Fale com a gente</a></p>
+    </aside>
   </main>
   <!-- RODAPÉ (igual em todas as páginas: mapa do site, redes sociais e contato) -->
   <footer class="site-footer">
@@ -51,12 +77,16 @@
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contato.html">Contato</a></li>
           <li><a href="carrinho.html">Carrinho</a></li>
           <li><a href="meuspedidos.html">Meus pedidos</a></li>
           <li><a href="minha-conta.html">Minha conta</a></li>
           <li><a href="login.html">Entrar</a></li>
           <li><a href="cadastro.html">Criar conta</a></li>
           <li><a href="ajuda.html">Ajuda</a></li>
+          <li><a href="dashboard.html">Painel do funcionário</a></li>
         </ul>
       </nav>
       <nav class="footer-column" aria-labelledby="footer-departments-title">
@@ -90,6 +120,6 @@
       <a class="back-to-top" href="#">Voltar ao topo ↑</a>
     </div>
   </footer>
-  <script type="text/javascript" src="js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
