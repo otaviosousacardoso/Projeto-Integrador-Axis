@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Área da conta AXIS.">
+  <title>Blog | AXIS</title>
+  <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="page page--account">
+  <!-- CABEÇALHO (fixo no topo; mesma marcação e mesma altura em todas as páginas) -->
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar" autocomplete="off">
+        <button type="submit" aria-label="Buscar produtos"><img src="assets/icons/header/icon-search.png" alt=""></button>
+      </form>
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
+        <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho"><img src="assets/icons/header/icon-cart.png" alt=""></a>
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu"><img src="assets/icons/header/icon-menu.png" alt=""><span class="sr-only">Abrir menu</span></button>
+      </div>
+    </nav>
+    <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#categorias">Categorias</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="ofertas.html">Ofertas</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="meuspedidos.html">Meus pedidos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+        <li><a href="dashboard-funcionario.html">Painel do funcionário</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="content-main">
+    <div class="page-hero">
+      <div>
+        <p class="eyebrow">Conteúdo AXIS</p>
+        <h1>Blog <span>AXIS</span></h1>
+        <p>Dicas de tecnologia, guias de compra e novidades para você escolher bem.</p>
+      </div>
+      <a class="button button--outline button--small" href="#sobre">Conheça a AXIS ↓</a>
+    </div>
+
+    <div class="row">
+      <div class="col-8 col-t-12">
+        <article class="info-card info-card--dark" style="margin-bottom: 1.5rem">
+          <span class="offer-tag">Destaque da semana</span>
+          <h2>Guia 2026: como montar o setup ideal com bom custo-benefício</h2>
+          <p>Do notebook ao fone, mostramos o que priorizar para cada perfil: estudo, trabalho ou jogos.</p>
+          <p><a class="button button--offer button--small" href="produtos.html">Ver produtos do guia</a></p>
+        </article>
+
+        <div class="tabs" role="group" aria-label="Categorias do blog">
+          <button class="tab-btn is-active" type="button" data-cat="todos">Todos</button>
+          <button class="tab-btn" type="button" data-cat="dicas">Dicas</button>
+          <button class="tab-btn" type="button" data-cat="guias">Guias de compra</button>
+          <button class="tab-btn" type="button" data-cat="novidades">Novidades</button>
+          <button class="tab-btn" type="button" data-cat="promocoes">Promoções</button>
+        </div>
+        <div class="row">
+<div class="col-6 col-m-12" data-category="guias">
+<article class="post-card">
+  <div class="post-card__img"><img src="assets/images/products/product-pc.png" alt="" loading="lazy"></div>
+  <div class="post-card__body">
+    <span class="badge badge--info" style="align-self: flex-start">Guia de compra</span>
+    <h3>Como escolher um notebook sem errar</h3>
+    <span class="post-meta">Por equipe AXIS · 4 min de leitura</span>
+    <p>Processador, memória e armazenamento: o que realmente muda no dia a dia.</p>
+    <details><summary>Ler artigo completo</summary><p>Para estudo e trabalho leve, um processador de entrada com 8 GB de memória e SSD já resolve. Se você edita vídeo ou joga, priorize mais memória e um processador mais forte. E prefira sempre SSD: ele deixa o computador muito mais rápido que um HD.</p></details>
+  </div>
+</article>
+</div>
+<div class="col-6 col-m-12" data-category="dicas">
+<article class="post-card">
+  <div class="post-card__img"><img src="assets/images/products/product-headphone.png" alt="" loading="lazy"></div>
+  <div class="post-card__body">
+    <span class="badge badge--info" style="align-self: flex-start">Dica</span>
+    <h3>5 hábitos para a bateria do fone durar mais</h3>
+    <span class="post-meta">Por equipe AXIS · 3 min de leitura</span>
+    <p>Pequenos cuidados que aumentam a vida útil de qualquer dispositivo Bluetooth.</p>
+    <details><summary>Ler artigo completo</summary><p>Evite deixar o fone descarregar até zero, não o guarde em lugares quentes e carregue com o cabo original. Atualizar o aplicativo do fabricante também ajuda a manter a bateria saudável por mais tempo.</p></details>
+  </div>
+</article>
+</div>
+<div class="col-6 col-m-12" data-category="guias">
+<article class="post-card">
+  <div class="post-card__img"><img src="assets/images/products/product-phone.png" alt="" loading="lazy"></div>
+  <div class="post-card__body">
+    <span class="badge badge--info" style="align-self: flex-start">Guia de compra</span>
+    <h3>Smartphone: quanto de memória você precisa?</h3>
+    <span class="post-meta">Por equipe AXIS · 5 min de leitura</span>
+    <p>128 GB bastam? Entenda como fotos, apps e vídeos ocupam espaço.</p>
+    <details><summary>Ler artigo completo</summary><p>Quem usa mais redes sociais e aplicativos leves vive bem com 128 GB. Se você grava vídeos em alta qualidade, vale subir para 256 GB ou usar a nuvem para guardar os arquivos mais pesados.</p></details>
+  </div>
+</article>
+</div>
+<div class="col-6 col-m-12" data-category="novidades">
+<article class="post-card">
+  <div class="post-card__img"><img src="assets/images/products/product-intel.png" alt="" loading="lazy"></div>
+  <div class="post-card__body">
+    <span class="badge badge--info" style="align-self: flex-start">Novidade</span>
+    <h3>Processadores com IA: o que muda para você</h3>
+    <span class="post-meta">Por equipe AXIS · 4 min de leitura</span>
+    <p>Chips novos trazem recursos de inteligência artificial direto no computador.</p>
+    <details><summary>Ler artigo completo</summary><p>Esses processadores aceleram tarefas como remover fundo de fotos, transcrever áudio e melhorar chamadas de vídeo sem pesar na bateria. Para o uso comum, o ganho aparece principalmente em programas já otimizados.</p></details>
+  </div>
+</article>
+</div>
+<div class="col-6 col-m-12" data-category="promocoes">
+<article class="post-card">
+  <div class="post-card__img"><img src="assets/images/products/product-tv.png" alt="" loading="lazy"></div>
+  <div class="post-card__body">
+    <span class="badge badge--info" style="align-self: flex-start">Promoções</span>
+    <h3>Como aproveitar as ofertas sem cair em armadilhas</h3>
+    <span class="post-meta">Por equipe AXIS · 3 min de leitura</span>
+    <p>Compare o preço antigo, o PIX e o frete antes de fechar a compra.</p>
+    <details><summary>Ler artigo completo</summary><p>Veja se o preço “de” é real, compare o valor no PIX com o parcelado e confira o prazo de entrega. Na AXIS, os cupons e as ofertas do dia ficam sempre à vista na página de Ofertas.</p></details>
+  </div>
+</article>
+</div>
+<div class="col-6 col-m-12" data-category="dicas">
+<article class="post-card">
+  <div class="post-card__img"><img src="assets/images/products/product-mouse.png" alt="" loading="lazy"></div>
+  <div class="post-card__body">
+    <span class="badge badge--info" style="align-self: flex-start">Dica</span>
+    <h3>Mouse e teclado sem fio: como evitar falhas de conexão</h3>
+    <span class="post-meta">Por equipe AXIS · 2 min de leitura</span>
+    <p>O receptor USB e a distância fazem toda a diferença.</p>
+    <details><summary>Ler artigo completo</summary><p>Conecte o receptor numa porta USB frontal ou de extensão, longe de roteadores e hubs. Pilhas fracas são a principal causa de travadinhas: troque antes que acabem.</p></details>
+  </div>
+</article>
+</div>
+        </div>
+      </div>
+
+      <aside class="col-4 col-t-12">
+        <section class="info-card" style="margin-bottom: 1.5rem" aria-labelledby="maislidos">
+          <h2 id="maislidos">Mais lidos</h2>
+          <ol class="popular-list">
+            <li><a href="#sobre">Quem é a AXIS e por que “eixo”?</a></li>
+            <li><a href="ofertas.html">Ofertas do dia: o que está valendo</a></li>
+            <li><a href="faq.html">Como funciona o PIX e a entrega relâmpago</a></li>
+            <li><a href="produtos.html?categoria=notebooks">Notebooks: modelos para cada bolso</a></li>
+          </ol>
+        </section>
+        <section class="info-card info-card--dark" aria-labelledby="news-titulo">
+          <h2 id="news-titulo">Receba as novidades</h2>
+          <p>Dicas e cupons no seu e-mail, sem spam.</p>
+          <form class="newsletter" action="#" method="post" data-alert-submit="Inscrição feita! (demonstração: nada é salvo).">
+            <label class="sr-only" for="news-email">Seu e-mail</label>
+            <input class="table-filter" id="news-email" name="email" type="email" required placeholder="voce@email.com">
+            <button class="button button--offer button--small" type="submit">Inscrever</button>
+          </form>
+        </section>
+      </aside>
+    </div>
+
+    <section id="sobre" style="margin-top: 3rem" aria-labelledby="sobre-titulo">
+      <div class="info-card info-card--dark">
+        <div class="row about-hero">
+          <div class="col-7 col-t-12">
+            <p class="eyebrow" style="color: #FFB36E">Sobre a AXIS</p>
+            <h2 id="sobre-titulo">Tecnologia no centro das suas escolhas</h2>
+            <p>A AXIS nasceu em 2026 da vontade de um grupo de entusiastas de hardware: comprar tecnologia deveria ser simples. Fichas técnicas claras, preço transparente e uma entrega relâmpago.</p>
+            <p>“Axis” vem do latim e significa <strong>eixo</strong>: o ponto em torno do qual tudo gira. É assim que enxergamos o cliente, no centro de cada escolha.</p>
+            <p><a class="button button--offer button--small" href="sobre.html">Leia a história completa</a></p>
+          </div>
+          <div class="col-5 col-t-12"><img src="assets/images/mascot/robot-help-recortado.png" alt="Robô mascote da AXIS"></div>
+        </div>
+      </div>
+      <h3 class="section-title" style="margin-top: 2rem">Nossos valores</h3>
+      <div class="row">
+        <div class="col-3 col-t-6 col-m-12"><article class="info-card"><h3>Clareza</h3><p>Fichas técnicas explicadas em linguagem simples.</p></article></div>
+        <div class="col-3 col-t-6 col-m-12"><article class="info-card"><h3>Preço justo</h3><p>Valores transparentes e preço especial no PIX.</p></article></div>
+        <div class="col-3 col-t-6 col-m-12"><article class="info-card"><h3>Entrega relâmpago</h3><p>Logística pensada para a compra chegar logo.</p></article></div>
+        <div class="col-3 col-t-6 col-m-12"><article class="info-card"><h3>Suporte de verdade</h3><p>Atendimento humano, de segunda a sábado.</p></article></div>
+      </div>
+      <aside class="cta-box">
+        <h2>Nosso propósito</h2>
+        <p>Tornar a tecnologia acessível, compreensível e confiável, para que cada compra seja uma boa escolha.</p>
+        <p><a class="button button--offer" href="produtos.html">Ver produtos</a><a class="button button--outline" href="contato.html">Fale conosco</a></p>
+      </aside>
+    </section>
+  </main>
+  <!-- RODAPÉ (igual em todas as páginas: mapa do site, redes sociais e contato) -->
+  <footer class="site-footer">
+    <div class="site-footer__main">
+      <section class="footer-about" aria-labelledby="footer-about-title">
+        <h2 id="footer-about-title" class="sr-only">Sobre a AXIS</h2>
+        <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+        <p>Tecnologia no centro das suas escolhas. Hardware, gadgets e eletrônicos com preço justo e entrega relâmpago.</p>
+        <ul class="social-links" aria-label="Redes sociais da AXIS">
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Instagram" title="Instagram">IG</a></li>
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Facebook" title="Facebook">FB</a></li>
+          <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no YouTube" title="YouTube">YT</a></li>
+          <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no X" title="X">X</a></li>
+          <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no WhatsApp" title="WhatsApp">WA</a></li>
+        </ul>
+      </section>
+      <nav class="footer-column" aria-labelledby="footer-sitemap-title">
+        <h2 id="footer-sitemap-title">Mapa do site</h2>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="ofertas.html">Ofertas</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="carrinho.html">Carrinho</a></li>
+          <li><a href="meuspedidos.html">Meus pedidos</a></li>
+          <li><a href="minha-conta.html">Minha conta</a></li>
+          <li><a href="login.html">Entrar</a></li>
+          <li><a href="cadastro.html">Criar conta</a></li>
+          <li><a href="ajuda.html">Ajuda</a></li>
+          <li><a href="dashboard-funcionario.html">Painel do funcionário</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-column" aria-labelledby="footer-departments-title">
+        <h2 id="footer-departments-title">Departamentos</h2>
+        <ul>
+          <li><a href="produtos.html?categoria=smartphones">Smartphones</a></li>
+          <li><a href="produtos.html?categoria=notebooks">Notebooks</a></li>
+          <li><a href="produtos.html?categoria=televisores">Televisores</a></li>
+          <li><a href="produtos.html?categoria=audio">Áudio Profissional</a></li>
+          <li><a href="produtos.html?categoria=pcs">PCs</a></li>
+          <li><a href="produtos.html?categoria=tablets">Tablets</a></li>
+          <li><a href="produtos.html?categoria=conectividade">Conectividade</a></li>
+          <li><a href="produtos.html?categoria=acessorios">Acessórios</a></li>
+        </ul>
+      </nav>
+      <section class="footer-column" aria-labelledby="footer-contact-title">
+        <h2 id="footer-contact-title">Contato</h2>
+        <address>
+          <ul>
+            <li>Av. das Tecnologias, 1000 – Centro<br>Cidade Exemplo – UF, 00000-000</li>
+            <li><a href="tel:+550000000000">Tel.: (00) 4000-0000</a></li>
+            <li><a href="https://wa.me/">WhatsApp: (00) 90000-0000</a></li>
+            <li><a href="mailto:contato@axis.example">contato@axis.example</a></li>
+            <li>Seg a Sex, 8h às 18h<br>Sáb, 9h às 13h</li>
+          </ul>
+        </address>
+      </section>
+    </div>
+    <div class="site-footer__bottom">
+      <p>© 2026 AXIS. Todos os direitos reservados.</p>
+      <a class="back-to-top" href="#">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
