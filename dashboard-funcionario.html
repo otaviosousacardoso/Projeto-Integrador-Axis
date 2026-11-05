@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Área da conta AXIS.">
+  <title>Dashboard do Funcionário | AXIS</title>
+  <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="page page--account">
+  <!-- CABEÇALHO (fixo no topo; mesma marcação e mesma altura em todas as páginas) -->
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar" autocomplete="off">
+        <button type="submit" aria-label="Buscar produtos"><img src="assets/icons/header/icon-search.png" alt=""></button>
+      </form>
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
+        <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho"><img src="assets/icons/header/icon-cart.png" alt=""></a>
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu"><img src="assets/icons/header/icon-menu.png" alt=""><span class="sr-only">Abrir menu</span></button>
+      </div>
+    </nav>
+    <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#categorias">Categorias</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="ofertas.html">Ofertas</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="meuspedidos.html">Meus pedidos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+        <li><a href="dashboard-funcionario.html">Painel do funcionário</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="staff-main">
+    <div class="page-hero">
+      <div><p class="eyebrow">Operação</p><h1>Dashboard do <span>Funcionário</span></h1><p>Despache pedidos, ajuste o estoque e atenda os clientes. Dados fixos de demonstração.</p></div>
+      <a class="button button--offer button--small" href="dashboard.html">Gerenciar produtos</a>
+    </div>
+
+    <div class="row">
+      <aside class="col-3 col-t-12">
+        <nav class="staff-nav" aria-label="Menu do funcionário">
+          <h2>Painel</h2>
+          <ul>
+            <li><a href="dashboard-funcionario.html" aria-current="page">Operação do dia</a></li>
+            <li><a href="dashboard.html">Produtos</a></li>
+            <li><a href="produtos.html">Ver loja</a></li>
+            <li><a class="logout" href="login.html" data-logout>Sair</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="col-9 col-t-12">
+        <p class="notice"><strong>Prazo de hoje:</strong> pedidos aprovados até 15h saem no mesmo dia. Hoje há 3 pedidos aguardando despacho.</p>
+
+        <section aria-label="Indicadores do dia"><div class="row">
+          <div class="col-3 col-t-6 col-m-12"><article class="staff-card staff-card--warn"><h2>A despachar</h2><p class="staff-card__number">3</p></article></div><div class="col-3 col-t-6 col-m-12"><article class="staff-card "><h2>Despachados hoje</h2><p class="staff-card__number">5</p></article></div><div class="col-3 col-t-6 col-m-12"><article class="staff-card staff-card--warn"><h2>Estoque baixo</h2><p class="staff-card__number">2</p></article></div><div class="col-3 col-t-6 col-m-12"><article class="staff-card staff-card--danger"><h2>Atendimentos abertos</h2><p class="staff-card__number">3</p></article></div>
+        </div></section>
+
+        <section class="staff-panel" aria-labelledby="fila-titulo">
+          <div class="staff-panel__head">
+            <h2 id="fila-titulo">Fila de pedidos</h2>
+            <input class="table-filter" type="search" placeholder="Filtrar pedidos..." aria-label="Filtrar pedidos" data-filter="tabela-fila">
+          </div>
+          <div class="staff-table-wrap">
+            <table class="staff-table" id="tabela-fila">
+              <thead><tr><th scope="col">Pedido</th><th scope="col">Cliente</th><th scope="col">Itens</th><th scope="col">Total</th><th scope="col">Status</th><th scope="col">Ações</th></tr></thead>
+              <tbody>
+                <tr><td data-label="Pedido">#AX-1046</td><td data-label="Cliente">Ana Beatriz</td><td data-label="Itens">Notebook Lenovo Ideapad</td><td data-label="Total">R$ 3.599,90</td><td data-label="Status"><span class="badge badge--wait">Pago · a despachar</span></td><td data-label="Ações"><div class="staff-actions"><button class="button-edit" type="button" data-dispatch>Despachar</button><a class="button-edit" href="detalhes-pedido.html">Ver</a></div></td></tr>
+                <tr><td data-label="Pedido">#AX-1047</td><td data-label="Cliente">Rafael Costa</td><td data-label="Itens">Mouse Logitech M170 (2)</td><td data-label="Total">R$ 119,80</td><td data-label="Status"><span class="badge badge--wait">Pago · a despachar</span></td><td data-label="Ações"><div class="staff-actions"><button class="button-edit" type="button" data-dispatch>Despachar</button><a class="button-edit" href="detalhes-pedido.html">Ver</a></div></td></tr>
+                <tr><td data-label="Pedido">#AX-1048</td><td data-label="Cliente">Luana Prado</td><td data-label="Itens">Samsung Smart TV 50"</td><td data-label="Total">R$ 2.799,90</td><td data-label="Status"><span class="badge badge--wait">Pago · a despachar</span></td><td data-label="Ações"><div class="staff-actions"><button class="button-edit" type="button" data-dispatch>Despachar</button><a class="button-edit" href="detalhes-pedido.html">Ver</a></div></td></tr>
+                <tr><td data-label="Pedido">#AX-1045</td><td data-label="Cliente">Pedro Alves</td><td data-label="Itens">JBL Tune 530BT</td><td data-label="Total">R$ 249,90</td><td data-label="Status"><span class="badge badge--ok">Despachado</span></td><td data-label="Ações"><div class="staff-actions"><button class="button-edit" type="button" disabled>Enviado</button><a class="button-edit" href="detalhes-pedido.html">Ver</a></div></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <div class="row" style="margin-top: 1.5rem">
+          <div class="col-6 col-t-12">
+            <section class="staff-panel" aria-labelledby="est-titulo" style="height: 100%">
+              <div class="staff-panel__head"><h2 id="est-titulo">Estoque rápido</h2></div>
+              <ul class="plain-list">
+                <li class="list-row"><span><strong>Mouse Logitech M170</strong><small>SKU: LOGI-M170</small></span><span class="quick-actions"><button class="button-delete" type="button" data-stock="-1" aria-label="Retirar 1 unidade: Mouse Logitech M170">−1</button><span class="stock stock--low">4 un.</span><button class="button-edit" type="button" data-stock="1" aria-label="Adicionar 1 unidade: Mouse Logitech M170">+1</button><button class="button-edit" type="button" data-stock="10" aria-label="Adicionar 10 unidades: Mouse Logitech M170">+10</button></span></li><li class="list-row"><span><strong>Redmi Watch 5</strong><small>SKU: XIAO-RW5</small></span><span class="quick-actions"><button class="button-delete" type="button" data-stock="-1" aria-label="Retirar 1 unidade: Redmi Watch 5">−1</button><span class="stock stock--out">0 un.</span><button class="button-edit" type="button" data-stock="1" aria-label="Adicionar 1 unidade: Redmi Watch 5">+1</button><button class="button-edit" type="button" data-stock="10" aria-label="Adicionar 10 unidades: Redmi Watch 5">+10</button></span></li><li class="list-row"><span><strong>Tablet Galaxy Tab A9</strong><small>SKU: SAMS-TABA9</small></span><span class="quick-actions"><button class="button-delete" type="button" data-stock="-1" aria-label="Retirar 1 unidade: Tablet Galaxy Tab A9">−1</button><span class="stock stock--low">9 un.</span><button class="button-edit" type="button" data-stock="1" aria-label="Adicionar 1 unidade: Tablet Galaxy Tab A9">+1</button><button class="button-edit" type="button" data-stock="10" aria-label="Adicionar 10 unidades: Tablet Galaxy Tab A9">+10</button></span></li><li class="list-row"><span><strong>Notebook Lenovo Ideapad</strong><small>SKU: LENO-IDEAPAD1-R3</small></span><span class="quick-actions"><button class="button-delete" type="button" data-stock="-1" aria-label="Retirar 1 unidade: Notebook Lenovo Ideapad">−1</button><span class="stock stock--ok">18 un.</span><button class="button-edit" type="button" data-stock="1" aria-label="Adicionar 1 unidade: Notebook Lenovo Ideapad">+1</button><button class="button-edit" type="button" data-stock="10" aria-label="Adicionar 10 unidades: Notebook Lenovo Ideapad">+10</button></span></li>
+              </ul>
+            </section>
+          </div>
+          <div class="col-6 col-t-12">
+            <section class="staff-panel" aria-labelledby="atend-titulo" style="height: 100%">
+              <div class="staff-panel__head"><h2 id="atend-titulo">Central de atendimento</h2><a class="button button--outline button--small" href="contato.html">Ver formulário</a></div>
+              <ul class="plain-list">
+                <li class="list-row"><span><strong>Marina Souza</strong><small>Pedido #AX-1041 · onde está minha entrega?</small></span><span class="quick-actions"><span class="badge badge--off">Urgente</span><button class="button-edit" type="button" data-alert="Resposta ao cliente Marina Souza: demonstração, nada é enviado.">Responder</button><button class="button-delete" type="button" data-remove=".list-row" aria-label="Marcar como resolvido: Marina Souza">Resolver</button></span></li><li class="list-row"><span><strong>Carlos Lima</strong><small>Troca de produto com defeito</small></span><span class="quick-actions"><span class="badge badge--info">Garantia</span><button class="button-edit" type="button" data-alert="Resposta ao cliente Carlos Lima: demonstração, nada é enviado.">Responder</button><button class="button-delete" type="button" data-remove=".list-row" aria-label="Marcar como resolvido: Carlos Lima">Resolver</button></span></li><li class="list-row"><span><strong>Juliana Reis</strong><small>Pagamento via PIX não confirmou</small></span><span class="quick-actions"><span class="badge badge--wait">Pagamento</span><button class="button-edit" type="button" data-alert="Resposta ao cliente Juliana Reis: demonstração, nada é enviado.">Responder</button><button class="button-delete" type="button" data-remove=".list-row" aria-label="Marcar como resolvido: Juliana Reis">Resolver</button></span></li>
+              </ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- RODAPÉ (igual em todas as páginas: mapa do site, redes sociais e contato) -->
+  <footer class="site-footer">
+    <div class="site-footer__main">
+      <section class="footer-about" aria-labelledby="footer-about-title">
+        <h2 id="footer-about-title" class="sr-only">Sobre a AXIS</h2>
+        <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+        <p>Tecnologia no centro das suas escolhas. Hardware, gadgets e eletrônicos com preço justo e entrega relâmpago.</p>
+        <ul class="social-links" aria-label="Redes sociais da AXIS">
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Instagram" title="Instagram">IG</a></li>
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Facebook" title="Facebook">FB</a></li>
+          <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no YouTube" title="YouTube">YT</a></li>
+          <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no X" title="X">X</a></li>
+          <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no WhatsApp" title="WhatsApp">WA</a></li>
+        </ul>
+      </section>
+      <nav class="footer-column" aria-labelledby="footer-sitemap-title">
+        <h2 id="footer-sitemap-title">Mapa do site</h2>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="ofertas.html">Ofertas</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="carrinho.html">Carrinho</a></li>
+          <li><a href="meuspedidos.html">Meus pedidos</a></li>
+          <li><a href="minha-conta.html">Minha conta</a></li>
+          <li><a href="login.html">Entrar</a></li>
+          <li><a href="cadastro.html">Criar conta</a></li>
+          <li><a href="ajuda.html">Ajuda</a></li>
+          <li><a href="dashboard-funcionario.html">Painel do funcionário</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-column" aria-labelledby="footer-departments-title">
+        <h2 id="footer-departments-title">Departamentos</h2>
+        <ul>
+          <li><a href="produtos.html?categoria=smartphones">Smartphones</a></li>
+          <li><a href="produtos.html?categoria=notebooks">Notebooks</a></li>
+          <li><a href="produtos.html?categoria=televisores">Televisores</a></li>
+          <li><a href="produtos.html?categoria=audio">Áudio Profissional</a></li>
+          <li><a href="produtos.html?categoria=pcs">PCs</a></li>
+          <li><a href="produtos.html?categoria=tablets">Tablets</a></li>
+          <li><a href="produtos.html?categoria=conectividade">Conectividade</a></li>
+          <li><a href="produtos.html?categoria=acessorios">Acessórios</a></li>
+        </ul>
+      </nav>
+      <section class="footer-column" aria-labelledby="footer-contact-title">
+        <h2 id="footer-contact-title">Contato</h2>
+        <address>
+          <ul>
+            <li>Av. das Tecnologias, 1000 – Centro<br>Cidade Exemplo – UF, 00000-000</li>
+            <li><a href="tel:+550000000000">Tel.: (00) 4000-0000</a></li>
+            <li><a href="https://wa.me/">WhatsApp: (00) 90000-0000</a></li>
+            <li><a href="mailto:contato@axis.example">contato@axis.example</a></li>
+            <li>Seg a Sex, 8h às 18h<br>Sáb, 9h às 13h</li>
+          </ul>
+        </address>
+      </section>
+    </div>
+    <div class="site-footer__bottom">
+      <p>© 2026 AXIS. Todos os direitos reservados.</p>
+      <a class="back-to-top" href="#">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
