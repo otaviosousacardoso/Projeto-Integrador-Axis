@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Área da conta AXIS.">
+  <title>Editar dados | AXIS</title>
+  <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="page page--account">
+  <!-- CABEÇALHO (fixo no topo; mesma marcação e mesma altura em todas as páginas) -->
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar" autocomplete="off">
+        <button type="submit" aria-label="Buscar produtos"><img src="assets/icons/header/icon-search.png" alt=""></button>
+      </form>
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" aria-label="Entrar ou criar conta" title="Minha conta"><img src="assets/icons/header/icon-user.png" alt=""></a>
+        <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho"><img src="assets/icons/header/icon-cart.png" alt=""></a>
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu"><img src="assets/icons/header/icon-menu.png" alt=""><span class="sr-only">Abrir menu</span></button>
+      </div>
+    </nav>
+    <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#categorias">Categorias</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="ofertas.html">Ofertas</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="meuspedidos.html">Meus pedidos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+        <li><a href="dashboard-funcionario.html">Painel do funcionário</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="content-main">
+    <div class="page-hero">
+      <div><p class="eyebrow">Área do cliente</p><h1>Editar <span>dados</span></h1><p>Mantenha seu cadastro, sua senha e seus endereços sempre atualizados.</p></div>
+    </div>
+
+    <div class="row">
+      <aside class="col-3 col-t-12">
+        <nav class="staff-nav" aria-label="Menu da conta">
+          <h2>Minha conta</h2>
+          <ul><li><a href="minha-conta.html">Resumo</a></li><li><a href="editar-dados.html" aria-current="page">Editar dados</a></li><li><a href="meuspedidos.html">Meus pedidos</a></li><li><a href="meus-cupons.html">Meus cupons</a></li><li><a href="ajuda.html">Precisa de ajuda?</a></li><li><a class="logout" href="login.html" data-logout>Sair</a></li></ul>
+        </nav>
+      </aside>
+      <div class="col-9 col-t-12">
+        <p class="notice notice--info">Campos com <strong>*</strong> são obrigatórios. Este site é uma demonstração: nenhum dado é salvo.</p>
+
+        <section class="staff-panel" aria-labelledby="pessoais-titulo">
+          <div class="staff-panel__head"><h2 id="pessoais-titulo">Dados pessoais</h2></div>
+          <form class="contact-form" action="#" method="post" data-alert-submit="Dados atualizados com sucesso! (demonstração: nada é salvo).">
+            <fieldset><legend>Cadastro</legend><div class="row">
+              <div class="col-6 col-m-12 form-field"><label for="ed-nome">Nome completo *</label><input id="ed-nome" name="ed-nome" type="text" value="Marina Souza" autocomplete="name" minlength="3" required></div>
+              <div class="col-6 col-m-12 form-field"><label for="ed-email">E-mail *</label><input id="ed-email" name="ed-email" type="email" value="marina.souza@email.com" autocomplete="email" required></div>
+              <div class="col-6 col-m-12 form-field"><label for="ed-cpf">CPF *</label><input id="ed-cpf" name="ed-cpf" type="text" value="000.000.000-00" inputmode="numeric" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" title="Use o formato 000.000.000-00" required></div>
+              <div class="col-6 col-m-12 form-field"><label for="ed-nasc">Data de nascimento</label><input id="ed-nasc" name="ed-nasc" type="date" value="1995-05-20"></div>
+              <div class="col-6 col-m-12 form-field"><label for="ed-tel">Telefone / WhatsApp</label><input id="ed-tel" name="ed-tel" type="tel" value="(00) 90000-0000" autocomplete="tel" pattern="[0-9() +-]{8,20}" title="Use apenas números, espaços, parênteses, + ou -"></div>
+            </div></fieldset>
+            <fieldset><legend>Preferências de comunicação</legend>
+              <div class="choice-group">
+                <label class="choice"><input type="checkbox" name="ofertas" checked> Receber ofertas e cupons por e-mail</label>
+                <label class="choice"><input type="checkbox" name="pedidos" checked> Avisos de status do pedido por WhatsApp</label>
+              </div>
+            </fieldset>
+            <div class="form-buttons"><button class="button button--offer" type="submit">Salvar alterações</button><a class="button button--outline" href="minha-conta.html">Cancelar</a></div>
+          </form>
+        </section>
+
+        <section class="staff-panel" aria-labelledby="senha-titulo" style="margin-top: 1.5rem">
+          <div class="staff-panel__head"><h2 id="senha-titulo">Alterar senha</h2></div>
+          <form class="contact-form" action="#" method="post" data-alert-submit="Senha alterada com sucesso! (demonstração: nada é salvo).">
+            <fieldset><legend>Segurança</legend><div class="row">
+              <div class="col-12 form-field"><label for="senha-atual">Senha atual *</label><input id="senha-atual" name="senha-atual" type="password" autocomplete="current-password" required></div>
+              <div class="col-6 col-m-12 form-field"><label for="nova-senha">Nova senha * (mín. 8 caracteres)</label><input id="nova-senha" name="nova-senha" type="password" autocomplete="new-password" minlength="8" required></div>
+              <div class="col-6 col-m-12 form-field"><label for="confirma-nova-senha">Confirmar nova senha *</label><input id="confirma-nova-senha" name="confirma-nova-senha" type="password" autocomplete="new-password" minlength="8" required></div>
+            </div></fieldset>
+            <div class="form-buttons"><button class="button button--offer" type="submit">Alterar senha</button></div>
+          </form>
+        </section>
+
+        <section class="staff-panel" aria-labelledby="end-titulo" style="margin-top: 1.5rem">
+          <div class="staff-panel__head"><h2 id="end-titulo">Endereços de entrega</h2></div>
+          <div class="row">
+            <div class="col-6 col-m-12 address-item"><article class="info-card address-card"><h3>Casa <span class="badge badge--ok">Principal</span></h3><p>Av. das Tecnologias, 1000 – Apto 52<br>Centro · Cidade Exemplo – MG<br>CEP 00000-000</p>
+              <div class="quick-actions"><button class="button-edit" type="button" data-alert="Editar endereço: demonstração, nada é alterado.">Editar</button><button class="button-delete" type="button" data-remove=".address-item">Remover</button></div></article></div>
+            <div class="col-6 col-m-12 address-item"><article class="info-card address-card"><h3>Trabalho </h3><p>Rua da Inovação, 250 – Sala 4<br>Distrito Industrial · Cidade Exemplo – MG<br>CEP 00000-111</p>
+              <div class="quick-actions"><button class="button-edit" type="button" data-alert="Editar endereço: demonstração, nada é alterado.">Editar</button><button class="button-delete" type="button" data-remove=".address-item">Remover</button></div></article></div>
+          </div>
+          <form class="contact-form" action="#" method="post" data-alert-submit="Endereço adicionado! (demonstração: nada é salvo).">
+            <fieldset><legend>Adicionar novo endereço</legend><div class="row">
+              <div class="col-6 col-m-12 form-field"><label for="end-apelido">Apelido do endereço *</label><input id="end-apelido" name="end-apelido" type="text" placeholder="Ex.: Casa da família" required></div>
+              <div class="col-6 col-m-12 form-field"><label for="end-cep">CEP *</label><input id="end-cep" name="end-cep" type="text" inputmode="numeric" pattern="[0-9]{5}-?[0-9]{3}" title="Use o formato 00000-000" placeholder="00000-000" required></div>
+              <div class="col-8 col-m-12 form-field"><label for="end-rua">Rua / Avenida *</label><input id="end-rua" name="end-rua" type="text" autocomplete="address-line1" required></div>
+              <div class="col-4 col-m-12 form-field"><label for="end-num">Número *</label><input id="end-num" name="end-num" type="text" required></div>
+              <div class="col-6 col-m-12 form-field"><label for="end-comp">Complemento</label><input id="end-comp" name="end-comp" type="text" placeholder="Apto, bloco..."></div>
+              <div class="col-6 col-m-12 form-field"><label for="end-bairro">Bairro *</label><input id="end-bairro" name="end-bairro" type="text" required></div>
+              <div class="col-8 col-m-12 form-field"><label for="end-cidade">Cidade *</label><input id="end-cidade" name="end-cidade" type="text" autocomplete="address-level2" required></div>
+              <div class="col-4 col-m-12 form-field"><label for="end-uf">UF *</label><select id="end-uf" name="uf" required><option value="AC">AC</option><option value="AL">AL</option><option value="AP">AP</option><option value="AM">AM</option><option value="BA">BA</option><option value="CE">CE</option><option value="DF">DF</option><option value="ES">ES</option><option value="GO">GO</option><option value="MA">MA</option><option value="MT">MT</option><option value="MS">MS</option><option value="MG" selected>MG</option><option value="PA">PA</option><option value="PB">PB</option><option value="PR">PR</option><option value="PE">PE</option><option value="PI">PI</option><option value="RJ">RJ</option><option value="RN">RN</option><option value="RS">RS</option><option value="RO">RO</option><option value="RR">RR</option><option value="SC">SC</option><option value="SP">SP</option><option value="SE">SE</option><option value="TO">TO</option></select></div>
+              <div class="col-12 form-field"><label class="choice"><input type="checkbox" name="principal"> Definir como endereço principal</label></div>
+            </div></fieldset>
+            <div class="form-buttons"><button class="button button--offer" type="submit">Adicionar endereço</button></div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+  <!-- RODAPÉ (igual em todas as páginas: mapa do site, redes sociais e contato) -->
+  <footer class="site-footer">
+    <div class="site-footer__main">
+      <section class="footer-about" aria-labelledby="footer-about-title">
+        <h2 id="footer-about-title" class="sr-only">Sobre a AXIS</h2>
+        <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
+        <p>Tecnologia no centro das suas escolhas. Hardware, gadgets e eletrônicos com preço justo e entrega relâmpago.</p>
+        <ul class="social-links" aria-label="Redes sociais da AXIS">
+          <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Instagram" title="Instagram">IG</a></li>
+          <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Facebook" title="Facebook">FB</a></li>
+          <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no YouTube" title="YouTube">YT</a></li>
+          <li><a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no X" title="X">X</a></li>
+          <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no WhatsApp" title="WhatsApp">WA</a></li>
+        </ul>
+      </section>
+      <nav class="footer-column" aria-labelledby="footer-sitemap-title">
+        <h2 id="footer-sitemap-title">Mapa do site</h2>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="ofertas.html">Ofertas</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="carrinho.html">Carrinho</a></li>
+          <li><a href="meuspedidos.html">Meus pedidos</a></li>
+          <li><a href="minha-conta.html">Minha conta</a></li>
+          <li><a href="login.html">Entrar</a></li>
+          <li><a href="cadastro.html">Criar conta</a></li>
+          <li><a href="ajuda.html">Ajuda</a></li>
+          <li><a href="dashboard-funcionario.html">Painel do funcionário</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-column" aria-labelledby="footer-departments-title">
+        <h2 id="footer-departments-title">Departamentos</h2>
+        <ul>
+          <li><a href="produtos.html?categoria=smartphones">Smartphones</a></li>
+          <li><a href="produtos.html?categoria=notebooks">Notebooks</a></li>
+          <li><a href="produtos.html?categoria=televisores">Televisores</a></li>
+          <li><a href="produtos.html?categoria=audio">Áudio Profissional</a></li>
+          <li><a href="produtos.html?categoria=pcs">PCs</a></li>
+          <li><a href="produtos.html?categoria=tablets">Tablets</a></li>
+          <li><a href="produtos.html?categoria=conectividade">Conectividade</a></li>
+          <li><a href="produtos.html?categoria=acessorios">Acessórios</a></li>
+        </ul>
+      </nav>
+      <section class="footer-column" aria-labelledby="footer-contact-title">
+        <h2 id="footer-contact-title">Contato</h2>
+        <address>
+          <ul>
+            <li>Av. das Tecnologias, 1000 – Centro<br>Cidade Exemplo – UF, 00000-000</li>
+            <li><a href="tel:+550000000000">Tel.: (00) 4000-0000</a></li>
+            <li><a href="https://wa.me/">WhatsApp: (00) 90000-0000</a></li>
+            <li><a href="mailto:contato@axis.example">contato@axis.example</a></li>
+            <li>Seg a Sex, 8h às 18h<br>Sáb, 9h às 13h</li>
+          </ul>
+        </address>
+      </section>
+    </div>
+    <div class="site-footer__bottom">
+      <p>© 2026 AXIS. Todos os direitos reservados.</p>
+      <a class="back-to-top" href="#">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>
