@@ -29,30 +29,85 @@
         <li><a href="index.html">Início</a></li>
         <li><a href="index.html#categorias">Categorias</a></li>
         <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="ofertas.html">Ofertas</a></li>
         <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="blog.html">Blog</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="contato.html">Contato</a></li>
         <li><a href="meuspedidos.html">Meus pedidos</a></li>
         <li><a href="minha-conta.html">Minha conta</a></li>
         <li><a href="ajuda.html">Ajuda</a></li>
-        <li><a href="dashboard.html">Painel do funcionário</a></li>
+        <li><a href="dashboard-funcionario.html">Painel do funcionário</a></li>
       </ul>
     </nav>
   </header>
-  <main class="account-main">
-    <h1>Minha Conta</h1>
-    <section class="account-grid" aria-label="Opções da conta">
-      <article class="account-profile">
-        <div class="account-avatar"><img src="assets/images/mascot/robot-banner.png" alt="Mascote AXIS"></div>
-        <div><h2>Bem-vindo à AXIS</h2><p>Gerencie seus dados, pedidos e benefícios em um só lugar.</p></div>
-        <a class="button button--offer" href="cadastro.html">Editar dados</a>
-      </article>
-      <nav class="account-actions" aria-label="Ações da conta">
-        <a href="ajuda.html"><span>🎧</span> Precisa de ajuda?</a>
-        <a href="produtos.html?cupom=1"><span>🏷</span> Meus cupons</a>
-        <a href="meuspedidos.html"><span>🛍</span> Meus pedidos</a>
-      </nav>
+  <main class="content-main">
+    <section class="account-hero" aria-label="Perfil">
+      <div class="account-avatar"><img src="assets/images/mascot/robot-banner.png" alt="Mascote AXIS"></div>
+      <div>
+        <p class="eyebrow" style="color: #FFB36E">Área do cliente</p>
+        <h1>Olá, Marina!</h1>
+        <p>marina.souza@email.com · Cliente desde 2025</p>
+      </div>
     </section>
+
+    <div class="row">
+      <aside class="col-3 col-t-12">
+        <nav class="staff-nav" aria-label="Menu da conta">
+          <h2>Minha conta</h2>
+          <ul>
+            <li><a href="minha-conta.html" aria-current="page">Resumo</a></li>
+            <li><a href="editar-dados.html">Editar dados</a></li>
+            <li><a href="meuspedidos.html">Meus pedidos</a></li>
+            <li><a href="meus-cupons.html">Meus cupons</a></li>
+            <li><a href="ajuda.html">Precisa de ajuda?</a></li>
+            <li><a class="logout" href="login.html" data-logout>Sair</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="col-9 col-t-12">
+        <section class="row" aria-label="Resumo da conta">
+          <div class="col-4 col-m-12"><article class="staff-card"><h2>Pedidos feitos</h2><p class="staff-card__number">7</p></article></div>
+          <div class="col-4 col-m-12"><article class="staff-card"><h2>Cupons ativos</h2><p class="staff-card__number">2</p></article></div>
+          <div class="col-4 col-m-12"><article class="staff-card staff-card--warn"><h2>Em transporte</h2><p class="staff-card__number">1</p></article></div>
+        </section>
+
+        <section class="staff-panel" aria-labelledby="ultimos-titulo">
+          <div class="staff-panel__head">
+            <h2 id="ultimos-titulo">Últimos pedidos</h2>
+            <a class="button button--outline button--small" href="meuspedidos.html">Ver todos</a>
+          </div>
+          <ul class="plain-list">
+            <li class="list-row"><span><strong>Pedido #AX-1041</strong><small>JBL Tune 530BT + Mouse Logitech M170 · R$ 309,80</small></span><span><span class="badge badge--info">Em transporte</span> <a class="button-edit" href="detalhes-pedido.html">Detalhes</a></span></li>
+            <li class="list-row"><span><strong>Pedido #AX-1042</strong><small>Notebook Lenovo Ideapad · R$ 3.599,90</small></span><span><span class="badge badge--ok">Entregue</span> <a class="button-edit" href="detalhes-pedido.html">Detalhes</a></span></li>
+          </ul>
+        </section>
+
+        <section class="staff-panel" aria-labelledby="cupons-titulo" style="margin-top: 1.5rem">
+          <div class="staff-panel__head">
+            <h2 id="cupons-titulo">Cupons disponíveis</h2>
+            <a class="button button--outline button--small" href="meus-cupons.html">Ver todos</a>
+          </div>
+          <div class="row">
+            <div class="col-6 col-m-12"><article class="coupon"><p class="coupon__code">AXIS10</p><p>10% de desconto em acessórios.</p><button class="button-edit" type="button" data-copy="AXIS10">Copiar código</button></article></div>
+            <div class="col-6 col-m-12"><article class="coupon"><p class="coupon__code">FRETEGRATIS</p><p>Frete grátis acima de R$ 299.</p><button class="button-edit" type="button" data-copy="FRETEGRATIS">Copiar código</button></article></div>
+          </div>
+        </section>
+
+        <section class="staff-panel" aria-labelledby="dados-titulo" style="margin-top: 1.5rem">
+          <div class="staff-panel__head">
+            <h2 id="dados-titulo">Meus dados</h2>
+            <a class="button button--offer button--small" href="editar-dados.html">Editar dados</a>
+          </div>
+          <ul class="plain-list">
+            <li class="list-row"><strong>Nome</strong><span>Marina Souza</span></li>
+            <li class="list-row"><strong>E-mail</strong><span>marina.souza@email.com</span></li>
+            <li class="list-row"><strong>Endereço</strong><span>Av. das Tecnologias, 1000 – Centro</span></li>
+          </ul>
+        </section>
+      </div>
+    </div>
   </main>
   <!-- RODAPÉ (igual em todas as páginas: mapa do site, redes sociais e contato) -->
   <footer class="site-footer">
@@ -74,7 +129,9 @@
         <ul>
           <li><a href="index.html">Início</a></li>
           <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="ofertas.html">Ofertas</a></li>
           <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="blog.html">Blog</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="contato.html">Contato</a></li>
           <li><a href="carrinho.html">Carrinho</a></li>
@@ -83,7 +140,7 @@
           <li><a href="login.html">Entrar</a></li>
           <li><a href="cadastro.html">Criar conta</a></li>
           <li><a href="ajuda.html">Ajuda</a></li>
-          <li><a href="dashboard.html">Painel do funcionário</a></li>
+          <li><a href="dashboard-funcionario.html">Painel do funcionário</a></li>
         </ul>
       </nav>
       <nav class="footer-column" aria-labelledby="footer-departments-title">
