@@ -14,11 +14,12 @@
   10. PAGAMENTO ........... pagamento.html
   11. PEDIDO CONFIRMADO ... pedido-confirmado.html
   12. RESPONSIVIDADE ...... ajustes de tablet e celular (media queries)
-  13. MEUS PEDIDOS ........ meuspedidos.html
-  14. PÁGINA DE PRODUTO ... produto-*.html
-  15. GRID DE 12 COLUNAS .. .row e .col-1 ... .col-12 (+ .col-t-* tablet e .col-m-* celular)
-  16. PÁGINAS NOVAS ....... sobre.html, faq.html, contato.html
-  17. DASHBOARD ........... dashboard.html (painel do funcionário, tabela estática)
+  13. ADICIONAR PRODUTO....adicionar-produto.html
+  14. MEUS PEDIDOS ........ meuspedidos.html
+  15. PÁGINA DE PRODUTO ... produto-*.html
+  16. GRID DE 12 COLUNAS .. .row e .col-1 ... .col-12 (+ .col-t-* tablet e .col-m-* celular)
+  17. PÁGINAS NOVAS ....... sobre.html, faq.html, contato.html
+  18. DASHBOARD ........... dashboard.html (painel do funcionário, tabela estática)
 
    O preto do cabeçalho e do rodapé é mantido por fidelidade ao protótipo Canva.
    Organização baseada nos conteúdos da apostila de Fundamentos de Web Design I
@@ -1369,7 +1370,7 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
   .payment-option { font-size: 15px; }
 }
 /* ==========================================================================
-    13. PAINEL DO FUNCIONÁRIO (funcionario.html, funcionario-produtos.html e funcionario-produto.html)
+    14. PAINEL DO FUNCIONÁRIO (funcionario.html, funcionario-produtos.html e funcionario-produto.html)
    ========================================================================== */
 
    
@@ -1434,7 +1435,7 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 
 
 /* --------------------------------------------------------------------------
-   12. ADICIONAR PRODUTO (adicionar-produto.html)
+   13. ADICIONAR PRODUTO (adicionar-produto.html)
    -------------------------------------------------------------------------- */
 
 .staff-panel {
@@ -1717,7 +1718,7 @@ a.button--secondary:link, a.button--secondary:visited { color: #000000; }
 
 
 /* --------------------------------------------------------------------------
-   14. PÁGINA DE PRODUTO (produto-*.html)
+   15. PÁGINA DE PRODUTO (produto-*.html)
    Usada pelas 8 páginas de produto, no layout do protótipo Canva (notebook Dell):
    galeria à esquerda | nome + descrição no meio | preço, botões e frete à direita.
    O prefixo "pdp" significa "product detail page" (página de detalhe do produto).
@@ -1997,7 +1998,7 @@ a.pdp-btn--outline:link, a.pdp-btn--outline:visited, a.pdp-btn--outline:active {
 }
 
 /* ==========================================================================
-   15. GRID DE 12 COLUNAS (apostila, seção 45.3 Grid-View e seção 46 Media Query)
+   16. GRID DE 12 COLUNAS (apostila, seção 45.3 Grid-View e seção 46 Media Query)
    Ideia da apostila: 100% de largura / 12 colunas = 8,3333% por coluna.
    - box-sizing: border-box vale para todas as caixas (regra "*" no início do arquivo)
    - .row é a linha; .col-1 ... .col-12 são as colunas (desktop)
@@ -2128,7 +2129,7 @@ a.pdp-btn--outline:link, a.pdp-btn--outline:visited, a.pdp-btn--outline:active {
 }
 
 /* ==========================================================================
-   16. PÁGINAS NOVAS (sobre.html, faq.html, contato.html)
+   17. PÁGINAS NOVAS (sobre.html, faq.html, contato.html)
    ========================================================================== */
 .content-main { width: min(100%, 1680px); margin: 0 auto; padding: 3rem 3rem 4rem; }
 
@@ -2194,7 +2195,7 @@ a.pdp-btn--outline:link, a.pdp-btn--outline:visited, a.pdp-btn--outline:active {
 .info-card--dark address { font-style: normal; }
 
 /* ==========================================================================
-   17. DASHBOARD - PAINEL DO FUNCIONÁRIO (dashboard.html)
+   18. DASHBOARD - PAINEL DO FUNCIONÁRIO (dashboard.html)
    ========================================================================== */
 .staff-main { width: min(100%, 1680px); margin: 0 auto; padding: 2.5rem 3rem 4rem; }
 .staff-title h1 { margin: 0 0 .4rem; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; }
@@ -2271,7 +2272,7 @@ a.pdp-btn--outline:link, a.pdp-btn--outline:visited, a.pdp-btn--outline:active {
 .login-erro { margin: 0; color: #C62828; font-weight: 700; }
 
 /* ==========================================================================
-   18. ETAPA 2 - COMPONENTES NOVOS (admin.html, minha-conta.html e páginas seguintes)
+   19. ETAPA 2 - COMPONENTES NOVOS (admin.html, minha-conta.html e páginas seguintes)
    Reaproveita o grid de 12 colunas (seção 15) e o degradê escuro de Sobre/Contato.
    ========================================================================== */
 
@@ -2328,7 +2329,7 @@ a.product-card:hover, a.product-card:focus-visible { border-color: #FF6B00; }
 .staff-nav .logout { color: #C62828; }
 
 /* ==========================================================================
-   19. ETAPA 2 - LINHA DO TEMPO, AVISOS, CUPONS E RESUMOS
+   20. ETAPA 2 - LINHA DO TEMPO, AVISOS, CUPONS E RESUMOS
    (detalhes-pedido.html, meus-cupons.html, editar-dados.html, dashboard-funcionario.html)
    ========================================================================== */
 
@@ -2379,7 +2380,7 @@ a.product-card:hover, a.product-card:focus-visible { border-color: #FF6B00; }
 .address-card p { margin: 0 0 .8rem; line-height: 1.5; }
 
 /* ==========================================================================
-   20. ETAPA 3 - OFERTAS, CARD CLICÁVEL COM CARRINHO, TEMPORIZADOR E BLOG
+   21. ETAPA 3 - OFERTAS, CARD CLICÁVEL COM CARRINHO, TEMPORIZADOR E BLOG
    (ofertas.html, oferta-detalhe.html, blog.html e cards de index/produtos)
    ========================================================================== */
 
