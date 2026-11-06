@@ -1451,14 +1451,29 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 }
 
 .upload-area input[type="file"] {
-    max-width: 100%;
-   width: 100%;
-    padding: 0.7rem;
+    width: 100%;
+    padding: 10px;
     background: #FFFFFF;
     border: 1px solid #CCCCCC;
     border-radius: 8px;
-    font: inherit;
-    color: #000000;
+    font-family: inherit;
+    font-size: 13px;
+    color: #555555;
+}
+
+.upload-area input[type="file"]::file-selector-button {
+    background: #FF6B00;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 15px;
+    margin-right: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.upload-area input[type="file"]::file-selector-button:hover {
+    background: #D95B00;
 }
 
 /* Links "Em breve" do menu do painel: aparecem apagados e não levam a lugar nenhum */
