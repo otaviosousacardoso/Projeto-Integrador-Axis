@@ -1213,6 +1213,8 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 }
 
 
+
+
 /* --------------------------------------------------------------------------
    12. RESPONSIVIDADE (media queries)
    Regras que só valem em telas menores. Ordem: produtos → ajuda → geral (tablet)
@@ -1429,6 +1431,27 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
   
   .formulario--produto { grid-template-columns: 1fr; }
 } 
+
+
+/* --------------------------------------------------------------------------
+   12. ADICIONAR PRODUTO (adicionar-produto.html)
+   -------------------------------------------------------------------------- */
+
+.staff-panel {
+    margin-bottom: 2rem;
+}
+
+.formulario--produto {
+    margin-top: 1rem;
+}
+
+.form-actions {
+    flex-wrap: wrap;
+}
+
+.upload-area input[type="file"] {
+    max-width: 100%;
+}
 
 /* Links "Em breve" do menu do painel: aparecem apagados e não levam a lugar nenhum */
 
