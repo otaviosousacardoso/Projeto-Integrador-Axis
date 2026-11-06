@@ -137,19 +137,16 @@
                                 placeholder="Digite a quantidade" min="0" required>
                         </div>
 
-                       <div class="upload-area">
-                            <span>Selecione uma imagem para o produto</span>
-                        
-                            <label for="imagem" class="upload-button">
-                                Escolher imagem
-                            </label>
-                        
-                            <input type="file" id="imagem" name="imagem"
-                                accept="image/*" class="upload-input">
+                       <label for="imagem" class="upload-area">
+
+                            <span>Escolha uma imagem</span>
                         
                             <small>Formatos de imagem aceitos</small>
-                        </div>
-
+                        
+                            <input type="file" id="imagem" name="imagem"
+                                accept="image/*">
+                        
+                        </label>
                         <div class="form-field form-field--full">
                             <label for="descricao">Descrição do produto</label>
                             <textarea id="descricao" name="descricao"
