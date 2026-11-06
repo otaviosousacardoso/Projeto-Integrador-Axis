@@ -2420,3 +2420,8 @@ a.cat-chip:hover, a.cat-chip:focus-visible { border-color: #FF6B00; }
 .about-hero h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
 .newsletter { display: flex; flex-wrap: wrap; gap: .6rem; }
 .newsletter .table-filter { flex: 1; min-width: 180px; }
+
+/* Cartões EMPILHADOS numa mesma coluna (ex.: barra lateral do blog) não podem ter height: 100%,
+   senão cada um estica até a altura da coluna inteira e eles se sobrepõem. */
+[class*="col-"] > .info-card.info-card--auto { height: auto; margin-bottom: 1.5rem; }
+[class*="col-"] > .info-card.info-card--auto:last-child { margin-bottom: 0; }
