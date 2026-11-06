@@ -1451,6 +1451,13 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 
 .upload-area input[type="file"] {
     max-width: 100%;
+   width: 100%;
+    padding: 0.7rem;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 8px;
+    font: inherit;
+    color: #000000;
 }
 
 /* Links "Em breve" do menu do painel: aparecem apagados e não levam a lugar nenhum */
