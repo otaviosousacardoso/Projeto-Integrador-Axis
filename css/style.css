@@ -1450,7 +1450,7 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
     flex-wrap: wrap;
 }
 
-.upload-area {
+.upload-area-produto {
     width: 100%;
     min-height: 120px;
     padding: 25px;
@@ -1468,30 +1468,30 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
     transition: 0.2s;
 }
 
-.upload-area span {
+.upload-area-produto span {
     color: #333333;
     font-size: 14px;
     font-weight: 600;
 }
 
-.upload-area small {
+.upload-area-produto small {
     color: #888888;
     font-size: 12px;
 }
 
-.upload-area input[type="file"] {
+.upload-area-produto input[type="file"] {
     position: absolute;
     width: 1px;
     height: 1px;
     opacity: 0;
 }
 
-.upload-area:hover {
+.upload-area-produto:hover {
     background: #FFE8D5;
     border-color: #FF6B00;
 }
 
-.upload-area:focus-within {
+.upload-area-produto:focus-within {
     outline: 2px solid #FF6B00;
     outline-offset: 2px;
 }
