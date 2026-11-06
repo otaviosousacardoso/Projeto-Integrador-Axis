@@ -1450,30 +1450,35 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
     flex-wrap: wrap;
 }
 
-.upload-area input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    background: #FFFFFF;
-    border: 1px solid #CCCCCC;
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 13px;
-    color: #555555;
+.upload-area {
+    position: relative;
 }
 
-.upload-area input[type="file"]::file-selector-button {
+.upload-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.upload-button {
+    display: inline-block;
+    padding: 10px 20px;
     background: #FF6B00;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 6px;
-    padding: 9px 15px;
-    margin-right: 12px;
+    color: white;
+    border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
+    transition: background 0.2s;
 }
 
-.upload-area input[type="file"]::file-selector-button:hover {
+.upload-button:hover {
     background: #D95B00;
+}
+
+.upload-area:focus-within .upload-button {
+    outline: 2px solid #004B63;
+    outline-offset: 3px;
 }
 
 /* Links "Em breve" do menu do painel: aparecem apagados e não levam a lugar nenhum */
