@@ -2239,3 +2239,184 @@ a.pdp-btn--outline:link, a.pdp-btn--outline:visited, a.pdp-btn--outline:active {
 }
 
 .login-erro { margin: 0; color: #C62828; font-weight: 700; }
+
+/* ==========================================================================
+   18. ETAPA 2 - COMPONENTES NOVOS (admin.html, minha-conta.html e páginas seguintes)
+   Reaproveita o grid de 12 colunas (seção 15) e o degradê escuro de Sobre/Contato.
+   ========================================================================== */
+
+/* Faixa de título com o mesmo degradê escuro de Sobre/Contato */
+.page-hero { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 2rem; padding: 2rem; background: linear-gradient(105deg, #000000 0%, #00384A 63%, #004B63 100%); border-radius: 27px; color: #FFFFFF; }
+.page-hero h1 { margin: 0; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; }
+.page-hero h1 span { color: #FF6B00; }
+.page-hero p { margin: .4rem 0 0; color: #E0E0E0; }
+.page-hero .eyebrow { color: #FFB36E; margin: 0; }
+
+/* Card do produto inteiro clicável: <a class="product-card"> */
+a.product-card, a.product-card:link, a.product-card:visited { position: relative; display: flex; color: inherit; text-decoration: none; }
+a.product-card:hover, a.product-card:focus-visible { border-color: #FF6B00; }
+
+/* Selos de status */
+.badge { display: inline-block; padding: .2rem .65rem; border-radius: 999px; font-size: .8rem; font-weight: 800; white-space: nowrap; }
+.badge--ok { background: #DDF3E1; color: #1B6B2F; }
+.badge--wait { background: #FFF1C2; color: #7A5900; }
+.badge--info { background: #D9EEF6; color: #004B63; }
+.badge--off { background: #FBD9D9; color: #9B1C1C; }
+
+/* Gráfico de barras só com CSS (altura da barra vem do style inline) */
+.bars { display: flex; align-items: flex-end; gap: .8rem; height: 200px; padding: 1rem 0 0; border-bottom: 3px solid #000000; }
+.bars__item { display: flex; flex: 1; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; font-size: .8rem; font-weight: 800; }
+.bars__item span { display: block; width: 100%; max-width: 70px; background: #FF6B00; border-radius: 8px 8px 0 0; }
+.bars__item:hover span { background: #004B63; }
+.bars-legend { display: flex; gap: .8rem; margin: .4rem 0 0; font-size: .85rem; font-weight: 700; }
+.bars-legend span { flex: 1; text-align: center; }
+
+/* Abas (alternadas pelo JavaScript com a classe .is-active) */
+.tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+.tab-btn { min-height: 44px; padding: .4rem 1.1rem; background: #FFFFFF; border: 2px solid #E0E0E0; border-radius: 12px; font-weight: 800; }
+.tab-btn:hover { border-color: #FF6B00; }
+.tab-btn.is-active { background: #00384A; border-color: #00384A; color: #FFFFFF; }
+.tab-panel { display: none; }
+.tab-panel.is-active { display: block; }
+
+/* Busca/filtro acima das tabelas */
+.table-filter { width: min(100%, 320px); min-height: 44px; padding: .4rem 1rem; border: 2px solid #E0E0E0; border-radius: 12px; }
+
+/* Minha conta: perfil, listas e cupons */
+.account-hero { display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; margin-bottom: 2rem; padding: 1.8rem; background: linear-gradient(105deg, #000000 0%, #00384A 63%, #004B63 100%); border-radius: 27px; color: #FFFFFF; }
+.account-hero .account-avatar { width: 110px; background: #000000; border-color: #FF6B00; }
+.account-hero h1 { margin: 0; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.account-hero p { margin: .3rem 0 0; color: #E0E0E0; }
+.list-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .6rem 1rem; padding: .9rem 0; border-bottom: 1px solid #E0E0E0; }
+.list-row:last-child { border-bottom: 0; }
+.list-row strong { display: block; }
+.list-row small { color: #777777; }
+.coupon { display: flex; flex-direction: column; gap: .4rem; height: 100%; padding: 1.2rem; background: #FFF4EA; border: 3px dashed #FF6B00; border-radius: 16px; }
+.coupon__code { margin: 0; color: #D95B00; font-size: 1.3rem; font-weight: 800; letter-spacing: .08em; }
+.coupon p { margin: 0; }
+.coupon .button-edit { align-self: flex-start; margin-top: auto; }
+.staff-nav .logout { color: #C62828; }
+
+/* ==========================================================================
+   19. ETAPA 2 - LINHA DO TEMPO, AVISOS, CUPONS E RESUMOS
+   (detalhes-pedido.html, meus-cupons.html, editar-dados.html, dashboard-funcionario.html)
+   ========================================================================== */
+
+/* Barra de progresso do pedido (a largura vem do style inline) */
+.progress { height: 14px; margin: 0 0 1.5rem; overflow: hidden; background: #E0E0E0; border-radius: 999px; }
+.progress span { display: block; height: 100%; background: #FF6B00; border-radius: 999px; }
+
+/* Linha do tempo: horizontal no desktop e vertical no celular */
+.timeline { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; padding: 0; list-style: none; }
+.timeline li { position: relative; padding: 3rem .5rem 0; font-weight: 800; text-align: center; }
+.timeline li small { display: block; color: #777777; font-weight: 400; }
+.timeline li::before { content: ""; position: absolute; top: 0; left: 50%; z-index: 1; display: grid; place-items: center; width: 34px; height: 34px; background: #FFFFFF; border: 4px solid #E0E0E0; border-radius: 50%; color: #FFFFFF; transform: translateX(-50%); }
+.timeline li::after { content: ""; position: absolute; top: 15px; left: -50%; width: 100%; height: 4px; background: #E0E0E0; }
+.timeline li:first-child::after { display: none; }
+.timeline li.is-done::before { content: "✓"; background: #2D6A4F; border-color: #2D6A4F; }
+.timeline li.is-current::before { background: #FF6B00; border-color: #FF6B00; }
+.timeline li.is-done::after, .timeline li.is-current::after { background: #2D6A4F; }
+
+@media (max-width: 720px) {
+  .timeline { grid-template-columns: 1fr; }
+  .timeline li { min-height: 4.2rem; padding: 0 0 1.5rem 3.2rem; text-align: left; }
+  .timeline li::before { left: 0; transform: none; }
+  .timeline li::after { top: 34px; left: 15px; width: 4px; height: calc(100% - 34px); }
+  .timeline li:first-child::after { display: block; }
+  .timeline li:last-child::after { display: none; }
+  .timeline li.is-current::after { background: #E0E0E0; }
+}
+
+/* Aviso útil (laranja) e aviso informativo (azul) */
+.notice { margin: 0 0 1.5rem; padding: 1rem 1.25rem; background: #FFF4EA; border-left: 6px solid #FF6B00; border-radius: 12px; line-height: 1.5; }
+.notice--info { background: #D9EEF6; border-color: #004B63; }
+
+/* Cupons usados e expirados ficam apagados */
+.coupon--used, .coupon--expired { background: #F3F3F3; border-color: #8E8E8E; filter: grayscale(1); opacity: .75; }
+.coupon--expired .coupon__code { text-decoration: line-through; }
+.coupon .quick-actions { margin-top: auto; }
+.coupon small { color: #555555; }
+
+/* Botões de ação rápida e resumo de valores */
+.quick-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; }
+.summary-list { display: grid; gap: .6rem; margin: 0; padding: 0; list-style: none; }
+.summary-list li { display: flex; justify-content: space-between; gap: 1rem; }
+.summary-list .total { margin-top: .4rem; padding-top: .8rem; border-top: 3px solid #000000; font-size: 1.3rem; font-weight: 800; }
+.list-row .staff-thumb { flex-shrink: 0; }
+.list-row--product { justify-content: flex-start; flex-wrap: nowrap; gap: 1rem; }
+.list-row--product > span:last-child { margin-left: auto; font-weight: 800; white-space: nowrap; }
+.address-card { height: 100%; }
+.address-card p { margin: 0 0 .8rem; line-height: 1.5; }
+
+/* ==========================================================================
+   20. ETAPA 3 - OFERTAS, CARD CLICÁVEL COM CARRINHO, TEMPORIZADOR E BLOG
+   (ofertas.html, oferta-detalhe.html, blog.html e cards de index/produtos)
+   ========================================================================== */
+
+/* Card inteiro clicável: o <a class="product-card"> e o carrinho ficam LADO A LADO dentro do .card-wrap
+   (um <a> dentro de outro <a> não é HTML válido). O carrinho é posicionado por cima do canto do card. */
+.card-wrap { position: relative; height: 100%; transition: transform .2s ease; }
+.card-wrap:hover { transform: translateY(-4px); }
+.card-wrap > .product-card { height: 100%; }
+.card-wrap > .product-card:hover { transform: none; }
+.card-wrap:hover > .product-card { border-color: #FF6B00; }
+.card-wrap:hover h2, .card-wrap:hover h3 { color: #D95B00; }
+.card-wrap > .product-card__cart { position: absolute; top: .75rem; right: .85rem; z-index: 2; }
+[class*="col-"] > .card-wrap { height: 100%; }
+
+/* Temporizador (as horas vêm do JavaScript) */
+.countdown { display: inline-block; font-variant-numeric: tabular-nums; font-weight: 800; }
+.countdown--big { padding: .5rem 1.2rem; background: #FF6B00; border-radius: 14px; color: #FFFFFF; font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: .06em; }
+.countdown-label { display: block; margin-bottom: .3rem; color: #FFB36E; font-size: .85rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+
+/* Preços de oferta */
+.price-old { color: #8E8E8E; text-decoration: line-through; }
+.price-now { margin: 0; color: #E63946; font-size: 2rem; font-weight: 800; }
+.price-save { color: #1B6B2F; font-weight: 800; }
+.info-card--dark .price-old { color: #BDBDBD; }
+.info-card--dark .price-now { color: #FFB36E; }
+.info-card--dark .price-save { color: #8EE0A4; }
+
+/* Oferta Relâmpago (card escuro em destaque) */
+.flash__img { padding: 1rem; background: #FFFFFF; border-radius: 20px; }
+.flash__img img { display: block; width: 100%; max-height: 260px; object-fit: contain; }
+.flash { display: flex; flex-direction: column; justify-content: center; gap: .5rem; }
+.flash h2 { margin: 0; font-size: clamp(1.4rem, 3vw, 2rem); }
+.flash p { margin: 0; }
+
+/* Categorias em destaque */
+.cat-chip, a.cat-chip:link, a.cat-chip:visited { display: flex; align-items: center; gap: .8rem; height: 100%; padding: .7rem 1rem; background: #FFFFFF; border: 3px solid #E0E0E0; border-radius: 16px; font-weight: 800; text-decoration: none; }
+.cat-chip img { width: 52px; height: 52px; object-fit: contain; }
+.cat-chip small { display: block; color: #E63946; font-weight: 800; }
+a.cat-chip:hover, a.cat-chip:focus-visible { border-color: #FF6B00; }
+
+/* Página de produto em oferta */
+.offer-banner { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin: 0 0 1.5rem; padding: 1.2rem 1.6rem; background: linear-gradient(105deg, #000000 0%, #00384A 63%, #004B63 100%); border-radius: 22px; color: #FFFFFF; }
+.offer-banner h2 { margin: 0; font-size: 1.4rem; }
+.offer-banner h2 span { color: #FFB36E; }
+.offer-tag { display: inline-block; margin-bottom: .6rem; padding: .3rem .9rem; background: #E63946; border-radius: 999px; color: #FFFFFF; font-size: 1rem; font-weight: 800; text-transform: uppercase; }
+.pdp-buy .progress { height: 10px; margin: .3rem 0 1rem; }
+.pdp-buy .price-old { margin: 0; }
+.pdp-buy .price-save { margin: 0 0 .3rem; }
+
+/* Blog */
+.post-card { display: flex; flex-direction: column; height: 100%; overflow: hidden; background: #FFFFFF; border: 3px solid #E0E0E0; border-radius: 22px; }
+.post-card:hover { border-color: #FF6B00; }
+.post-card__img { display: grid; place-items: center; height: 160px; background: #F8F8F8; }
+.post-card__img img { width: 80%; height: 130px; object-fit: contain; }
+.post-card__body { display: flex; flex: 1; flex-direction: column; gap: .5rem; padding: 1.1rem 1.2rem 1.2rem; }
+.post-card__body h3 { margin: 0; color: #004B63; font-size: 1.15rem; line-height: 1.3; }
+.post-card__body p { margin: 0; color: #1A1A1B; line-height: 1.55; }
+.post-meta { color: #777777; font-size: .85rem; }
+.post-card details { margin-top: auto; }
+.post-card summary { color: #D95B00; font-weight: 800; cursor: pointer; }
+.post-card details p { margin-top: .6rem; }
+.popular-list { display: grid; gap: .9rem; margin: 0; padding-left: 1.4rem; }
+.popular-list li::marker { color: #FF6B00; font-weight: 800; }
+.popular-list a { font-weight: 700; text-decoration: none; }
+.popular-list a:hover { color: #D95B00; text-decoration: underline; }
+.about-hero { align-items: center; }
+.about-hero img { display: block; width: min(100%, 300px); margin: 0 auto; }
+.about-hero h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.newsletter { display: flex; flex-wrap: wrap; gap: .6rem; }
+.newsletter .table-filter { flex: 1; min-width: 180px; }
