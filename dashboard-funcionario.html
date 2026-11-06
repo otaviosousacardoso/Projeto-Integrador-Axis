@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Área da conta AXIS.">
-  <title>Dashboard do Funcionário | AXIS</title>
+  <meta name="description" content="Painel do funcionário AXIS - tabela de gestão de produtos com dados estáticos.">
+  <title>Painel do funcionário | AXIS</title>
   <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body class="page page--account">
+<body class="page page--staff">
   <!-- CABEÇALHO (fixo no topo; mesma marcação e mesma altura em todas as páginas) -->
   <header class="site-header">
     <nav class="topbar" aria-label="Navegação principal">
@@ -41,71 +41,193 @@
       </ul>
     </nav>
   </header>
+
   <main class="staff-main">
-    <div class="page-hero">
-      <div><p class="eyebrow">Operação</p><h1>Dashboard do <span>Funcionário</span></h1><p>Despache pedidos, ajuste o estoque e atenda os clientes. Dados fixos de demonstração.</p></div>
-      <a class="button button--offer button--small" href="dashboard.html">Gerenciar produtos</a>
+    <div class="staff-title">
+      <h1>Painel do Funcionário</h1>
+      <p>Gestão de produtos da AXIS. Os dados abaixo são fixos (demonstração) e os botões apenas mostram um aviso.</p>
     </div>
 
+    <!-- Números do catálogo: 4 colunas no desktop, 2 no tablet, 1 no celular -->
+    <section class="staff-summary" aria-label="Resumo do catálogo">
+      <div class="row">
+        <div class="col-3 col-t-6 col-m-12">
+          <article class="staff-card"><h2>Produtos cadastrados</h2><p class="staff-card__number">8</p></article>
+        </div>
+        <div class="col-3 col-t-6 col-m-12">
+          <article class="staff-card"><h2>Unidades em estoque</h2><p class="staff-card__number">325</p></article>
+        </div>
+        <div class="col-3 col-t-6 col-m-12">
+          <article class="staff-card staff-card--warn"><h2>Estoque baixo</h2><p class="staff-card__number">1</p></article>
+        </div>
+        <div class="col-3 col-t-6 col-m-12">
+          <article class="staff-card staff-card--danger"><h2>Esgotados</h2><p class="staff-card__number">1</p></article>
+        </div>
+      </div>
+    </section>
+
     <div class="row">
-      <aside class="col-3 col-t-12">
-        <nav class="staff-nav" aria-label="Menu do funcionário">
-          <h2>Painel</h2>
+      <!-- Menu lateral do painel (links simples) -->
+      <aside class="col-3 col-t-12" aria-label="Atalhos do painel">
+        <nav class="staff-nav" aria-label="Menu do painel do funcionário">
+          <h2>Atalhos</h2>
           <ul>
-            <li><a href="dashboard-funcionario.html" aria-current="page">Operação do dia</a></li>
-            <li><a href="dashboard.html">Produtos</a></li>
-            <li><a href="produtos.html">Ver loja</a></li>
-            <li><a class="logout" href="login.html" data-logout>Sair</a></li>
+            <li><a href="#produtos-gestao" aria-current="page">Gestão de produtos</a></li>
+            <li><a href="produtos.html">Ver a loja</a></li>
+            <li><a href="contato.html">Falar com o suporte</a></li>
+            <li><a href="login.html">Sair</a></li>
           </ul>
         </nav>
       </aside>
 
-      <div class="col-9 col-t-12">
-        <p class="notice"><strong>Prazo de hoje:</strong> pedidos aprovados até 15h saem no mesmo dia. Hoje há 3 pedidos aguardando despacho.</p>
-
-        <section aria-label="Indicadores do dia"><div class="row">
-          <div class="col-3 col-t-6 col-m-12"><article class="staff-card staff-card--warn"><h2>A despachar</h2><p class="staff-card__number">3</p></article></div><div class="col-3 col-t-6 col-m-12"><article class="staff-card "><h2>Despachados hoje</h2><p class="staff-card__number">5</p></article></div><div class="col-3 col-t-6 col-m-12"><article class="staff-card staff-card--warn"><h2>Estoque baixo</h2><p class="staff-card__number">2</p></article></div><div class="col-3 col-t-6 col-m-12"><article class="staff-card staff-card--danger"><h2>Atendimentos abertos</h2><p class="staff-card__number">3</p></article></div>
-        </div></section>
-
-        <section class="staff-panel" aria-labelledby="fila-titulo">
+      <!-- Tabela de gestão de produtos (dados estáticos em HTML) -->
+      <section id="produtos-gestao" class="col-9 col-t-12" aria-labelledby="gestao-title">
+        <div class="staff-panel">
           <div class="staff-panel__head">
-            <h2 id="fila-titulo">Fila de pedidos</h2>
-            <input class="table-filter" type="search" placeholder="Filtrar pedidos..." aria-label="Filtrar pedidos" data-filter="tabela-fila">
+            <h2 id="gestao-title">Gestão de produtos</h2>
+            <button class="button button--offer button--small" type="button" data-alert="Aqui abriria o formulário de novo produto (demonstração).">+ Novo produto</button>
           </div>
           <div class="staff-table-wrap">
-            <table class="staff-table" id="tabela-fila">
-              <thead><tr><th scope="col">Pedido</th><th scope="col">Cliente</th><th scope="col">Itens</th><th scope="col">Total</th><th scope="col">Status</th><th scope="col">Ações</th></tr></thead>
+            <table class="staff-table">
+              <caption class="sr-only">Produtos cadastrados na AXIS</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Foto</th>
+                  <th scope="col">Produto</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Preço</th>
+                  <th scope="col">Preço com PIX</th>
+                  <th scope="col">Estoque</th>
+                  <th scope="col">Ações</th>
+                </tr>
+              </thead>
               <tbody>
-                <tr><td data-label="Pedido">#AX-1046</td><td data-label="Cliente">Ana Beatriz</td><td data-label="Itens">Notebook Lenovo Ideapad</td><td data-label="Total">R$ 3.599,90</td><td data-label="Status"><span class="badge badge--wait">Pago · a despachar</span></td><td data-label="Ações"><div class="staff-actions"><button class="button-edit" type="button" data-dispatch>Despachar</button><a class="button-edit" href="detalhes-pedido.html">Ver</a></div></td></tr>
-                <tr><td data-label="Pedido">#AX-1047</td><td data-label="Cliente">Rafael Costa</td><td data-label="Itens">Mouse Logitech M170 (2)</td><td data-label="Total">R$ 119,80</td><td data-label="Status"><span class="badge badge--wait">Pago · a despachar</span></td><td data-label="Ações"><div class="staff-actions"><button class="button-edit" type="button" data-dispatch>Despachar</button><a class="button-edit" href="detalhes-pedido.html">Ver</a></div></td></tr>
-                <tr><td data-label="Pedido">#AX-1048</td><td data-label="Cliente">Luana Prado</td><td data-label="Itens">Samsung Smart TV 50"</td><td data-label="Total">R$ 2.799,90</td><td data-label="Status"><span class="badge badge--wait">Pago · a despachar</span></td><td data-label="Ações"><div class="staff-actions"><button class="button-edit" type="button" data-dispatch>Despachar</button><a class="button-edit" href="detalhes-pedido.html">Ver</a></div></td></tr>
-                <tr><td data-label="Pedido">#AX-1045</td><td data-label="Cliente">Pedro Alves</td><td data-label="Itens">JBL Tune 530BT</td><td data-label="Total">R$ 249,90</td><td data-label="Status"><span class="badge badge--ok">Despachado</span></td><td data-label="Ações"><div class="staff-actions"><button class="button-edit" type="button" disabled>Enviado</button><a class="button-edit" href="detalhes-pedido.html">Ver</a></div></td></tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-pc.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6</strong><br><small>SKU: LENO-IDEAPAD1-R3</small></td>
+              <td data-label="Categoria">Notebooks</td>
+              <td data-label="Preço">R$ 3.599,90</td>
+              <td data-label="Preço com PIX">R$ 3.419,91</td>
+              <td data-label="Estoque"><span class="stock stock--ok">18 un.</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6 (demonstração: nada é alterado)." aria-label="Editar Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6 (demonstração: nada é removido)." aria-label="Excluir Notebook Lenovo Ideapad 1 R3-7320u 4gb 256gb SSD Linux 15.6">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-phone.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7&quot;</strong><br><small>SKU: MOTO-G35-256</small></td>
+              <td data-label="Categoria">Smartphones</td>
+              <td data-label="Preço">R$ 1.299,90</td>
+              <td data-label="Preço com PIX">R$ 1.234,91</td>
+              <td data-label="Estoque"><span class="stock stock--ok">42 un.</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7” (demonstração: nada é alterado)." aria-label="Editar Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7&quot;">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7” (demonstração: nada é removido)." aria-label="Excluir Smartphone Motorola Moto G35 5g 256gb 12gb Ram Boost, tela 6,7&quot;">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-headphone.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul</strong><br><small>SKU: JBL-T530BT-AZUL</small></td>
+              <td data-label="Categoria">Áudio Profissional</td>
+              <td data-label="Preço">R$ 249,90</td>
+              <td data-label="Preço com PIX">R$ 237,41</td>
+              <td data-label="Estoque"><span class="stock stock--ok">67 un.</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul (demonstração: nada é alterado)." aria-label="Editar Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul (demonstração: nada é removido)." aria-label="Excluir Fone de Ouvido JBL Tune 530BT, On-Ear, Bluetooth, Azul">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-mouse.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul</strong><br><small>SKU: LOGI-M170-AZUL</small></td>
+              <td data-label="Categoria">Acessórios</td>
+              <td data-label="Preço">R$ 59,90</td>
+              <td data-label="Preço com PIX">R$ 56,91</td>
+              <td data-label="Estoque"><span class="stock stock--ok">150 un.</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul (demonstração: nada é alterado)." aria-label="Editar Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul (demonstração: nada é removido)." aria-label="Excluir Mouse Sem Fio Logitech M170, 2.4Ghz, Ambidestro, Azul">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-tv.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Samsung Smart TV 50&quot; Crystal UHD 4K</strong><br><small>SKU: SAMS-TV50-CUHD</small></td>
+              <td data-label="Categoria">Televisores</td>
+              <td data-label="Preço">R$ 2.799,90</td>
+              <td data-label="Preço com PIX">R$ 2.659,91</td>
+              <td data-label="Estoque"><span class="stock stock--ok">9 un.</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Samsung Smart TV 50” Crystal UHD 4K (demonstração: nada é alterado)." aria-label="Editar Samsung Smart TV 50&quot; Crystal UHD 4K">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Samsung Smart TV 50” Crystal UHD 4K (demonstração: nada é removido)." aria-label="Excluir Samsung Smart TV 50&quot; Crystal UHD 4K">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-tablet.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Tablet Samsung Galaxy Tab A9 Enterprise Edition</strong><br><small>SKU: SAMS-TABA9-ENT</small></td>
+              <td data-label="Categoria">Tablets</td>
+              <td data-label="Preço">R$ 1.199,90</td>
+              <td data-label="Preço com PIX">R$ 1.139,91</td>
+              <td data-label="Estoque"><span class="stock stock--low">4 un. (baixo)</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Tablet Samsung Galaxy Tab A9 Enterprise Edition (demonstração: nada é alterado)." aria-label="Editar Tablet Samsung Galaxy Tab A9 Enterprise Edition">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Tablet Samsung Galaxy Tab A9 Enterprise Edition (demonstração: nada é removido)." aria-label="Excluir Tablet Samsung Galaxy Tab A9 Enterprise Edition">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-clock.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Smartwatch Redmi Watch 5 Active, Tela 2&quot;, Lacre</strong><br><small>SKU: REDMI-W5-ACTIVE</small></td>
+              <td data-label="Categoria">Acessórios</td>
+              <td data-label="Preço">R$ 299,90</td>
+              <td data-label="Preço com PIX">R$ 284,91</td>
+              <td data-label="Estoque"><span class="stock stock--ok">35 un.</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Smartwatch Redmi Watch 5 Active, Tela 2”, Lacre (demonstração: nada é alterado)." aria-label="Editar Smartwatch Redmi Watch 5 Active, Tela 2&quot;, Lacre">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Smartwatch Redmi Watch 5 Active, Tela 2”, Lacre (demonstração: nada é removido)." aria-label="Excluir Smartwatch Redmi Watch 5 Active, Tela 2&quot;, Lacre">Excluir</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Foto"><img class="staff-thumb" src="assets/images/products/product-intel.png" alt="" loading="lazy"></td>
+              <td data-label="Produto"><strong>Processador Intel Core Ultra 5 Desktop</strong><br><small>SKU: INTEL-CU5-DESK</small></td>
+              <td data-label="Categoria">PCs</td>
+              <td data-label="Preço">R$ 1.899,90</td>
+              <td data-label="Preço com PIX">R$ 1.804,91</td>
+              <td data-label="Estoque"><span class="stock stock--out">Esgotado</span></td>
+              <td data-label="Ações">
+                <div class="staff-actions">
+                  <button class="button-edit" type="button" data-alert="Editar produto: Processador Intel Core Ultra 5 Desktop (demonstração: nada é alterado)." aria-label="Editar Processador Intel Core Ultra 5 Desktop">Editar</button>
+                  <button class="button-delete" type="button" data-alert="Excluir produto: Processador Intel Core Ultra 5 Desktop (demonstração: nada é removido)." aria-label="Excluir Processador Intel Core Ultra 5 Desktop">Excluir</button>
+                </div>
+              </td>
+            </tr>
               </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="5">Total: 8 produtos</td>
+                  <td colspan="2">325 unidades</td>
+                </tr>
+              </tfoot>
             </table>
           </div>
-        </section>
-
-        <div class="row" style="margin-top: 1.5rem">
-          <div class="col-6 col-t-12">
-            <section class="staff-panel" aria-labelledby="est-titulo" style="height: 100%">
-              <div class="staff-panel__head"><h2 id="est-titulo">Estoque rápido</h2></div>
-              <ul class="plain-list">
-                <li class="list-row"><span><strong>Mouse Logitech M170</strong><small>SKU: LOGI-M170</small></span><span class="quick-actions"><button class="button-delete" type="button" data-stock="-1" aria-label="Retirar 1 unidade: Mouse Logitech M170">−1</button><span class="stock stock--low">4 un.</span><button class="button-edit" type="button" data-stock="1" aria-label="Adicionar 1 unidade: Mouse Logitech M170">+1</button><button class="button-edit" type="button" data-stock="10" aria-label="Adicionar 10 unidades: Mouse Logitech M170">+10</button></span></li><li class="list-row"><span><strong>Redmi Watch 5</strong><small>SKU: XIAO-RW5</small></span><span class="quick-actions"><button class="button-delete" type="button" data-stock="-1" aria-label="Retirar 1 unidade: Redmi Watch 5">−1</button><span class="stock stock--out">0 un.</span><button class="button-edit" type="button" data-stock="1" aria-label="Adicionar 1 unidade: Redmi Watch 5">+1</button><button class="button-edit" type="button" data-stock="10" aria-label="Adicionar 10 unidades: Redmi Watch 5">+10</button></span></li><li class="list-row"><span><strong>Tablet Galaxy Tab A9</strong><small>SKU: SAMS-TABA9</small></span><span class="quick-actions"><button class="button-delete" type="button" data-stock="-1" aria-label="Retirar 1 unidade: Tablet Galaxy Tab A9">−1</button><span class="stock stock--low">9 un.</span><button class="button-edit" type="button" data-stock="1" aria-label="Adicionar 1 unidade: Tablet Galaxy Tab A9">+1</button><button class="button-edit" type="button" data-stock="10" aria-label="Adicionar 10 unidades: Tablet Galaxy Tab A9">+10</button></span></li><li class="list-row"><span><strong>Notebook Lenovo Ideapad</strong><small>SKU: LENO-IDEAPAD1-R3</small></span><span class="quick-actions"><button class="button-delete" type="button" data-stock="-1" aria-label="Retirar 1 unidade: Notebook Lenovo Ideapad">−1</button><span class="stock stock--ok">18 un.</span><button class="button-edit" type="button" data-stock="1" aria-label="Adicionar 1 unidade: Notebook Lenovo Ideapad">+1</button><button class="button-edit" type="button" data-stock="10" aria-label="Adicionar 10 unidades: Notebook Lenovo Ideapad">+10</button></span></li>
-              </ul>
-            </section>
-          </div>
-          <div class="col-6 col-t-12">
-            <section class="staff-panel" aria-labelledby="atend-titulo" style="height: 100%">
-              <div class="staff-panel__head"><h2 id="atend-titulo">Central de atendimento</h2><a class="button button--outline button--small" href="contato.html">Ver formulário</a></div>
-              <ul class="plain-list">
-                <li class="list-row"><span><strong>Marina Souza</strong><small>Pedido #AX-1041 · onde está minha entrega?</small></span><span class="quick-actions"><span class="badge badge--off">Urgente</span><button class="button-edit" type="button" data-alert="Resposta ao cliente Marina Souza: demonstração, nada é enviado.">Responder</button><button class="button-delete" type="button" data-remove=".list-row" aria-label="Marcar como resolvido: Marina Souza">Resolver</button></span></li><li class="list-row"><span><strong>Carlos Lima</strong><small>Troca de produto com defeito</small></span><span class="quick-actions"><span class="badge badge--info">Garantia</span><button class="button-edit" type="button" data-alert="Resposta ao cliente Carlos Lima: demonstração, nada é enviado.">Responder</button><button class="button-delete" type="button" data-remove=".list-row" aria-label="Marcar como resolvido: Carlos Lima">Resolver</button></span></li><li class="list-row"><span><strong>Juliana Reis</strong><small>Pagamento via PIX não confirmou</small></span><span class="quick-actions"><span class="badge badge--wait">Pagamento</span><button class="button-edit" type="button" data-alert="Resposta ao cliente Juliana Reis: demonstração, nada é enviado.">Responder</button><button class="button-delete" type="button" data-remove=".list-row" aria-label="Marcar como resolvido: Juliana Reis">Resolver</button></span></li>
-              </ul>
-            </section>
-          </div>
         </div>
-      </div>
+      </section>
     </div>
   </main>
+
   <!-- RODAPÉ (igual em todas as páginas: mapa do site, redes sociais e contato) -->
   <footer class="site-footer">
     <div class="site-footer__main">
@@ -171,6 +293,7 @@
       <a class="back-to-top" href="#">Voltar ao topo ↑</a>
     </div>
   </footer>
+
   <script src="js/main.js"></script>
 </body>
 </html>
