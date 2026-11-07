@@ -317,3 +317,94 @@ for (var z = 0; z < botoesCategoria.length; z++) {
     }
   });
 }
+
+
+/* ---------- 18. CADASTRAR PRODUTO ----------
+   Envia as informações do formulário pela URL para o dashboard. */
+
+var formularioProduto = document.querySelector('.formulario--produto');
+
+if (formularioProduto) {
+
+  formularioProduto.addEventListener('submit', function (evento) {
+
+    evento.preventDefault();
+
+    var nome = document.querySelector('#nome').value;
+    var categoria = document.querySelector('#categoria').value;
+    var preco = document.querySelector('#preco').value;
+    var estoque = document.querySelector('#estoque').value;
+    var descricao = document.querySelector('#descricao').value;
+
+    var parametros = new URLSearchParams();
+
+    parametros.set('nome', nome);
+    parametros.set('categoria', categoria);
+    parametros.set('preco', preco);
+    parametros.set('estoque', estoque);
+    parametros.set('descricao', descricao);
+
+    window.location.href = 'dashboard-funcionario.html?' + parametros.toString();
+
+  });
+}
+
+
+/* ---------- 19. RECEBER PRODUTO ----------
+   Recebe os dados pela URL e adiciona uma linha na tabela. */
+
+var tabelaProdutos = document.querySelector('.staff-table tbody');
+
+if (tabelaProdutos) {
+
+  var parametros = new URLSearchParams(window.location.search);
+
+  var nome = parametros.get('nome');
+
+  if (nome) {
+
+    var categoria = parametros.get('categoria');
+    var preco = Number(parametros.get('preco'));
+    var estoque = Number(parametros.get('estoque'));
+
+    var linha = document.createElement('tr');
+
+    var colunaImagem = document.createElement('td');
+    colunaImagem.textContent = 'Sem imagem';
+
+    var colunaNome = document.createElement('td');
+    colunaNome.textContent = nome;
+
+    var colunaCategoria = document.createElement('td');
+    colunaCategoria.textContent = categoria;
+
+    var colunaPreco = document.createElement('td');
+    colunaPreco.textContent = preco.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    });
+
+    var colunaPix = document.createElement('td');
+    colunaPix.textContent = (preco * 0.95).toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    });
+
+    var colunaEstoque = document.createElement('td');
+    colunaEstoque.textContent = estoque + ' un.';
+
+    var colunaAcoes = document.createElement('td');
+    colunaAcoes.textContent = 'Novo produto';
+
+    linha.appendChild(colunaImagem);
+    linha.appendChild(colunaNome);
+    linha.appendChild(colunaCategoria);
+    linha.appendChild(colunaPreco);
+    linha.appendChild(colunaPix);
+    linha.appendChild(colunaEstoque);
+    linha.appendChild(colunaAcoes);
+
+    tabelaProdutos.appendChild(linha);
+  }
+}
+
