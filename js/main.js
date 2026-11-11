@@ -318,39 +318,46 @@ for (var z = 0; z < botoesCategoria.length; z++) {
   });
 }
 
+/* ---------- 18. PAGINAÇÃO DA VITRINE DE PRODUTOS ---------- */
 
-function () {
-      var paginas = document.querySelectorAll('.product-page');
-      var anterior = document.querySelector('[data-page-prev]');
-      var proxima = document.querySelector('[data-page-next]');
-      var indicador = document.querySelector('.product-pagination__current');
-      var paginaAtual = 0;
+var paginasProdutos = document.querySelectorAll('.product-page');
+var botaoPaginaAnterior = document.querySelector('[data-page-prev]');
+var botaoPaginaProxima = document.querySelector('[data-page-next]');
+var indicadorPagina = document.querySelector('.product-pagination__current');
 
-      function mostrarPagina() {
-        for (var i = 0; i < paginas.length; i++) {
-          paginas[i].hidden = (i !== paginaAtual);
+if (paginasProdutos.length > 0 && botaoPaginaAnterior && botaoPaginaProxima && indicadorPagina) {
+
+    var paginaProdutoAtual = 0;
+
+    function mostrarPaginaProdutos() {
+
+        for (var i = 0; i < paginasProdutos.length; i++) {
+            paginasProdutos[i].hidden = (i !== paginaProdutoAtual);
         }
 
-        indicador.textContent = (paginaAtual + 1) + ' / ' + paginas.length;
-        anterior.disabled = (paginaAtual === 0);
-        proxima.disabled = (paginaAtual === paginas.length - 1);
-      }
+        indicadorPagina.textContent = (paginaProdutoAtual + 1) + ' / ' + paginasProdutos.length;
 
-      anterior.addEventListener('click', function () {
-        if (paginaAtual > 0) {
-          paginaAtual--;
-          mostrarPagina();
+        botaoPaginaAnterior.disabled = (paginaProdutoAtual === 0);
+        botaoPaginaProxima.disabled = (paginaProdutoAtual === paginasProdutos.length - 1);
+    }
+
+    botaoPaginaAnterior.addEventListener('click', function () {
+
+        if (paginaProdutoAtual > 0) {
+            paginaProdutoAtual--;
+            mostrarPaginaProdutos();
         }
-      });
 
-      proxima.addEventListener('click', function () {
-        if (paginaAtual < paginas.length - 1) {
-          paginaAtual++;
-          mostrarPagina();
+    });
+
+    botaoPaginaProxima.addEventListener('click', function () {
+
+        if (paginaProdutoAtual < paginasProdutos.length - 1) {
+            paginaProdutoAtual++;
+            mostrarPaginaProdutos();
         }
-      });
 
-      mostrarPagina();
-    })();
+    });
 
-
+    mostrarPaginaProdutos();
+}
