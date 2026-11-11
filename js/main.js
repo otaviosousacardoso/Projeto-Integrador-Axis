@@ -15,16 +15,7 @@
 /* ---------- 1. MENU DO CABEÇALHO ----------
    O ícone de hambúrguer mostra/esconde o menu e avisa os leitores de tela
    se ele está aberto (aria-expanded). */
-var menuToggle = document.querySelector('.menu-toggle');
-var siteMenu = document.querySelector('#site-menu');
 
-if (menuToggle && siteMenu) {
-  menuToggle.addEventListener('click', function () {
-    var aberto = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!aberto));
-    siteMenu.hidden = aberto;
-  });
-}
 
 /* ---------- 2. ALERTAS DE DEMONSTRAÇÃO ----------
    Qualquer botão com data-alert="mensagem" mostra um alert() simples.
