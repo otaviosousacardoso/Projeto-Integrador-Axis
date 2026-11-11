@@ -63,113 +63,147 @@
 
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="pdp-main">
-    <article class="pdp">
+    
+<article class="pdp">
 
-      <!-- GALERIA DE IMAGENS -->
-      <section class="pdp-gallery" aria-label="Fotos do produto" data-product-gallery>
-        <div class="pdp-gallery__stage">
+  <!-- GALERIA DE IMAGENS -->
+  <section class="pdp-gallery" aria-label="Fotos do produto" data-product-gallery>
+
+    <div class="pdp-gallery__stage">
+      <img
+        src="assets/images/products/product-samsung.png"
+        alt="Samsung Galaxy A17 5G 128GB"
+        data-gallery-main>
+    </div>
+
+    <ul class="pdp-thumbs">
+      <li>
+        <button
+          class="pdp-thumb is-active"
+          type="button"
+          data-gallery-thumb
+          data-full="assets/images/products/product-samsung.png"
+          data-alt="Samsung Galaxy A17 5G"
+          aria-label="Ver foto do Samsung Galaxy A17"
+          aria-pressed="true">
+
           <img
             src="assets/images/products/product-samsung.png"
-            alt="Samsung Galaxy A17 5G 128GB"
-            data-gallery-main>
-        </div>
+            alt=""
+            loading="lazy">
 
-        <ul class="pdp-thumbs">
-          <li>
-            <button
-              class="pdp-thumb is-active"
-              type="button"
-              data-gallery-thumb
-              data-full="assets/images/products/product-samsung.png"
-              data-alt="Samsung Galaxy A17 5G, vista frontal e traseira"
-              aria-label="Ver foto do Samsung Galaxy A17"
-              aria-pressed="true">
-              <img src="assets/images/products/product-samsung.png" alt="" loading="lazy">
-            </button>
-          </li>
-        </ul>
-      </section>
+        </button>
+      </li>
+    </ul>
+
+  </section>
 
 
-      <!-- NOME E AVALIAÇÃO -->
-      <header class="pdp-head">
-        <p class="pdp-rating" aria-label="Avaliação 5,0 de 5">
-          <span class="pdp-rating__stars" aria-hidden="true">★★★★★</span>
-          <span aria-hidden="true">(1)</span>
-        </p>
-        <h1>
-          Celular Samsung Galaxy A17 5G 128GB
-        </h1>
-      </header>
+  <!-- NOME E AVALIAÇÃO -->
+  <header class="pdp-head">
 
-      <!-- PREÇO, COMPRA E FRETE -->
-      <aside class="pdp-buy" aria-label="Compra">
-        <p>
-          <s class="product-card__old-price">De R$ 1.100,90</s>
-        </p>
-        <p class="pdp-price">R$ 899,90</p>
-        <p class="pdp-installments">
-          No PIX ou 10x de R$145,90
-        </p>
-        <a class="pdp-btn pdp-btn--primary" href="pagamento.html">
-          Comprar Agora
-        </a>
-        <a class="pdp-btn pdp-btn--outline" href="carrinho.html">
-          Adicionar ao carrinho
-        </a>
+    <p class="pdp-rating" aria-label="Avaliação 5,0 de 5">
+      <span class="pdp-rating__stars" aria-hidden="true">★★★★★</span>
+      <span aria-hidden="true">(1)</span>
+    </p>
 
-        <!-- CONSULTA DE FRETE -->
-        <form class="pdp-shipping" data-alert-submit="Frete grátis para o CEP informado (simulação).">
-          <label class="pdp-shipping__title" for="cep">
-            Consulte o frete
-          </label>
-          <div class="pdp-shipping__field">
-            <input
-              id="cep"
-              name="cep"
-              type="text"
-              inputmode="numeric"
-              autocomplete="postal-code"
-              maxlength="9"
-              placeholder="Inserir CEP"
-              pattern="[0-9]{5}-?[0-9]{3}"
-              title="Digite um CEP com 8 números"
-              required>
-            <button type="submit" aria-label="Consultar frete">
-              <img src="assets/icons/header/icon-search.png" alt="">
-            </button>
-          </div>
-        </form>
-      </aside>
+    <h1>Celular Samsung Galaxy A17 5G 128GB</h1>
 
-      <!-- DESCRIÇÃO DO PRODUTO -->
-      <section class="pdp-about" aria-labelledby="sobre-produto">
-        <h2 id="sobre-produto">Sobre o produto</h2>
-        <ul class="pdp-features">
-          <li>
-            <strong>Armazenamento de 128GB:</strong>
-            Espaço para guardar aplicativos, fotos, vídeos e arquivos.
-          </li>
-          <li>
-            <strong>Conectividade 5G:</strong>
-            Compatível com redes móveis 5G.
-          </li>
-          <li>
-            <strong>Tela ampla:</strong>
-            Experiência visual para assistir vídeos, navegar e utilizar aplicativos.
-          </li>
-          <li>
-            <strong>Design moderno:</strong>
-            Acabamento elegante com visual característico da linha Galaxy.
-          </li>
-          <li>
-            <strong>Marca Samsung:</strong>
-            Tecnologia e recursos da linha de smartphones Galaxy.
-          </li>
-        </ul>
-      </section>
-    </article>
-  </main>
+  </header>
+
+
+  <!-- DESCRIÇÃO DO PRODUTO -->
+  <section class="pdp-about" aria-labelledby="sobre-produto">
+
+    <h2 id="sobre-produto">Sobre o produto</h2>
+
+    <ul class="pdp-features">
+
+      <li>
+        <strong>Armazenamento de 128GB:</strong>
+        Espaço para guardar aplicativos, fotos, vídeos e arquivos.
+      </li>
+
+      <li>
+        <strong>Conectividade 5G:</strong>
+        Compatível com redes móveis 5G.
+      </li>
+
+      <li>
+        <strong>Tela ampla:</strong>
+        Experiência visual para assistir vídeos, navegar e utilizar aplicativos.
+      </li>
+
+      <li>
+        <strong>Design moderno:</strong>
+        Acabamento elegante com visual característico da linha Galaxy.
+      </li>
+
+      <li>
+        <strong>Marca Samsung:</strong>
+        Tecnologia e recursos da linha de smartphones Galaxy.
+      </li>
+
+    </ul>
+
+  </section>
+
+
+  <!-- PREÇO, COMPRA E FRETE -->
+  <aside class="pdp-buy" aria-label="Compra">
+
+    <p>
+      <s class="product-card__old-price">De R$ 1.100,90</s>
+    </p>
+
+    <p class="pdp-price">R$ 899,90</p>
+
+    <p class="pdp-installments">
+      No PIX ou 10x de R$145,90
+    </p>
+
+    <a class="pdp-btn pdp-btn--primary" href="pagamento.html">
+      Comprar Agora
+    </a>
+
+    <a class="pdp-btn pdp-btn--outline" href="carrinho.html">
+      Adicionar ao carrinho
+    </a>
+
+
+    <!-- CONSULTA DE FRETE -->
+    <form class="pdp-shipping" data-alert-submit="Frete grátis para o CEP informado (simulação).">
+
+      <label class="pdp-shipping__title" for="cep">
+        Consulte o frete
+      </label>
+
+      <div class="pdp-shipping__field">
+
+        <input
+          id="cep"
+          name="cep"
+          type="text"
+          inputmode="numeric"
+          autocomplete="postal-code"
+          maxlength="9"
+          placeholder="Inserir CEP"
+          pattern="[0-9]{5}-?[0-9]{3}"
+          title="Digite um CEP com 8 números"
+          required>
+
+        <button type="submit" aria-label="Consultar frete">
+          <img src="assets/icons/header/icon-search.png" alt="">
+        </button>
+
+      </div>
+
+    </form>
+
+  </aside>
+
+</article>
+</main>
 
 
   <!-- RODAPÉ -->
