@@ -806,6 +806,7 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
   vertical-align: middle;
 }
 
+
 /* Vitrine: 4 cartões por linha no desktop (diminui nas media queries) */
 
 
@@ -883,6 +884,38 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
   color: #777;
   font-size: 0.82rem;
   font-weight: 700;
+}
+
+/* NAVEGAÇÃO ENTRE PÁGINAS DE PRODUTOS  */
+
+.product-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    margin: 30px auto;
+}
+
+.product-pagination__arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.product-pagination__arrow img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.product-pagination__arrow:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 /* --------------------------------------------------------------------------
