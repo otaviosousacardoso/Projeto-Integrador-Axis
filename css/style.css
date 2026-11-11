@@ -908,8 +908,8 @@ a.button--offer:link, a.button--offer:visited, a.button--offer:active { color: #
 }
 
 .product-pagination__arrow img {
-    width: 24px;
-    height: 24px;
+    width: 35px;
+    height: 35px;
     object-fit: contain;
 }
 
