@@ -319,3 +319,38 @@ for (var z = 0; z < botoesCategoria.length; z++) {
 }
 
 
+function () {
+      var paginas = document.querySelectorAll('.product-page');
+      var anterior = document.querySelector('[data-page-prev]');
+      var proxima = document.querySelector('[data-page-next]');
+      var indicador = document.querySelector('.product-pagination__current');
+      var paginaAtual = 0;
+
+      function mostrarPagina() {
+        for (var i = 0; i < paginas.length; i++) {
+          paginas[i].hidden = (i !== paginaAtual);
+        }
+
+        indicador.textContent = (paginaAtual + 1) + ' / ' + paginas.length;
+        anterior.disabled = (paginaAtual === 0);
+        proxima.disabled = (paginaAtual === paginas.length - 1);
+      }
+
+      anterior.addEventListener('click', function () {
+        if (paginaAtual > 0) {
+          paginaAtual--;
+          mostrarPagina();
+        }
+      });
+
+      proxima.addEventListener('click', function () {
+        if (paginaAtual < paginas.length - 1) {
+          paginaAtual++;
+          mostrarPagina();
+        }
+      });
+
+      mostrarPagina();
+    })();
+
+
