@@ -318,4 +318,48 @@ for (var z = 0; z < botoesCategoria.length; z++) {
   });
 }
 
+/* ---------- 18. PAGINAÇÃO DA VITRINE DE PRODUTOS ----------
+   As seções .product-page são alternadas pelas setas no fim da vitrine. */
+
+var paginasProdutos = document.querySelectorAll('.product-page');
+var botaoPaginaAnterior = document.querySelector('[data-page-prev]');
+var botaoPaginaProxima = document.querySelector('[data-page-next]');
+
+if (paginasProdutos.length > 0 && botaoPaginaAnterior && botaoPaginaProxima) {
+
+  var paginaProdutoAtual = 0;
+
+  function mostrarPaginaProdutos() {
+
+    for (var i = 0; i < paginasProdutos.length; i++) {
+      paginasProdutos[i].hidden = (i !== paginaProdutoAtual);
+    }
+
+    botaoPaginaAnterior.disabled = (paginaProdutoAtual === 0);
+    botaoPaginaProxima.disabled = (paginaProdutoAtual === paginasProdutos.length - 1);
+
+  }
+
+  botaoPaginaAnterior.addEventListener('click', function () {
+
+    if (paginaProdutoAtual > 0) {
+      paginaProdutoAtual--;
+      mostrarPaginaProdutos();
+    }
+
+  });
+
+  botaoPaginaProxima.addEventListener('click', function () {
+
+    if (paginaProdutoAtual < paginasProdutos.length - 1) {
+      paginaProdutoAtual++;
+      mostrarPaginaProdutos();
+    }
+
+  });
+
+  mostrarPaginaProdutos();
+
+}
+
 
