@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,152 +6,253 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Controle PS5 DualSense sem fio Sony branco.">
   <title>AXIS | Controle PS5 DualSense</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="assets/icons/header/icon-search.png">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body class="page page--pdp">
 
-  <header class="header">
-    <div class="container">
-      <a href="index.html">
-        <img src="assets/icons/header/icon-logo.png" alt="AXIS" class="header__logo">
+  <!-- CABEÇALHO -->
+  <header class="site-header">
+    <nav class="topbar" aria-label="Navegação principal">
+
+      <a class="brand" href="index.html" aria-label="AXIS - Página inicial">
+        <img src="assets/icons/header/icon-logo.png" alt="AXIS">
       </a>
 
-      <nav class="header__nav">
-        <a href="index.html">Início</a>
-        <a href="index.html#categorias">Categorias</a>
-        <a href="produtos.html">Produtos</a>
-        <a href="index.html#ofertas">Ofertas</a>
-        <a href="sobre.html">Sobre</a>
-        <a href="contato.html">Contato</a>
-      </nav>
+      <form class="search-bar" action="produtos.html" method="get" role="search">
+        <label class="sr-only" for="busca">Pesquisar produtos</label>
+        <input id="busca" name="busca" type="search" placeholder="Pesquisar" autocomplete="off">
+        <button type="submit" aria-label="Buscar produtos">
+          <img src="assets/icons/header/icon-search.png" alt="">
+        </button>
+      </form>
 
-      <div class="header__actions">
-        <a href="minha-conta.html">
-          <img src="assets/icons/header/icon-user.png" alt="Minha conta">
+      <div class="header-actions" aria-label="Ações rápidas">
+        <a class="header-icon" href="login.html" aria-label="Entrar ou criar conta" title="Minha conta">
+          <img src="assets/icons/header/icon-user.png" alt="">
         </a>
-        <a href="carrinho.html">
-          <img src="assets/icons/header/icon-cart.png" alt="Carrinho">
+
+        <a class="header-icon" href="carrinho.html" aria-label="Abrir carrinho" title="Carrinho">
+          <img src="assets/icons/header/icon-cart.png" alt="">
         </a>
+
+        <button class="header-icon menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" title="Abrir menu">
+          <img src="assets/icons/header/icon-menu.png" alt="">
+          <span class="sr-only">Abrir menu</span>
+        </button>
       </div>
-    </div>
+    </nav>
+
+    <nav id="site-menu" class="site-menu" aria-label="Menu secundário" hidden>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="index.html#categorias">Categorias</a></li>
+        <li><a href="produtos.html">Produtos</a></li>
+        <li><a href="ofertas.html">Ofertas</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contato.html">Contato</a></li>
+        <li><a href="meuspedidos.html">Meus pedidos</a></li>
+        <li><a href="minha-conta.html">Minha conta</a></li>
+        <li><a href="ajuda.html">Ajuda</a></li>
+        <li><a href="dashboard-funcionario.html">Painel do funcionário</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="container">
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="pdp-main">
 
-    <section class="pdp-head">
-      <p>Início / Produtos / Acessórios / Controles</p>
-      <h1>Controle PS5 DualSense Sem Fio Sony Branco</h1>
-    </section>
+    <article class="pdp">
 
-    <section class="pdp-product">
+      <!-- GALERIA DE IMAGENS -->
+      <section class="pdp-gallery" aria-label="Fotos do produto" data-product-gallery>
 
-      <div class="pdp-gallery" data-product-gallery>
-
-        <div class="pdp-gallery__main">
+        <div class="pdp-gallery__stage">
           <img
-            src="assets/images/products/product-controle-ps5-dualsense.png"
-            alt="Controle PS5 DualSense branco"
-            data-gallery-main
-          >
+            src="assets/images/products/product-controle.png"
+            alt="Controle PS5 DualSense sem fio Sony branco"
+            data-gallery-main>
         </div>
 
-        <div class="pdp-gallery__thumbs">
+        <ul class="pdp-thumbs">
 
-          <button type="button" data-gallery-thumb
-            data-full="assets/images/products/product-controle.png"
-            data-alt="Controle PS5 DualSense branco">
-            <img src="assets/images/products/product-controle.png" alt="Imagem 1">
-          </button>
+          <li>
+            <button
+              class="pdp-thumb is-active"
+              type="button"
+              data-gallery-thumb
+              data-full="assets/images/products2/product-controle2.png"
+              data-alt="Controle PS5 DualSense visto de frente"
+              aria-label="Ver foto 1 do controle PS5 DualSense"
+              aria-pressed="true">
+              <img src="assets/images/products2/product-controle2.png" alt="" loading="lazy">
+            </button>
+          </li>
 
-          <button type="button" data-gallery-thumb
-            data-full="assets/images/products2/product-controle2.png"
-            data-alt="Controle PS5 DualSense branco">
-            <img src="assets/images/products2/product-controle2.png" alt="Imagem 2">
-          </button>
+          <li>
+            <button
+              class="pdp-thumb"
+              type="button"
+              data-gallery-thumb
+              data-full="assets/images/products2/product-controle3.png"
+              data-alt="Controle PS5 DualSense visto de outro ângulo"
+              aria-label="Ver foto 2 do controle PS5 DualSense"
+              aria-pressed="false">
+              <img src="assets/images/products2/product-controle3.png" alt="" loading="lazy">
+            </button>
+          </li>
 
-          <button type="button" data-gallery-thumb
-            data-full="assets/images/products2/product-controle3.png"
-            data-alt="Controle PS5 DualSense branco">
-            <img src="assets/images/products2/product-controle3.png" alt="Imagem 3">
-          </button>
+          <li>
+            <button
+              class="pdp-thumb"
+              type="button"
+              data-gallery-thumb
+              data-full="assets/images/products2/product-controle4.png"
+              data-alt="Detalhes do controle PS5 DualSense"
+              aria-label="Ver foto 3 do controle PS5 DualSense"
+              aria-pressed="false">
+              <img src="assets/images/products2/product-controle4.png" alt="" loading="lazy">
+            </button>
+          </li>
 
-          <button type="button" data-gallery-thumb
-            data-full="assets/images/products2/product-controle4.png"
-            data-alt="Controle PS5 DualSense branco">
-            <img src="assets/images/products2/product-controle4.png" alt="Imagem 4">
-          </button>
+          <li>
+            <button
+              class="pdp-thumb"
+              type="button"
+              data-gallery-thumb
+              data-full="assets/images/products2/product-controle.png"
+              data-alt="Controle PS5 DualSense branco"
+              aria-label="Ver foto 4 do controle PS5 DualSense"
+              aria-pressed="false">
+              <img src="assets/images/products2/product-controle.png" alt="" loading="lazy">
+            </button>
+          </li>
 
-        </div>
-      </div>
+        </ul>
+      </section>
 
-      <div class="pdp-info">
+      <!-- NOME E AVALIAÇÃO -->
+      <header class="pdp-head">
 
-        <div class="pdp-rating">
-          <span>★ ★ ★ ★ ★</span>
-          <small>4,7 (109.995 avaliações)</small>
-        </div>
+        <p class="pdp-rating" aria-label="Avaliação 4,7 de 5">
+          <span class="pdp-rating__stars" aria-hidden="true">★★★★★</span>
+          <span aria-hidden="true">(109.995)</span>
+        </p>
 
-        <h2>Controle PS5 DualSense Sem Fio Sony Branco</h2>
+        <h1>Controle PS5 DualSense Sem Fio Sony Branco</h1>
 
-        <section class="pdp-about">
-  <h2>Sobre o produto</h2>
+      </header>
 
-  <ul class="pdp-features">
-    <li><strong>Compatibilidade com PlayStation 5:</strong> Desenvolvido para utilização com o console PlayStation 5 da Sony.</li>
+      <!-- DESCRIÇÃO DO PRODUTO -->
+      <section class="pdp-about" aria-labelledby="sobre-produto">
 
-    <li><strong>Conexão Sem Fio:</strong> Permite utilizar o controle sem precisar manter um cabo conectado durante a partida.</li>
+        <h2 id="sobre-produto">Sobre o produto</h2>
 
-    <li><strong>Design DualSense:</strong> Apresenta o formato característico da linha DualSense, com botões e direcionais integrados.</li>
+        <ul class="pdp-features">
 
-    <li><strong>Cor Branca:</strong> Possui acabamento branco com detalhes em preto.</li>
+          <li>
+            <strong>Compatibilidade com PlayStation 5:</strong>
+            Desenvolvido para utilização com o console PlayStation 5 da Sony.
+          </li>
 
-    <li><strong>Marca Sony:</strong> Produto da linha oficial de controles da Sony para PlayStation.</li>
-  </ul>
-</section>
+          <li>
+            <strong>Conexão Sem Fio:</strong>
+            Permite utilizar o controle sem precisar manter um cabo conectado durante as partidas.
+          </li>
 
-        <div class="pdp-buy">
-          <p class="pdp-price">R$ 399,00</p>
+          <li>
+            <strong>Tecnologia DualSense:</strong>
+            Possui recursos de resposta tátil e gatilhos adaptáveis para proporcionar uma experiência mais imersiva nos jogos compatíveis.
+          </li>
 
-          <a href="carrinho.html" class="btn btn--primary">
-            Adicionar ao carrinho
-          </a>
+          <li>
+            <strong>Design Ergonômico:</strong>
+            Apresenta formato desenvolvido para proporcionar conforto durante o uso.
+          </li>
 
-          <a href="pagamento.html" class="btn btn--secondary">
-            Comprar agora
-          </a>
-        </div>
+          <li>
+            <strong>Cor Branca:</strong>
+            Possui acabamento branco com detalhes em preto.
+          </li>
 
-      </div>
-    </section>
+          <li>
+            <strong>Marca Sony:</strong>
+            Controle oficial da linha DualSense desenvolvido para o PlayStation 5.
+          </li>
 
-    <section class="pdp-shipping">
-      <h2>Calcular frete</h2>
+        </ul>
 
-      <form data-alert-submit>
-        <label for="cep">Digite seu CEP:</label>
-        <input type="text" id="cep" name="cep" placeholder="00000-000">
-        <button type="submit">Calcular</button>
-      </form>
-    </section>
+      </section>
 
-    <section class="pdp-about">
-      <h2>Sobre o produto</h2>
-      <p>
-        O DualSense é o controle sem fio oficial da Sony para o PlayStation 5.
-        Possui acabamento branco e design desenvolvido para jogos.
-      </p>
-    </section>
+      <!-- PREÇO, COMPRA E FRETE -->
+      <aside class="pdp-buy" aria-label="Compra">
 
+        <p class="pdp-price">R$ 399,00</p>
+
+        <p class="pdp-installments">
+          No PIX ou 6x de R$40,00
+        </p>
+
+        <a class="pdp-btn pdp-btn--primary" href="pagamento.html">
+          Comprar Agora
+        </a>
+
+        <a class="pdp-btn pdp-btn--outline" href="carrinho.html">
+          Adicionar ao carrinho
+        </a>
+
+        <!-- CONSULTA DE FRETE -->
+        <form class="pdp-shipping" data-alert-submit="Frete grátis para o CEP informado (simulação).">
+
+          <label class="pdp-shipping__title" for="cep">
+            Consulte o frete
+          </label>
+
+          <div class="pdp-shipping__field">
+
+            <input
+              id="cep"
+              name="cep"
+              type="text"
+              inputmode="numeric"
+              autocomplete="postal-code"
+              maxlength="9"
+              placeholder="Inserir CEP"
+              pattern="[0-9]{5}-?[0-9]{3}"
+              title="Digite um CEP com 8 números"
+              required>
+
+            <button type="submit" aria-label="Consultar frete">
+              <img src="assets/icons/header/icon-search.png" alt="">
+            </button>
+
+          </div>
+
+        </form>
+
+      </aside>
+
+    </article>
   </main>
 
-  <!-- RODAPÉ (igual em todas as páginas: mapa do site, redes sociais e contato) -->
+  <!-- RODAPÉ -->
   <footer class="site-footer">
     <div class="site-footer__main">
+
       <section class="footer-about" aria-labelledby="footer-about-title">
         <h2 id="footer-about-title" class="sr-only">Sobre a AXIS</h2>
-        <a class="brand" href="index.html" aria-label="AXIS - Página inicial"><img src="assets/icons/header/icon-logo.png" alt="AXIS"></a>
-        <p>Tecnologia no centro das suas escolhas. Hardware, gadgets e eletrônicos com preço justo e entrega relâmpago.</p>
+
+        <a class="brand" href="index.html" aria-label="AXIS - Página inicial">
+          <img src="assets/icons/header/icon-logo.png" alt="AXIS">
+        </a>
+
+        <p>
+          Tecnologia no centro das suas escolhas. Hardware, gadgets e eletrônicos com preço justo e entrega relâmpago.
+        </p>
+
         <ul class="social-links" aria-label="Redes sociais da AXIS">
           <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Instagram" title="Instagram">IG</a></li>
           <li><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no Facebook" title="Facebook">FB</a></li>
@@ -159,6 +261,7 @@
           <li><a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="AXIS no WhatsApp" title="WhatsApp">WA</a></li>
         </ul>
       </section>
+
       <nav class="footer-column" aria-labelledby="footer-sitemap-title">
         <h2 id="footer-sitemap-title">Mapa do site</h2>
         <ul>
@@ -178,6 +281,7 @@
           <li><a href="dashboard-funcionario.html">Painel do funcionário</a></li>
         </ul>
       </nav>
+
       <nav class="footer-column" aria-labelledby="footer-departments-title">
         <h2 id="footer-departments-title">Departamentos</h2>
         <ul>
@@ -191,6 +295,7 @@
           <li><a href="produtos.html?categoria=acessorios">Acessórios</a></li>
         </ul>
       </nav>
+
       <section class="footer-column" aria-labelledby="footer-contact-title">
         <h2 id="footer-contact-title">Contato</h2>
         <address>
@@ -203,7 +308,9 @@
           </ul>
         </address>
       </section>
+
     </div>
+
     <div class="site-footer__bottom">
       <p>© 2026 AXIS. Todos os direitos reservados.</p>
       <a class="back-to-top" href="#">Voltar ao topo ↑</a>
@@ -211,5 +318,6 @@
   </footer>
 
   <script src="js/main.js"></script>
+
 </body>
 </html>
