@@ -1,7 +1,7 @@
 /* ==========================================================================
    AXIS - JAVASCRIPT BÁSICO DO SITE
-   Só interações simples de front-end (sem banco de dados, sem localStorage,
-   sem fetch). Todas as páginas carregam este arquivo no fim do <body>.
+   Só interações simples de front-end (sem banco de dados e sem fetch; o
+   localStorage é usado apenas na seção 20, o cadastro de cupons do admin). Todas as páginas carregam este arquivo no fim do <body>.
    Cada bloco só roda se encontrar o elemento que precisa.
 
    1. Menu do cabeçalho (abrir/fechar)
@@ -14,16 +14,66 @@
 
 /* ---------- 1. MENU DO CABEÇALHO ----------
    O ícone de hambúrguer mostra/esconde o menu e avisa os leitores de tela
-   se ele está aberto (aria-expanded). */
+   se ele está aberto (aria-expanded).
+   Até 720px (celular) o menu é uma barra lateral que desliza pela direita
+   (drawer): o CSS faz o deslize, e aqui criamos o fundo escuro e o botão ×,
+   e fechamos o menu ao clicar fora, no ×, num link ou na tecla Esc. */
 var menuToggle = document.querySelector('.menu-toggle');
 var siteMenu = document.querySelector('#site-menu');
 
 if (menuToggle && siteMenu) {
+  var menuCelular = window.matchMedia('(max-width: 720px)');
+
+  var menuFundo = document.createElement('div');
+  menuFundo.className = 'site-menu-backdrop';
+  siteMenu.parentNode.appendChild(menuFundo);
+
+  var menuFechar = document.createElement('button');
+  menuFechar.type = 'button';
+  menuFechar.className = 'site-menu__close';
+  menuFechar.setAttribute('aria-label', 'Fechar menu');
+  menuFechar.innerHTML = '&times;';
+  siteMenu.insertBefore(menuFechar, siteMenu.firstChild);
+
+  function definirMenu(abrir) {
+    menuToggle.setAttribute('aria-expanded', String(abrir));
+    siteMenu.hidden = !abrir;
+    menuFundo.classList.toggle('is-open', abrir && menuCelular.matches);
+    document.body.classList.toggle('menu-open', abrir && menuCelular.matches);
+
+    if (abrir && menuCelular.matches) { menuFechar.focus(); }
+  }
+
   menuToggle.addEventListener('click', function () {
-    var aberto = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!aberto));
-    siteMenu.hidden = aberto;
+    definirMenu(menuToggle.getAttribute('aria-expanded') !== 'true');
   });
+
+  menuFechar.addEventListener('click', function () {
+    definirMenu(false);
+    menuToggle.focus();
+  });
+
+  menuFundo.addEventListener('click', function () {
+    definirMenu(false);
+  });
+
+  siteMenu.addEventListener('click', function (evento) {
+    if (menuCelular.matches && evento.target.closest('a')) { definirMenu(false); }
+  });
+
+  document.addEventListener('keydown', function (evento) {
+    if (evento.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+      definirMenu(false);
+      menuToggle.focus();
+    }
+  });
+
+  /* Ao girar o celular / redimensionar a janela, o menu volta fechado */
+  if (menuCelular.addEventListener) {
+    menuCelular.addEventListener('change', function () { definirMenu(false); });
+  } else {
+    menuCelular.addListener(function () { definirMenu(false); });
+  }
 }
 
 /* ---------- 2. ALERTAS DE DEMONSTRAÇÃO ----------
@@ -124,18 +174,24 @@ if (formLogin) {
 }
 
 /* ---------- 7. ABAS ----------
-   <button class="tab-btn" data-tab="id-do-painel"> mostra o <div class="tab-panel" id="id-do-painel">. */
+   <button class="tab-btn" data-tab="id-do-painel"> mostra o <div class="tab-panel" id="id-do-painel">.
+   Cada grupo de abas (.tabs) funciona sozinho: trocar a aba de um grupo não mexe nos outros,
+   então dá para ter abas dentro de abas (ex.: Minha conta > Meus pedidos > Em andamento). */
 var botoesAba = document.querySelectorAll('[data-tab]');
 
 for (var a = 0; a < botoesAba.length; a++) {
   botoesAba[a].addEventListener('click', function () {
-    var paineis = document.querySelectorAll('.tab-panel');
-    var abas = document.querySelectorAll('[data-tab]');
+    var grupo = this.closest('.tabs') || document;
+    var abas = grupo.querySelectorAll('[data-tab]');
 
-    for (var p = 0; p < paineis.length; p++) { paineis[p].classList.remove('is-active'); }
-    for (var b = 0; b < abas.length; b++) { abas[b].classList.remove('is-active'); }
+    for (var b = 0; b < abas.length; b++) {
+      var painelAba = document.getElementById(abas[b].getAttribute('data-tab'));
 
-    document.querySelector('#' + this.getAttribute('data-tab')).classList.add('is-active');
+      abas[b].classList.remove('is-active');
+      if (painelAba) { painelAba.classList.remove('is-active'); }
+    }
+
+    document.getElementById(this.getAttribute('data-tab')).classList.add('is-active');
     this.classList.add('is-active');
   });
 }
@@ -296,7 +352,7 @@ for (var v = 0; v < botoesDesconto.length; v++) {
       if (mostrar) { visiveis++; }
     }
 
-    document.querySelector('[data-offers-count]').textContent = visiveis + ' ofertas encontradas';
+    document.querySelector('[data-offers-count]').textContent = visiveis + (visiveis === 1 ? ' oferta encontrada' : ' ofertas encontradas');
   });
 }
 
@@ -363,3 +419,426 @@ if (paginasProdutos.length > 0 && botaoPaginaAnterior && botaoPaginaProxima) {
 }
 
 
+/* ---------- 19. MINHA CONTA: ABAS INTERNAS (sem recarregar a página) ----------
+   Botões <button data-account-tab="pedidos"> mostram o painel <section id="painel-pedidos">.
+   Também funcionam: setas do teclado, links diretos (minha-conta.html#pedidos) e
+   botões <button data-go-tab="cupons"> espalhados pelo conteúdo (ex.: "Ver todos"). */
+var abasConta = document.querySelectorAll('[data-account-tab]');
+
+if (abasConta.length > 0) {
+  var paineisConta = document.querySelectorAll('.account-panel');
+
+  function nomeAbaValido(nome) {
+    for (var i = 0; i < abasConta.length; i++) {
+      if (abasConta[i].getAttribute('data-account-tab') === nome) { return nome; }
+    }
+    return abasConta[0].getAttribute('data-account-tab');
+  }
+
+  function ativarAbaConta(nome, atualizarEndereco) {
+    nome = nomeAbaValido(nome);
+
+    for (var i = 0; i < abasConta.length; i++) {
+      var ativa = abasConta[i].getAttribute('data-account-tab') === nome;
+
+      abasConta[i].classList.toggle('is-active', ativa);
+      abasConta[i].setAttribute('aria-selected', String(ativa));
+      abasConta[i].setAttribute('tabindex', ativa ? '0' : '-1');
+    }
+
+    for (var j = 0; j < paineisConta.length; j++) {
+      paineisConta[j].classList.toggle('is-active', paineisConta[j].id === 'painel-' + nome);
+    }
+
+    if (atualizarEndereco && window.history && window.history.replaceState) {
+      try { window.history.replaceState(null, '', '#' + nome); } catch (erro) { /* sem endereço: tudo bem */ }
+    }
+  }
+
+  for (var k = 0; k < abasConta.length; k++) {
+    abasConta[k].addEventListener('click', function () {
+      ativarAbaConta(this.getAttribute('data-account-tab'), true);
+    });
+
+    /* Setas, Home e End mudam de aba (padrão de acessibilidade para abas) */
+    abasConta[k].addEventListener('keydown', function (evento) {
+      var lista = Array.prototype.slice.call(abasConta);
+      var posicao = lista.indexOf(this);
+      var destino = -1;
+
+      if (evento.key === 'ArrowDown' || evento.key === 'ArrowRight') { destino = (posicao + 1) % lista.length; }
+      if (evento.key === 'ArrowUp' || evento.key === 'ArrowLeft') { destino = (posicao - 1 + lista.length) % lista.length; }
+      if (evento.key === 'Home') { destino = 0; }
+      if (evento.key === 'End') { destino = lista.length - 1; }
+
+      if (destino > -1) {
+        evento.preventDefault();
+        lista[destino].focus();
+        ativarAbaConta(lista[destino].getAttribute('data-account-tab'), true);
+      }
+    });
+  }
+
+  var botoesIrParaAba = document.querySelectorAll('[data-go-tab]');
+
+  for (var m = 0; m < botoesIrParaAba.length; m++) {
+    botoesIrParaAba[m].addEventListener('click', function () {
+      var destinoAba = nomeAbaValido(this.getAttribute('data-go-tab'));
+
+      ativarAbaConta(destinoAba, true);
+      document.getElementById('painel-' + destinoAba).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  /* Abre a aba indicada na URL (#pedidos, #cupons, #ajuda) ou o Resumo */
+  ativarAbaConta(window.location.hash.replace('#', ''), false);
+
+  window.addEventListener('hashchange', function () {
+    ativarAbaConta(window.location.hash.replace('#', ''), false);
+  });
+}
+
+
+/* ---------- 20. ADMIN: CUPONS PROMOCIONAIS (LocalStorage) ----------
+   Só roda em cupons-admin.html (elemento com data-coupon-admin).
+   O admin cria, ativa/desativa, expira, reativa e exclui cupons. Tudo fica salvo no
+   navegador (chave axis_admin_cupons_v1). Se o navegador bloquear o localStorage, a
+   lista funciona normalmente, mas volta ao exemplo ao recarregar a página.
+   Situação do cupom: "ativo", "inativo" ou "expirado". Um cupom cuja validade já passou
+   aparece como expirado automaticamente. */
+var cupomAdmin = document.querySelector('[data-coupon-admin]');
+
+if (cupomAdmin) {
+  var CHAVE_CUPONS = 'axis_admin_cupons_v1';
+  var listaCupons = [];
+  var filtroCupom = 'todos';
+  var buscaCupom = '';
+
+  var corpoCupons = cupomAdmin.querySelector('[data-coupon-list]');
+  var avisoVazio = cupomAdmin.querySelector('[data-coupon-empty]');
+  var mensagemCupom = cupomAdmin.querySelector('#cupom-msg');
+  var formCupom = cupomAdmin.querySelector('#form-cupom');
+  var campoCodigo = formCupom.elements['codigo'];
+  var campoTipo = formCupom.elements['tipo'];
+  var campoValor = formCupom.elements['valor'];
+  var campoValidade = formCupom.elements['validade'];
+
+  function doisDigitos(n) { return (n < 10 ? '0' : '') + n; }
+
+  function dataParaISO(data) {
+    return data.getFullYear() + '-' + doisDigitos(data.getMonth() + 1) + '-' + doisDigitos(data.getDate());
+  }
+
+  function hojeISO() { return dataParaISO(new Date()); }
+
+  function somarDias(iso, dias) {
+    var partes = iso.split('-');
+    var data = new Date(Number(partes[0]), Number(partes[1]) - 1, Number(partes[2]) + dias);
+    return dataParaISO(data);
+  }
+
+  function formatarData(iso) {
+    var partes = iso.split('-');
+    return partes[2] + '/' + partes[1] + '/' + partes[0];
+  }
+
+  function formatarReais(numero) {
+    return 'R$ ' + Number(numero).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  function cuponsExemplo() {
+    return [
+      { id: 'c1', codigo: 'AXIS10', descricao: '10% em acessórios', tipo: 'percentual', valor: 10, minimo: 0, validade: '2026-11-30', limite: 500, usos: 214, status: 'ativo' },
+      { id: 'c2', codigo: 'FRETEGRATIS', descricao: 'Frete grátis em compras acima de R$ 299', tipo: 'frete', valor: 0, minimo: 299, validade: '2026-12-15', limite: 0, usos: 389, status: 'ativo' },
+      { id: 'c3', codigo: 'BEMVINDO10', descricao: '10% na primeira compra', tipo: 'percentual', valor: 10, minimo: 0, validade: '2026-12-31', limite: 0, usos: 1204, status: 'ativo' },
+      { id: 'c4', codigo: 'BLACKAXIS25', descricao: 'Black Friday: 25% em eletrônicos', tipo: 'percentual', valor: 25, minimo: 500, validade: '2026-11-30', limite: 300, usos: 0, status: 'inativo' },
+      { id: 'c5', codigo: 'NOTE15', descricao: '15% em notebooks', tipo: 'percentual', valor: 15, minimo: 0, validade: '2026-11-08', limite: 200, usos: 87, status: 'ativo' },
+      { id: 'c6', codigo: 'VERAO20', descricao: '20% em ventiladores e acessórios', tipo: 'percentual', valor: 20, minimo: 0, validade: '2026-02-28', limite: 0, usos: 342, status: 'ativo' },
+      { id: 'c7', codigo: 'CONSUMIDOR15', descricao: '15% no Dia do Consumidor', tipo: 'percentual', valor: 15, minimo: 0, validade: '2026-03-15', limite: 0, usos: 518, status: 'ativo' }
+    ];
+  }
+
+  function carregarCupons() {
+    try {
+      var texto = window.localStorage.getItem(CHAVE_CUPONS);
+      var dados = texto ? JSON.parse(texto) : null;
+      if (Array.isArray(dados)) { return dados; }
+    } catch (erro) { /* storage bloqueado ou JSON inválido: usa o exemplo */ }
+    return cuponsExemplo();
+  }
+
+  function salvarCupons() {
+    try { window.localStorage.setItem(CHAVE_CUPONS, JSON.stringify(listaCupons)); } catch (erro) { /* sem storage: tudo bem */ }
+  }
+
+  function situacaoCupom(cupom) {
+    if (cupom.status === 'expirado') { return 'expirado'; }
+    if (cupom.validade && cupom.validade < hojeISO()) { return 'expirado'; }
+    return cupom.status;
+  }
+
+  function descreverBeneficio(cupom) {
+    var texto = cupom.tipo === 'percentual' ? cupom.valor + '% de desconto'
+      : cupom.tipo === 'fixo' ? formatarReais(cupom.valor) + ' de desconto'
+      : 'Frete grátis';
+    if (cupom.minimo > 0) { texto += ' · pedido mín. ' + formatarReais(cupom.minimo); }
+    return texto;
+  }
+
+  function mostrarMensagem(texto, tipo) {
+    mensagemCupom.textContent = texto;
+    mensagemCupom.className = 'coupon-msg' + (tipo ? ' coupon-msg--' + tipo : '');
+  }
+
+  function criarCelula(linha, rotulo) {
+    var celula = document.createElement('td');
+    celula.setAttribute('data-label', rotulo);
+    linha.appendChild(celula);
+    return celula;
+  }
+
+  function criarBotao(texto, acao, id, classe, rotuloAria) {
+    var botao = document.createElement('button');
+    botao.type = 'button';
+    botao.className = classe;
+    botao.textContent = texto;
+    botao.setAttribute('data-acao', acao);
+    botao.setAttribute('data-id', id);
+    botao.setAttribute('aria-label', rotuloAria);
+    return botao;
+  }
+
+  function desenharCupons() {
+    var contagem = { todos: listaCupons.length, ativo: 0, inativo: 0, expirado: 0 };
+    var mostrados = 0;
+
+    corpoCupons.innerHTML = '';
+
+    for (var i = 0; i < listaCupons.length; i++) {
+      var cupom = listaCupons[i];
+      var situacao = situacaoCupom(cupom);
+      contagem[situacao]++;
+
+      var passaFiltro = filtroCupom === 'todos' || filtroCupom === situacao;
+      var passaBusca = buscaCupom === '' || cupom.codigo.toLowerCase().indexOf(buscaCupom) > -1 || (cupom.descricao || '').toLowerCase().indexOf(buscaCupom) > -1;
+      if (!passaFiltro || !passaBusca) { continue; }
+      mostrados++;
+
+      var linha = document.createElement('tr');
+
+      var celCodigo = criarCelula(linha, 'Código');
+      var forte = document.createElement('strong');
+      forte.className = 'coupon-code';
+      forte.textContent = cupom.codigo;
+      celCodigo.appendChild(forte);
+      if (cupom.descricao) {
+        celCodigo.appendChild(document.createElement('br'));
+        var pequeno = document.createElement('small');
+        pequeno.textContent = cupom.descricao;
+        celCodigo.appendChild(pequeno);
+      }
+
+      criarCelula(linha, 'Benefício').textContent = descreverBeneficio(cupom);
+
+      var celValidade = criarCelula(linha, 'Validade');
+      celValidade.textContent = cupom.validade ? formatarData(cupom.validade) : 'Sem validade';
+      if (cupom.status === 'expirado' && cupom.expiradoEm) {
+        celValidade.appendChild(document.createElement('br'));
+        var aviso = document.createElement('small');
+        aviso.textContent = 'Expirado manualmente em ' + formatarData(cupom.expiradoEm);
+        celValidade.appendChild(aviso);
+      }
+
+      criarCelula(linha, 'Usos').textContent = cupom.usos + ' / ' + (cupom.limite > 0 ? cupom.limite : '∞');
+
+      var celStatus = criarCelula(linha, 'Status');
+      var selo = document.createElement('span');
+      selo.className = 'badge ' + (situacao === 'ativo' ? 'badge--ok' : situacao === 'inativo' ? 'badge--wait' : 'badge--off');
+      selo.textContent = situacao === 'ativo' ? 'Ativo' : situacao === 'inativo' ? 'Inativo' : 'Expirado';
+      celStatus.appendChild(selo);
+
+      var celAcoes = criarCelula(linha, 'Ações');
+      var grupo = document.createElement('div');
+      grupo.className = 'staff-actions';
+      if (situacao === 'ativo') {
+        grupo.appendChild(criarBotao('Desativar', 'desativar', cupom.id, 'button-edit', 'Desativar cupom ' + cupom.codigo));
+        grupo.appendChild(criarBotao('Expirar', 'expirar', cupom.id, 'button-edit', 'Expirar cupom ' + cupom.codigo));
+      } else if (situacao === 'inativo') {
+        grupo.appendChild(criarBotao('Ativar', 'ativar', cupom.id, 'button-edit', 'Ativar cupom ' + cupom.codigo));
+        grupo.appendChild(criarBotao('Expirar', 'expirar', cupom.id, 'button-edit', 'Expirar cupom ' + cupom.codigo));
+      } else {
+        grupo.appendChild(criarBotao('Reativar', 'reativar', cupom.id, 'button-edit', 'Reativar cupom ' + cupom.codigo + ' por mais 30 dias'));
+      }
+      grupo.appendChild(criarBotao('Copiar', 'copiar', cupom.id, 'button-edit', 'Copiar código ' + cupom.codigo));
+      grupo.appendChild(criarBotao('Excluir', 'excluir', cupom.id, 'button-delete', 'Excluir cupom ' + cupom.codigo));
+      celAcoes.appendChild(grupo);
+
+      corpoCupons.appendChild(linha);
+    }
+
+    avisoVazio.hidden = mostrados > 0;
+
+    var chaves = ['todos', 'ativo', 'inativo', 'expirado'];
+    for (var k = 0; k < chaves.length; k++) {
+      var contadores = cupomAdmin.querySelectorAll('[data-coupon-count="' + chaves[k] + '"]');
+      for (var m = 0; m < contadores.length; m++) { contadores[m].textContent = contagem[chaves[k]]; }
+    }
+  }
+
+  function acharCupom(id) {
+    for (var i = 0; i < listaCupons.length; i++) {
+      if (listaCupons[i].id === id) { return i; }
+    }
+    return -1;
+  }
+
+  /* Botões da tabela (Ativar, Desativar, Expirar, Reativar, Copiar, Excluir) */
+  corpoCupons.addEventListener('click', function (evento) {
+    var botao = evento.target.closest('button[data-acao]');
+    if (!botao) { return; }
+
+    var posicao = acharCupom(botao.getAttribute('data-id'));
+    if (posicao < 0) { return; }
+
+    var cupom = listaCupons[posicao];
+    var acao = botao.getAttribute('data-acao');
+
+    if (acao === 'copiar') {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(cupom.codigo).then(function () {
+          mostrarMensagem('Código ' + cupom.codigo + ' copiado.', 'ok');
+        }, function () {
+          mostrarMensagem('Não foi possível copiar. O código é ' + cupom.codigo + '.', 'erro');
+        });
+      } else {
+        mostrarMensagem('Seu navegador não permite copiar automaticamente. O código é ' + cupom.codigo + '.', 'erro');
+      }
+      return;
+    }
+
+    if (acao === 'excluir') {
+      if (!window.confirm('Excluir o cupom ' + cupom.codigo + '? Essa ação não pode ser desfeita.')) { return; }
+      listaCupons.splice(posicao, 1);
+      mostrarMensagem('Cupom ' + cupom.codigo + ' excluído.', 'ok');
+    } else if (acao === 'ativar') {
+      cupom.status = 'ativo';
+      mostrarMensagem('Cupom ' + cupom.codigo + ' ativado.', 'ok');
+    } else if (acao === 'desativar') {
+      cupom.status = 'inativo';
+      mostrarMensagem('Cupom ' + cupom.codigo + ' desativado.', 'ok');
+    } else if (acao === 'expirar') {
+      cupom.status = 'expirado';
+      cupom.expiradoEm = hojeISO();
+      mostrarMensagem('Cupom ' + cupom.codigo + ' expirado.', 'ok');
+    } else if (acao === 'reativar') {
+      cupom.status = 'ativo';
+      delete cupom.expiradoEm;
+      if (!cupom.validade || cupom.validade < hojeISO()) { cupom.validade = somarDias(hojeISO(), 30); }
+      mostrarMensagem('Cupom ' + cupom.codigo + ' reativado (válido até ' + formatarData(cupom.validade) + ').', 'ok');
+    }
+
+    salvarCupons();
+    desenharCupons();
+  });
+
+  /* Filtros por situação e busca */
+  var botoesFiltroCupom = cupomAdmin.querySelectorAll('[data-coupon-filter]');
+
+  for (var f = 0; f < botoesFiltroCupom.length; f++) {
+    botoesFiltroCupom[f].addEventListener('click', function () {
+      filtroCupom = this.getAttribute('data-coupon-filter');
+      for (var g = 0; g < botoesFiltroCupom.length; g++) { botoesFiltroCupom[g].classList.remove('is-active'); }
+      this.classList.add('is-active');
+      desenharCupons();
+    });
+  }
+
+  cupomAdmin.querySelector('[data-coupon-search]').addEventListener('input', function () {
+    buscaCupom = this.value.toLowerCase().trim();
+    desenharCupons();
+  });
+
+  /* Formulário: código sempre em maiúsculas e sem símbolos; valor some no frete grátis */
+  campoCodigo.addEventListener('input', function () {
+    this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+  });
+
+  function ajustarCampoValor() {
+    var frete = campoTipo.value === 'frete';
+    campoValor.disabled = frete;
+    if (frete) { campoValor.value = ''; }
+    campoValor.placeholder = campoTipo.value === 'percentual' ? 'Ex.: 10 (de 1 a 100)' : 'Ex.: 50,00';
+    campoValor.max = campoTipo.value === 'percentual' ? '100' : '';
+  }
+
+  campoTipo.addEventListener('change', ajustarCampoValor);
+  campoValidade.min = hojeISO();
+  ajustarCampoValor();
+
+  /* O botão "Limpar" apaga a mensagem; o reset feito pelo próprio código (após criar) não apaga */
+  var resetPeloCodigo = false;
+
+  formCupom.addEventListener('reset', function () {
+    var manterMensagem = resetPeloCodigo;
+    resetPeloCodigo = false;
+    window.setTimeout(function () {
+      ajustarCampoValor();
+      if (!manterMensagem) { mostrarMensagem('', ''); }
+    }, 0);
+  });
+
+  formCupom.addEventListener('submit', function (evento) {
+    evento.preventDefault();
+
+    var codigo = campoCodigo.value.trim();
+    var tipo = campoTipo.value;
+    var valor = parseFloat(String(campoValor.value).replace(',', '.'));
+    var minimo = parseFloat(String(formCupom.elements['minimo'].value).replace(',', '.'));
+    var limite = parseInt(formCupom.elements['limite'].value, 10);
+    var validade = campoValidade.value;
+
+    if (!/^[A-Z0-9]{4,20}$/.test(codigo)) { mostrarMensagem('O código precisa ter de 4 a 20 letras ou números (sem espaços).', 'erro'); campoCodigo.focus(); return; }
+
+    for (var i = 0; i < listaCupons.length; i++) {
+      if (listaCupons[i].codigo === codigo) { mostrarMensagem('Já existe um cupom com o código ' + codigo + '.', 'erro'); campoCodigo.focus(); return; }
+    }
+
+    if (tipo !== 'frete') {
+      if (isNaN(valor) || valor <= 0) { mostrarMensagem('Informe um valor de desconto maior que zero.', 'erro'); campoValor.focus(); return; }
+      if (tipo === 'percentual' && valor > 100) { mostrarMensagem('O desconto percentual não pode passar de 100%.', 'erro'); campoValor.focus(); return; }
+    }
+
+    if (!validade) { mostrarMensagem('Escolha a data de validade.', 'erro'); campoValidade.focus(); return; }
+    if (validade < hojeISO()) { mostrarMensagem('A validade não pode ser uma data que já passou.', 'erro'); campoValidade.focus(); return; }
+
+    listaCupons.unshift({
+      id: 'c' + new Date().getTime(),
+      codigo: codigo,
+      descricao: formCupom.elements['descricao'].value.trim(),
+      tipo: tipo,
+      valor: tipo === 'frete' ? 0 : valor,
+      minimo: isNaN(minimo) || minimo < 0 ? 0 : minimo,
+      validade: validade,
+      limite: isNaN(limite) || limite < 0 ? 0 : limite,
+      usos: 0,
+      status: formCupom.elements['ativo'].checked ? 'ativo' : 'inativo'
+    });
+
+    salvarCupons();
+    desenharCupons();
+    resetPeloCodigo = true;
+    formCupom.reset();
+    mostrarMensagem('Cupom ' + codigo + ' criado com sucesso.', 'ok');
+  });
+
+  cupomAdmin.querySelector('[data-coupon-reset]').addEventListener('click', function () {
+    if (!window.confirm('Restaurar os cupons de exemplo? Os cupons criados por você serão apagados.')) { return; }
+    listaCupons = cuponsExemplo();
+    salvarCupons();
+    desenharCupons();
+    mostrarMensagem('Cupons de exemplo restaurados.', 'ok');
+  });
+
+  listaCupons = carregarCupons();
+  desenharCupons();
+}
