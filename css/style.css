@@ -2363,12 +2363,20 @@ a.product-card:hover, a.product-card:focus-visible { border-color: #FF6B00; }
 .badge--off { background: #FBD9D9; color: #9B1C1C; }
 
 /* Gráfico de barras só com CSS (altura da barra vem do style inline) */
-.bars { display: flex; align-items: flex-end; gap: .8rem; height: 200px; padding: 1rem 0 0; border-bottom: 3px solid #000000; }
-.bars__item { display: flex; flex: 1; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; font-size: .8rem; font-weight: 800; }
-.bars__item span { display: block; width: 100%; max-width: 70px; background: #FF6B00; border-radius: 8px 8px 0 0; }
-.bars__item:hover span { background: #004B63; }
+/* Gráfico "Vendas por semana": cada barra é um link (<a class="bars__link">).
+   A área de clique é só o valor + a barra: a coluna inteira NÃO é clicável (pointer-events),
+   então clicar no espaço vazio acima de uma barra baixa ou ao lado dela não abre nada.
+   A altura da barra é --v (0 a 1) vezes --bar-max. */
+.bars { --bar-max: 148px; display: flex; align-items: flex-end; gap: .8rem; height: 200px; padding: 1rem 0 0; border-bottom: 3px solid #000000; }
+.bars__item { display: flex; flex: 1; justify-content: center; align-items: flex-end; height: 100%; pointer-events: none; }
+.bars__link { display: flex; flex-direction: column; align-items: center; gap: .25rem; width: min(100%, 70px); color: #000000; font-size: .8rem; font-weight: 800; text-decoration: none; pointer-events: auto; }
+.bars__bar { display: block; width: 100%; height: calc(var(--bar-max) * var(--v)); background: #FF6B00; border-radius: 8px 8px 0 0; transition: background .2s ease; }
+.bars__link:hover .bars__bar, .bars__link:focus-visible .bars__bar { background: #004B63; }
+.bars__link:focus-visible { outline: 3px solid #004B63; outline-offset: 3px; border-radius: 8px; }
 .bars-legend { display: flex; gap: .8rem; margin: .4rem 0 0; font-size: .85rem; font-weight: 700; }
-.bars-legend span { flex: 1; text-align: center; }
+.bars-legend a { display: flex; flex: 1; flex-direction: column; align-items: center; padding: .25rem 0; border-radius: 8px; color: inherit; text-decoration: none; }
+.bars-legend a:hover, .bars-legend a:focus-visible { background: #F3F3F3; color: #004B63; }
+.bars-legend small { color: #777777; font-size: .75rem; font-weight: 600; }
 
 /* Abas (alternadas pelo JavaScript com a classe .is-active) */
 .tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
@@ -2524,3 +2532,523 @@ a.cat-chip:hover, a.cat-chip:focus-visible { border-color: #FF6B00; }
    senão cada um estica até a altura da coluna inteira e eles se sobrepõem. */
 [class*="col-"] > .info-card.info-card--auto { height: auto; margin-bottom: 1.5rem; }
 [class*="col-"] > .info-card.info-card--auto:last-child { margin-bottom: 0; }
+
+
+/* ==========================================================================
+   ATUALIZAÇÕES GLOBAIS (ETAPA 1)
+   Redes sociais em SVG, selo de compra segura, menu lateral (drawer) no
+   celular, z-index do banner e página de políticas.
+   ========================================================================== */
+
+/* ---------- Redes sociais com logos em SVG (herdam a cor do link) ---------- */
+.site-footer .social-links .social-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* ---------- Selo de compra seguro (assets/compra-segura.png) ---------- */
+.footer-seal { display: block; width: 160px; max-width: 100%; height: auto; margin-top: 1.25rem; }
+.footer-seal[hidden] { display: none; }
+
+/* ---------- Banner: texto sempre acima do robô/logo em telas menores ----------
+   Só vale de 1100px para baixo; no desktop o layout continua como estava. */
+@media (max-width: 1100px) {
+  .hero__copy { z-index: 4; }
+}
+
+/* ---------- Menu lateral (drawer) no celular ----------
+   O mesmo <nav id="site-menu"> do desktop vira uma barra que desliza pela direita.
+   O js/main.js continua só alternando o atributo [hidden]; aqui o CSS troca o
+   display:none por um deslize (transform) para existir animação. */
+.site-menu__close,
+.site-menu-backdrop { display: none; }
+
+@media (max-width: 720px) {
+  .site-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 300;
+    width: min(82vw, 320px);
+    height: 100vh;
+    height: 100dvh;
+    margin: 0;
+    padding: 4.5rem 1.5rem 2rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: #000000;
+    border-left: 1px solid #1A1A1B;
+    box-shadow: -12px 0 32px rgba(0, 0, 0, 0.45);
+    transform: translateX(0);
+    transition: transform 0.3s ease, visibility 0s linear 0s;
+  }
+
+  /* Fechado: continua no DOM (para animar), mas fora da tela e sem foco */
+  .site-menu[hidden] {
+    display: block;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: transform 0.3s ease, visibility 0s linear 0.3s;
+  }
+
+  .site-menu ul { display: grid; grid-template-columns: 1fr; justify-content: stretch; gap: 0; }
+  .site-menu li { border-bottom: 1px solid #1A1A1B; }
+  .site-menu li a { display: block; padding: 0.95rem 0; font-size: 1.05rem; }
+
+  /* Botão × criado pelo js/main.js */
+  .site-menu__close {
+    position: absolute;
+    top: 0.85rem;
+    right: 1rem;
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    background: transparent;
+    border: 0;
+    border-radius: 50%;
+    color: #FFFFFF;
+    font-size: 2rem;
+    line-height: 1;
+  }
+  .site-menu__close:hover, .site-menu__close:focus-visible { background: #00384A; }
+
+  /* Fundo escuro atrás do drawer; clicar nele fecha o menu */
+  .site-menu-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 250;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  }
+  .site-menu-backdrop.is-open { opacity: 1; visibility: visible; transition: opacity 0.3s ease, visibility 0s linear 0s; }
+
+  /* Trava a rolagem da página enquanto o drawer está aberto */
+  body.menu-open { overflow: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-menu, .site-menu[hidden], .site-menu-backdrop { transition: none; }
+}
+
+/* ---------- Página de políticas (politicas.html) ----------
+   Mesmo padrão do ajuda.html: título laranja, cartões pretos com títulos laranja. */
+.policies-main {
+  width: min(100%, 1680px);
+  margin: 0 auto;
+  padding: clamp(1.75rem, 3.5vw, 3.5rem) 3rem clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.policies-main .help-title { margin-bottom: 0.75rem; }
+
+.policies-intro {
+  max-width: 72ch;
+  margin: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+  color: #1A1A1B;
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.5;
+}
+
+.policies-layout {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(0, 3.4fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  align-items: start;
+}
+
+/* Índice lateral (fica visível enquanto a pessoa rola) */
+.policies-nav {
+  position: sticky;
+  top: 120px;
+  padding: clamp(1.1rem, 1.8vw, 1.5rem);
+  background: #000000;
+  border-radius: 16px;
+  color: #FFFFFF;
+}
+
+.policies-nav h2 { margin: 0 0 0.8rem; color: #FF6B00; font-size: clamp(1.15rem, 1.6vw, 1.4rem); }
+.policies-nav ul { display: grid; gap: 0.25rem; margin: 0; padding: 0; list-style-type: none; }
+
+.policies-nav a:link, .policies-nav a:visited {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.policies-nav a:hover, .policies-nav a:focus-visible { background: #FF6B00; color: #FFFFFF; }
+
+.policies-nav .button {
+  min-height: 3rem;
+  margin-top: 1rem;
+  border-radius: 9px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.policies-content { display: grid; gap: clamp(1.25rem, 2vw, 2rem); }
+
+.policy-section {
+  scroll-margin-top: 120px;
+  padding: clamp(1.25rem, 2.2vw, 2.25rem);
+  background: #000000;
+  border-radius: 16px;
+  color: #FFFFFF;
+}
+
+.policy-section h2 { margin: 0 0 0.4rem; color: #FF6B00; font-size: clamp(1.4rem, 2vw, 2rem); }
+.policy-section h3 { margin: 1.5rem 0 0.4rem; color: #FF6B00; font-size: clamp(1.05rem, 1.4vw, 1.3rem); font-weight: 700; }
+.policy-section p, .policy-section li { color: #E0E0E0; font-size: clamp(0.95rem, 1.2vw, 1.1rem); line-height: 1.6; }
+.policy-section p { margin: 0.4rem 0 0; }
+.policy-section ul, .policy-section ol { display: grid; gap: 0.4rem; margin: 0.5rem 0 0; padding-left: 1.25rem; }
+.policy-section a:link, .policy-section a:visited { color: #FFB36E; }
+.policy-section a:hover, .policy-section a:focus-visible { color: #FF6B00; }
+.policy-section strong { color: #FFFFFF; }
+.policy-updated { margin: 0 0 0.6rem; color: #FFB36E; font-size: 0.85rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+
+@media (max-width: 1100px) {
+  .policies-main { padding-right: 2rem; padding-left: 2rem; }
+}
+
+@media (max-width: 900px) {
+  .policies-layout { grid-template-columns: 1fr; }
+  .policies-nav { position: static; }
+  .policies-nav ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+  .policies-main { padding-right: 1.25rem; padding-left: 1.25rem; }
+  .policy-section { scroll-margin-top: 150px; }
+}
+
+@media (max-width: 480px) {
+  .policies-nav ul { grid-template-columns: 1fr; }
+}
+
+
+/* ==========================================================================
+   ETAPA 2 - MINHA CONTA (ABAS INTERNAS) E REDESIGN DE OFERTAS
+   ========================================================================== */
+
+/* ---------- Minha conta: menu lateral em abas ----------
+   As opções viram <button role="tab"> (o js/main.js troca o painel sem recarregar).
+   O visual é o mesmo dos links do .staff-nav. */
+.staff-nav .staff-nav__tab {
+  display: block;
+  width: 100%;
+  padding: .6rem .8rem;
+  background: transparent;
+  border: 0;
+  border-radius: 10px;
+  color: inherit;
+  font-weight: 700;
+  text-align: left;
+}
+.staff-nav .staff-nav__tab:hover,
+.staff-nav .staff-nav__tab:focus-visible,
+.staff-nav .staff-nav__tab.is-active { background: #00384A; color: #FFFFFF; }
+.account-nav ul + ul { margin-top: .8rem; padding-top: .8rem; border-top: 1px solid #E0E0E0; }
+
+/* Painéis das abas (só o ativo aparece) */
+.account-panel { display: none; scroll-margin-top: 120px; }
+.account-panel.is-active { display: block; }
+.account-panel:focus-visible { outline: 3px solid #FF6B00; outline-offset: 6px; border-radius: 12px; }
+
+/* Link que parece texto dentro de frases (troca de aba) */
+.link-button { padding: 0; background: transparent; border: 0; color: #D95B00; font-weight: 700; text-decoration: underline; }
+.link-button:hover, .link-button:focus-visible { color: #FF6B00; }
+
+/* ---------- Meus pedidos (cartões de pedido) ---------- */
+.order-list { display: grid; gap: 1rem; }
+.order-card { overflow: hidden; background: #FFFFFF; border: 3px solid #E0E0E0; border-radius: 16px; }
+.order-card__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .5rem 1rem; padding: .9rem 1.2rem; background: #F8F8F8; border-bottom: 1px solid #E0E0E0; }
+.order-card__head strong { display: block; font-size: 1.1rem; }
+.order-card__head small { color: #555555; }
+.order-card__items { display: grid; margin: 0; padding: 0 1.2rem; list-style: none; }
+.order-card__items li { display: flex; align-items: center; gap: 1rem; padding: .8rem 0; border-bottom: 1px solid #E0E0E0; }
+.order-card__items li:last-child { border-bottom: 0; }
+.order-card__items strong { display: block; }
+.order-card__items small { color: #777777; }
+.order-card__items li > span:last-child { margin-left: auto; font-weight: 800; white-space: nowrap; }
+.order-card__foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .8rem 1rem; padding: .9rem 1.2rem; border-top: 1px solid #E0E0E0; }
+.order-card__foot p { margin: 0; color: #333333; line-height: 1.5; }
+.order-card .button-edit, .order-card .button-delete { display: inline-flex; align-items: center; text-decoration: none; }
+
+/* ---------- Precisa de ajuda? ---------- */
+.help-contact { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 1.25rem; align-items: stretch; }
+.help-contact__card { display: flex; align-items: flex-end; gap: 1.25rem; padding: 1.5rem 1.5rem 0; overflow: hidden; background: #000000; border-radius: 16px; color: #FFFFFF; }
+.help-contact__card img { display: block; flex: 0 0 auto; width: clamp(110px, 16vw, 170px); height: auto; }
+.help-contact__card > div { align-self: center; padding-bottom: 1.5rem; }
+.help-contact__card h3 { margin: 0 0 .4rem; color: #FF6B00; font-size: 1.3rem; }
+.help-contact__card p { margin: 0 0 1rem; color: #E0E0E0; line-height: 1.5; }
+.help-channels { display: grid; gap: .6rem; align-content: start; margin: 0; padding: 0; list-style: none; }
+.help-channels li { display: flex; flex-direction: column; gap: .1rem; padding: .8rem 1rem; background: #F8F8F8; border: 3px solid #E0E0E0; border-radius: 14px; }
+.help-channels strong { color: #004B63; font-size: .85rem; letter-spacing: .06em; text-transform: uppercase; }
+.help-channels a { color: #D95B00; font-weight: 700; }
+.help-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+.help-links a:link, .help-links a:visited { display: block; height: 100%; padding: 1rem 1.2rem; background: #F8F8F8; border: 3px solid #E0E0E0; border-radius: 16px; text-decoration: none; }
+.help-links a:hover, .help-links a:focus-visible { border-color: #FF6B00; }
+.help-links strong { display: block; color: #004B63; }
+.help-links small { color: #555555; }
+
+@media (max-width: 1100px) {
+  /* Menu da conta vira uma fileira de botões acima do conteúdo */
+  .account-nav { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; padding: 1rem; }
+  .account-nav h2 { flex: 0 0 100%; margin: 0; }
+  .account-nav ul { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .account-nav ul + ul { margin: 0; padding: 0; border-top: 0; }
+  .staff-nav .staff-nav__tab { width: auto; border: 2px solid #E0E0E0; }
+  .staff-nav .staff-nav__tab.is-active { border-color: #00384A; }
+  .help-contact { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .help-links { grid-template-columns: 1fr; }
+  .order-card__foot { flex-direction: column; align-items: flex-start; }
+}
+
+/* ==========================================================================
+   OFERTAS (ofertas.html) - topo, destaque, categorias, filtro e cards
+   ========================================================================== */
+.offers .notice { margin-bottom: 2rem; }
+.offers-section { margin-bottom: 3rem; }
+.offers-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+.offers-head .section-title { margin: 0; }
+
+/* Topo */
+.offers-hero__copy { max-width: 640px; }
+.offers-perks { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+.offers-perks li { padding: .35rem .85rem; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .25); border-radius: 999px; color: #FFFFFF; font-size: .9rem; font-weight: 700; }
+.offers-timer { text-align: center; }
+
+/* Oferta relâmpago (destaque) */
+.deal { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2rem; align-items: center; margin-bottom: 3rem; padding: 2rem; background: linear-gradient(105deg, #000000 0%, #00384A 63%, #004B63 100%); border-radius: 27px; color: #FFFFFF; }
+.deal__media { position: relative; padding: 1.5rem; background: #FFFFFF; border-radius: 22px; }
+.deal__media img { display: block; width: 100%; max-height: 280px; object-fit: contain; }
+.deal__badge { position: absolute; top: -.9rem; left: 1.2rem; padding: .4rem 1rem; background: #E63946; border-radius: 999px; color: #FFFFFF; font-size: 1.1rem; font-weight: 800; }
+.deal__body { display: grid; gap: .6rem; justify-items: start; }
+.deal__body .offer-tag { margin-bottom: 0; }
+.deal h2 { margin: 0; color: #FFFFFF; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.2; }
+.deal__prices { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem 1rem; }
+.deal__now { color: #FFB36E; font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; line-height: 1; }
+.deal__old { color: #BDBDBD; }
+.deal__save { padding: .2rem .7rem; background: #DDF3E1; border-radius: 999px; color: #1B6B2F; font-size: .85rem; font-weight: 800; }
+.deal__meta { margin: 0; color: #E0E0E0; }
+.deal__stock { display: grid; gap: .4rem; width: min(100%, 420px); }
+.deal__bar { height: 10px; overflow: hidden; background: rgba(255, 255, 255, .2); border-radius: 999px; }
+.deal__bar span { display: block; width: 85%; height: 100%; background: #FF6B00; border-radius: 999px; }
+.deal .countdown { color: #FFB36E; }
+.deal .quick-actions { margin-top: .4rem; }
+
+/* Categorias */
+.offers-cats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+.offers-cats .cat-chip { position: relative; padding-right: 2.4rem; transition: transform .2s ease, border-color .2s ease; }
+.offers-cats .cat-chip::after { content: "→"; position: absolute; right: 1rem; color: #FF6B00; font-weight: 800; }
+.offers-cats .cat-chip:hover, .offers-cats .cat-chip:focus-visible { transform: translateY(-3px); }
+.offers-cats__icon { display: grid; flex: 0 0 auto; width: 58px; height: 58px; place-items: center; background: #004B63; border-radius: 50%; transition: background .2s ease; }
+.offers-cats__icon img { width: 60%; height: 60%; object-fit: contain; }
+.offers-cats .cat-chip:hover .offers-cats__icon, .offers-cats .cat-chip:focus-visible .offers-cats__icon { background: #FF6B00; }
+
+/* Barra de filtros */
+.offers-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .8rem 1rem; margin-bottom: 1.5rem; padding: .75rem; background: #F8F8F8; border: 3px solid #E0E0E0; border-radius: 16px; }
+.offers-toolbar .tabs { margin: 0; }
+.offers-toolbar p { margin: 0; padding-right: .5rem; color: #333333; }
+
+/* Cards de oferta */
+.offers-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem 1.25rem; margin: 0; padding: 0; list-style: none; }
+.offer-card { position: relative; display: flex; flex-direction: column; height: 100%; padding: .75rem; background: #FFFFFF; border: 3px solid #E0E0E0; border-radius: 22px; transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease; }
+.offer-card:hover, .offer-card:focus-within { border-color: #FF6B00; box-shadow: 0 10px 24px rgba(0, 0, 0, .08); transform: translateY(-4px); }
+.offer-card__media { display: grid; place-items: center; height: 170px; background: #F8F8F8; border-radius: 14px; }
+.offer-card__media img { max-width: 82%; max-height: 140px; object-fit: contain; }
+.offer-card__badge { position: absolute; top: 1.35rem; left: 1.35rem; z-index: 1; padding: .25rem .7rem; background: #2D6A4F; border-radius: 999px; color: #FFFFFF; font-size: .85rem; font-weight: 800; }
+.offer-card__badge--hot { background: #E63946; }
+.offer-card__cart:link, .offer-card__cart:visited { position: absolute; top: 1.35rem; right: 1.35rem; z-index: 3; display: grid; width: 38px; height: 38px; place-items: center; background: #FFFFFF; border-radius: 50%; box-shadow: 0 2px 6px rgba(0, 0, 0, .15); font-size: 1.1rem; text-decoration: none; transition: background .2s ease; }
+.offer-card__cart:hover, .offer-card__cart:focus-visible { background: #FF6B00; }
+.offer-card__body { display: flex; flex: 1; flex-direction: column; gap: .35rem; padding: .8rem .35rem .2rem; }
+.offer-card__cat { margin: 0; color: #D95B00; font-size: .72rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.offer-card__title { margin: 0; min-height: 3.4rem; font-size: .95rem; font-weight: 700; line-height: 1.3; }
+.offer-card__title a { color: inherit; text-decoration: none; }
+/* O link do título cobre o cartão inteiro (o carrinho fica por cima, z-index maior) */
+.offer-card__title a::after { content: ""; position: absolute; inset: 0; z-index: 2; border-radius: 19px; }
+.offer-card__rating { margin: 0; color: #FFB800; font-size: .9rem; }
+.offer-card__rating small { color: #6A6A6A; font-size: .85rem; }
+.offer-card__prices { display: grid; gap: .15rem; margin-top: auto; padding-top: .5rem; }
+.offer-card__old { color: #8E8E8E; font-size: .85rem; }
+.offer-card__now { color: #E63946; font-size: 1.4rem; font-weight: 800; line-height: 1.1; }
+.offer-card__save { color: #1B6B2F; font-size: .8rem; font-weight: 800; }
+.offer-card__pix { color: #6A6A6A; font-size: .8rem; font-weight: 700; }
+.offer-card__cta { margin-top: .8rem; }
+
+@media (max-width: 1200px) {
+  .offers-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 900px) {
+  .deal { grid-template-columns: 1fr; padding: 1.5rem; }
+  .offers-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .offers-cats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 720px) {
+  .offers-hero { align-items: flex-start; }
+  .offers-cats { gap: .6rem; }
+  .offers-cats .cat-chip { gap: .5rem; padding: .5rem .6rem; font-size: .85rem; }
+  .offers-cats .cat-chip::after { display: none; }
+  .offers-cats__icon { width: 40px; height: 40px; }
+  .offers-timer { text-align: left; }
+  .offers-grid { gap: 1rem .75rem; }
+  .offer-card { padding: .5rem; border-radius: 16px; }
+  .offer-card__media { height: 120px; }
+  .offer-card__media img { max-height: 100px; }
+  .offer-card__badge, .offer-card__cart:link, .offer-card__cart:visited { top: .9rem; }
+  .offer-card__badge { left: .9rem; font-size: .75rem; }
+  .offer-card__cart:link, .offer-card__cart:visited { right: .9rem; width: 34px; height: 34px; }
+  .offer-card__title { min-height: 4rem; font-size: .85rem; }
+  .offer-card__now { font-size: 1.15rem; }
+  .offers-toolbar .tab-btn { min-height: 40px; padding: .3rem .8rem; font-size: .85rem; }
+}
+
+
+/* ==========================================================================
+   PÁGINAS DE DEPARTAMENTO (smartphones.html, notebooks.html, televisores.html,
+   audio.html, pcs.html, tablets.html, conectividade.html, acessorios.html)
+   Mesma moldura do produtos.html: coluna lateral + grade de cards .product-card.
+   ========================================================================== */
+
+/* Lista de departamentos no lugar dos filtros */
+.dept-nav { margin-top: 1.5rem; }
+.dept-nav ul { display: grid; gap: .2rem; margin: .6rem 0 0; padding: 0; list-style: none; }
+.dept-nav a { display: block; padding: .5rem .7rem; border-radius: 10px; font-weight: 700; text-decoration: none; }
+.dept-nav a:hover, .dept-nav a:focus-visible, .dept-nav a[aria-current="page"] { background: #00384A; color: #FFFFFF; }
+
+/* Título do departamento: bolinha do ícone + nome + frase curta */
+.dept-head { display: flex; align-items: center; gap: 1.25rem; margin: 0 0 1.75rem; }
+.dept-head__icon.category__icon { flex: 0 0 auto; width: 76px; }
+.dept-head h1 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 800; line-height: 1.1; }
+.dept-head .eyebrow { margin-bottom: .2rem; }
+.dept-head__intro { max-width: 60ch; margin: .4rem 0 0; color: #333333; line-height: 1.45; }
+
+/* 4º espaço da fileira: atalho para o catálogo completo */
+.dept-more:link, .dept-more:visited {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .6rem;
+  height: 100%;
+  min-height: 270px;
+  padding: 1.5rem;
+  background: linear-gradient(105deg, #000000 0%, #00384A 63%, #004B63 100%);
+  border: 3px solid transparent;
+  border-radius: 22px;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+.dept-more strong { font-size: 1.25rem; line-height: 1.25; }
+.dept-more__eyebrow { color: #FFB36E; font-size: .8rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.dept-more__arrow { color: #FF6B00; font-size: 1.8rem; font-weight: 800; }
+.card-wrap:hover > .dept-more { border-color: #FF6B00; }
+
+@media (max-width: 1100px) {
+  /* Lista de departamentos vira uma fileira de botões acima da grade */
+  .dept-nav ul { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .dept-nav a { border: 2px solid #E0E0E0; }
+  .dept-nav a[aria-current="page"] { border-color: #00384A; }
+}
+
+@media (max-width: 720px) {
+  .dept-head { gap: .9rem; }
+  .dept-head__icon.category__icon { width: 60px; }
+  .dept-more:link, .dept-more:visited { min-height: 200px; padding: 1rem; }
+  .dept-more strong { font-size: 1rem; }
+}
+
+
+/* ==========================================================================
+   ETAPA 4 - ÁREA ADMINISTRATIVA E OPERACIONAL
+   Dashboard do Funcionário (banner), menu fixo do admin, semana-1..4.html,
+   relatorios.html e cupons-admin.html.
+   ========================================================================== */
+
+/* ---------- Menu lateral do admin: fica visível enquanto a página rola (só no desktop) ---------- */
+.staff-nav a[aria-current="true"] { background: #00384A; color: #FFFFFF; }
+@media (min-width: 1101px) {
+  .staff-nav--fixed { position: sticky; top: 120px; }
+}
+
+/* ---------- Dashboard do Funcionário: banner laranja (o admin usa o azul) ---------- */
+.page-hero--employee {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(105deg, #000000 0%, #1A1A1B 42%, #D95B00 100%);
+  border-bottom: 6px solid #FF6B00;
+}
+.page-hero--employee h1 span { color: #FFB36E; }
+.employee-hero__side { display: flex; align-items: center; gap: 1.25rem; }
+.employee-badge { display: inline-flex; align-items: center; padding: .4rem 1rem; background: rgba(255, 255, 255, .14); border: 1px solid rgba(255, 255, 255, .4); border-radius: 999px; color: #FFFFFF; font-size: .85rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.employee-hero__mark { width: clamp(70px, 9vw, 120px); height: auto; }
+
+/* ---------- Pódio / ranking (semana-N.html) ---------- */
+.rank-pos { display: inline-grid; width: 2rem; height: 2rem; place-items: center; background: #E0E0E0; border-radius: 50%; font-weight: 800; }
+.rank-pos--top { background: #FF6B00; color: #FFFFFF; }
+.rank-product { display: flex; align-items: center; gap: .8rem; }
+.rank-product strong { display: block; }
+.rank-bar { display: block; width: 100%; min-width: 90px; height: 8px; margin-top: .3rem; overflow: hidden; background: #E0E0E0; border-radius: 999px; }
+.rank-bar > span { display: block; height: 100%; background: #FF6B00; border-radius: 999px; }
+.staff-table tbody tr.row-muted td { color: #777777; font-style: italic; }
+.week-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .8rem; margin-top: 1.5rem; }
+.staff-card--up .staff-card__number { color: #1B6B2F; }
+.staff-card--down .staff-card__number { color: #9B1C1C; }
+.staff-card__number--sm { font-size: 1.7rem; }
+
+/* ---------- Relatórios: rosca e barras horizontais ---------- */
+.report-split { display: grid; grid-template-columns: minmax(180px, 220px) minmax(0, 1fr); gap: 1.5rem 2rem; align-items: center; margin-bottom: 1.5rem; }
+.donut { position: relative; display: grid; width: 100%; max-width: 220px; aspect-ratio: 1; margin: 0 auto; place-items: center; border-radius: 50%; }
+.donut::after { content: ""; position: absolute; inset: 24%; background: #FFFFFF; border-radius: 50%; }
+.donut__center { position: relative; z-index: 1; text-align: center; line-height: 1.2; }
+.donut__center strong { display: block; color: #004B63; font-size: 1.25rem; }
+.donut__center small { color: #555555; font-size: .8rem; }
+.hbar-list { display: grid; gap: .8rem; margin: 0; padding: 0; list-style: none; }
+.hbar { display: grid; grid-template-columns: minmax(130px, 190px) minmax(0, 1fr) minmax(110px, auto); align-items: center; gap: .3rem 1rem; }
+.hbar__label { display: flex; align-items: center; gap: .5rem; font-weight: 700; }
+.hbar__label i { flex: 0 0 auto; width: .85rem; height: .85rem; border-radius: 3px; }
+.hbar__track { display: block; height: 14px; overflow: hidden; background: #EEEEEE; border-radius: 999px; }
+.hbar__track > span { display: block; height: 100%; border-radius: 999px; }
+.hbar__value { font-weight: 800; text-align: right; white-space: nowrap; }
+.hbar__value small { display: block; color: #777777; font-weight: 600; }
+.staff-table td.num, .staff-table th.num { text-align: right; }
+.staff-table tfoot td.num { text-align: right; }
+.alert-row .stock { margin-left: auto; }
+.report-actions { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
+
+/* ---------- Cupons (cupons-admin.html) ---------- */
+.coupon-form select { min-height: 58px; }
+.coupon-form .form-field small { color: #555555; }
+.coupon-msg { min-height: 1.4rem; margin: 0; font-weight: 700; }
+.coupon-msg--erro { color: #C62828; }
+.coupon-msg--ok { color: #1B6B2F; }
+.coupon-code { color: #004B63; font-size: 1.05rem; letter-spacing: .04em; }
+.coupon-empty { margin: 1rem 0; padding: 1.2rem; background: #F8F8F8; border: 2px dashed #CCCCCC; border-radius: 14px; color: #555555; text-align: center; }
+.coupon-tools { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .8rem; margin-top: 1.2rem; }
+.staff-table td[data-label="Ações"] .staff-actions { min-width: 230px; }
+
+@media (max-width: 1100px) {
+  .report-split { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .hbar { grid-template-columns: 1fr auto; }
+  .hbar__track { grid-column: 1 / -1; grid-row: 2; }
+  .employee-hero__mark { display: none; }
+  .staff-table td[data-label="Ações"] .staff-actions { min-width: 0; }
+  .staff-table td[data-label="Código"] { display: block; text-align: left; }
+  .staff-table td[data-label="Código"]::before { display: block; margin-bottom: .3rem; }
+}
